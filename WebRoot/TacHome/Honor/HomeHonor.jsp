@@ -20,21 +20,10 @@
 			style="overflow:hidden; white-space:nowrap; width:1000; background-color:green; left:100; position:relative">
 			<div class="showTimeImage" style="position:relative">
 			
-				<script type="text/javascript">
-					//copyName();
-					<%for (int i=0; i<allProjects.getProject().size(); i++)
-					{%>
-						imgName[<%=i%>]=new Array();	
-	 					<%for (int j=0; j<allProjects.getProject().get(i).getImage().size(); j++)
-	 					{%>
-			 		 		imgName[<%=i%>][<%=j%>]="<%=allProjects.getProject().get(i).getImage().get(j)%>";
-	  			 	 <%}%>
-	  			  <%}%>
-	  			</script>
 	  		
 	  			<%for (int i=0; i<allProjects.getProject().size(); i++)
 	  			{%>
-					<img id="<%=i%>" src="<%=allProjects.getProject().get(i).getImage().get(0) %>"
+					<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>" src="<%=allProjects.getProject().get(i).getImage().get(0) %>"
 						onclick="linkToImg(this)" onmousemove="changeImg(this)"onmouseout="leaveImg(this)" style="position:relative; margin-left:100;">
 			  <%}%>
 			</div>

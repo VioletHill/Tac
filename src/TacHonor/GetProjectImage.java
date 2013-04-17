@@ -1,17 +1,17 @@
-package TacHome;
+package TacHonor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import DataSource.Notices.AllNotices;
 import DataSource.Projects.AllProjects;
 
-public class HomeServlet extends HttpServlet {
+public class GetProjectImage extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -24,15 +24,15 @@ public class HomeServlet extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
-			//String userName=request.getParameter("userName");
-			//String userPassword=request.getParameter("userPassword");
-			AllProjects allProjects=new AllProjects();
-			AllNotices allNotices=new AllNotices();
-			request.setAttribute("allProjects", allProjects);
-			request.setAttribute("allNotices", allNotices);
-			request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);
+			throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		AllProjects allProjects=new AllProjects();
+		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
+		int indexImage=Integer.parseInt(request.getParameter("indexImage"));
+		out.write(allProjects.getProject().get(indexProject).getImage().get(indexImage));
+		out.flush();
 	}
 
 	/**
@@ -47,6 +47,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

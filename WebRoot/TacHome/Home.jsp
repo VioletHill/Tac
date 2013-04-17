@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
    	<!-- ÐÅÏ¢À¸Ä¿ -->
 
-    
+    <%@include file="Notices/HomeNotices.jsp"%>
     <!-- ÈÙÓþÊÒ -->
 	<%@include file="Honor/HomeHonor.jsp" %>
     

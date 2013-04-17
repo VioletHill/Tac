@@ -1,9 +1,8 @@
- 	var imgName=new Array();
+
  	var isFirst=true;
 	var x,y;
 	var indexImg;
 	var isChange=false;
- 	
  	function linkToImg(pro)
 	{
 		window.location.href="http://localhost:8080/Tac/Honor/Project?id="+pro.id;
@@ -39,23 +38,60 @@
 	
 	function moveNextImg(pro)
 	{
-		indexImg=(indexImg+1)%imgName[pro.id].length;
-		pro.src=imgName[pro.id][indexImg];
+		var tot=parseInt(pro.name);
+		indexImg=(indexImg+1)%tot;
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{
+		  xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.open("POST", "http://localhost:8080/Tac/Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
+		xmlhttp.send();
+		pro.src=xmlhttp.responseText;
 		x=event.clientX;
 		y=event.clientY;
 	}
 	
 	function moveLastImg(pro)
 	{
-		indexImg=(indexImg-1+imgName[pro.id].length)%imgName[pro.id].length;
-		pro.src=imgName[pro.id][indexImg];
+		var tot=parseInt(pro.name);
+		indexImg=(indexImg-1+tot)%tot;
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{
+		  xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.open("POST", "http://localhost:8080/Tac/Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
+		xmlhttp.send();
+		pro.src=xmlhttp.responseText;
 		x=event.clientX;
 		y=event.clientY;
 	}
 	
 	function leaveImg(pro)
 	{
-		pro.src=imgName[pro.id][0];
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{
+		  xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.open("POST", "http://localhost:8080/Tac/Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage=0", false);
+		xmlhttp.send();
+		pro.src=xmlhttp.responseText;
+		x=event.clientX;
+		y=event.clientY;
 		isFirst=true;
 	}
 	
