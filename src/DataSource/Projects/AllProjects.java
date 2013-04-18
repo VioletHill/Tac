@@ -5,11 +5,21 @@ import java.util.Vector;
 public class AllProjects 
 {
 	private Vector< Projects > projects=null;
+	static private AllProjects instacne;
+	
+	static synchronized public AllProjects sharedAllProjects()
+	{
+		if (instacne==null)
+		{
+			instacne=new AllProjects();
+			instacne.initProject();
+		}
+		return instacne;
+	}
 	
 	public AllProjects() 
 	{
 		projects=new Vector<Projects>();
-		initProject();
 	}
 
 	//初始化imageName 展示图片

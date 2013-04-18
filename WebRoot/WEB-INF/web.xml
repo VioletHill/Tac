@@ -26,8 +26,8 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>GetNotices</servlet-name>
-    <servlet-class>TacNotices.GetNotices</servlet-class>
+    <servlet-name>ShowNotices</servlet-name>
+    <servlet-class>TacNotices.ShowNotices</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -35,6 +35,34 @@
     <servlet-name>GetProjectImage</servlet-name>
     <servlet-class>TacHonor.GetProjectImage</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditNotices</servlet-name>
+    <servlet-class>TacNotices.EditNotices</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>EditIndexNotices</servlet-name>
+    <servlet-class>TacNotices.EditIndexNotices</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UpdateNotices</servlet-name>
+    <servlet-class>TacNotices.UpdateNotices</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NoticesPageServlet</servlet-name>
+    <servlet-class>TacNotices.NoticesPageServlet</servlet-class>
+  </servlet>
+
+
+
+
 
 
 
@@ -53,12 +81,28 @@
     <url-pattern>/Honor/Project</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GetNotices</servlet-name>
-    <url-pattern>/Notices/GetNotices</url-pattern>
+    <servlet-name>ShowNotices</servlet-name>
+    <url-pattern>/Notices/ShowNotices</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetProjectImage</servlet-name>
     <url-pattern>/Honor/GetProjectImage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditNotices</servlet-name>
+    <url-pattern>/Admin/EditNotices</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditIndexNotices</servlet-name>
+    <url-pattern>/Admin/EditIndexNotices</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UpdateNotices</servlet-name>
+    <url-pattern>/UpdateNotices</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NoticesPageServlet</servlet-name>
+    <url-pattern>/Notices/NoticesPage</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

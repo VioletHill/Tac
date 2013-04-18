@@ -1,4 +1,4 @@
-package TacHonor;
+package TacNotices;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Projects.AllProjects;
+import DataSource.Notices.AllNotices;
 
-public class GetProjectImage extends HttpServlet {
+public class ShowNotices extends HttpServlet {
 
 	/**
 	 * 
@@ -29,13 +29,15 @@ public class GetProjectImage extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
+		
+		response.setContentType("text/html; charset=gbk");
+		
+		AllNotices allNotices=AllNotices.sharedAllNotices();
+		int index=Integer.parseInt(request.getParameter("index"));
+		
 		PrintWriter out = response.getWriter();
 		
-		AllProjects allProjects=AllProjects.sharedAllProjects();
-		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
-		int indexImage=Integer.parseInt(request.getParameter("indexImage"));
-		out.write(allProjects.getProject().get(indexProject).getImage().get(indexImage));
+		out.write(allNotices.getAllNotices().get(index).getContent());
 		out.flush();
 	}
 

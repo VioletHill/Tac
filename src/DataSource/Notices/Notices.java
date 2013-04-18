@@ -1,8 +1,5 @@
 package DataSource.Notices;
 
-
-
-
 public class Notices 
 {
 	private String title;
@@ -11,7 +8,9 @@ public class Notices
 	
 	public Notices()
 	{
-		
+		title="";
+		content="";
+		data="";
 	}
 
 	public String getTitle() {

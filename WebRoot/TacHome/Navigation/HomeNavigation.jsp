@@ -5,7 +5,7 @@
     </script>
 
 <!--  navigation -->
-  	<div style="top:0;width:1200; height:588; vertical-align:bottom; background-image:url(TacHome/Image/NavigationBg.png); margin-right: auto; margin-left: auto;"  >
+  	<div style="top:0;width:1200; height:607; vertical-align:bottom; background-image:url(TacHome/Image/NavigationBg.png); margin-right: auto; margin-left: auto;"  >
   		 <div id="nav">
           <table> 
             <tr>
@@ -35,8 +35,8 @@
     	    </div>
     	    
     	    <div style="position:relative">
-    	    	<img src="TacHome/Image/LastPage.png" onclick="lastImg()" style="position:relative;   left:585; top:-200px; opacity:0.8">
-    	  	  	<img src="TacHome/Image/NextPage.png" onclick="nextImg()" style="position:relative;   left:5; top:-200px; opacity:0.8">
+    	    	<img src="TacHome/Image/LastPage.png" onclick="lastImg()" style="position:relative;   left:5; top:-200px; opacity:0.8">
+    	  	  	<img src="TacHome/Image/NextPage.png" onclick="nextImg()" style="position:relative;   left:585; top:-200px; opacity:0.8">
    			</div>
    			
     	</div>

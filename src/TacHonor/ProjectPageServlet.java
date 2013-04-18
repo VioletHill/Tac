@@ -12,6 +12,11 @@ import DataSource.Projects.AllProjects;
 public class ProjectPageServlet extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The doGet method of the servlet. <br>
 	 *
 	 * This method is called when a form has its tag value method equals to get.
@@ -34,7 +39,7 @@ public class ProjectPageServlet extends HttpServlet {
 	
 			System.err.println("wrong address input!  go to errorPage");
 		}
-		AllProjects allProjects=new AllProjects();
+		AllProjects allProjects=AllProjects.sharedAllProjects();
 		
 		if (proId<0 || proId>=allProjects.getProject().size())
 		{

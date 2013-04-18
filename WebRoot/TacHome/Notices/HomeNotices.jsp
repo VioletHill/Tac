@@ -2,6 +2,7 @@
 
 <script type="text/javascript">
 	<%@include file="NoticesIndex.js" %>
+	<%@include file="/TacNotices/NoticesLink.js" %>
 </script>
 
 
@@ -17,8 +18,13 @@
  	</div>
  	
  	 <div style="width:400; background-color:red; float:left">
- 	 	 <img src="/TacHome/Image/NextPage.png" onclick="showNotice()">
- 	 	 <a href=""> <%=allNotices.getAllNotices().get(0).getTitle()%></a>
-
+ 	
+ 	 	 
+ 	 	<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
+ 	 	{%>
+ 	 		 <img id="<%=i%>" src="/TacHome/Image/NextPage.png" onclick="showNotice(this)">
+ 	 		 <label id="<%=i%>" onclick="linkToNotices(this)"><%=allNotices.getAllNotices().get(0).getTitle()%></label>  
+ 	 		 <br>
+		<%} %>
  	</div>
  </div>

@@ -14,31 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		padding: 0px;
   		margin: 0px;
   	}
-  
- 	 .container
-  	{
-  		position:relative;
-  		top:164px;
-  		left:0px;
-  		width:614;
-  		height:384px;
-  		white-space:nowrap;
-		overflow:hidden;
-  	}
-  
- 	.imageWheel
- 	{
-  		position:relative;
-  		left:0;
-  		top:0;
-  	}
- 	.pageing
- 	{
-		position:relative;
-		left:540px;
-		top:-30;
-		z-index:100;
- 	}
+
   </style>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -64,6 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<!-- ÐÅÏ¢À¸Ä¿ -->
 
     <%@include file="Notices/HomeNotices.jsp"%>
+    
+    
     <!-- ÈÙÓþÊÒ -->
 	<%@include file="Honor/HomeHonor.jsp" %>
     

@@ -1,16 +1,15 @@
-package TacHonor;
+package TacNotices;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Projects.AllProjects;
+import DataSource.Notices.AllNotices;
 
-public class GetProjectImage extends HttpServlet {
+public class EditNotices extends HttpServlet {
 
 	/**
 	 * 
@@ -28,15 +27,11 @@ public class GetProjectImage extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		AllProjects allProjects=AllProjects.sharedAllProjects();
-		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
-		int indexImage=Integer.parseInt(request.getParameter("indexImage"));
-		out.write(allProjects.getProject().get(indexProject).getImage().get(indexImage));
-		out.flush();
+			throws ServletException, IOException 
+	{
+		AllNotices allNotices=AllNotices.sharedAllNotices();
+		request.setAttribute("allNotices", allNotices);
+		request.getRequestDispatcher("/TacNotices/Admin/Edit.jsp").forward(request, response);
 	}
 
 	/**

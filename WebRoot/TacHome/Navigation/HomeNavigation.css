@@ -48,5 +48,30 @@ td{
 }
 
 
+ .container
+  	{
+  		position:relative;
+  		top:170;
+  		left:45px;
+  		width:614;
+  		height:384px;
+  		white-space:nowrap;
+		overflow:hidden;
+  	}
+  
+ 	.imageWheel
+ 	{
+  		position:relative;
+  		left:0;
+  		top:0;
+  	}
+ 	.pageing
+ 	{
+		position:relative;
+		left:540px;
+		top:-30;
+		z-index:100;
+ 	}
+
 
 

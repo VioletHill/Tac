@@ -14,6 +14,11 @@ import DataSource.Projects.AllProjects;
 public class HomeServlet extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The doGet method of the servlet. <br>
 	 *
 	 * This method is called when a form has its tag value method equals to get.
@@ -28,10 +33,12 @@ public class HomeServlet extends HttpServlet {
 	{
 			//String userName=request.getParameter("userName");
 			//String userPassword=request.getParameter("userPassword");
-			AllProjects allProjects=new AllProjects();
-			AllNotices allNotices=new AllNotices();
+			AllProjects allProjects=AllProjects.sharedAllProjects();
+			AllNotices allNotices=AllNotices.sharedAllNotices();
 			request.setAttribute("allProjects", allProjects);
 			request.setAttribute("allNotices", allNotices);
+			
+		
 			request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);
 	}
 

@@ -1,7 +1,6 @@
 package TacNotices;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Notices.AllNotices;
+import DataSource.Notices.Notices;
 
-public class GetNotices extends HttpServlet {
+public class EditIndexNotices extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -25,15 +30,29 @@ public class GetNotices extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		response.setContentType("text/html");
+		int index=-1;
+		AllNotices allNotices=AllNotices.sharedAllNotices();
+		try 
+		{
+			index=Integer.parseInt(request.getParameter("index"));
+		} 
+		catch (Exception e) 
+		{
+			System.out.println("No this index! goto create new");
+		}
+		if (index<0 || index>=allNotices.getAllNotices().size())	//添加一个新的页面
+		{
+			Notices notices=new Notices();
+			notices.setTitle("此处添加新标题");
+			request.setAttribute("notices",notices);
+			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
+		}
+		else 
+		{
+			request.setAttribute("notices",allNotices.getAllNotices().get(index));
+			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
+		}
 		
-		AllNotices allNotices=new AllNotices();
-		int index=Integer.parseInt(request.getParameter("index"));
-		
-		PrintWriter out = response.getWriter();
-		
-		out.write(allNotices.getAllNotices().get(index).getContent());
-		out.flush();
 	}
 
 	/**

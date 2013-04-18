@@ -12,6 +12,11 @@ import DataSource.Projects.AllProjects;
 public class HonorServlet extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * The doGet method of the servlet. <br>
 	 *
 	 * This method is called when a form has its tag value method equals to get.
@@ -23,7 +28,7 @@ public class HonorServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AllProjects	allProjects=new AllProjects();
+		AllProjects	allProjects=AllProjects.sharedAllProjects();
 		request.setAttribute("tacHonor", allProjects);
 		request.getRequestDispatcher("/TacHonor/Honor.jsp").forward(request, response);
 	}

@@ -1,16 +1,19 @@
-package TacHonor;
+package TacNotices;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DataSource.Notices.AllNotices;
+import DataSource.Notices.Notices;
 import DataSource.Projects.AllProjects;
 
-public class GetProjectImage extends HttpServlet {
+public class UpdateNotices extends HttpServlet {
 
 	/**
 	 * 
@@ -29,14 +32,24 @@ public class GetProjectImage extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+		AllNotices allNotices=AllNotices.sharedAllNotices();
+;
+		Notices newNotices=new Notices();
+		newNotices.setTitle(new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk"));
+		
+		newNotices.setContent(new String(request.getParameter("content").getBytes("iso-8859-1"),"gbk"));
+		
+		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
+		newNotices.setData(dataFormat.format(new Date()));
+		allNotices.addNotices(newNotices);
+		
 		
 		AllProjects allProjects=AllProjects.sharedAllProjects();
-		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
-		int indexImage=Integer.parseInt(request.getParameter("indexImage"));
-		out.write(allProjects.getProject().get(indexProject).getImage().get(indexImage));
-		out.flush();
+
+		request.setAttribute("allProjects", allProjects);
+		request.setAttribute("allNotices", allNotices);
+		
+		response.sendRedirect("http://localhost:8080/Tac/Home");
 	}
 
 	/**
