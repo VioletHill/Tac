@@ -5,7 +5,7 @@
 	var isChange=false;
  	function linkToImg(pro)
 	{
-		window.location.href="localhost:8080/Tac/Honor/Project?id="+pro.id;
+		window.location.href="http://localhost:8080/Tac/Honor/Project?id="+pro.id;
 	}
 
 	function changeImg(pro)

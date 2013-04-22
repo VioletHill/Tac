@@ -23,7 +23,7 @@
  	 	<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
  	 	{%>
  	 		 <img id="<%=i%>" src="/TacHome/Image/NextPage.png" onclick="showNotice(this)">
- 	 		 <label id="<%=i%>" onclick="linkToNotices(this)"><%=allNotices.getAllNotices().get(0).getTitle()%></label>  
+ 	 		 <label id="<%=i%>" onclick="linkToNotices(this)"><%=allNotices.getAllNotices().get(i).getTitle()%></label>  
  	 		 <br>
 		<%} %>
  	</div>

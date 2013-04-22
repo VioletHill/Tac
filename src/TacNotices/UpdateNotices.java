@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Notices.AllNotices;
 import DataSource.Notices.Notices;
-import DataSource.Projects.AllProjects;
 
 public class UpdateNotices extends HttpServlet {
 
@@ -33,7 +32,7 @@ public class UpdateNotices extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AllNotices allNotices=AllNotices.sharedAllNotices();
-;
+
 		Notices newNotices=new Notices();
 		newNotices.setTitle(new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk"));
 		
@@ -43,12 +42,7 @@ public class UpdateNotices extends HttpServlet {
 		newNotices.setData(dataFormat.format(new Date()));
 		allNotices.addNotices(newNotices);
 		
-		
-		AllProjects allProjects=AllProjects.sharedAllProjects();
-
-		request.setAttribute("allProjects", allProjects);
-		request.setAttribute("allNotices", allNotices);
-		
+		//Ìø×ª»ØÖ÷Ò³
 		response.sendRedirect("http://localhost:8080/Tac/Home");
 	}
 

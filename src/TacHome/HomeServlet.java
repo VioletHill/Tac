@@ -31,15 +31,15 @@ public class HomeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{
-			//String userName=request.getParameter("userName");
-			//String userPassword=request.getParameter("userPassword");
-			AllProjects allProjects=AllProjects.sharedAllProjects();
-			AllNotices allNotices=AllNotices.sharedAllNotices();
-			request.setAttribute("allProjects", allProjects);
-			request.setAttribute("allNotices", allNotices);
+		//String userName=request.getParameter("userName");
+		//String userPassword=request.getParameter("userPassword");
+		AllProjects allProjects=AllProjects.sharedAllProjects();
+		AllNotices allNotices=AllNotices.sharedAllNotices();
+		request.setAttribute("allProjects", allProjects);
+		request.setAttribute("allNotices", allNotices);
 			
 		
-			request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);
+		request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);
 	}
 
 	/**

@@ -33,7 +33,7 @@ public class ShowNotices extends HttpServlet {
 		response.setContentType("text/html; charset=gbk");
 		
 		AllNotices allNotices=AllNotices.sharedAllNotices();
-		int index=Integer.parseInt(request.getParameter("index"));
+		int index=Integer.parseInt(request.getParameter("indexNotices"));
 		
 		PrintWriter out = response.getWriter();
 		
