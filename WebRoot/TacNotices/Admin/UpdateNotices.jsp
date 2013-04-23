@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        {
         	b=window.open();   
             b.document.open();   
-            b.document.write(document.getElementById("chat_content").innerHTML); 
+            b.document.write(document.getElementById("chat_content").outterHTML); 
             b.document.close();   
        }
       

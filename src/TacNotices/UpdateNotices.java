@@ -31,16 +31,18 @@ public class UpdateNotices extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AllNotices allNotices=AllNotices.sharedAllNotices();
-
-		Notices newNotices=new Notices();
-		newNotices.setTitle(new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk"));
+//		AllNotices allNotices=AllNotices.sharedAllNotices();
+//
+//		Notices newNotices=new Notices();
+//		newNotices.setTitle(new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk"));
+//		
+//		newNotices.setContent(new String(request.getParameter("content").getBytes("iso-8859-1"),"gbk"));
+//		
+//		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
+//		newNotices.setData(dataFormat.format(new Date()));
+//		allNotices.addNotices(newNotices);
 		
-		newNotices.setContent(new String(request.getParameter("content").getBytes("iso-8859-1"),"gbk"));
 		
-		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
-		newNotices.setData(dataFormat.format(new Date()));
-		allNotices.addNotices(newNotices);
 		
 		//Ìø×ª»ØÖ÷Ò³
 		response.sendRedirect("http://localhost:8080/Tac/Home");
