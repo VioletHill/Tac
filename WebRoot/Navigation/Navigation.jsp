@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*"   pageEncoding="GB18030"%>
 
-<style>
+<style >
 	 <%@include file="/Navigation/Navigation.css" %>
 </style>
 

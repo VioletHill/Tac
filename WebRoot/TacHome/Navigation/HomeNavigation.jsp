@@ -11,6 +11,7 @@
             <tr>
               <td width="150px"> <img src="images/document/_0009s_0001_ring.png"></td>
               <td><a class="nav" href="http://localhost:8080/Tac/Home"><div><p>首页</p></div></a></td>
+              <td><a class="nav" href="http://localhost:8080/Tac/Document"><div><p>资料室</p></div></a></td>
               <td><a class="nav" href="http://localhost:8080/Tac/Honor"><div><p>荣誉室</p></div></a></td>
               <td><a class="nav" href="http://localhost:8080/Tac/"><div><p>留言墙</p></div></a></td>
               <td><a class="nav" href="http://localhost:8080/Tac/"><div><p>聚创意</p></div></a></td>

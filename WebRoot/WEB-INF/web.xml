@@ -59,6 +59,13 @@
     <servlet-name>NoticesPageServlet</servlet-name>
     <servlet-class>TacNotices.NoticesPageServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DocumentServlet</servlet-name>
+    <servlet-class>TacDocument.DocumentServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -103,6 +110,10 @@
   <servlet-mapping>
     <servlet-name>NoticesPageServlet</servlet-name>
     <url-pattern>/Notices/NoticesPage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DocumentServlet</servlet-name>
+    <url-pattern>/Document</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
