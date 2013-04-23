@@ -29,10 +29,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
        function save()
        {
-        	b=window.open();   
-            b.document.open();   
-            b.document.write(document.getElementById("chat_content").outterHTML); 
-            b.document.close();   
+       		var contentHtml;
+       		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
+       		{
+       			//alert("chrome / safari /fixfox");
+       			contentHtml=document.getElementById("chat_content").contentWindow.document.body.innerHTML;
+       		}
+      		else if (document.getElementById("chat_content").document.documentElement.innerHTML)
+      		{
+      			//alert("ie");
+      			contentHtml=document.getElementById("chat_content").document.documentElement.innerHTML;
+      		}
+      		else
+      		{
+      			alert("你的浏览器不支持");
+      			return ;
+      		}
+       		//windows.
        }
       
      </script>
@@ -46,15 +59,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
 	 	<%@include file="/Navigation/Navigation.jsp" %>
-	 	<OBJECT id=dlgHelper CLASSID="clsid:3050f819-98b5-11cf-bb82-00aa00bdce0b" width="0px" height="0px" ></OBJECT>
 	 	<div style="width:700; margin-right:auto; margin-left:auto">
 	 		<br>
 	 		<br>
-<<<<<<< HEAD
-	 		<form name="notices" action="/Tac/UpdateNotices" method="POST" style="text-align:center">
-=======
-	 		<form name="notices" onsubmit="checkForm(this);" action="/Tac/UpdateNotices" method="POST" style="text-align:center">
->>>>>>> mark nothing
+	 		<form name="notices" action="/Tac/UpdateNotices"  onsubmit="save()" method="POST" style="text-align:center">
 	 			<input type="text" value="<%=notices.getTitle() %>" name="title" style="width:300; height:50; text-align:center"> 
 	 			<br>
 	 			<br>
@@ -73,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 	<input type="button" value="颜色选择" onclick="coloropen(event)" id="inputcolor" /> -->
  
                 
-	 			<iframe id="chat_content"  src="TacNotices/Admin/BlankContent.html" scrolling="auto"></iframe>
+	 			<iframe id="chat_content" src="TacNotices/Admin/BlankContent.html"scrolling="auto"></iframe>
 	 			
 	 			<input type="submit" style="width:100; height:100; font-size:20">
 	 		</form>
