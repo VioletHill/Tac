@@ -50,7 +50,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<div style="width:700; margin-right:auto; margin-left:auto">
 	 		<br>
 	 		<br>
+<<<<<<< HEAD
 	 		<form name="notices" action="/Tac/UpdateNotices" method="POST" style="text-align:center">
+=======
+	 		<form name="notices" onsubmit="checkForm(this);" action="/Tac/UpdateNotices" method="POST" style="text-align:center">
+>>>>>>> mark nothing
 	 			<input type="text" value="<%=notices.getTitle() %>" name="title" style="width:300; height:50; text-align:center"> 
 	 			<br>
 	 			<br>
