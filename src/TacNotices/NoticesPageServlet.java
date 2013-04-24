@@ -31,7 +31,6 @@ public class NoticesPageServlet extends HttpServlet {
 		
 	
 		String id=request.getParameter("indexNotices");
-		System.out.println(id);
 		//此处处理 id 的异常
 		int noticeId=-1;
 		try {
@@ -42,14 +41,12 @@ public class NoticesPageServlet extends HttpServlet {
 		}
 		AllNotices allNotices=AllNotices.sharedAllNotices();
 		
-		System.out.println(allNotices.getAllNotices().size());
 		if (noticeId<0 || noticeId>=allNotices.getAllNotices().size())
 		{
 			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
 		}
 		else 
 		{
-			System.out.println("enter");
 			request.setAttribute("notices", allNotices.getAllNotices().get(noticeId));
 			request.getRequestDispatcher("/TacNotices/NoticesPage.jsp").forward(request, response);
 		}

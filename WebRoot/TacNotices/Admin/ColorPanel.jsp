@@ -38,6 +38,7 @@
 					+ colorTable + '</table>';
 			document.getElementById("colorpane").innerHTML = colorTable;
 		}
+		
 		function doclick(colorValue) 
 		{
 			defaultColor=colorValue;

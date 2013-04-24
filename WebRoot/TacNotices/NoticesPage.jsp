@@ -1,3 +1,4 @@
+<%@page import="com.sun.corba.se.spi.activation.Server"%>
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 String path = request.getContextPath();
@@ -40,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<br>
 			<br>
+		
 			<div id="content">
 				<%=notices.getContent()%>
 			</div>
