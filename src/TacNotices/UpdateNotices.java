@@ -38,20 +38,14 @@ public class UpdateNotices extends HttpServlet {
 		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
 		newNotices.setData(dataFormat.format(new Date()));
 	
-		
 		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
-		String content=new String(request.getParameter("content").getBytes("iso-8859-1"),"gbk");
-
-		System.out.println(content);
-		content.replaceAll("%23", "#");
-		System.out.print(content);
+		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
 		newNotices.setTitle(title);
 		newNotices.setContent(content);
-		
 		allNotices.addNotices(newNotices);
-		
 		//Ìø×ª»ØÖ÷Ò³
 		response.sendRedirect("http://localhost:8080/Tac/Home");
+		
 	}
 
 	/**

@@ -18,9 +18,8 @@
  	</div>
  	
  	 <div style="width:400; background-color:red; float:left">
- 	
- 	 	 
- 	 	<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
+ 	 	<%System.out.print(allNotices.getAllNotices().size());
+ 	 	for (int i=0; i<allNotices.getAllNotices().size(); i++)
  	 	{%>
  	 		 <img id="<%=i%>" src="/TacHome/Image/NextPage.png" onclick="showNotice(this)">
  	 		 <label id="<%=i%>" onclick="linkToNotices(this)"><%=allNotices.getAllNotices().get(i).getTitle()%></label>  
