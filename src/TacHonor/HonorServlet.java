@@ -29,7 +29,8 @@ public class HonorServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		AllProjects	allProjects=AllProjects.sharedAllProjects();
-		request.setAttribute("tacHonor", allProjects);
+	
+		request.setAttribute("allProjects", allProjects);
 		request.getRequestDispatcher("/TacHonor/Honor.jsp").forward(request, response);
 	}
 

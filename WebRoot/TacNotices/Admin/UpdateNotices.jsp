@@ -50,7 +50,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			document.getElementById("publish_content").value=contentHtml;
        		alert("新通知已经被发布");
        		
-       		
        }
        
        function cancel()
