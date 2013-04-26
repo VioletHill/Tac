@@ -1,5 +1,4 @@
 
-<%@page import="com.sun.medialib.mlib.Image"%>
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 

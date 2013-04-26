@@ -1,5 +1,5 @@
 #MyEclipse Hibernate Properties
-#Tue Apr 23 21:01:33 GMT+08:00 2013
+#Fri Apr 26 22:12:36 CST 2013
 sessionFactoryName=TacHibernateSessionFactory.HibernateSessionFactory
 genBasicCompId=false
 profile=
@@ -10,7 +10,7 @@ detectM2M=false
 reStrategyClass=
 detectO2O=false
 springDaoFile=
-useJavaTypes=true
+useJavaTypes=false
 keyGenerator=
 libInstallFolder=/WebRoot/WEB-INF/lib
 addLibs2Project=true
@@ -18,8 +18,8 @@ genVersionTag=false
 sessionFactoryId=
 basePersistenceClass=
 genAnnotations=false
-reSettingsFile=
+reSettingsFile=/Tac/hibernate.reveng.xml
 configFile=/Tac/src/hibernate.cfg.xml
 createConfigFile=true
 addLibs2Classpath=true
-baseDaoClass=
+baseDaoClass=BaseHibernateDAO
