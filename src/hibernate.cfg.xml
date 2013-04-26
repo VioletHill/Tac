@@ -21,7 +21,7 @@
 		<property name="myeclipse.connection.profile">
 			TacWebsite
 		</property>
-		<mapping resource="TacHibernate/Notice.hbm.xml" />
+		<mapping resource="TacHibernateServlet/Notice.hbm.xml" />
 
 	</session-factory>
 

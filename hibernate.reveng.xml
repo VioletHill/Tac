@@ -3,11 +3,11 @@
 
 <hibernate-reverse-engineering>
 	<table name="Notice" catalog="TacWebsite"
-		class="TacHibernate.Notice">
+		class="TacHibernateServlet.Notice">
 		<primary-key>
 			<key-column name="Notice_id" property="notice_id" />
 		</primary-key>
 		<column name="Notice_html" property="notice_html"></column>
-		<column name="Notice_date" property="notice_date"></column>
+		<column name="Notice_date" property="notice_date" type="date"></column>
 	</table>
 </hibernate-reverse-engineering>
