@@ -38,19 +38,23 @@ public class EditIndexNotices extends HttpServlet {
 		} 
 		catch (Exception e) 
 		{
-			System.out.println("No this index! goto create new");
+			
 		}
 		if (index<0 || index>=allNotices.getAllNotices().size())	//添加一个新的页面
 		{
+			System.out.println("No this index! goto create new");
 			Notices notices=new Notices();
 			notices.setTitle("此处添加新标题");
+			notices.setContent(null);
 			request.setAttribute("notices",notices);
 			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
+			//request.getRequestDispatcher("/TacNotices/Admin/BlankContent.jsp").forward(request, response);
 		}
 		else 
 		{
 			request.setAttribute("notices",allNotices.getAllNotices().get(index));
 			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
+			//request.getRequestDispatcher("/TacNotices/Admin/BlankContent.jsp").forward(request, response);
 		}
 		
 	}

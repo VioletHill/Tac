@@ -9,7 +9,7 @@
 
   <jsp:useBean class="DataSource.Notices.AllNotices" id="allNotices" scope="request">
  </jsp:useBean>
-
+<div style="clear:both"> </div>
  <div style="width:1200; margin-left:auto; margin-right:auto">
  	<div style="width:800; height:200; background-color:green;  float:left; overflow:hidden">
  		<div id="notice" style="height:120; overflow:hidden; margin-left:50; margin-right:50; margin-top:30">
@@ -18,7 +18,7 @@
  			 	<%=allNotices.getAllNotices().get(0).getContent() %>
  		   <%}%>
  		</div>
- 		<p>abs<p>
+ 	
  	</div>
  	
  	 <div style="width:400; height:200; background-color:red; float:left">
@@ -35,3 +35,4 @@
 		<%} %>
  	</div>
  </div>
+<div style="clear:both"> </div>

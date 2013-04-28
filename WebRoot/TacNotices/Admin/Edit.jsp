@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<% for (int i=0; i<allNotices.getAllNotices().size(); i++)
 	 	{%>
 	 		<div style="overflow:hidden;">
-	 			<a href=""> <%=allNotices.getAllNotices().get(i).getTitle() %> </a> <br>
+	 			<a href="http://localhost:8080/Tac/Admin/EditIndexNotices?index=<%=i %>"> <%=allNotices.getAllNotices().get(i).getTitle() %> </a> <br>
 	 			<div style="float:right"> <%=allNotices.getAllNotices().get(i).getData() %> </div>
 	 		</div>
 	  <%}%>

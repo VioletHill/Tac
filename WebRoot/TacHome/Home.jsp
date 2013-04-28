@@ -38,11 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@include file="Navigation/HomeNavigation.jsp" %>
 	
    	<!-- ÐÅÏ¢À¸Ä¿ -->
-
+   	<br>
+   	<br>
     <%@include file="Notices/HomeNotices.jsp"%>
-    
-    
+      
     <!-- ÈÙÓþÊÒ -->
+    <br>
 	<%@include file="Honor/HomeHonor.jsp" %>
     
     <%@include file="/Navigation/Footer.jsp" %>

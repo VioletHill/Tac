@@ -2,19 +2,15 @@ package TacNotices;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import DataSource.Notices.AllNotices;
 import DataSource.Notices.Notices;
-import TacHibernateServlet.Notice;
-import TacHibernateSessionFactory.HibernateSessionFactory;
 
 public class UpdateNotices extends HttpServlet {
 
@@ -40,23 +36,27 @@ public class UpdateNotices extends HttpServlet {
 		Notices newNotices=new Notices();
 		
 		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
-		//newNotices.setData(dataFormat.format(new Date()));
 	
+		
 		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
 		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
-		Notice notice=new Notice();
-		notice.setNotice_id(1);
-		notice.setNotice_html(content);
-		Session session=HibernateSessionFactory.getSession();
-		Transaction  transaction=session.beginTransaction();
-		session.save(notice);
-		transaction.commit();
-		session.flush();
-		session.close();
-		//newNotices.setTitle(title);
-		//newNotices.setContent(content);
+		newNotices.setData(dataFormat.format(new Date()));
+		newNotices.setTitle(title);
+	
+		newNotices.setContent(content);
+		System.out.print(newNotices.getContent());
 		allNotices.addNotices(newNotices);
-		System.out.println("go home");
+		
+//		Notice notice=new Notice();
+//		notice.setNotice_id(1);
+//		notice.setNotice_html(content);
+//		Session session=HibernateSessionFactory.getSession();
+//		Transaction  transaction=session.beginTransaction();
+//		session.save(notice);
+//		transaction.commit();
+//		session.flush();
+//		session.close();
+
 		//Ìø×ª»ØÖ÷Ò³
 		response.sendRedirect("http://localhost:8080/Tac/Home");
 		

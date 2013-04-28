@@ -12,9 +12,12 @@
 	scope="request">
 </jsp:useBean>
 
-<div style="width:1200; margin-left:auto; margin-right:auto">
+<div style="clear:both"> </div>
+<br>
+<br>
+<div style="width:1200; margin-left:auto; margin-right:auto;">	
 	<div>
-		<img src="TacHome/Image/ShowTime.png">
+		<img src="TacHome/Image/ShowtimeHeader.png" >
 	</div>
 
 	<div style="width:1200; height:300; background-color:yellow;">
@@ -37,10 +40,8 @@
 			</div>
 		</div>
 	</div>
-	<img id=<%=allProjects.getProject().size()%>
-		src="TacHome/Image/LastPage.png" onclick="lastShowTime(this)"> <img
-		id=<%=allProjects.getProject().size()%>
-		src="TacHome/Image/LastPage.png" onclick="nextShowTime(this)">
-
-
+	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/LastPage.png" onclick="lastShowTime(this)"> 
+	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/LastPage.png" onclick="nextShowTime(this)">
 </div>
+
+<div style="clear:both"> </div>
