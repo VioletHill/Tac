@@ -25,7 +25,7 @@
  	
  	 <div style="width:400; height:200; float:left">
  	 	<div>
- 	 		<a href="http://localhost:8080/Tac/Notices" style="float:right; text-decoration: underline; cursor:pointer; color:black">查看全部</a>
+ 	 		<a class="NoticesItem" href="http://localhost:8080/Tac/Notices" style="float:right;">查看全部</a>
  	 	</div>
  	 	<br>
  	 

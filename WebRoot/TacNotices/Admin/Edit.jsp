@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	 <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	
+	 	<br>
 	 	<% for (int i=0; i<allNotices.getAllNotices().size(); i++)
 	 	{%>
 	 		<div style="overflow:hidden;">
@@ -40,7 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		</div>
 	  <%}%>
 	 	
-	 	<a class="NoticesItem" href="http://localhost:8080/Tac/Admin/EditIndexNotices">添加新通知</a>
+	 	<br>
+	 	<br>
+	 	<a class="NoticesItem" href="http://localhost:8080/Tac/Admin/EditIndexNotices" style="float:right">添加新通知</a>
 	  	<%@include file="/Navigation/Footer.jsp" %>
 	 </div>	  
   </body>
