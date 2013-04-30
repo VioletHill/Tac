@@ -29,11 +29,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
    <jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices" scope="request">
   </jsp:useBean>
-  <body>  
+  <body>
      <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	<div>
-	 	
 	 		<form action="" method="post">
 	 			<input type="text" value="ËÑË÷ÐÅÏ¢" style="width:100">
 	 		
@@ -49,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 				{%>
  	 				 <tr style="height:30">
 	 					<td style="text-align:left"> 
-	 						<a  class="NoticesItem" ><%=allNotices.getAllNotices().get(i).getTitle() %>"</a>
+	 						<a href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=i%>" class="NoticesItem" ><%=allNotices.getAllNotices().get(i).getTitle() %>"</a>
 	 						<span  style="color:red;"><%=allNotices.getAllNotices().get(i).getData()%></span>
 	 					</td>
 	 				</tr> 
@@ -59,8 +58,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		</div>
 	 	</div>
 	  	<%@include file="/Navigation/Footer.jsp" %>
-	 </div>	
-
-	   
+	 </div>	  
   </body>
 </html>
