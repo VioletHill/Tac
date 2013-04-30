@@ -2,7 +2,6 @@
 
 <script type="text/javascript">
 	<%@include file="NoticesIndex.js" %>
-	<%@include file="/TacNotices/NoticesLink.js" %>
 </script>
 
 <style type="text/css">
