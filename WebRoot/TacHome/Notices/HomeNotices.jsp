@@ -5,6 +5,9 @@
 	<%@include file="/TacNotices/NoticesLink.js" %>
 </script>
 
+<style type="text/css">
+	<%@include file="/TacNotices/NoticesItem.css" %>
+</style>
 
 
   <jsp:useBean class="DataSource.Notices.AllNotices" id="allNotices" scope="request">
@@ -23,14 +26,15 @@
  	
  	 <div style="width:400; height:200; background-color:red; float:left">
  	 	<div>
- 	 		<a href="" style="float:right; text-decoration: underline; cursor:pointer; color:black">查看全部</a>
+ 	 		<a href="http://localhost:8080/Tac/Notices" style="float:right; text-decoration: underline; cursor:pointer; color:black">查看全部</a>
  	 	</div>
  	 	<br>
+ 	 
  	 	<%
  	 	for (int i=0; i<allNotices.getAllNotices().size(); i++)
  	 	{%>
  	 		 <img id="<%=i%>" src="/TacHome/Image/NextPage.png" onclick="showNotice(this)">
- 	 		 <label id="<%=i%>" onclick="linkToNotices(this)"><%=allNotices.getAllNotices().get(i).getTitle()%></label>  
+ 	 		 <a class="NoticesItem" href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=i%>"><%=allNotices.getAllNotices().get(i).getTitle()%></a>  
  	 		 <br>
 		<%} %>
  	</div>

@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 String path = request.getContextPath();
@@ -71,6 +71,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
        function setContent()
        {
+       		<%
+       			if (notices.getContent()==null)
+       			{
+       				notices.setContent("");
+       			}
+       		%>
        		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
        		{
        			//alert("chrome / safari /fixfox");
@@ -80,6 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		{
       			//alert("ie");
       			document.getElementById("chat_content").document.documentElement.innerHTML='<%=notices.getContent()%>';
+      		
       		}
       		else
       		{

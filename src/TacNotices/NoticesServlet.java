@@ -1,8 +1,7 @@
 package TacNotices;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,12 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 import DataSource.Notices.AllNotices;
 import DataSource.Notices.Notices;
 
-public class UpdateNotices extends HttpServlet {
+public class NoticesServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor of the object.
+	 */
+	public NoticesServlet() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -31,33 +45,39 @@ public class UpdateNotices extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int index=0;
+		int totNotices=0;
 		AllNotices allNotices=AllNotices.sharedAllNotices();
-
-		Notices newNotices=new Notices();
+		try 
+		{
+			index=Integer.parseInt(request.getParameter("index"));
+		} 
+		catch (Exception e) 
+		{
+			index=-1;
+		}
 		
-		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
-	
+		if (index>=0)
+		{
+			
+		}
+		else 
+		{
+			String search;
+			try 
+			{
+				search=new String(request.getParameter("search").getBytes("iso-8859-1"),"gbk");
+			} catch (Exception e) 
+			{
+				search="";
+			}
+		}
 		
-		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
-		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
-		newNotices.setData(dataFormat.format(new Date()));
-		newNotices.setTitle(title);
-	
-		newNotices.setContent(content);
-		allNotices.addNotices(newNotices);
+		totNotices=allNotices.getAllNotices().size();
 		
-//		Notice notice=new Notice();
-//		notice.setNotice_id(1);
-//		notice.setNotice_html(content);
-//		Session session=HibernateSessionFactory.getSession();
-//		Transaction  transaction=session.beginTransaction();
-//		session.save(notice);
-//		transaction.commit();
-//		session.flush();
-//		session.close();
-
-		//Ìø×ª»ØÖ÷Ò³
-		response.sendRedirect("http://localhost:8080/Tac/Home");
+		request.setAttribute("allNotices", allNotices);
+		request.setAttribute("totNotices", totNotices);
+		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);
 		
 	}
 
@@ -76,5 +96,7 @@ public class UpdateNotices extends HttpServlet {
 
 		doGet(request, response);
 	}
+
+
 
 }
