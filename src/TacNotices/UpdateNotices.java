@@ -36,13 +36,26 @@ public class UpdateNotices extends HttpServlet {
 		Notices newNotices=new Notices();
 		
 		SimpleDateFormat dataFormat=new SimpleDateFormat("yyyy-MM-dd");
-		newNotices.setData(dataFormat.format(new Date()));
 	
+		
 		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
 		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
+		newNotices.setData(dataFormat.format(new Date()));
 		newNotices.setTitle(title);
+	
 		newNotices.setContent(content);
 		allNotices.addNotices(newNotices);
+		
+//		Notice notice=new Notice();
+//		notice.setNotice_id(1);
+//		notice.setNotice_html(content);
+//		Session session=HibernateSessionFactory.getSession();
+//		Transaction  transaction=session.beginTransaction();
+//		session.save(notice);
+//		transaction.commit();
+//		session.flush();
+//		session.close();
+
 		//Ìø×ª»ØÖ÷Ò³
 		response.sendRedirect("http://localhost:8080/Tac/Home");
 		

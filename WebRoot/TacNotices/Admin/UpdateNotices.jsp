@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 String path = request.getContextPath();
@@ -20,14 +21,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
+	<jsp:useBean id="notices" class="DataSource.Notices.Notices" scope="request">
+  	</jsp:useBean>
+	
 	<script type="text/javascript">
+		 
        //粗体、斜体、下划线
        function B_I_U(b_i_u)
        {
-            chat_content.document.execCommand(b_i_u);                                
+            chat_content.document.execCommand(b_i_u);                            
        }
        
-        function publish()
+       function fontSize(fs)
+       {
+       		chat_content.document.execCommand("FontSize",false,fs.value);
+       }
+       
+       function publish()
        {
        		var contentHtml;
        		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
@@ -39,6 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		else if (document.getElementById("chat_content").document.documentElement.innerHTML)
       		{
       			//alert("ie");
+      				document.getElementById("chat_content").document.body.contenteditable="false";
       			contentHtml=document.getElementById("chat_content").document.documentElement.innerHTML;
       		}
       		else
@@ -57,11 +68,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		windows.location.href="http://localhost:8080/Tac/Home";
        		alert("已经取消新通知的发布");
        }
+       
+       function setContent()
+       {
+       		<%
+       			if (notices.getContent()==null)
+       			{
+       				notices.setContent("");
+       			}
+       		%>
+       		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
+       		{
+       			//alert("chrome / safari /fixfox");
+       			document.getElementById("chat_content").contentWindow.document.body.innerHTML='<%=notices.getContent()%>';
+       		}
+      		else if (document.getElementById("chat_content").document.documentElement.innerHTML)
+      		{
+      			//alert("ie");
+      			document.getElementById("chat_content").document.documentElement.innerHTML='<%=notices.getContent()%>';
+      		
+      		}
+      		else
+      		{
+      			alert("你的浏览器不支持");
+      			return ;
+      		};
+       }
+  
      </script>
   </head>
   
-  <jsp:useBean id="notices" class="DataSource.Notices.Notices" scope="request">
-  </jsp:useBean>
+
   
   <body>
     <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
@@ -75,13 +112,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			<br>
 	 			<br>
 	 			<br>
-	 			
+	 	
 	 			<span onclick="B_I_U('Bold');">粗体</span>
        		    <span onclick="B_I_U('Italic');">斜体</span>
       		    <span onclick="B_I_U('Underline');">下划线</span>
-       	   	  	<span onclick="showFontSize();">字号</span>
+      		    <span>字号</span>
+      		    <select  onchange="fontSize(this);" style="font-size:50">
+      		    <c:forEach var="i" begin="1" end="7" step="1">
+         			<option>${i}</option>
+         		</c:forEach>
+         		</select>
+         		
             	<span onclick="coloropen(event);">字体颜色</span>
-            	<div id="colorpane" style="position:absolute;z-index:999;display:none;"></div>
+            	<div id="colorpane" style="position:absolute;z-index:999;display:none; margin-left:200px;"></div>
             	<div class="">
             		<input id="passContent" type="hidden" name="data" value="">
              		<%@include file="ColorPanel.jsp" %>               
@@ -89,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             	<br>
             	<br>
-            	<iframe style="width:700; height:800"  id="chat_content" src="TacNotices/Admin/BlankContent.html"scrolling="auto"></iframe>
+            		<iframe style="width:700; height:800"  id="chat_content" src="TacNotices/Admin/BlankContent.html" scrolling="auto" onload="setContent()"></iframe>	
 	 			<br>
 	 			<input type="hidden" id="publish_content" value="" name="publish_content">
 	 			<div style="text-align:right">
@@ -101,7 +144,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 </div>	
 	  	<%@include file="/Navigation/Footer.jsp" %>
 	 </div>
-	 
 	   
   </body>
 </html>

@@ -3,9 +3,6 @@
 	margin-right: 100px;
 }
 
-body {
-	
-}
 
 #top {
 	width: 1200px;
@@ -48,7 +45,7 @@ a.nav>div>p {
 	padding: 5;
 }
 
-a:hover {
+a.nav:hover {
 	float: center;
 	display: block;
 	background-image: url("Navigation/LinkSelect.png");

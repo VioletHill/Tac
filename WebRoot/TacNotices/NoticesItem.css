@@ -1,0 +1,17 @@
+a.NoticesItem:link {
+	text-decoration:none; 
+ 	current:point;
+	color:black;
+}
+
+a.NoticesItem:visited {
+	text-decoration:none; 
+ 	current:point;
+	color:black;
+}
+
+a.NoticesItem:hover {
+	color:red;
+	text-decoration: underline;
+}
+

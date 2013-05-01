@@ -1,6 +1,7 @@
 package TacNotices;
 
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,12 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 import DataSource.Notices.AllNotices;
 import DataSource.Notices.Notices;
 
-public class EditIndexNotices extends HttpServlet {
+public class NoticesServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor of the object.
+	 */
+	public NoticesServlet() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -29,8 +45,8 @@ public class EditIndexNotices extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		int index=-1;
+		int index=0;
+		int totNotices=0;
 		AllNotices allNotices=AllNotices.sharedAllNotices();
 		try 
 		{
@@ -38,24 +54,30 @@ public class EditIndexNotices extends HttpServlet {
 		} 
 		catch (Exception e) 
 		{
-			
+			index=-1;
 		}
-		if (index<0 || index>=allNotices.getAllNotices().size())	//添加一个新的页面
+		
+		if (index>=0)
 		{
-			System.out.println("No this index! goto create new");
-			Notices notices=new Notices();
-			notices.setTitle("此处添加新标题");
-			notices.setContent(null);
-			request.setAttribute("notices",notices);
-			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
-			//request.getRequestDispatcher("/TacNotices/Admin/BlankContent.jsp").forward(request, response);
+			
 		}
 		else 
 		{
-			request.setAttribute("notices",allNotices.getAllNotices().get(index));
-			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
-			//request.getRequestDispatcher("/TacNotices/Admin/BlankContent.jsp").forward(request, response);
+			String search;
+			try 
+			{
+				search=new String(request.getParameter("search").getBytes("iso-8859-1"),"gbk");
+			} catch (Exception e) 
+			{
+				search="";
+			}
 		}
+		
+		totNotices=allNotices.getAllNotices().size();
+		
+		request.setAttribute("allNotices", allNotices);
+		request.setAttribute("totNotices", totNotices);
+		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);
 		
 	}
 
@@ -74,5 +96,7 @@ public class EditIndexNotices extends HttpServlet {
 
 		doGet(request, response);
 	}
+
+
 
 }

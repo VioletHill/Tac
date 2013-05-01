@@ -7,6 +7,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
+  	<style>
+  		<%@include file="/TacNotices/NoticesItem.css" %>  
+  	</style>
     <base href="<%=basePath%>">
     
     <title>My JSP 'Edit.jsp' starting page</title>
@@ -29,15 +32,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	 <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	
+	 	<br>
 	 	<% for (int i=0; i<allNotices.getAllNotices().size(); i++)
 	 	{%>
 	 		<div style="overflow:hidden;">
-	 			<a href=""> <%=allNotices.getAllNotices().get(i).getTitle() %> </a> <br>
+	 			<a class="NoticesItem" href="http://localhost:8080/Tac/Admin/EditIndexNotices?index=<%=i %>"> <%=allNotices.getAllNotices().get(i).getTitle() %> </a> <br>
 	 			<div style="float:right"> <%=allNotices.getAllNotices().get(i).getData() %> </div>
 	 		</div>
 	  <%}%>
 	 	
-	 	<a href="http://localhost:8080/Tac/Admin/EditIndexNotices">添加新通知</a>
+	 	<br>
+	 	<br>
+	 	<a class="NoticesItem" href="http://localhost:8080/Tac/Admin/EditIndexNotices" style="float:right">添加新通知</a>
 	  	<%@include file="/Navigation/Footer.jsp" %>
 	 </div>	  
   </body>

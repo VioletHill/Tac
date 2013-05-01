@@ -1,77 +1,81 @@
-.center
-{
-  margin-left:100px;
-  margin-right:100px;
-  background-color:#b0e0e6;
+.center {
+	margin-left: 100px;
+	margin-right: 100px;
+	background-color: #b0e0e6;
 }
-body
-{
-  background-image: url("../images/document/Background.png");
+
+body {
+	background-image: url("../images/document/Background.png");
 }
-#top{
-  width:1200px;margin:auto;
+
+#top {
+	width: 1200px;
+	margin: auto;
 }
-#topLogo{
-  width:340px;text-align:left;float:left;
-  margin-left:30px;
+
+#topLogo {
+	width: 340px;
+	text-align: left;
+	float: left;
+	margin-left: 30px;
 }
-#topBG{
-  background-color:red;
-  background-repeat:no-repeat;
-  margin:auto;
-  height:100px;
+
+#topBG {
+	background-color: red;
+	background-repeat: no-repeat;
+	margin: auto;
+	height: 100px;
 }
-#nav{
-  float:right;
+
+#nav {
+	float: right;
 }
+
 a.nav {
 	float: left;
-  width:100;
-  height:100;
-  display: block;
-  color:white;
-  text-decoration:none;
-}
-a.nav > div {
-margin-top:40px;
-  width:110px;
-}
-a:hover {
-  float: left;
-  display:block;
-  background-image:url("Navigation/LinkSelect.png");
-  background-repeat:no-repeat;
-  background-position:50% 50%;
-}
-td{
-  text-align:center;
+	width: 100;
+	height: 100;
+	display: block;
+	color: white;
+	text-decoration: none;
 }
 
+a.nav>div {
+	margin-top: 40px;
+	width: 110px;
+}
 
- .container
-  	{
-  		position:relative;
-  		top:63;
-  		left:45px;
-  		width:614;
-  		height:384px;
-  		white-space:nowrap;
-		overflow:hidden;
-  	}
-  
- 	.imageWheel
- 	{
-  		position:relative;
-  		left:0;
-  		top:0;
-  	}
- 	.pageing
- 	{
-		position:relative;
-		left:540px;
-		top:-30;
-		z-index:100;
- 	}
+a.nav:hover {
+	float: left;
+	display: block;
+	background-image: url("Navigation/LinkSelect.png");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
 
+td {
+	text-align: center;
+}
 
+.container {
+	position: relative;
+	top: 63;
+	left: 45px;
+	width: 614;
+	height: 384px;
+	white-space: nowrap;
+	overflow: hidden;
+}
 
+.imageWheel {
+	position: relative;
+	left: 0;
+	top: 0;
+}
+
+.pageing {
+	position: relative;
+	left: 540px;
+	top: -30;
+	z-index: 100;
+}
