@@ -113,7 +113,12 @@ public class NoticesHibernate implements Serializable
 		List list=dao.find_ByDay(day, id, account);
 		return list;
 	}
-	
+	public List search(String key,int id,int account)
+	{
+		NoticeDAO dao=new NoticeDAO();
+		List list=dao.search(key,id,account);
+		return list;
+	}
 	public NoticesHibernate()
 	{
 		

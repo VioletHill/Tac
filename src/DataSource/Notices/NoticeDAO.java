@@ -52,6 +52,18 @@ public class NoticeDAO extends BaseHibernateDAO {
 			log.error("delete failed", re);
 			throw re;
 		}
+	}	public List search(String key,int id,int account) {
+		log.debug("finding Notice instance by example");
+		try {
+			String query_string="select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_id<? and n.notice_title like '%"+key+"%' order by n.notice_id desc";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, id);
+			query=query.setMaxResults(account);
+			return query.list();
+		} catch (RuntimeException re) {
+			log.error("search failed", re);
+			throw re;
+		}
 	}
 
 	public Notice findById(java.lang.Integer id) {
