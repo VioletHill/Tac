@@ -56,39 +56,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		function blurSearch(element)
    		{
    			element.style.opacity=0.2;
+   			if (element.value=="") element.value="搜索信息";
    		}
    		var today=null;
    		var week=null;
    		var month=null;
    		var all=null;
    		var isAnimate=false;
-   		var counter=0;
+   	
    	   	function enterItem(ele)
    	   	{
    	   		ele.style.backgroundColor='blue';
-   	   		counter++;
+   	   	
    	   	}
    	   	function outItem(ele)
    	   	{
-   	   	   	ele.style.backgroundColor='white';  			
+   	   	   	ele.style.backgroundColor='white';  	
+   	   	   	if (isNeedClear()) clearItem();
    	   	}
    	   	
+   	   	function isNeedClear()
+   	   	{
+   	   		var obj=document.getElementById("noticesTime");
+   	   		oRect=obj.getBoundingClientRect(); 
+   	   		
+   	   		if (window.event.clientX<=oRect.left || window.event.clientX>=oRect.right || window.event.clientY<=oRect.top || window.event.clientY>=oRect.top+30*5) return true;
+   	   		return false;
+   	   	}
 
    	   	
    	   	function clearItem()
    	   	{
-   	   		isAnimate=false;
-   	   		document.getElementById("todayTime").style.display="none";
+   	     	document.getElementById("todayTime").style.display="none";
    			document.getElementById("weekTime").style.display="none";
    			document.getElementById("monthTime").style.display="none";
    			document.getElementById("all").style.display="none";
+   			isAnimate=false;
+   			
    	  	}
    	   	
    		function showItem(obj)
    		{
    			if (isAnimate) return ;
    			isAnimate=true;
-   			oRect=obj.getBoundingClientRect(); 
+   			var oRect=obj.getBoundingClientRect(); 
 
    			today=document.getElementById("todayTime");
    			week=document.getElementById("weekTime");
@@ -104,6 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			$("#weekTime").animate({top:todayTop+30});
    			$("#monthTime").animate({top:todayTop+60});
    			$("#all").animate({top:todayTop+90});
+   			
    		}
 	</script>
   </head>
@@ -115,19 +127,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	<div>
 	 		<br>
+	 		
 	 		<form action="" method="post">
-	 			<table>
+	 			
+	 			<table style="position:float; float:right">
 	 				<tr>
-	 					<td><input type="text" value="搜索信息" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2;"></td>
-	 					
+	 					<td><input type="text" value="搜索信息" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
 	 					<td><input type="button" value="今天" id="todayTime"  onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>   
 	 					<td><input type="button" value="本周" id="weekTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="全部" id="all"  onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="时间段" id="noticesTime" onmouseout="outItem(this)" onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
 	 					<td><button style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
-	 				</tr>
+	 				</tr>		
 	 			</table>
+	 			
 	 		</form>
 	 		
 	 		<br>
