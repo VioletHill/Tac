@@ -15,9 +15,3 @@ function showNotice(index)
 	xmlhttp.send();
 	document.getElementById("notice").innerHTML=xmlhttp.responseText;
 }
-
-function showFirstNotices(index)
-{
-	alert("a");
-	//showNotice(document.getElementById(index));
-}

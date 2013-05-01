@@ -38,10 +38,13 @@ public class NoticesServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int index=0;
+		int index=-1;
 		int totNotices=0;
+		String search="";
+		
+		NoticesHibernate noticesHibernate=NoticesHibernate.sharedNoticesHibernate();
 		AllNotices allNotices=new AllNotices();
-		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 4));
+		
 		try 
 		{
 			index=Integer.parseInt(request.getParameter("index"));
@@ -53,23 +56,38 @@ public class NoticesServlet extends HttpServlet {
 		
 		if (index>=0)
 		{
-			
+		
 		}
 		else 
 		{
-			String search;
+
 			try 
 			{
 				search=new String(request.getParameter("search").getBytes("iso-8859-1"),"gbk");
-			} catch (Exception e) 
+				int start=0;
+				int end=search.length();
+				while (start<search.length() && search.charAt(start)==' ') start++;
+				while (end>=0 && search.charAt(end-1)==' ') end--;
+				search=search.substring(start, end);
+			} 
+			catch (Exception e) 
 			{
 				search="";
 			}
+			
+			if (search=="")
+			{
+				allNotices.setList(noticesHibernate.find_All(0, 10));
+			}
+			else 
+			{
+				allNotices.setList(noticesHibernate.search(search, 0, 10));
+			}
 		}
-		
+
 		//
 		totNotices=10;
-		
+		System.out.println(search);
 		request.setAttribute("allNotices", allNotices);
 		request.setAttribute("totNotices", totNotices);
 		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);

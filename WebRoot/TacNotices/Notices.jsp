@@ -128,43 +128,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<div>
 	 		<br>
 	 		
-	 		<form action="" method="post">
+	 		<form action="Notices" method="post">
 	 			
 	 			<table style="position:float; float:right">
 	 				<tr>
-	 					<td><input type="text" value="搜索信息" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
+	 					<td><input type="text" name="search" value="搜索信息" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
 	 					<td><input type="button" value="今天" id="todayTime"  onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>   
 	 					<td><input type="button" value="本周" id="weekTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="全部" id="all"  onmouseover="enterItem(this)" onmouseout="outItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="时间段" id="noticesTime" onmouseout="outItem(this)" onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
-	 					<td><button style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
+	 					<td><button type="submit" style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
 	 				</tr>		
 	 			</table>
 	 			
 	 		</form>
 	 		
 	 		<br>
-	 		<div style="top:30; width:1150; background-color:red; margin-left:auto; margin-right:auto">
+	 		<div style="top:30; width:1150; margin-left:auto; margin-right:auto">
 	 			<div>
 	 				<img src="TacNotices/Image/NoticesHeader.png" onload="showTime()">
 	 				<span id="time"></span>
 	 			</div>
 	 		 	<br>
-	 			<%if  (!allNotices.getAllNotices().isEmpty())
-	 			{%>
-	 			 	<table >
-	 				 	<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
-	 					{%>
- 	 					 <tr style="height:30">
+	 			<table>
+	 				<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
+	 				{%>
+ 	 					<tr style="height:30">
 	 						<td style="text-align:left"> 
 	 							<a href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" ><%=allNotices.getAllNotices().get(i).getNotice_title() %>"</a>
 	 							<span  style="color:red;"><%=allNotices.getAllNotices().get(i).getData()%></span>
 	 						</td>
 	 					</tr> 
- 	 				   <%}%> 
-	 		 		</table>
-	 			<%}%>	
+ 	 			  <%}%> 
+	 		 	</table>	
 	 		</div>
 	 	</div>
 	  	<%@include file="/Navigation/Footer.jsp" %>

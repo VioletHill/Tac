@@ -17,7 +17,7 @@ public class Notice implements Serializable {
 	
 	public String getData()
 	{
-		return new Integer(notice_year).toString()+new Integer(notice_month).toString()+new Integer(notice_day).toString();
+		return new Integer(notice_year).toString()+'-'+new Integer(notice_month).toString()+'-'+new Integer(notice_day).toString();
 	}
 	public int getNotice_year() {
 		return notice_year;

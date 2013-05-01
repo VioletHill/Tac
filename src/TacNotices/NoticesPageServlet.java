@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
-
 import DataSource.Notices.Notice;
 import DataSource.Notices.NoticesHibernate;
 
