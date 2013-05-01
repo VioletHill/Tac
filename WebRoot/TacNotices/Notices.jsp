@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 					{%>
  	 					 <tr style="height:30">
 	 						<td style="text-align:left"> 
-	 							<a href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=i%>" class="NoticesItem" ><%=allNotices.getAllNotices().get(i).getTitle() %>"</a>
+	 							<a href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" ><%=allNotices.getAllNotices().get(i).getNotice_title() %>"</a>
 	 							<span  style="color:red;"><%=allNotices.getAllNotices().get(i).getData()%></span>
 	 						</td>
 	 					</tr> 

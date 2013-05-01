@@ -1,7 +1,6 @@
-package TacHibernate;
+package DataSource.Notices;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Notice implements Serializable {
 	/**
@@ -15,6 +14,11 @@ public class Notice implements Serializable {
 	private int notice_month;
 	private int notice_week;
 	private int notice_day;
+	
+	public String getData()
+	{
+		return new Integer(notice_year).toString()+new Integer(notice_month).toString()+new Integer(notice_day).toString();
+	}
 	public int getNotice_year() {
 		return notice_year;
 	}
@@ -70,5 +74,7 @@ public class Notice implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	public Notice()
-	{}
+	{
+		
+	}
 }

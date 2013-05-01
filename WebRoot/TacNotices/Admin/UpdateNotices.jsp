@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
-	<jsp:useBean id="notices" class="DataSource.Notices.Notices" scope="request">
+	<jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">
   	</jsp:useBean>
 	
 	<script type="text/javascript">
@@ -72,20 +72,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        function setContent()
        {
        		<%
-       			if (notices.getContent()==null)
+       			if (notice.getNotice_html()==null)
        			{
-       				notices.setContent("");
+       				notice.setNotice_html("");
        			}
        		%>
        		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
        		{
        			//alert("chrome / safari /fixfox");
-       			document.getElementById("chat_content").contentWindow.document.body.innerHTML='<%=notices.getContent()%>';
+       			document.getElementById("chat_content").contentWindow.document.body.innerHTML='<%=notice.getNotice_html()%>';
        		}
       		else if (document.getElementById("chat_content").document.documentElement.innerHTML)
       		{
       			//alert("ie");
-      			document.getElementById("chat_content").document.documentElement.innerHTML='<%=notices.getContent()%>';
+      			document.getElementById("chat_content").document.documentElement.innerHTML='<%=notice.getNotice_html()%>';
       		
       		}
       		else
@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		<br>
 	 		<br>
 	 		<form method="post" action="/Tac/UpdateNotices" onsubmit="publish()">
-	 			<input id="title" type="text" value="<%=notices.getTitle() %>" name="title" style="width:300; height:50; text-align:center; font-size:20"> 
+	 			<input id="title" type="text" value="<%=notice.getNotice_title() %>" name="title" style="width:300; height:50; text-align:center; font-size:20"> 
 	 			<br>
 	 			<br>
 	 			<br>

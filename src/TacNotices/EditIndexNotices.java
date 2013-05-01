@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Notices.AllNotices;
-import DataSource.Notices.Notices;
+import DataSource.Notices.Notice;
+import DataSource.Notices.NoticesHibernate;
 
 public class EditIndexNotices extends HttpServlet {
 
@@ -31,7 +31,7 @@ public class EditIndexNotices extends HttpServlet {
 			throws ServletException, IOException {
 		
 		int index=-1;
-		AllNotices allNotices=AllNotices.sharedAllNotices();
+		
 		try 
 		{
 			index=Integer.parseInt(request.getParameter("index"));
@@ -40,21 +40,21 @@ public class EditIndexNotices extends HttpServlet {
 		{
 			
 		}
-		if (index<0 || index>=allNotices.getAllNotices().size())	//添加一个新的页面
+		Notice notice=NoticesHibernate.sharedNoticesHibernate().find_ById(index);
+		
+		if (notice==null)	//添加一个新的页面
 		{
 			System.out.println("No this index! goto create new");
-			Notices notices=new Notices();
-			notices.setTitle("此处添加新标题");
-			notices.setContent(null);
-			request.setAttribute("notices",notices);
+			notice=new Notice();
+			notice.setNotice_title("此处添加新标题");
+			notice.setNotice_html(null);
+			request.setAttribute("notice",notice);
 			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
-			//request.getRequestDispatcher("/TacNotices/Admin/BlankContent.jsp").forward(request, response);
 		}
 		else 
 		{
-			request.setAttribute("notices",allNotices.getAllNotices().get(index));
+			request.setAttribute("notice",notice);
 			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
-			//request.getRequestDispatcher("/TacNotices/Admin/BlankContent.jsp").forward(request, response);
 		}
 		
 	}

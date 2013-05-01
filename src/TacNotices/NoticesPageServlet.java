@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Notices.AllNotices;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
+import DataSource.Notices.Notice;
+import DataSource.Notices.NoticesHibernate;
 
 public class NoticesPageServlet extends HttpServlet {
 
@@ -33,21 +36,24 @@ public class NoticesPageServlet extends HttpServlet {
 		String id=request.getParameter("indexNotices");
 		//此处处理 id 的异常
 		int noticeId=-1;
-		try {
+		try 
+		{
 			noticeId=Integer.parseInt(id);
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
 	
 			System.err.println("wrong address input!  go to errorPage");
 		}
-		AllNotices allNotices=AllNotices.sharedAllNotices();
 		
-		if (noticeId<0 || noticeId>=allNotices.getAllNotices().size())
+		Notice notice=NoticesHibernate.sharedNoticesHibernate().find_ById(noticeId);
+		
+		if (notice==null)
 		{
 			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
 		}
 		else 
 		{
-			request.setAttribute("notices", allNotices.getAllNotices().get(noticeId));
+			request.setAttribute("notice", notice);
 			request.getRequestDispatcher("/TacNotices/NoticesPage.jsp").forward(request, response);
 		}
 	}

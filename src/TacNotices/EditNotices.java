@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Notices.AllNotices;
+import DataSource.Notices.NoticesHibernate;
 
 public class EditNotices extends HttpServlet {
 
@@ -29,8 +30,10 @@ public class EditNotices extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{
-		AllNotices allNotices=AllNotices.sharedAllNotices();
+		AllNotices allNotices=new AllNotices();
+		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 10));
 		request.setAttribute("allNotices", allNotices);
+
 		request.getRequestDispatcher("/TacNotices/Admin/Edit.jsp").forward(request, response);
 	}
 

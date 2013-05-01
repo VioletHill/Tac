@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import DataSource.Notices.AllNotices;
+import DataSource.Notices.NoticesHibernate;
 import DataSource.Projects.AllProjects;
+
 
 public class HomeServlet extends HttpServlet {
 
@@ -34,11 +35,21 @@ public class HomeServlet extends HttpServlet {
 		//String userName=request.getParameter("userName");
 		//String userPassword=request.getParameter("userPassword");
 		AllProjects allProjects=AllProjects.sharedAllProjects();
-		AllNotices allNotices=AllNotices.sharedAllNotices();
+		
+		AllNotices allNotices=new AllNotices();
+		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 4));
+		
 		request.setAttribute("allProjects", allProjects);
 		request.setAttribute("allNotices", allNotices);
-			
 		
+		if (!allNotices.getAllNotices().isEmpty())
+		{
+			request.setAttribute("firstNotice", NoticesHibernate.sharedNoticesHibernate().find_ById(allNotices.getAllNotices().get(0).getNotice_id()));
+		}
+		else 
+		{
+			request.setAttribute("firstNotice",null);
+		}
 		request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);
 	}
 

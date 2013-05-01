@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Notices.AllNotices;
 import DataSource.Projects.AllProjects;
 
 public class DocumentServlet extends HttpServlet {
@@ -36,9 +35,9 @@ public class DocumentServlet extends HttpServlet {
 		//String userName=request.getParameter("userName");
 		//String userPassword=request.getParameter("userPassword");
 		AllProjects allProjects=AllProjects.sharedAllProjects();
-		AllNotices allNotices=AllNotices.sharedAllNotices();
+	//	AllNotices allNotices=AllNotices.sharedAllNotices();
 		request.setAttribute("allProjects", allProjects);
-		request.setAttribute("allNotices", allNotices);
+	//	request.setAttribute("allNotices", allNotices);
 		
 	
 		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(request, response);

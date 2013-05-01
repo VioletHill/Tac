@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <jsp:useBean id="notices" class="DataSource.Notices.Notices" scope="request">
+  <jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">
   </jsp:useBean>
   
   <body>
@@ -34,16 +34,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<br>
 	 	<div>
 	 		<div id="title" style="text-align:center">
-	 			<%=notices.getTitle()%>
+	 			<%=notice.getNotice_title()%>
 			</div>
 			<div id="data" style="text-align:right">
-				<%=notices.getData()%>
+				<%=notice.getData()%>
 			</div>
 			<br>
 			<br>
 		
 			<div id="content">
-				<%=notices.getContent()%>
+				<%=notice.getNotice_html()%>
 			</div>
 	 	</div>
 	 	

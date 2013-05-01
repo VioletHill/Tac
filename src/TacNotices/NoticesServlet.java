@@ -1,7 +1,6 @@
 package TacNotices;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Notices.AllNotices;
-import DataSource.Notices.Notices;
+import DataSource.Notices.NoticesHibernate;
 
 public class NoticesServlet extends HttpServlet {
 
@@ -18,12 +17,6 @@ public class NoticesServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor of the object.
-	 */
-	public NoticesServlet() {
-		super();
-	}
 
 	/**
 	 * Destruction of the servlet. <br>
@@ -47,7 +40,8 @@ public class NoticesServlet extends HttpServlet {
 			throws ServletException, IOException {
 		int index=0;
 		int totNotices=0;
-		AllNotices allNotices=AllNotices.sharedAllNotices();
+		AllNotices allNotices=new AllNotices();
+		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 4));
 		try 
 		{
 			index=Integer.parseInt(request.getParameter("index"));
@@ -73,7 +67,8 @@ public class NoticesServlet extends HttpServlet {
 			}
 		}
 		
-		totNotices=allNotices.getAllNotices().size();
+		//
+		totNotices=10;
 		
 		request.setAttribute("allNotices", allNotices);
 		request.setAttribute("totNotices", totNotices);

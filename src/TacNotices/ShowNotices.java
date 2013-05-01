@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Notices.AllNotices;
+import DataSource.Notices.NoticesHibernate;
 
 public class ShowNotices extends HttpServlet {
 
@@ -32,12 +32,9 @@ public class ShowNotices extends HttpServlet {
 		
 		response.setContentType("text/html; charset=gbk");
 		
-		AllNotices allNotices=AllNotices.sharedAllNotices();
 		int index=Integer.parseInt(request.getParameter("indexNotices"));
-		
 		PrintWriter out = response.getWriter();
-		
-		out.write(allNotices.getAllNotices().get(index).getContent());
+		out.write(NoticesHibernate.sharedNoticesHibernate().find_ById(index).getNotice_html());
 		out.flush();
 	}
 
