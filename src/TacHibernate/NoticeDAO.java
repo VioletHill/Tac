@@ -1,6 +1,5 @@
 package TacHibernate;
 
-import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -23,7 +22,12 @@ import org.slf4j.LoggerFactory;
 public class NoticeDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory.getLogger(NoticeDAO.class);
 	// property constants
-	public static final String NOTICE_HTML = "noticeHtml";
+	public static final String NOTICE_TITLE = "notice_title";
+	public static final String NOTICE_HTML = "notice_html";
+	public static final String NOTICE_YEAR = "notice_year";
+	public static final String NOTICE_MONTH = "notice_month";
+	public static final String NOTICE_WEEK = "notice_week";
+	public static final String NOTICE_DAY = "notice_day";
 
 	public void save(Notice transientInstance) {
 		log.debug("saving Notice instance");
@@ -58,7 +62,143 @@ public class NoticeDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-
+	public int find_number_Bymonth(int id) {
+		log.debug("getting Notice instance with id: " + id);
+		try {
+			String query_string="from Notice as n where n.notice_month=?";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, id);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	public int find_number_ByWeek(int id) {
+		log.debug("getting Notice instance with id: " + id);
+		try {
+			String query_string="from Notice as n where n.notice_week=?";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, id);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	public int find_number_ByDay(int id) {
+		log.debug("getting Notice instance with id: " + id);
+		try {
+			String query_string="from Notice as n where n.notice_day=?";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, id);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	public List find_All(int id,int account) {
+		log.debug("finding all Notice instances");
+		try {
+			if(id==0)
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+			else
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_id<? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, id);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	public List find_ByMonth(int month,int id,int account) {
+		log.debug("finding all Notice instances");
+		try {
+			if(id==0)
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_month=? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, month);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+			else
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_id<? and n.notice_month=? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, id);
+				query.setParameter(1, month);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	public List find_ByDay(int day,int id,int account) {
+		log.debug("finding all Notice instances");
+		try {
+			if(id==0)
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_day=? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, day);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+			else
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_id<? and n.notice_day=? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, id);
+				query.setParameter(1, day);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	public List find_ByWeek(int week,int id,int account) {
+		log.debug("finding all Notice instances");
+		try {
+			if(id==0)
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_week=? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, week);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+			else
+			{
+				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_id<? and n.notice_week=? order by n.notice_id desc";
+				Query query = getSession().createQuery(query_string);
+				query.setParameter(0, id);
+				query.setParameter(1, week);
+				query=query.setMaxResults(account);
+				return query.list();
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
 	public List findByExample(Notice instance) {
 		log.debug("finding Notice instance by example");
 		try {
@@ -88,8 +228,28 @@ public class NoticeDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByNoticeHtml(Object noticeHtml) {
-		return findByProperty(NOTICE_HTML, noticeHtml);
+	public List findByNotice_title(Object notice_title) {
+		return findByProperty(NOTICE_TITLE, notice_title);
+	}
+
+	public List findByNotice_html(Object notice_html) {
+		return findByProperty(NOTICE_HTML, notice_html);
+	}
+
+	public List findByNotice_year(Object notice_year) {
+		return findByProperty(NOTICE_YEAR, notice_year);
+	}
+
+	public List findByNotice_month(Object notice_month) {
+		return findByProperty(NOTICE_MONTH, notice_month);
+	}
+
+	public List findByNotice_week(Object notice_week) {
+		return findByProperty(NOTICE_WEEK, notice_week);
+	}
+
+	public List findByNotice_day(Object notice_day) {
+		return findByProperty(NOTICE_DAY, notice_day);
 	}
 
 	public List findAll() {

@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		    <span onclick="B_I_U('Italic');">斜体</span>
       		    <span onclick="B_I_U('Underline');">下划线</span>
       		    <span>字号</span>
-      		    <select  onchange="fontSize(this);" style="font-size:50">
+      		    <select  onchange="fontSize(this);" style="font-size:10">
       		    <c:forEach var="i" begin="1" end="7" step="1">
          			<option>${i}</option>
          		</c:forEach>
@@ -136,8 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			<br>
 	 			<input type="hidden" id="publish_content" value="" name="publish_content">
 	 			<div style="text-align:right">
-	 				<input type="submit"  style="width:100; height:100; font-size:20;" value="提交">
-	 				<input type="button" onclick="cancel();" style="width:100; height:100; font-size:20;" value="取消">
+	 				<input type="submit"  style="width:100; font-size:20;" value="提交">
+	 				<input type="button" onclick="cancel();" style="width:100;  font-size:20;" value="取消">
 	 			</div>
 	 		</form>
 	 

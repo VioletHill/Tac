@@ -3,11 +3,20 @@
 
 <hibernate-reverse-engineering>
 	<table name="Notice" catalog="TacWebsite"
-		class="TacHibernateServlet.Notice">
+		class="TacHibernate.Notice">
 		<primary-key>
 			<key-column name="Notice_id" property="notice_id" />
 		</primary-key>
 		<column name="Notice_html" property="notice_html"></column>
 		<column name="Notice_date" property="notice_date" type="date"></column>
+		<column name="Notice_title" property="notice_title"></column>
+		<column name="Notice_year" property="notice_year"></column>
+		<column name="Notice_month" property="notice_month"></column>
+		<column name="Notice_week" property="notice_week"></column>
+		<column name="Notice_day" property="notice_day"></column>
+	</table>
+	<table name="test" catalog="test" class="Test.test">
+		<column name="text" property="text"></column>
+		<column name="date" property="date"></column>
 	</table>
 </hibernate-reverse-engineering>
