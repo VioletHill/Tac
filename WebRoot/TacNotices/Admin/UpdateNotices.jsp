@@ -139,6 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 				<input type="submit"  style="width:100; font-size:20;" value="提交">
 	 				<input type="button" onclick="cancel();" style="width:100;  font-size:20;" value="取消">
 	 			</div>
+	 			<input type="hidden" name="id" value="<%=notice.getNotice_id()%>">
 	 		</form>
 	 
 	 </div>	

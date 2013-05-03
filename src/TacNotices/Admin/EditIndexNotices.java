@@ -1,4 +1,4 @@
-package TacNotices;
+package TacNotices.Admin;
 
 import java.io.IOException;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Notices.AllNotices;
+import DataSource.Notices.Notice;
 import DataSource.Notices.NoticesHibernate;
 
-public class EditNotices extends HttpServlet {
+public class EditIndexNotices extends HttpServlet {
 
 	/**
 	 * 
@@ -28,13 +28,36 @@ public class EditNotices extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
-		AllNotices allNotices=new AllNotices();
-		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 10));
-		request.setAttribute("allNotices", allNotices);
-
-		request.getRequestDispatcher("/TacNotices/Admin/Edit.jsp").forward(request, response);
+			throws ServletException, IOException {
+		
+		int index=-1;
+		
+		try 
+		{
+			index=Integer.parseInt(request.getParameter("index"));
+		} 
+		catch (Exception e) 
+		{
+			
+		}
+		Notice notice=NoticesHibernate.sharedNoticesHibernate().find_ById(index);
+		
+		if (notice==null)	//添加一个新的页面
+		{
+			System.out.println("No this index! goto create new");
+			notice=new Notice();
+			notice.setNotice_title("此处添加新标题");
+			notice.setNotice_html(null);
+			notice.setNotice_id(0);
+			request.setAttribute("notice",notice);
+			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
+		}
+		else 
+		{
+			request.setAttribute("notice",notice);
+			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

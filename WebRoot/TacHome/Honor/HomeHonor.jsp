@@ -18,8 +18,7 @@
 <div style="width:1200; margin-left:auto; margin-right:auto;">	
 	<div>
 		<img src="TacHome/Image/ShowtimeHeader.png" >
-		
-		
+		<br>
 	</div>
 
 	<div style="width:1200; height:300; background-color:yellow;">
@@ -38,7 +37,7 @@
 		</div>
 	</div>
 	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/LastPage.png" onclick="lastShowTime(this)"> 
-	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/LastPage.png" onclick="nextShowTime(this)">
+	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/NextPage.png" onclick="nextShowTime(this)">
 </div>
 
 <div style="clear:both"> </div>

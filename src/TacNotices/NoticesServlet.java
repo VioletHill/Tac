@@ -38,8 +38,6 @@ public class NoticesServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int index=-1;
-		int totNotices=0;
 		String search="";
 		
 		NoticesHibernate noticesHibernate=NoticesHibernate.sharedNoticesHibernate();
@@ -47,33 +45,48 @@ public class NoticesServlet extends HttpServlet {
 		
 		try 
 		{
-			index=Integer.parseInt(request.getParameter("index"));
+			allNotices.setPageIndex(Integer.parseInt(request.getParameter("pageIndex")));
 		} 
 		catch (Exception e) 
 		{
-			index=-1;
+			allNotices.setPageIndex(0);
 		}
 		
-		if (index>=0)
+		try 
 		{
+			search=new String(request.getParameter("search").getBytes("iso-8859-1"),"gbk");
+			int start=0;
+			int end=search.length();
+			while (start<search.length() && search.charAt(start)==' ') start++;
+			while (end>=0 && search.charAt(end-1)==' ') end--;
+			search=search.substring(start, end);
+		} 
+		catch (Exception e) 
+		{
+			search="";
+		}
 		
+		try 
+		{
+			System.out.println(request.getParameter("noticeTime"));
+			//allNotices.setNotieceTime(new String(request.getParameter("noticeTime").getBytes("iso-8859-1"),"gbk"));
+		} 
+		catch (Exception e) 
+		{
+			allNotices.setNoticeTime("全部");
+		}
+		
+//		if (allNotices.getNotieceTime()=="全部") System.out.print("all");
+//		else if (allNotices.getNotieceTime()=="本周") System.out.print("week");
+		
+		
+		if (allNotices.getPageIndex()>0)
+		{
+			
 		}
 		else 
 		{
-
-			try 
-			{
-				search=new String(request.getParameter("search").getBytes("iso-8859-1"),"gbk");
-				int start=0;
-				int end=search.length();
-				while (start<search.length() && search.charAt(start)==' ') start++;
-				while (end>=0 && search.charAt(end-1)==' ') end--;
-				search=search.substring(start, end);
-			} 
-			catch (Exception e) 
-			{
-				search="";
-			}
+			
 			
 			if (search=="")
 			{
@@ -86,10 +99,8 @@ public class NoticesServlet extends HttpServlet {
 		}
 
 		//
-		totNotices=10;
-		System.out.println(search);
+		allNotices.setTotAllNotices(noticesHibernate.find_number_All());
 		request.setAttribute("allNotices", allNotices);
-		request.setAttribute("totNotices", totNotices);
 		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);
 		
 	}

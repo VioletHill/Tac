@@ -1,4 +1,4 @@
-package TacNotices;
+package TacNotices.Admin;
 
 import java.io.IOException;
 
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Notices.Notice;
+import DataSource.Notices.AllNotices;
 import DataSource.Notices.NoticesHibernate;
 
-public class UpdateNotices extends HttpServlet {
+public class EditNotices extends HttpServlet {
 
 	/**
 	 * 
@@ -28,21 +28,13 @@ public class UpdateNotices extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//AllNotices allNotices=AllNotices.sharedAllNotices();
-		
-		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
-		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
-		
-		Notice notice=new Notice();
+			throws ServletException, IOException 
+	{
+		AllNotices allNotices=new AllNotices();
+		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 10));
+		request.setAttribute("allNotices", allNotices);
 
-		notice.setNotice_html(content);
-		notice.setNotice_title(title);
-		
-		NoticesHibernate.sharedNoticesHibernate().choose(notice);
-		//Ìø×ª»ØÖ÷Ò³
-		response.sendRedirect("http://localhost:8080/Tac/Home");
-		
+		request.getRequestDispatcher("/TacNotices/Admin/Edit.jsp").forward(request, response);
 	}
 
 	/**

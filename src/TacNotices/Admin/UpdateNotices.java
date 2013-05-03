@@ -1,4 +1,4 @@
-package TacNotices;
+package TacNotices.Admin;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import DataSource.Notices.Notice;
 import DataSource.Notices.NoticesHibernate;
 
-public class EditIndexNotices extends HttpServlet {
+public class UpdateNotices extends HttpServlet {
 
 	/**
 	 * 
@@ -29,33 +29,19 @@ public class EditIndexNotices extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//AllNotices allNotices=AllNotices.sharedAllNotices();
 		
-		int index=-1;
+		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
+		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
 		
-		try 
-		{
-			index=Integer.parseInt(request.getParameter("index"));
-		} 
-		catch (Exception e) 
-		{
-			
-		}
-		Notice notice=NoticesHibernate.sharedNoticesHibernate().find_ById(index);
+		Notice notice=new Notice();
+
+		notice.setNotice_html(content);
+		notice.setNotice_title(title);
 		
-		if (notice==null)	//添加一个新的页面
-		{
-			System.out.println("No this index! goto create new");
-			notice=new Notice();
-			notice.setNotice_title("此处添加新标题");
-			notice.setNotice_html(null);
-			request.setAttribute("notice",notice);
-			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
-		}
-		else 
-		{
-			request.setAttribute("notice",notice);
-			request.getRequestDispatcher("/TacNotices/Admin/UpdateNotices.jsp").forward(request, response);
-		}
+		NoticesHibernate.sharedNoticesHibernate().choose(notice);
+		//跳转回主页
+		response.sendRedirect("http://localhost:8080/Tac/Home");
 		
 	}
 

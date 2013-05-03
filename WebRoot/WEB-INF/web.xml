@@ -39,19 +39,19 @@
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>EditNotices</servlet-name>
-    <servlet-class>TacNotices.EditNotices</servlet-class>
+    <servlet-class>TacNotices.Admin.EditNotices</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>EditIndexNotices</servlet-name>
-    <servlet-class>TacNotices.EditIndexNotices</servlet-class>
+    <servlet-class>TacNotices.Admin.EditIndexNotices</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>UpdateNotices</servlet-name>
-    <servlet-class>TacNotices.UpdateNotices</servlet-class>
+    <servlet-class>TacNotices.Admin.UpdateNotices</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
