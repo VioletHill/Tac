@@ -55,6 +55,8 @@ public class NoticesHibernate implements Serializable
 			update(notice);
 		}
 	}
+	
+	//find_number
 	public int find_number_ByMonth(int month)
 	{
 		int number;
@@ -83,6 +85,8 @@ public class NoticesHibernate implements Serializable
 		number=dao.findAll().size();
 		return number;
 	}
+	
+	//find
 	public List find_All(int id,int account)
 	{
 		NoticeDAO dao=new NoticeDAO();
@@ -113,11 +117,61 @@ public class NoticesHibernate implements Serializable
 		List list=dao.find_ByDay(day, id, account);
 		return list;
 	}
+	
+	//search
 	public List search(String key,int id,int account)
 	{
 		NoticeDAO dao=new NoticeDAO();
 		List list=dao.search(key,id,account);
 		return list;
+	}
+	public List search_ByMonth(String key,int month,int page,int account)
+	{
+		NoticeDAO dao=new NoticeDAO();
+		List list=dao.search_ByMonth(key, month, page, account);
+		return list;
+	}
+	public List search_ByWeek(String key,int week,int page,int account)
+	{
+		NoticeDAO dao=new NoticeDAO();
+		List list=dao.search_ByWeek(key, week, page, account);
+		return list;
+	}
+	public List search_ByDay(String key,int day,int page,int account)
+	{
+		NoticeDAO dao=new NoticeDAO();
+		List list=dao.search_ByDay(key, day, page, account);
+		return list;
+	}
+	
+	//search number
+	public int search_number(String key)
+	{
+		int number;
+		NoticeDAO dao=new NoticeDAO();
+		number=dao.search_number(key);
+		return number;
+	}
+	public int search_number_ByMonth(String key,int month)
+	{
+		int number;
+		NoticeDAO dao=new NoticeDAO();
+		number=dao.search_number_ByMonth(key, month);
+		return number;
+	}
+	public int search_number_ByWeek(String key,int week)
+	{
+		int number;
+		NoticeDAO dao=new NoticeDAO();
+		number=dao.search_number_ByWeek(key, week);
+		return number;
+	}
+	public int search_number_ByDay(String key,int day)
+	{
+		int number;
+		NoticeDAO dao=new NoticeDAO();
+		number=dao.search_number_ByDay(key, day);
+		return number;
 	}
 	public NoticesHibernate()
 	{

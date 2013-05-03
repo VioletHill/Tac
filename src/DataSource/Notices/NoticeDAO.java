@@ -52,7 +52,66 @@ public class NoticeDAO extends BaseHibernateDAO {
 			log.error("delete failed", re);
 			throw re;
 		}
-	}	public List search(String key,int id,int account) {
+	}
+	
+	//search number
+	public int search_number(String key) {
+		log.debug("getting Notice instance with id: " + key);
+		try {
+			String query_string="from Notice as n where n.notice_title like '%"+key+"%'";
+			Query query=getSession().createQuery(query_string);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	public int search_number_ByMonth(String key,int month)
+	{
+		log.debug("getting Notice instance with id: " + key);
+		try {
+			String query_string="from Notice as n where n.notice_month=? and n.notice_title like '%"+key+"%'";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, month);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	public int search_number_ByWeek(String key,int week)
+	{
+		log.debug("getting Notice instance with id: " + key);
+		try {
+			String query_string="from Notice as n where n.notice_week=? and n.notice_title like '%"+key+"%'";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, week);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	public int search_number_ByDay(String key,int day)
+	{
+		log.debug("getting Notice instance with id: " + key);
+		try {
+			String query_string="from Notice as n where n.notice_day=? and n.notice_title like '%"+key+"%'";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, day);
+			List list=query.list();
+			return list.size();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	
+	//search
+	public List search(String key,int id,int account) {
 		log.debug("finding Notice instance by example");
 		try {
 			if (id==0)
@@ -75,7 +134,54 @@ public class NoticeDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-
+	public List search_ByMonth(String key,int month,int page,int account) {
+		log.debug("finding Notice instance by example");
+		try {
+			String query_string="select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_month=? and n.notice_title like '%"+key+"%' order by n.notice_id desc";
+			Query query=getSession().createQuery(query_string);
+			int number=(page-1)*account;
+			query.setParameter(0, month);
+			query.setFirstResult(number);
+			query.setMaxResults(account);
+			return query.list();
+		} catch (RuntimeException re) {
+			log.error("search failed", re);
+			throw re;
+		}
+	}
+	public List search_ByWeek(String key,int week,int page,int account) {
+		log.debug("finding Notice instance by example");
+		try {
+			String query_string="select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_week=? and n.notice_title like '%"+key+"%' order by n.notice_id desc";
+			Query query=getSession().createQuery(query_string);
+			int number=(page-1)*account;
+			query.setParameter(0, week);
+			query.setFirstResult(number);
+			query.setMaxResults(account);
+			return query.list();
+		} catch (RuntimeException re) {
+			log.error("search failed", re);
+			throw re;
+		}
+	}
+	public List search_ByDay(String key,int day,int page,int account) {
+		log.debug("finding Notice instance by example");
+		try {
+			String query_string="select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_day=? and n.notice_title like '%"+key+"%' order by n.notice_id desc";
+			Query query=getSession().createQuery(query_string);
+			int number=(page-1)*account;
+			query.setParameter(0, day);
+			query.setFirstResult(number);
+			query.setMaxResults(account);
+			return query.list();
+		} catch (RuntimeException re) {
+			log.error("search failed", re);
+			throw re;
+		}
+	}
+	
+	
+	
 	public Notice findById(java.lang.Integer id) {
 		log.debug("getting Notice instance with id: " + id);
 		try {
@@ -86,6 +192,8 @@ public class NoticeDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	
 	public int find_number_Bymonth(int id) {
 		log.debug("getting Notice instance with id: " + id);
 		try {
@@ -125,6 +233,8 @@ public class NoticeDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	
 	public List find_All(int id,int account) {
 		log.debug("finding all Notice instances");
 		try {
