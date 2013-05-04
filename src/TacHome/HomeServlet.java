@@ -44,7 +44,7 @@ public class HomeServlet extends HttpServlet {
 		
 		if (!allNotices.getAllNotices().isEmpty())
 		{
-			request.setAttribute("firstNotice", NoticesHibernate.sharedNoticesHibernate().find_ById(allNotices.getAllNotices().get(0).getNotice_id()));
+			request.setAttribute("firstNotice", NoticesHibernate.sharedNoticesHibernate().finb_ById(allNotices.getAllNotices().get(0).getNotice_id()));
 		}
 		else 
 		{

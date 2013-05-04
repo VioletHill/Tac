@@ -43,7 +43,7 @@ public class NoticesPageServlet extends HttpServlet {
 			System.err.println("wrong address input!  go to errorPage");
 		}
 		
-		Notice notice=NoticesHibernate.sharedNoticesHibernate().find_ById(noticeId);
+		Notice notice=NoticesHibernate.sharedNoticesHibernate().finb_ById(noticeId);
 		
 		if (notice==null)
 		{

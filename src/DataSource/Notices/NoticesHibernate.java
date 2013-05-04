@@ -56,123 +56,199 @@ public class NoticesHibernate implements Serializable
 		}
 	}
 	
-	//find_number
-	public int find_number_ByMonth(int month)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.find_number_Bymonth(month);
-		return number;
-	}
-	public int find_number_ByWeek(int week)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.find_number_ByWeek(week);
-		return number;
-	}
-	public int find_number_ByDay(int day)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.find_number_ByDay(day);
-		return number;
-	}
-	public int find_number_All()
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.findAll().size();
-		return number;
-	}
-	
-	//find
-	public List find_All(int id,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.find_All(id,account);
-		return list;
-	}
-	public Notice find_ById(int id)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		Notice notice=dao.findById(id);
-		return notice;
-	}
-	public List find_ByMonth(int month,int id,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.find_ByMonth(month, id, account);
-		return list;
-	}
-	public List find_ByWeek(int week,int id,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.find_ByWeek(week, id, account);
-		return list;
-	}
-	public List find_ByDay(int day,int id,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.find_ByDay(day, id, account);
-		return list;
-	}
-	
-	//search
-	public List search(String key,int id,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.search(key,id,account);
-		return list;
-	}
-	public List search_ByMonth(String key,int month,int page,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.search_ByMonth(key, month, page, account);
-		return list;
-	}
-	public List search_ByWeek(String key,int week,int page,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.search_ByWeek(key, week, page, account);
-		return list;
-	}
-	public List search_ByDay(String key,int day,int page,int account)
-	{
-		NoticeDAO dao=new NoticeDAO();
-		List list=dao.search_ByDay(key, day, page, account);
-		return list;
-	}
-	
-	//search number
-	public int search_number(String key)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.search_number(key);
-		return number;
-	}
-	public int search_number_ByMonth(String key,int month)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.search_number_ByMonth(key, month);
-		return number;
-	}
-	public int search_number_ByWeek(String key,int week)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.search_number_ByWeek(key, week);
-		return number;
-	}
-	public int search_number_ByDay(String key,int day)
-	{
-		int number;
-		NoticeDAO dao=new NoticeDAO();
-		number=dao.search_number_ByDay(key, day);
-		return number;
-	}
+	//number
+		public int find_number_ByMonth(int year,int month)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.find_number_Bymonth(year,month);
+			return number;
+		}
+		public int find_number_ByMonth()
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.find_number_Bymonth();
+			return number;
+		}
+		public int find_number_ByWeek(int year,int week)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.find_number_ByWeek(year,week);
+			return number;
+		}
+		public int find_number_ByWeek()
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.find_number_ByWeek();
+			return number;
+		}
+		public int find_number_ByDay(int year,int month,int day)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.find_number_ByDay(year,month,day);
+			return number;
+		}
+		public int find_number_ByDay()
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.find_number_ByDay();
+			return number;
+		}
+		public int find_number_All()
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.findAll().size();
+			return number;
+		}
+		public int search_number(String key)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number(key);
+			return number;
+		}
+		public int search_number_ByMonth(String key,int year,int month)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number_ByMonth(key,year, month);
+			return number;
+		}
+		public int search_number_ByMonth(String key)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number_ByMonth(key);
+			return number;
+		}
+		public int search_number_ByWeek(String key,int year,int week)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number_ByWeek(key,year, week);
+			return number;
+		}
+		public int search_number_ByWeek(String key)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number_ByWeek(key);
+			return number;
+		}
+		public int search_number_ByDay(String key,int year,int month,int day)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number_ByDay(key, year,month,day);
+			return number;
+		}
+		public int search_number_ByDay(String key)
+		{
+			int number;
+			NoticeDAO dao=new NoticeDAO();
+			number=dao.search_number_ByDay(key);
+			return number;
+		}
+		
+		//find
+		public List find_All(int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_All(page,account);
+			return list;
+		}
+		public List find_ByMonth(int year,int month,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_ByMonth(year,month, page, account);
+			return list;
+		}
+		public List find_ByMonth(int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_ByMonth( page, account);
+			return list;
+		}
+		public List find_ByWeek(int year,int week,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_ByWeek(year,week, page, account);
+			return list;
+		}
+		public List find_ByWeek(int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_ByWeek( page, account);
+			return list;
+		}
+		public List find_ByDay(int year,int month,int day,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_ByDay(year,month,day, page, account);
+			return list;
+		}
+		public List find_ByDay(int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.find_ByDay(page, account);
+			return list;
+		}
+		public List search(String key,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search(key,page,account);
+			return list;
+		}
+		public List search_ByMonth(String key,int year,int month,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search_ByMonth(key, year,month, page, account);
+			return list;
+		}
+		public List search_ByMonth(String key,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search_ByMonth(key, page, account);
+			return list;
+		}
+		public List search_ByWeek(String key,int year,int week,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search_ByWeek(key, year,week, page, account);
+			return list;
+		}
+		public List search_ByWeek(String key,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search_ByWeek(key, page, account);
+			return list;
+		}
+		public List search_ByDay(String key,int year,int month,int day,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search_ByDay(key, year,month,day, page, account);
+			return list;
+		}
+		public List search_ByDay(String key,int page,int account)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			List list=dao.search_ByDay(key,  page, account);
+			return list;
+		}
+		//find html
+		public Notice finb_ById(int id)
+		{
+			NoticeDAO dao=new NoticeDAO();
+			Notice notice=dao.findById(id);
+			
+			return notice;
+		}
 	public NoticesHibernate()
 	{
 		

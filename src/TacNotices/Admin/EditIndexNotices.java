@@ -40,7 +40,7 @@ public class EditIndexNotices extends HttpServlet {
 		{
 			
 		}
-		Notice notice=NoticesHibernate.sharedNoticesHibernate().find_ById(index);
+		Notice notice=NoticesHibernate.sharedNoticesHibernate().finb_ById(index);
 		
 		if (notice==null)	//添加一个新的页面
 		{
