@@ -235,29 +235,23 @@ public class NoticeDAO extends BaseHibernateDAO {
 	}
 	
 	
-	public List find_All(int id,int account) {
+	public List find_All(int page,int account) {
 		log.debug("finding all Notice instances");
 		try {
-			if(id==0)
-			{
 				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n order by n.notice_id desc";
 				Query query = getSession().createQuery(query_string);
+				int number=(page-1)*account;
+				query.setFirstResult(page);
 				query=query.setMaxResults(account);
 				return query.list();
-			}
-			else
-			{
-				String query_string = "select new Notice(notice_id,notice_title,notice_year,notice_month,notice_day) from Notice as n where n.notice_id<? order by n.notice_id desc";
-				Query query = getSession().createQuery(query_string);
-				query.setParameter(0, id);
-				query=query.setMaxResults(account);
-				return query.list();
-			}
+
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
 			throw re;
 		}
 	}
+	
+
 	public List find_ByMonth(int month,int id,int account) {
 		log.debug("finding all Notice instances");
 		try {

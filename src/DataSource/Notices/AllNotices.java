@@ -11,6 +11,15 @@ public class AllNotices
 	private int totAllNotices;
 	private String noticeTime;
 	private	int pageIndex;
+	private String search;
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	public int getPageIndex() {
 		return pageIndex;
 	}

@@ -30,13 +30,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	 	{ 
      		var now=new Date; 
      		var day=null;
-     		if (now.getDay()==1) day="一";
+     	 	if (now.getDay()==1) day="一";
      		else if (now.getDay()==2) day="二";
      		else if (now.getDay()==3) day="三";
      		else if (now.getDay()==4) day="四";
      		else if (now.getDay()==5) day="五";
-     		else if (now.getDay==6) day="六";
-     		else if (now.getDay==7) day="日";
+     		else if (now.getDay()==6) day="六";
+     		else if (now.getDay()==7) day="日";
      		
      	  	document.getElementById("time").innerHTML=now.getFullYear() 
       		  +"年"+(now.getMonth()+1) 
@@ -51,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		function focusSearch(element)
    		{
    			element.style.opacity=1;
+   			if (element.value=="搜索信息") element.value="";
    		}
    		
    		function blurSearch(element)
@@ -67,6 +68,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		function clickItem(ele)
    		{
    			document.getElementById("noticeTime").value=ele.value;
+   			switch(ele.value)
+   			{
+   				case "本周":
+   					document.getElementById("searchTime").value="week";
+   					break;
+   				case "本月":
+   					document.getElementById("searchTime").value="month";
+   					break;
+   				case "今天":
+   					document.getElementById("searchTime").value="today";
+   					break;
+   				default:
+   					document.getElementById("searchTime").value="all";
+   			}
+   			document.getElementById("form").submit();
    			clearItem();
    		}
    		
@@ -83,10 +99,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	   	
    	   	function isNeedClear()
    	   	{
-   	   		var obj=document.getElementById("noticeTime");
-   	   		oRect=obj.getBoundingClientRect(); 
-   	   		
-   	   		if (window.event.clientX<=oRect.left || window.event.clientX>=oRect.right || window.event.clientY<=oRect.top || window.event.clientY>=oRect.top+30*5) return true;
+   	   		var x=getAbsoluteX(document.getElementById("noticeTime"));
+			var y=getAbsoluteY(document.getElementById("noticeTime"));
+   	   		var mouseX=window.event.clientX+ document.body.scrollLeft;
+   	   		var mouseY=window.event.clientY+ document.body.scrollTop;
+   	   		if (mouseX<=x || mouseX>=x+100 || mouseY<=y || mouseY>=y+30*5) return true;
    	   		return false;
    	   	}
 
@@ -105,24 +122,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		{
    			if (isAnimate) return ;
    			isAnimate=true;
-   			var oRect=obj.getBoundingClientRect(); 
-
+   			var x=getAbsoluteX(document.getElementById("noticeTime"));
+			var y=getAbsoluteY(document.getElementById("noticeTime"));
+			
    			today=document.getElementById("todayTime");
    			week=document.getElementById("weekTime");
    			month=document.getElementById("monthTime");
    			all=document.getElementById("all");
-   			
+   		
    			today.style.position=week.style.position=month.style.position=all.style.position="absolute";
-   			today.style.left=week.style.left=month.style.left=all.style.left=oRect.left;
-   			today.style.top=week.style.top=month.style.top=all.style.top=oRect.top;
+   			today.style.left=week.style.left=month.style.left=all.style.left=x;
+   			today.style.top=week.style.top=month.style.top=all.style.top=y;
    			today.style.display=week.style.display=month.style.display=all.style.display="inline";
-   			todayTop=oRect.top+30;
+   			todayTop=y+30;
    			$("#todayTime").animate({top:todayTop});
    			$("#weekTime").animate({top:todayTop+30});
    			$("#monthTime").animate({top:todayTop+60});
    			$("#all").animate({top:todayTop+90});
    			
    		}
+   		function getAbsoluteX(e)
+   		{
+   			return e.getBoundingClientRect().left+document.body.scrollLeft;
+   			
+   		}
+   		
+   		function getAbsoluteY(e)
+   		{
+   			return e.getBoundingClientRect().top+document.body.scrollTop;
+   		}
+   		
+   		function choosePage(index)
+   		{
+   			document.getElementById("pageIndex").value=index;
+   			checkSearch();
+   			document.getElementById("form").submit();
+   		}
+   		
+   		function nextPage()
+   		{
+   			var index=parseInt(document.getElementById("pageIndex").value)+1;
+   			document.getElementById("pageIndex").value=index;
+   			checkSearch();
+   			document.getElementById("form").submit();
+   		}
+   		function lastPage()
+   		{
+   			var index=parseInt(document.getElementById("pageIndex").value)-1;
+   			document.getElementById("pageIndex").value=index;
+   			checkSearch();
+   			document.getElementById("form").submit();
+   		}
+   		
 	</script>
   </head>
   
@@ -135,17 +186,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<div>
 	 		<br>
 	 		
-	 		<form action="Notices" method="post">
-	 			
+	 		<form action="Notices" onsubmit="checkSearch()" method="post" id="form">
+	 			<input type="hidden" id="searchTime" name="searchTime" value="<%=allNotices.getNoticeTime()%>" >
+	 			<input type="hidden" id="pageIndex" name="pageIndex" value=<%=allNotices.getPageIndex() %>>
+	 			<input type="hidden" id="searchInfor" name="searchInfor" value="">
 	 			<table style="position:float; float:right">
 	 				<tr>
-	 					<td><input type="text" name="search" value="搜索信息" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
+	 					<td><input type="text" name="search" value="<%=allNotices.getSearch() %>" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
 	 					<td><input type="button" value="今天" id="todayTime"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>   
 	 					<td><input type="button" value="本周" id="weekTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="全部" id="all"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
-	 					<td><input name="noticeTime" type="button" value="<%=allNotices.getNoticeTime() %>" id="noticeTime" onmouseout="outItem(this)" onclick="clearItem()"onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
-	 					<td><button  type="submit" style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
+	 					<td><input type="button" value="<%=allNotices.getNoticeTime() %>" id="noticeTime" onmouseout="outItem(this)" onclick="clearItem()"onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
+	 					<td><input type="submit" style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
 	 				</tr>		
 	 			</table>
 	 			
@@ -173,10 +226,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		
 	 		<!--页号-->
 	 		<div style="float:right">
-	 			<%for (int i=1; i<=allNotices.getTotAllNotices()/10; i++)
-	 			{%>
-	 				<a href="http://localhost:8080/Tac/Notices?page=<%=i%>" class="NoticesItem"><%=i%></a>
-	 		  <%}%>
+	 			<a href="javascript:choosePage(1);" class="NoticesItem">首页</a>
+	 			<a href="javascript:lastPage();" class="NoticesItem">上一页</a>
+	 			<input type="text" value="<%=allNotices.getPageIndex() %>" style="width:30">
+	 			/<%=allNotices.getTotAllNotices()/10 %>
+	 			<a href="javascript:nextPage();" class="NoticesItem">下一页</a>
+	 			<a href="javascript:choosePage(<%=allNotices.getTotAllNotices()/10 %>);" class="NoticesItem">尾页</a>
 	 	  	</div>
 	 	</div>
 	  	<%@include file="/Navigation/Footer.jsp" %>

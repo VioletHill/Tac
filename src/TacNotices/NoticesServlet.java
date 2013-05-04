@@ -17,15 +17,6 @@ public class NoticesServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 
-
-	/**
-	 * Destruction of the servlet. <br>
-	 */
-	public void destroy() {
-		super.destroy(); // Just puts "destroy" string in log
-		// Put your code here
-	}
-
 	/**
 	 * The doGet method of the servlet. <br>
 	 *
@@ -38,6 +29,9 @@ public class NoticesServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		final int pageNum=10;
+		
+		
 		String search="";
 		
 		NoticesHibernate noticesHibernate=NoticesHibernate.sharedNoticesHibernate();
@@ -49,7 +43,7 @@ public class NoticesServlet extends HttpServlet {
 		} 
 		catch (Exception e) 
 		{
-			allNotices.setPageIndex(0);
+			allNotices.setPageIndex(1);
 		}
 		
 		try 
@@ -68,37 +62,54 @@ public class NoticesServlet extends HttpServlet {
 		
 		try 
 		{
-			System.out.println(request.getParameter("noticeTime"));
-			//allNotices.setNotieceTime(new String(request.getParameter("noticeTime").getBytes("iso-8859-1"),"gbk"));
+			allNotices.setNoticeTime(new String(request.getParameter("searchTime").getBytes("iso-8859-1"),"gbk"));
 		} 
 		catch (Exception e) 
 		{
-			allNotices.setNoticeTime("全部");
+			allNotices.setNoticeTime("all");
 		}
 		
-//		if (allNotices.getNotieceTime()=="全部") System.out.print("all");
-//		else if (allNotices.getNotieceTime()=="本周") System.out.print("week");
-		
-		
-		if (allNotices.getPageIndex()>0)
+	/*  //////////////////////////////////////////////////////////华丽分割线////////////////// */
+		if (allNotices.getNoticeTime()=="month")
 		{
-			
-		}
-		else 
-		{
-			
-			
 			if (search=="")
 			{
-				allNotices.setList(noticesHibernate.find_All(0, 10));
+				//allNotices.setTotAllNotices(noticesHibernate.find_number_All());
+				//allNotices.setList(noticesHibernate.find_ByMonth(pageNum, pageNum, pageNum);
+				allNotices.setSearch("搜索信息");
 			}
 			else 
 			{
-				allNotices.setList(noticesHibernate.search(search, 0, 10));
+				allNotices.setTotAllNotices(noticesHibernate.search_number(search));
+				allNotices.setList(noticesHibernate.search(search, allNotices.getPageIndex(), pageNum));
 			}
 		}
-
-		//
+		else if (allNotices.getNoticeTime()=="week")
+		{
+		}
+		else if (allNotices.getNoticeTime()=="today")
+		{
+			
+		}
+		else 	//all
+		{
+			if (search=="")
+			{
+				System.out.println("no search");
+				allNotices.setTotAllNotices(noticesHibernate.find_number_All());
+				allNotices.setList(noticesHibernate.find_All(allNotices.getPageIndex(), pageNum));
+				allNotices.setSearch("搜索信息");
+			}
+			else 
+			{
+				System.out.println(search);
+				allNotices.setTotAllNotices(noticesHibernate.search_number(search));
+				allNotices.setList(noticesHibernate.search(search, allNotices.getPageIndex(), pageNum));
+				allNotices.setSearch(search);
+			}
+			allNotices.setNoticeTime("全部");
+		}
+		
 		allNotices.setTotAllNotices(noticesHibernate.find_number_All());
 		request.setAttribute("allNotices", allNotices);
 		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);
