@@ -34,7 +34,7 @@ public class ShowNotices extends HttpServlet {
 		
 		int index=Integer.parseInt(request.getParameter("indexNotices"));
 		PrintWriter out = response.getWriter();
-		out.write(NoticesHibernate.sharedNoticesHibernate().finb_ById(index).getNotice_html());
+		out.write(NoticesHibernate.sharedNoticesHibernate().find_ById(index).getNotice_html());
 		out.flush();
 	}
 

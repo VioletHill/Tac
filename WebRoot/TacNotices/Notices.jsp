@@ -6,6 +6,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+
+	<jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices" scope="request">
+ 	</jsp:useBean>
+  
   <head>
  	 <style type="text/css">
 	 	 <%@include file="/TacNotices/NoticesItem.css" %>  
@@ -25,7 +29,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	
+
+	
 	<script type="text/javascript">
+
+		var search;
 		function showTime()
    	 	{ 
      		var now=new Date; 
@@ -58,6 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		{
    			element.style.opacity=0.2;
    			if (element.value=="") element.value="搜索信息";
+   			document.getElementById("searchInfor").value=element.value;
    		}
    		var today=null;
    		var week=null;
@@ -82,6 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				default:
    					document.getElementById("searchTime").value="all";
    			}
+   			setIsSearch();
    			document.getElementById("form").submit();
    			clearItem();
    		}
@@ -89,8 +100,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	   	function enterItem(ele)
    	   	{
    	   		ele.style.backgroundColor='blue';
-   	   	
    	   	}
+   	   	
    	   	function outItem(ele)
    	   	{
    	   	   	ele.style.backgroundColor='white';  	
@@ -154,54 +165,79 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		
    		function choosePage(index)
    		{
-   			document.getElementById("pageIndex").value=index;
-   			checkSearch();
+   			//如果不是新的搜索 还原搜索框中数据
+   			document.getElementById("search").value=search;
+   			checkSearchIsNull();
+   			
+   			document.getElementById("pageIndex").value=index;		
    			document.getElementById("form").submit();
    		}
    		
    		function nextPage()
    		{
-   			var index=parseInt(document.getElementById("pageIndex").value)+1;
-   			document.getElementById("pageIndex").value=index;
-   			checkSearch();
-   			document.getElementById("form").submit();
+   			var index=parseInt(document.getElementById("pageIndexText").value)+1;
+   			var totPage=<%=allNotices.getAllPage()%>;
+   			if (index>totPage)
+   			{
+   				alert("亲！已经最后一页了~~");
+   				return ;
+   			}
+   			choosePage(index);
    		}
    		function lastPage()
    		{
-   			var index=parseInt(document.getElementById("pageIndex").value)-1;
-   			document.getElementById("pageIndex").value=index;
-   			checkSearch();
-   			document.getElementById("form").submit();
+   			var index=parseInt(document.getElementById("pageIndexText").value)-1;
+   			if (index<=0)
+   			{
+   				alert("亲！已经第一页了~~");
+   				return ;
+   			}
+   			choosePage(index);
    		}
    		
+   		function setIsSearch()
+   		{
+   			checkSearchIsNull();
+   			document.getElementById("isSearch").value="yes";
+   		}
+   		
+   		function checkSearchIsNull()
+   		{
+   			if (document.getElementById("search").value=="搜索信息")
+   			{
+   				document.getElementById("search").value="";
+   			}
+   		}
+   		function init()
+   		{
+   			search=document.getElementById("search").value;
+   		}
 	</script>
   </head>
   
-  <jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices" scope="request">
-  </jsp:useBean>
+
   
-  <body>
+  <body onload="init()">
      <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	<div>
 	 		<br>
 	 		
-	 		<form action="Notices" onsubmit="checkSearch()" method="post" id="form">
+	 		<form action="Notices" method="post" id="form">
 	 			<input type="hidden" id="searchTime" name="searchTime" value="<%=allNotices.getNoticeTime()%>" >
 	 			<input type="hidden" id="pageIndex" name="pageIndex" value=<%=allNotices.getPageIndex() %>>
-	 			<input type="hidden" id="searchInfor" name="searchInfor" value="">
+	 			<input type="hidden" id="isSearch" name="isSearch" value="no">
 	 			<table style="position:float; float:right">
 	 				<tr>
-	 					<td><input type="text" name="search" value="<%=allNotices.getSearch() %>" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
+	 					<td><input type="text" name="search" id="search" value="<%=allNotices.getSearch() %>" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right"></td>
 	 					<td><input type="button" value="今天" id="todayTime"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>   
 	 					<td><input type="button" value="本周" id="weekTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="全部" id="all"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="<%=allNotices.getNoticeTime() %>" id="noticeTime" onmouseout="outItem(this)" onclick="clearItem()"onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
-	 					<td><input type="submit" style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
+	 					<td><button type="submit" onclick="setIsSearch()"style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
 	 				</tr>		
 	 			</table>
-	 			
 	 		</form>
 	 		
 	 		<br>
@@ -226,12 +262,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 		
 	 		<!--页号-->
 	 		<div style="float:right">
+	 			<input type="hidden" id="pageIndexText" value="<%=allNotices.getPageIndex()%>">
 	 			<a href="javascript:choosePage(1);" class="NoticesItem">首页</a>
 	 			<a href="javascript:lastPage();" class="NoticesItem">上一页</a>
-	 			<input type="text" value="<%=allNotices.getPageIndex() %>" style="width:30">
-	 			/<%=allNotices.getTotAllNotices()/10 %>
+	 			<%for (int i=1; i<=allNotices.getAllPage(); i++) 
+	 			{
+	 				if (i==allNotices.getPageIndex())
+	 				{%>
+	 					<a style="color:red"><%=i%></a>
+	 				 
+	 			  <%}
+	 			  	else
+	 				{%>
+	 					<a href="javascript:choosePage(<%=i%>);" class="NoticesItem"><%=i%></a>
+	 			  <%}%>	
+	 		  <%}%>
 	 			<a href="javascript:nextPage();" class="NoticesItem">下一页</a>
-	 			<a href="javascript:choosePage(<%=allNotices.getTotAllNotices()/10 %>);" class="NoticesItem">尾页</a>
+	 			<a href="javascript:choosePage(<%=allNotices.getAllPage()%>);" class="NoticesItem">尾页</a>
 	 	  	</div>
 	 	</div>
 	  	<%@include file="/Navigation/Footer.jsp" %>

@@ -8,7 +8,7 @@ import java.util.List;
 public class AllNotices 
 {
 	List<Notice> list;
-	private int totAllNotices;
+	private int allPage;
 	private String noticeTime;
 	private	int pageIndex;
 	private String search;
@@ -44,14 +44,15 @@ public class AllNotices
 		this.noticeTime = notieceTime;
 	}
 
-	public int getTotAllNotices() {
-		return totAllNotices;
+	
+	public int getAllPage() {
+		return allPage;
 	}
 
-	public void setTotAllNotices(int totAllNotices) {
-		this.totAllNotices = totAllNotices;
+	public void setAllPage(int allPage) {
+		this.allPage = allPage;
 	}
-	
+
 	public AllNotices()
 	{
 		noticeTime="È«²¿";

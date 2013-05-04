@@ -31,7 +31,7 @@ public class EditNotices extends HttpServlet {
 			throws ServletException, IOException 
 	{
 		AllNotices allNotices=new AllNotices();
-		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 10));
+		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(1, 10));
 		request.setAttribute("allNotices", allNotices);
 
 		request.getRequestDispatcher("/TacNotices/Admin/Edit.jsp").forward(request, response);

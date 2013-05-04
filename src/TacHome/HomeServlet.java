@@ -37,19 +37,11 @@ public class HomeServlet extends HttpServlet {
 		AllProjects allProjects=AllProjects.sharedAllProjects();
 		
 		AllNotices allNotices=new AllNotices();
-		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(0, 4));
+		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(1, 4));
 		
 		request.setAttribute("allProjects", allProjects);
 		request.setAttribute("allNotices", allNotices);
 		
-		if (!allNotices.getAllNotices().isEmpty())
-		{
-			request.setAttribute("firstNotice", NoticesHibernate.sharedNoticesHibernate().finb_ById(allNotices.getAllNotices().get(0).getNotice_id()));
-		}
-		else 
-		{
-			request.setAttribute("firstNotice",null);
-		}
 		request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);
 	}
 

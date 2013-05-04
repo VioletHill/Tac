@@ -33,16 +33,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<br>
 	 	<br>
 	 	<div>
-	 		<div id="title" style="text-align:center">
+	 		<div id="title" style="text-align:center; word-break:break-all">
 	 			<%=notice.getNotice_title()%>
 			</div>
-			<div id="data" style="text-align:right">
+			<div id="data" style="text-align:right ">
 				<%=notice.getData()%>
 			</div>
 			<br>
 			<br>
 		
-			<div id="content">
+			<div id="content" style="word-break:break-all">
 				<%=notice.getNotice_html()%>
 			</div>
 	 	</div>

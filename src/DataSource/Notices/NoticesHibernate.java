@@ -242,7 +242,7 @@ public class NoticesHibernate implements Serializable
 			return list;
 		}
 		//find html
-		public Notice finb_ById(int id)
+		public Notice find_ById(int id)
 		{
 			NoticeDAO dao=new NoticeDAO();
 			Notice notice=dao.findById(id);

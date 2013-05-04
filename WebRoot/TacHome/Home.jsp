@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
- 
+ 	<script src="http://jqueryrotate.googlecode.com/files/jQueryRotate.2.2.js"></script>
     <base href="<%=basePath%>">
       
     

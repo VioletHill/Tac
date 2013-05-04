@@ -169,12 +169,15 @@ public class NoticeDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-	public Notice findById(java.lang.Integer id) {
+	public Notice findById(int id) {
 		log.debug("getting Notice instance with id: " + id);
 		try {
-			Notice instance = (Notice) getSession().get("TacHibernate.Notice",
-					id);
-			return instance;
+			String query_string="from Notice as n where n.notice_id=?";
+			Query query=getSession().createQuery(query_string);
+			query.setParameter(0, id);
+			List list =query .list();
+			if (list.isEmpty()) return null;
+			else return (Notice) list.get(0);
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
