@@ -20,7 +20,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	
+	<script type="text/javascript">
+	/* 	function init()
+		{
+			var contentDiv=document.getElementById("content");
+			var position=contentDiv.getBoundingClientRect();
+			
+			var lastImg=document.createElement("img");
+			
+		 	lastImg.src="TacNotices/Image/LastNotice.png";
+			lastImg.style.position="absolute";
+			lastImg.id="lastNotice";
+		 	lastImg.style.left=position.left;
+		 	lastImg.style.top=(position.top+position.bottom)/2;
+		 	
+			
+			contentDiv.appendChild(lastImg);
+			
+			var nextImg=document.createElement("img");
+			nextImg.src="TacNotices/Image/LastNotice.png";
+			nextImg.id="nextNotice";
+			nextImg.style.position="absolute";
+			nextImg.style.left=position.right+document.body.scrollLeft-nextImg.width;
+			nextImg.style.top=(position.top+position.bottom)/2;
+			contentDiv.appendChild(nextImg);
+		}
+		
+		function resize()
+		{
+			var contentDiv=document.getElementById("content");
+			var lastImg=document.getElementById("lastNotice");
+			var position=contentDiv.getBoundingClientRect();
+			lastImg.style.left=position.left;
+		 	
+		 	var nextImg=document.getElementById("nextNotice");
+		 	nextImg.style.left=position.right+document.body.scrollLeft-nextImg.width;
 
+		 	
+		} */
+	</script>
   </head>
   
   <jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">
@@ -33,20 +72,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<br>
 	 	<br>
 	 	<div>
-	 		<div id="title" style="text-align:center; word-break:break-all">
+	 		<div id="title" style="text-align:center; word-break:break-all; margin-left:100; margin-right:100">
 	 			<%=notice.getNotice_title()%>
 			</div>
-			<div id="data" style="text-align:right ">
+			<div id="data" style="text-align:right;  margin-left:100; margin-right:100">
 				<%=notice.getData()%>
 			</div>
 			<br>
 			<br>
 		
-			<div id="content" style="word-break:break-all">
-				<%=notice.getNotice_html()%>
+			<div id="content" style="word-break:break-all; background-color:red">
+				<div style="margin-left:100; margin-right:100">
+					<%=notice.getNotice_html()%>
+				</div>
 			</div>
 	 	</div>
 	 	
+	 	<br>
 	  	<%@include file="/Navigation/Footer.jsp" %>
     </div>
   </body>

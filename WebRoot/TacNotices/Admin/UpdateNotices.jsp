@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        
        function cancel()
        {
-       		windows.location.href="http://localhost:8080/Tac/Home";
+       		windows.location.href="Home";
        		alert("已经取消新通知的发布");
        }
        

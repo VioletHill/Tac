@@ -22,7 +22,7 @@
 	</div>
 
 	<div style="width:1200; height:300; background-color:yellow;">
-		<a class="NoticesItem" href="http://localhost:8080/Tac/Honor" style="float:right;">查看全部</a>
+		<a class="NoticesItem" href="Honor" style="float:right;">查看全部</a>
 		<br>
 		<div
 			style="overflow:hidden; white-space:nowrap; width:1000; background-color:green; left:100; position:relative;">

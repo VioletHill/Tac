@@ -5,7 +5,7 @@
 	var isChange=false;
  	function linkToImg(pro)
 	{
-		window.location.href="http://localhost:8080/Tac/Honor/Project?id="+pro.id;
+		window.location.href="Honor/Project?id="+pro.id;
 	}
 
 	function changeImg(pro)
@@ -49,7 +49,7 @@
 		{
 		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		xmlhttp.open("POST", "http://localhost:8080/Tac/Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
+		xmlhttp.open("POST", "Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
 		xmlhttp.send();
 		pro.src=xmlhttp.responseText;
 		x=event.clientX;
@@ -69,7 +69,7 @@
 		{
 		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		xmlhttp.open("POST", "http://localhost:8080/Tac/Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
+		xmlhttp.open("POST", "Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
 		xmlhttp.send();
 		pro.src=xmlhttp.responseText;
 		x=event.clientX;
@@ -87,7 +87,7 @@
 		{
 		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
-		xmlhttp.open("POST", "http://localhost:8080/Tac/Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage=0", false);
+		xmlhttp.open("POST", "Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage=0", false);
 		xmlhttp.send();
 		pro.src=xmlhttp.responseText;
 		x=event.clientX;

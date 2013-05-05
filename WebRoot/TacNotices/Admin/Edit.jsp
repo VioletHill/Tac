@@ -36,14 +36,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<% for (int i=0; i<allNotices.getAllNotices().size(); i++)
 	 	{%>
 	 		<div style="overflow:hidden;">
-	 			<a class="NoticesItem" href="http://localhost:8080/Tac/Admin/EditIndexNotices?index=<%=allNotices.getAllNotices().get(i).getNotice_id()%>"> <%=allNotices.getAllNotices().get(i).getNotice_title() %> </a>
+	 			<a class="NoticesItem" href="Admin/EditIndexNotices?index=<%=allNotices.getAllNotices().get(i).getNotice_id()%>"> <%=allNotices.getAllNotices().get(i).getNotice_title() %> </a>
 	 			<div style="float:right"> <%=allNotices.getAllNotices().get(i).getData() %> </div>
 	 		</div>
 	  <%}%>
 	 	
 	 	<br>
 	 	<br>
-	 	<a class="NoticesItem" href="http://localhost:8080/Tac/Admin/EditIndexNotices" style="float:right">添加新通知</a>
+	 	<a class="NoticesItem" href="Admin/EditIndexNotices" style="float:right">添加新通知</a>
 	  	<%@include file="/Navigation/Footer.jsp" %>
 	 </div>	  
   </body>

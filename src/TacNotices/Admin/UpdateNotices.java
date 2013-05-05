@@ -41,7 +41,7 @@ public class UpdateNotices extends HttpServlet {
 		
 		NoticesHibernate.sharedNoticesHibernate().choose(notice);
 		//Ìø×ª»ØÖ÷Ò³
-		response.sendRedirect("http://localhost:8080/Tac/Home");
+		response.sendRedirect("Home");
 		
 	}
 

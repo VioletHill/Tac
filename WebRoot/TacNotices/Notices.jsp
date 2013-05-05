@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      		else if (now.getDay()==4) day="四";
      		else if (now.getDay()==5) day="五";
      		else if (now.getDay()==6) day="六";
-     		else if (now.getDay()==7) day="日";
+     		else if (now.getDay()==0) day="日";
      		
      	  	document.getElementById("time").innerHTML=now.getFullYear() 
       		  +"年"+(now.getMonth()+1) 
@@ -152,6 +152,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			$("#all").animate({top:todayTop+90});
    			
    		}
+   		
+   		function changeItemState()
+   		{
+ 			if (isAnimate) clearItem();
+ 			else showItem();  		
+   		}
+   		
    		function getAbsoluteX(e)
    		{
    			return e.getBoundingClientRect().left+document.body.scrollLeft;
@@ -234,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 					<td><input type="button" value="本周" id="weekTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
 	 					<td><input type="button" value="全部" id="all"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none"></td>
-	 					<td><input type="button" value="<%=allNotices.getNoticeTime() %>" id="noticeTime" onmouseout="outItem(this)" onclick="clearItem()"onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
+	 					<td><input type="button" value="<%=allNotices.getNoticeTime() %>" id="noticeTime" onmouseout="outItem(this)" onclick="changeItemState()" onmouseover="enterItem(this); showItem(this);"  style="width:100; height:30; background-color:white; font-size:15; color:black;"></td>
 	 					<td><button type="submit" onclick="setIsSearch()"style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button></td>
 	 				</tr>		
 	 			</table>

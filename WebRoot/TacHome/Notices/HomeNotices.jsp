@@ -31,7 +31,7 @@
  	
  	 <div style="width:400; height:200; float:left; overflow:hidden; text-overflow:ellipsis; -o-text-overflow:ellipsis;white-space:nowrap" >
  	 	<div>
- 	 		<a class="NoticesItem" href="http://localhost:8080/Tac/Notices" style="float:right;">查看全部</a>
+ 	 		<a class="NoticesItem" href="Notices" style="float:right;">查看全部</a>
  	 	</div>
  	 	
  	 	<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
@@ -46,7 +46,7 @@
  	 		  {%>
  	 	  			<img id="notices<%=allNotices.getAllNotices().get(i).getNotice_id()%>"name="<%=allNotices.getAllNotices().get(i).getNotice_id()%>" src="TacHome/Image/NextPage.png" onclick="showNotice(this)">
  	 	  	<%}%>
- 	 		<a class="NoticesItem" href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>  
+ 	 		<a class="NoticesItem" href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>  
 		<%}%>
  	</div>
 </div>
