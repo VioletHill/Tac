@@ -39,7 +39,7 @@ public class DocumentServlet extends HttpServlet {
 		request.setAttribute("allProjects", allProjects);
 	//	request.setAttribute("allNotices", allNotices);
 		
-	
+		
 		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(request, response);
 	}
 

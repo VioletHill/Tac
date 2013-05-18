@@ -1,4 +1,4 @@
-package TacHibernateSessionFactory;
+package DataSource.Document;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
