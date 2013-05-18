@@ -18,7 +18,9 @@
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
-		<property name="myeclipse.connection.profile">TacWebsite</property>
+		<property name="myeclipse.connection.profile">
+			TacWebsite
+		</property>
 		<mapping resource="DataSource/Notices/Notice.hbm.xml" />
 		<mapping resource="DataSource/Document/Document.hbm.xml" />
 

@@ -1,7 +1,6 @@
 package DataSource.Document;
 
-// default package
-
+import DataSource.Notices.NoticesHibernate;
 import TacHibernate.BaseHibernateDAO;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +18,7 @@ import org.slf4j.LoggerFactory;
  * methods provides additional information for how to configure it for the
  * desired type of transaction control.
  * 
- * @see .Document
+ * @see DataSource.Document.Document
  * @author MyEclipse Persistence Tools
  */
 
@@ -31,9 +30,8 @@ public class DocumentDAO extends BaseHibernateDAO {
 	public static final String DOCUMENT_CONTENT = "documentContent";
 	public static final String DOCUMENT_FILE = "documentFile";
 	public static final String DOCUMENT_DOWNLOAD_COUNT = "documentDownloadCount";
-
-	// 데절
-	private static DocumentDAO documentDAO = null;
+	
+	public static DocumentDAO documentDAO = null;
 
 	public void save(Document transientInstance) {
 		log.debug("saving Document instance");
@@ -60,7 +58,8 @@ public class DocumentDAO extends BaseHibernateDAO {
 	public Document findById(java.lang.Integer id) {
 		log.debug("getting Document instance with id: " + id);
 		try {
-			Document instance = (Document) getSession().get("Document", id);
+			Document instance = (Document) getSession().get(
+					"DataSource.Document.Document", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -71,7 +70,8 @@ public class DocumentDAO extends BaseHibernateDAO {
 	public List findByExample(Document instance) {
 		log.debug("finding Document instance by example");
 		try {
-			List results = getSession().createCriteria("Document")
+			List results = getSession()
+					.createCriteria("DataSource.Document.Document")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -159,8 +159,8 @@ public class DocumentDAO extends BaseHibernateDAO {
 		}
 	}
 
-	// 데절
-	synchronized static public DocumentDAO sharedDocumentDAO() {
+	public static DocumentDAO sharedDocumentDAO() {
+		// TODO Auto-generated method stub
 		if (documentDAO == null) {
 			documentDAO = new DocumentDAO();
 		}

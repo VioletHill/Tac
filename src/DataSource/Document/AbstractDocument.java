@@ -1,7 +1,5 @@
 package DataSource.Document;
 
-// default package
-
 import java.util.Date;
 
 /**
@@ -26,14 +24,14 @@ public abstract class AbstractDocument implements java.io.Serializable {
 	public AbstractDocument() {
 	}
 
-	/** minimal constructor */
+	/** self define minimal */
 	public AbstractDocument(String documentTitle) {
 		this.documentTitle = documentTitle;
 		this.documentDownloadCount = 0;
 		this.documentTimestamp = new Date();
 	}
 
-	/** java thought minimal, but not for DB*/
+	/** minimal constructor */
 	public AbstractDocument(String documentTitle,
 			Integer documentDownloadCount, Date documentTimestamp) {
 		this.documentTitle = documentTitle;

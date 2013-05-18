@@ -20,7 +20,7 @@ public class Document extends AbstractDocument implements java.io.Serializable {
 		super(documentTitle);
 	}
 
-	/** java thought minimal, but not for DB*/
+	/** java thought minimal, but not for DB */
 	public Document(String documentTitle, Integer documentDownloadCount,
 			Date documentTimestamp) {
 		super(documentTitle, documentDownloadCount, documentTimestamp);
