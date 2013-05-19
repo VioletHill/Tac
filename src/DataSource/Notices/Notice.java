@@ -69,7 +69,7 @@ public class Notice implements Serializable {
 		this.notice_id=notice_id;
 		this.notice_title=notice_title;
 		this.notice_year=notice_year;
-		this.notice_month=notice_month;
+		this.notice_month = notice_month;
 		this.notice_day=notice_day;
 		// TODO Auto-generated constructor stub
 	}

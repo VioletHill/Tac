@@ -1,133 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" 
-	xmlns="http://java.sun.com/xml/ns/javaee" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name></display-name>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>TacHome.HomeServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>HonorServlet</servlet-name>
-    <servlet-class>TacHonor.HonorServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ProjectPageServlet</servlet-name>
-    <servlet-class>TacHonor.ProjectPageServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ShowNotices</servlet-name>
-    <servlet-class>TacNotices.ShowNotices</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>GetProjectImage</servlet-name>
-    <servlet-class>TacHonor.GetProjectImage</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>EditNotices</servlet-name>
-    <servlet-class>TacNotices.Admin.EditNotices</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>EditIndexNotices</servlet-name>
-    <servlet-class>TacNotices.Admin.EditIndexNotices</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>UpdateNotices</servlet-name>
-    <servlet-class>TacNotices.Admin.UpdateNotices</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>NoticesPageServlet</servlet-name>
-    <servlet-class>TacNotices.NoticesPageServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>DocumentServlet</servlet-name>
-    <servlet-class>TacDocument.DocumentServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>NoticesServlet</servlet-name>
-    <servlet-class>TacNotices.NoticesServlet</servlet-class>
-  </servlet>
-
-
-
-
-
-
-
-
-
-
-
-
-  <servlet-mapping>
-    <servlet-name>HomeServlet</servlet-name>
-    <url-pattern>/Home</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>HonorServlet</servlet-name>
-    <url-pattern>/Honor</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ProjectPageServlet</servlet-name>
-    <url-pattern>/Honor/Project</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ShowNotices</servlet-name>
-    <url-pattern>/Notices/ShowNotices</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>GetProjectImage</servlet-name>
-    <url-pattern>/Honor/GetProjectImage</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>EditNotices</servlet-name>
-    <url-pattern>/Admin/EditNotices</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>EditIndexNotices</servlet-name>
-    <url-pattern>/Admin/EditIndexNotices</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpdateNotices</servlet-name>
-    <url-pattern>/UpdateNotices</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>NoticesPageServlet</servlet-name>
-    <url-pattern>/Notices/NoticesPage</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DocumentServlet</servlet-name>
-    <url-pattern>/Document</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>NoticesServlet</servlet-name>
-    <url-pattern>/Notices</url-pattern>
-  </servlet-mapping>	
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+	<display-name></display-name>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>HomeServlet</servlet-name>
+		<servlet-class>TacHome.HomeServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>HonorServlet</servlet-name>
+		<servlet-class>TacHonor.HonorServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>ProjectPageServlet</servlet-name>
+		<servlet-class>TacHonor.ProjectPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>ShowNotices</servlet-name>
+		<servlet-class>TacNotices.ShowNotices</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>GetProjectImage</servlet-name>
+		<servlet-class>TacHonor.GetProjectImage</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>EditNotices</servlet-name>
+		<servlet-class>TacNotices.Admin.EditNotices</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>EditIndexNotices</servlet-name>
+		<servlet-class>TacNotices.Admin.EditIndexNotices</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>UpdateNotices</servlet-name>
+		<servlet-class>TacNotices.Admin.UpdateNotices</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>NoticesPageServlet</servlet-name>
+		<servlet-class>TacNotices.NoticesPageServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>DocumentServlet</servlet-name>
+		<servlet-class>TacDocument.DocumentServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>NoticesServlet</servlet-name>
+		<servlet-class>TacNotices.NoticesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeServlet</servlet-name>
+		<url-pattern>/Home</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>HonorServlet</servlet-name>
+		<url-pattern>/Honor</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProjectPageServlet</servlet-name>
+		<url-pattern>/Honor/Project</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShowNotices</servlet-name>
+		<url-pattern>/Notices/ShowNotices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetProjectImage</servlet-name>
+		<url-pattern>/Honor/GetProjectImage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditNotices
+		</servlet-name>
+		<url-pattern>/Admin/EditNotices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditIndexNotices</servlet-name>
+		<url-pattern>/Admin/EditIndexNotices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateNotices</servlet-name>
+		<url-pattern>/UpdateNotices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NoticesPageServlet</servlet-name>
+		<url-pattern>/Notices/NoticesPage</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DocumentServlet</servlet-name>
+		<url-pattern>/Document</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NoticesServlet</servlet-name>
+		<url-pattern>/Notices</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>
