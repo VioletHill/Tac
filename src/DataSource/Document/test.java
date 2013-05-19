@@ -13,6 +13,10 @@ public class test {
 		DocumentDAO dao = DocumentDAO.sharedDocumentDAO();
 		document = dao.findById(1);
 		System.out.println(document.getDocumentTitle());
+		DocumentData data = new DocumentData();
+		//data.setPageNum(Integer.parseInt(request.getParameter("page")));
+		data.setDataOfPage(1);
+		System.out.println(data.getDataList().get(0).getDocumentTitle());
 	}
 
 }

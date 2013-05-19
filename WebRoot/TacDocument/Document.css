@@ -1,0 +1,114 @@
+.center {
+	margin-left: 100px;
+	margin-right: 100px;
+	background-color: #b0e0e6;
+}
+
+body {
+	background-image: url("images/mainBG.png");
+	padding: 0px;
+	margin: 0px;
+}
+
+#searchDiv {
+	float: right;
+//	position: absolute;
+	margin: 10px;
+	height: 50px;
+	margin-right: 15px;
+}
+
+#searchTF {
+	margin-right: 5px;
+	background-image: url("images/searchTextField.png");
+	border: hidden;
+	height: 50px;
+	width: 450px;
+	font-size: xx-large;
+	background-repeat: no-repeat;
+}
+
+#searchSb {
+	margin-right: 5px;
+	background-image: url("images/searchButton.png");
+	width: 160px;
+	height: 50px;
+	border: hidden;
+	background-repeat: no-repeat;
+}
+
+#searchSlt {
+	margin-right: 5px;
+	background-image: url("images/searchSelect.png");
+	border: hidden;
+	height: 50px;
+	width: 160px;
+	background-repeat: no-repeat;
+	font-size: 26px;
+	text-align: left;
+	font-weight: normal;
+}
+
+#cateDiv {
+	margin: 18px;
+	margin-top: 80px;
+	background-image: url("images/category_BG.png");
+	background-repeat: no-repeat;
+	//position: absolute;
+	left: 100px;
+	top: 100px;
+	z-index: 1;
+	height: 1000px;
+}
+
+#contentDiv {
+	margin: 20px;
+	//background-color: red;
+	background-image: url("images/content_BG.png");
+	background-repeat: no-repeat;
+	float: right;
+	//position: absolute;
+	//z-index: 4;
+	//position: relative;
+	top: 10px;
+	//left: 380px;
+	height: 760px;
+	width: 780px;
+}
+
+input.cateBt {
+	float: left;
+	//position: absolute;
+	position: relative;
+	//opacity: 50;
+	z-index: 2;
+	width: 220px;
+	height: 78px;
+	background-color: white;
+	font-size: medium;
+	word-spacing: normal;
+	visibility: visible;
+	left: 15px;
+	top: 62px;
+	opacity: 0.5;
+	border: hidden;
+}
+
+#photo_cate {
+	margin: 18px;
+}
+
+p.title {
+	text-align: left;
+	font-weight: 900;
+}
+
+p.detail {
+	text-align: left;
+	font-size: 12px;
+}
+
+#download {
+/* 	display: none;
+	visibility: hidden; */
+}

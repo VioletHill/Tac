@@ -49,6 +49,17 @@ public abstract class AbstractDocument implements java.io.Serializable {
 		this.documentDownloadCount = documentDownloadCount;
 		this.documentTimestamp = documentTimestamp;
 	}
+	
+	public AbstractDocument(Integer documentId, String documentTitle, String documentContent,
+			String documentFile, Integer documentDownloadCount,
+			Date documentTimestamp) {
+		this.documentId = documentId;
+		this.documentTitle = documentTitle;
+		this.documentContent = documentContent;
+		this.documentFile = documentFile;
+		this.documentDownloadCount = documentDownloadCount;
+		this.documentTimestamp = documentTimestamp;
+	}
 
 	// Property accessors
 

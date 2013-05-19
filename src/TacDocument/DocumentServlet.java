@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DataSource.Document.DocumentData;
 import DataSource.Projects.AllProjects;
 
 public class DocumentServlet extends HttpServlet {
@@ -21,37 +22,51 @@ public class DocumentServlet extends HttpServlet {
 
 	/**
 	 * The doGet method of the servlet. <br>
-	 *
+	 * 
 	 * This method is called when a form has its tag value method equals to get.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//String userName=request.getParameter("userName");
-		//String userPassword=request.getParameter("userPassword");
-		AllProjects allProjects=AllProjects.sharedAllProjects();
-	//	AllNotices allNotices=AllNotices.sharedAllNotices();
-		request.setAttribute("allProjects", allProjects);
-	//	request.setAttribute("allNotices", allNotices);
-		
-		
-		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(request, response);
+		// //String userName=request.getParameter("userName");
+		// //String userPassword=request.getParameter("userPassword");
+		// AllProjects allProjects=AllProjects.sharedAllProjects();
+		// // AllNotices allNotices=AllNotices.sharedAllNotices();
+		// request.setAttribute("allProjects", allProjects);
+		// // request.setAttribute("allNotices", allNotices);
+		//
+		DocumentData data = new DocumentData();
+		//data.setPageNum(Integer.parseInt(request.getParameter("page")));
+		data.setDataOfPage(1);
+		//System.out.println(data.getDataList());
+		request.setAttribute("DocumentData", data);
+		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(
+				request, response);
 	}
 
 	/**
 	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
 	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
+	 * This method is called when a form has its tag value method equals to
+	 * post.
+	 * 
+	 * @param request
+	 *            the request send by the client to the server
+	 * @param response
+	 *            the response send by the server to the client
+	 * @throws ServletException
+	 *             if an error occurred
+	 * @throws IOException
+	 *             if an error occurred
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

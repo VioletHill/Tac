@@ -34,4 +34,10 @@ public class Document extends AbstractDocument implements java.io.Serializable {
 				documentDownloadCount, documentTimestamp);
 	}
 
+	public Document(Integer documentId, String documentTitle,
+			String documentContent, String documentFile,
+			Integer documentDownloadCount, Date documentTimestamp) {
+		super(documentId, documentTitle, documentContent, documentFile,
+				documentDownloadCount, documentTimestamp);
+	}
 }

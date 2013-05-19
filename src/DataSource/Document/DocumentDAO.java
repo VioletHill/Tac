@@ -159,6 +159,29 @@ public class DocumentDAO extends BaseHibernateDAO {
 		}
 	}
 
+	
+	//Mark
+	public List find_All(int page, int eachPage) {
+		log.debug("finding all Notice instances");
+		try {
+			if (page > 0) {
+				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp) from Document as d order by d.documentId desc";
+				Query query = getSession().createQuery(query_string);
+				int number = (page - 1) * eachPage;
+				query.setFirstResult(number);
+				query.setMaxResults(eachPage);
+				return query.list();
+			} else {
+				List list = null;
+				return list;
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	
 	public static DocumentDAO sharedDocumentDAO() {
 		// TODO Auto-generated method stub
 		if (documentDAO == null) {
