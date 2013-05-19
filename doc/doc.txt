@@ -1,0 +1,5 @@
+@Mark: 
+我愚见，就按照现在的命名方式继续 数据库单词大写开头 如 Document Notices TacWebsite
+列名以数据库名开头 且大写开头 如 Document_id Notice_id
+
+其他类啊什么的就用java的常用命名方式吧
