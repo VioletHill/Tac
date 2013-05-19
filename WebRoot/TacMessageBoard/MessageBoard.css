@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+body,p,div,header,footer,img {
+	padding: 0px;
+	margin: 0px;
+}
+
+body {
+	background-image: url(/Tac/image/mainBG.png);
+	font-family: "Reenie Beanie", 微软雅黑, 幼圆, Georigia, Times, serif;
+}
+
+header {
+	
+}
+
+img#headerimg {
+	width: 980px;
+}
+
+p {
+	margin: 0px;
+}
+
+#allcontent {
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.block {
+	margin-top: 15px;
+	background-color: #fcfaed;
+	padding-bottom: 20px;
+	background-color: #fcfaed;
+	box-shadow: 10px 10px 30px #888;
+}
+
+.headphoto {
+	height: 50px;
+	float: left;
+}
+
+p.notecontent {
+	margin: 15px;
+}
+
+.publishtime {
+	float: right;
+	font-size: small;
+	margin-right: 5px;
+}
+
+.notetitle {
+	height: 50px;
+}
+
+.ownername {
+	color: #904100;
+	font-size: small;
+	margin-left: 50px;
+	font-weight: bold;
+}
+
+p.ownername {
+	padding-left: 10px;
+	padding-top: 18px;
+}
+
+#right {
+	width: 400px;
+	float: right;
+	margin-right: 80px;
+}
+
+#left {
+	width: 400px;
+	margin-left: 80px;
+}
+
+footer {
+	clear: right;
+}
