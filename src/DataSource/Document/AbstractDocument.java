@@ -17,6 +17,7 @@ public abstract class AbstractDocument implements java.io.Serializable {
 	private String documentFile;
 	private Integer documentDownloadCount;
 	private Date documentTimestamp;
+	private String documentCatalog;
 
 	// Constructors
 
@@ -33,32 +34,36 @@ public abstract class AbstractDocument implements java.io.Serializable {
 
 	/** minimal constructor */
 	public AbstractDocument(String documentTitle,
-			Integer documentDownloadCount, Date documentTimestamp) {
+			Integer documentDownloadCount, Date documentTimestamp,
+			String documentCatalog) {
 		this.documentTitle = documentTitle;
 		this.documentDownloadCount = documentDownloadCount;
 		this.documentTimestamp = documentTimestamp;
+		this.documentCatalog = documentCatalog;
 	}
 
 	/** full constructor */
 	public AbstractDocument(String documentTitle, String documentContent,
 			String documentFile, Integer documentDownloadCount,
-			Date documentTimestamp) {
+			Date documentTimestamp, String documentCatalog) {
 		this.documentTitle = documentTitle;
 		this.documentContent = documentContent;
 		this.documentFile = documentFile;
 		this.documentDownloadCount = documentDownloadCount;
 		this.documentTimestamp = documentTimestamp;
+		this.documentCatalog = documentCatalog;
 	}
 	
 	public AbstractDocument(Integer documentId, String documentTitle, String documentContent,
 			String documentFile, Integer documentDownloadCount,
-			Date documentTimestamp) {
+			Date documentTimestamp, String documentCatalog) {
 		this.documentId = documentId;
 		this.documentTitle = documentTitle;
 		this.documentContent = documentContent;
 		this.documentFile = documentFile;
 		this.documentDownloadCount = documentDownloadCount;
 		this.documentTimestamp = documentTimestamp;
+		this.documentCatalog = documentCatalog;
 	}
 
 	// Property accessors
@@ -109,6 +114,14 @@ public abstract class AbstractDocument implements java.io.Serializable {
 
 	public void setDocumentTimestamp(Date documentTimestamp) {
 		this.documentTimestamp = documentTimestamp;
+	}
+
+	public String getDocumentCatalog() {
+		return this.documentCatalog;
+	}
+
+	public void setDocumentCatalog(String documentCatalog) {
+		this.documentCatalog = documentCatalog;
 	}
 
 }
