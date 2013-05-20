@@ -1,8 +1,8 @@
 package DataSource.Document;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
+import sun.tools.tree.ThisExpression;
 
 public class DocumentData {
 	private List<Document> dataList;
@@ -25,16 +25,6 @@ public class DocumentData {
 		return dataList.get(n).getDocumentContent().substring(0, len) + "...";
 	}
 
-	public String getDate(int n) {
-		Calendar cal = Calendar.getInstance();
-		Document doc = dataList.get(n);
-		Date date = doc.getDocumentTimestamp();
-		cal.setTime(date);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int day = cal.get(Calendar.DAY_OF_MONTH);
-		return month + "ÔÂ" + day + "ÈÕ";
-	}
-
 	public void setDataOfPage(int n) {
 		setPageNum(n);
 		setDataList();
@@ -46,10 +36,10 @@ public class DocumentData {
 
 	private void setDataList() {
 		// dataList = dao.find_All(pageNum, EACH_PAGE);
-		// System.out.println(this.dataList);
-		// System.out.println(dao.findById(1));
+		System.out.println(this.dataList);
+		System.out.println(dao.findById(1));
 		this.dataList = this.dao.find_All(this.pageNum, this.EACH_PAGE);
-		// System.out.println(this.dataList.get(0).getDocumentTitle());
+		System.out.println(this.dataList.get(0).getDocumentTitle());
 	}
 
 	public void setDataList(List<Document> list) {
