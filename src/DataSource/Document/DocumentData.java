@@ -2,8 +2,6 @@ package DataSource.Document;
 
 import java.util.List;
 
-import sun.tools.tree.ThisExpression;
-
 public class DocumentData {
 	private List<Document> dataList;
 	private int pageNum = 1;

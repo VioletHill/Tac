@@ -9,32 +9,35 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
-<jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices"
-	scope="request">
-</jsp:useBean>
+	<jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices"scope="request"></jsp:useBean>
 
 <head>
-<style type="text/css" src="NoticesItem.css">
-</style>
+	<style type="text/css" >
+		<%@include file="NoticesItem.css" %>
+	</style>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="jquery-1.9.1.js"></script>
 
-<base href="<%=basePath%>">
+	<base href="<%=basePath%>">
 
-<title>Tac新鲜事</title>
+	<title>Tac新鲜事</title>
 
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+
+	<style>
+		body {
+		background-image: url("image/mainBG.png");
+		padding: 0px;
+		margin: 0px;
+		}
+	</style>
 
 
-
-<script type="text/javascript">
+	<script type="text/javascript">
 
 		var search;
 		function showTime()
@@ -142,10 +145,11 @@
    	   	
    	   	function clearItem()
    	   	{
-   	     	document.getElementById("todayTime").style.display="none";
+   	     	/* document.getElementById("todayTime").style.display="none";
    			document.getElementById("weekTime").style.display="none";
    			document.getElementById("monthTime").style.display="none";
-   			document.getElementById("all").style.display="none";
+   			document.getElementById("all").style.display="none"; */
+   				$("#catalog").slideUp("medium");
    			isAnimate=false;
    			
    	  	}
@@ -157,12 +161,12 @@
    			var x=getAbsoluteX(document.getElementById("noticeTime"));
 			var y=getAbsoluteY(document.getElementById("noticeTime"));
 			
-   			today=document.getElementById("todayTime");
+/*    			today=document.getElementById("todayTime");
    			week=document.getElementById("weekTime");
    			month=document.getElementById("monthTime");
-   			all=document.getElementById("all");
+   			all=document.getElementById("all"); */
    		
-   			today.style.position=week.style.position=month.style.position=all.style.position="absolute";
+   			/* today.style.position=week.style.position=month.style.position=all.style.position="absolute";
    			today.style.left=week.style.left=month.style.left=all.style.left=x;
    			today.style.top=week.style.top=month.style.top=all.style.top=y;
    			today.style.display=week.style.display=month.style.display=all.style.display="inline";
@@ -170,8 +174,13 @@
    			$("#todayTime").animate({top:todayTop});
    			$("#weekTime").animate({top:todayTop+30});
    			$("#monthTime").animate({top:todayTop+60});
-   			$("#all").animate({top:todayTop+90});
-   			
+   			$("#all").animate({top:todayTop+90}); */
+   			catalog=document.getElementById("catalog");
+   			catalog.top=y+50;
+   			catalog.left=x;
+   		
+   			$("#catalog").slideDown("medium");
+   			//$("#all").slideDown("medium");
    		}
    		
    		function changeItemState()
@@ -241,111 +250,96 @@
    			search=document.getElementById("search").value;
    		}
 	</script>
+	
+
 </head>
 
 
 
 <body onload="init()">
 	<div style="top:0; width:1200;  margin-right: auto; margin-left: auto;">
-		<%@include file="/Navigation/Navigation.jsp"%>
+	 	<%@include file="/Navigation/Navigation.jsp"%> 
 		<div>
-			<br>
 
-			<form action="Notices" method="post" id="form">
-				<input type="hidden" id="searchTime" name="searchTime"
-					value="<%=allNotices.getNoticeTime()%>"> <input
-					type="hidden" id="pageIndex" name="pageIndex"
-					value=<%=allNotices.getPageIndex()%>> <input type="hidden"
-					id="isSearch" name="isSearch" value="no">
+			 <form action="Notices" method="post" id="form">
+				<input type="hidden" id="searchTime" name="searchTime" value="<%=allNotices.getNoticeTime()%>">
+				<input type="hidden" id="pageIndex" name="pageIndex" value=<%=allNotices.getPageIndex()%>> 
+				<input type="hidden" id="isSearch" name="isSearch" value="no">
 				<table style="position:float; float:right">
 					<tr>
-						<td><input type="text" name="search" id="search"
-							value="<%=allNotices.getSearch()%>" onfocus="focusSearch(this)"
-							onblur="blurSearch(this)"
-							style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right">
+						<td>
+							<input type="text" name="search" id="search" value="<%=allNotices.getSearch()%>" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right">
 						</td>
-						<td><input type="button" value="今天" id="todayTime"
-							onmouseover="enterItem(this)" onmouseout="outItem(this)"
-							onclick="clickItem(this)"
-							style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
+						<!-- <td>
+							<input type="button" value="今天" id="todayTime"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
 						</td>
-						<td><input type="button" value="本周" id="weekTime"
-							onmouseover="enterItem(this)" onmouseout="outItem(this)"
-							onclick="clickItem(this)"
-							style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
+						<td>
+							<input type="button" value="本周" id="weekTime"	onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)"	style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
 						</td>
-						<td><input type="button" value="本月" id="monthTime"
-							onmouseover="enterItem(this)" onmouseout="outItem(this)"
-							onclick="clickItem(this)"
-							style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
+						<td>
+							<input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
 						</td>
-						<td><input type="button" value="全部" id="all"
-							onmouseover="enterItem(this)" onmouseout="outItem(this)"
-							onclick="clickItem(this)"
-							style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
+						<td>
+							<input type="button" value="全部" id="all" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)"	style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
+						</td> -->
+						<td>
+							<div id="cataDiv">
+								<input type="button" value="<%=allNotices.getNoticeTime()%>" id="noticeTime" onmouseout="outItem(this)" onclick="changeItemState()" onmouseover="enterItem(this); showItem(this);" style="width:160; height:50; background-image:url(TacNotices/Image/searchSelect.png); font-size:23">
+								<div>
+									<button id="catalog"  onmouseout="clearItem();" style="background-image:url(TacNotices/Image/searchSelectPanel.png); display:none; position:absolute; width:164; height:209"></button>
+								</div>
+							</div>
 						</td>
-						<td><input type="button"
-							value="<%=allNotices.getNoticeTime()%>" id="noticeTime"
-							onmouseout="outItem(this)" onclick="changeItemState()"
-							onmouseover="enterItem(this); showItem(this);"
-							style="width:100; height:30; background-color:white; font-size:15; color:black;">
-						</td>
-						<td><button type="submit" onclick="setIsSearch()"
-								style="background-color:blue; height:30; width:100; font-size:15; color:white">搜索</button>
+						
+		
+						<td>
+							<button type="submit" onclick="setIsSearch()" style="background-image:url(TacNotices/Image/searchButton.png); width:160; height:50"></button>
 						</td>
 					</tr>
 				</table>
 			</form>
-
-			<br>
+ 
+ 			<br>
 			<div style="top:30; width:1150; margin-left:auto; margin-right:auto">
-				<div>
+				 <div>
 					<img src="TacNotices/Image/NoticesHeader.png" onload="showTime()">
 					<span id="time"></span>
 				</div>
 				<br>
 				<table>
 					<%
-						for (int i = 0; i < allNotices.getAllNotices().size(); i++) {
-					%>
-					<tr style="height:30">
-						<td style="text-align:left"><a
-							href="http://localhost:8080/Tac/Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>"
-							class="NoticesItem"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>
-							<span style="color:red;"><%=allNotices.getAllNotices().get(i).getData()%></span>
-						</td>
-					</tr>
-					<%
-						}
-					%>
+					for (int i = 0; i < allNotices.getAllNotices().size(); i++) 
+					{%>
+						<tr style="height:30">
+							<td style="text-align:left">
+								<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>
+								<span style="color:red;"><%=allNotices.getAllNotices().get(i).getData()%></span>
+							</td>
+						</tr>
+				  <%}%>
 				</table>
-			</div>
+			</div> 
 
 			<!--页号-->
 			<div style="float:right">
-				<input type="hidden" id="pageIndexText"
-					value="<%=allNotices.getPageIndex()%>"> <a
-					href="javascript:choosePage(1);" class="NoticesItem">首页</a> <a
-					href="javascript:lastPage();" class="NoticesItem">上一页</a>
+				<input type="hidden" id="pageIndexText" value="<%=allNotices.getPageIndex()%>"> 
+				<a href="javascript:choosePage(1);" class="NoticesItem">首页</a> 
+				<a href="javascript:lastPage();" class="NoticesItem">上一页</a>
 				<%
-					for (int i = 1; i <= allNotices.getAllPage(); i++) {
-						if (i == allNotices.getPageIndex()) {
-				%>
-				<a style="color:red"><%=i%></a>
-
-				<%
-					} else {
-				%>
-				<a href="javascript:choosePage(<%=i%>);" class="NoticesItem"><%=i%></a>
-				<%
-					}
-				%>
-				<%
-					}
-				%>
-				<a href="javascript:nextPage();" class="NoticesItem">下一页</a> <a
-					href="javascript:choosePage(<%=allNotices.getAllPage()%>);"
-					class="NoticesItem">尾页</a>
+					for (int i = 1; i <= allNotices.getAllPage(); i++) 
+					{
+						if (i == allNotices.getPageIndex()) 
+						{%>
+							<a style="color:red"><%=i%></a>
+					  <%} 
+						else 
+						{%>
+							<a href="javascript:choosePage(<%=i%>);" class="NoticesItem"><%=i%></a>
+					  <%}%>
+				 <%}%>
+				 
+				<a href="javascript:nextPage();" class="NoticesItem">下一页</a> 
+				<a	href="javascript:choosePage(<%=allNotices.getAllPage()%>);" class="NoticesItem">尾页</a>
 			</div>
 		</div>
 		<%@include file="/Navigation/Footer.jsp"%>
