@@ -126,12 +126,6 @@
 					</tr>
 					<tr>
 						<td><div class="catalogLeft">
-								<img src="TacDocument/images/category_all.png" id="catalogo">
-								<input class="cateBt" type="button" value="ËùÓÐ" />
-							</div></td>
-					</tr>
-					<tr>
-						<td><div class="catalogLeft">
 								<img src="TacDocument/images/category_software.png" id="catalogo">
 								<input class="cateBt" type="button" value="Èí¼þ" />
 							</div></td>

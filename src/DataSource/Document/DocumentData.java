@@ -21,7 +21,7 @@ public class DocumentData {
 
 	public String getContent(int n) {
 		int len = dataList.get(n).getDocumentContent().length();
-		len = (len > 100) ? 100 : len;
+		len = (len > 50) ? 50 : len;
 		return dataList.get(n).getDocumentContent().substring(0, len) + "...";
 	}
 
