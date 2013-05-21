@@ -4,6 +4,8 @@
 	<%@include file="NoticesIndex.js" %>
 </script>
 
+
+
 <style type="text/css">
 	<%@include file="/TacNotices/NoticesItem.css" %>
 </style>
@@ -24,7 +26,7 @@
 	</div>
 
  	<div style="width:800; height:200;  float:left; ">
- 		<div id="notice" style="height:120;  margin-left:50; margin-right:50; margin-top:30; overflow:auto; word-break:break-all;">
+ 		<div  id="notice" style="height:120;  margin-left:50; margin-right:50; margin-top:30; overflow:hidden;  text-overflow: elipsis">
 			<!--此处为内容  -->
  		</div>
  	</div>

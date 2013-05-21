@@ -29,6 +29,9 @@
 	<meta http-equiv="description" content="This is my page">
 
 	<style>
+		
+		<%@include file="Limit.js"%> 
+		
 		body {
 		background-image: url("image/mainBG.png");
 		padding: 0px;
@@ -101,20 +104,23 @@
 
    		function clickItem(ele)
    		{
-   			document.getElementById("noticeTime").value=ele.value;
-   			switch(ele.value)
+   			switch(ele.id)
    			{
-   				case "本周":
+   				case "weekTime":
    					document.getElementById("searchTime").value="week";
+   					document.getElementById("noticeTime").value="本周";
    					break;
-   				case "本月":
+   				case "monthTime":
    					document.getElementById("searchTime").value="month";
+   					document.getElementById("noticeTime").value="本月";
    					break;
-   				case "今天":
+   				case "todayTime":
    					document.getElementById("searchTime").value="today";
+   					document.getElementById("noticeTime").value="今天";
    					break;
    				default:
    					document.getElementById("searchTime").value="all";
+   					document.getElementById("noticeTime").value="全部";
    			}
    			setIsSearch();
    			document.getElementById("form").submit();
@@ -211,6 +217,8 @@
    			search=document.getElementById("search").value;
    			$("#cataDiv").mouseleave(function(){clearItem();});
    		}
+   		
+   		
 	</script>
 	
 
@@ -234,8 +242,8 @@
 						</td>
 						
 						<td>
-							<div id="cataDiv">
-								<input type="button" value="<%=allNotices.getNoticeTime()%>" id="noticeTime"  onclick="changeItemState()" onmouseover="enterItem(this); showItem(this);" style="width:160; height:50; background-image:url(TacNotices/Image/searchSelect.png); font-size:23">
+							<div>
+								<input type="button" value="<%=allNotices.getNoticeTime()%>" id="noticeTime"  onclick="changeItemState()" onmouseover="showItem(this);" style="width:160; height:50; background-image:url(TacNotices/Image/searchSelect.png); font-size:23">
 								<div id="catalog"   style="display:none;  position:absolute; background-image:url(TacNotices/Image/searchSelectPanel.png);  width:160; height:200">
 									  <table>
 									  	<tr>
@@ -250,12 +258,12 @@
 											</td>
 										</tr>
 										<tr>
-											<td id="all" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
+											<td id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
 												本月
 											</td>
 										</tr>
 										<tr>
-											<td id="todayTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
+											<td id="allTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
 												全部
 											</td>
 										</tr>
