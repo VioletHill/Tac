@@ -98,7 +98,7 @@
    		var month=null;
    		var all=null;
    		var isAnimate=false;
-   		
+
    		function clickItem(ele)
    		{
    			document.getElementById("noticeTime").value=ele.value;
@@ -123,70 +123,30 @@
    		
    	   	function enterItem(ele)
    	   	{
-   	   		ele.style.backgroundColor='blue';
+   	   		ele.style.backgroundImage='url(TacNotices/Image/SelectHover.png)';
    	   	}
    	   	
    	   	function outItem(ele)
    	   	{
-   	   	   	ele.style.backgroundColor='white';  	
-   	   	   	if (isNeedClear()) clearItem();
+   	   	   	ele.style.backgroundImage='none';
    	   	}
-   	   	
-   	   	function isNeedClear()
-   	   	{
-   	   		var x=getAbsoluteX(document.getElementById("noticeTime"));
-			var y=getAbsoluteY(document.getElementById("noticeTime"));
-   	   		var mouseX=window.event.clientX+ document.body.scrollLeft;
-   	   		var mouseY=window.event.clientY+ document.body.scrollTop;
-   	   		if (mouseX<=x || mouseX>=x+100 || mouseY<=y || mouseY>=y+30*5) return true;
-   	   		return false;
-   	   	}
-
    	   	
    	   	function clearItem()
-   	   	{
-   	     	/* document.getElementById("todayTime").style.display="none";
-   			document.getElementById("weekTime").style.display="none";
-   			document.getElementById("monthTime").style.display="none";
-   			document.getElementById("all").style.display="none"; */
-   				$("#catalog").slideUp("medium");
-   			isAnimate=false;
-   			
+   	   	{	
+   			$("#catalog").slideUp("slow",function (){isAnimate=false;});
    	  	}
    	   	
    		function showItem(obj)
    		{
    			if (isAnimate) return ;
    			isAnimate=true;
-   			var x=getAbsoluteX(document.getElementById("noticeTime"));
-			var y=getAbsoluteY(document.getElementById("noticeTime"));
-			
-/*    			today=document.getElementById("todayTime");
-   			week=document.getElementById("weekTime");
-   			month=document.getElementById("monthTime");
-   			all=document.getElementById("all"); */
-   		
-   			/* today.style.position=week.style.position=month.style.position=all.style.position="absolute";
-   			today.style.left=week.style.left=month.style.left=all.style.left=x;
-   			today.style.top=week.style.top=month.style.top=all.style.top=y;
-   			today.style.display=week.style.display=month.style.display=all.style.display="inline";
-   			todayTop=y+30;
-   			$("#todayTime").animate({top:todayTop});
-   			$("#weekTime").animate({top:todayTop+30});
-   			$("#monthTime").animate({top:todayTop+60});
-   			$("#all").animate({top:todayTop+90}); */
-   			catalog=document.getElementById("catalog");
-   			catalog.top=y+50;
-   			catalog.left=x;
-   		
    			$("#catalog").slideDown("medium");
-   			//$("#all").slideDown("medium");
    		}
    		
    		function changeItemState()
    		{
- 			if (isAnimate) clearItem();
- 			else showItem();  		
+ 		 	if (isAnimate) clearItem();
+ 			else showItem();   		
    		}
    		
    		function getAbsoluteX(e)
@@ -245,9 +205,11 @@
    				document.getElementById("search").value="";
    			}
    		}
+   		
    		function init()
    		{
    			search=document.getElementById("search").value;
+   			$("#cataDiv").mouseleave(function(){clearItem();});
    		}
 	</script>
 	
@@ -270,25 +232,36 @@
 						<td>
 							<input type="text" name="search" id="search" value="<%=allNotices.getSearch()%>" onfocus="focusSearch(this)" onblur="blurSearch(this)" style="width:400; height:30; font-size:20; text-align:center; opacity:0.2; position:float; float:right">
 						</td>
-						<!-- <td>
-							<input type="button" value="今天" id="todayTime"  onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
-						</td>
-						<td>
-							<input type="button" value="本周" id="weekTime"	onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)"	style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
-						</td>
-						<td>
-							<input type="button" value="本月" id="monthTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
-						</td>
-						<td>
-							<input type="button" value="全部" id="all" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)"	style="width:100; height:30; background-color:white; font-size:15; color:black; display:none">
-						</td> -->
+						
 						<td>
 							<div id="cataDiv">
-								<input type="button" value="<%=allNotices.getNoticeTime()%>" id="noticeTime" onmouseout="outItem(this)" onclick="changeItemState()" onmouseover="enterItem(this); showItem(this);" style="width:160; height:50; background-image:url(TacNotices/Image/searchSelect.png); font-size:23">
-								<div>
-									<button id="catalog"  onmouseout="clearItem();" style="background-image:url(TacNotices/Image/searchSelectPanel.png); display:none; position:absolute; width:164; height:209"></button>
+								<input type="button" value="<%=allNotices.getNoticeTime()%>" id="noticeTime"  onclick="changeItemState()" onmouseover="enterItem(this); showItem(this);" style="width:160; height:50; background-image:url(TacNotices/Image/searchSelect.png); font-size:23">
+								<div id="catalog"   style="display:none;  position:absolute; background-image:url(TacNotices/Image/searchSelectPanel.png);  width:160; height:200">
+									  <table>
+									  	<tr>
+											<td id="todayTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
+												今天
+											</td>
+										</tr>
+										
+										<tr>
+											<td id="weekTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
+												本周
+											</td>
+										</tr>
+										<tr>
+											<td id="all" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
+												本月
+											</td>
+										</tr>
+										<tr>
+											<td id="todayTime" onmouseover="enterItem(this)" onmouseout="outItem(this)" onclick="clickItem(this)" style="width:160; height:50; font-size:23;">
+												全部
+											</td>
+										</tr>
+									</table>
 								</div>
-							</div>
+							</div>	
 						</td>
 						
 		

@@ -33,6 +33,7 @@ public class NoticesServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		final int pageNum = 10;
 
 		String search = "";
