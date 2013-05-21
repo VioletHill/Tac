@@ -1,5 +1,6 @@
 package DataSource.Document;
 
+import DataSource.Notices.NoticesHibernate;
 import TacHibernate.BaseHibernateDAO;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +30,7 @@ public class DocumentDAO extends BaseHibernateDAO {
 	public static final String DOCUMENT_CONTENT = "documentContent";
 	public static final String DOCUMENT_FILE = "documentFile";
 	public static final String DOCUMENT_DOWNLOAD_COUNT = "documentDownloadCount";
-	public static final String DOCUMENT_CATALOG = "documentCatalog";
-
+	
 	public static DocumentDAO documentDAO = null;
 
 	public void save(Document transientInstance) {
@@ -113,10 +113,6 @@ public class DocumentDAO extends BaseHibernateDAO {
 		return findByProperty(DOCUMENT_DOWNLOAD_COUNT, documentDownloadCount);
 	}
 
-	public List findByDocumentCatalog(Object documentCatalog) {
-		return findByProperty(DOCUMENT_CATALOG, documentCatalog);
-	}
-
 	public List findAll() {
 		log.debug("finding all Document instances");
 		try {
@@ -163,12 +159,13 @@ public class DocumentDAO extends BaseHibernateDAO {
 		}
 	}
 
-	// Mark
+	
+	//Mark
 	public List find_All(int page, int eachPage) {
 		log.debug("finding all Notice instances");
 		try {
 			if (page > 0) {
-				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp,documentCatalog) from Document as d order by d.documentId desc";
+				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp) from Document as d order by d.documentId desc";
 				Query query = getSession().createQuery(query_string);
 				int number = (page - 1) * eachPage;
 				query.setFirstResult(number);
@@ -183,7 +180,8 @@ public class DocumentDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-
+	
+	
 	public static DocumentDAO sharedDocumentDAO() {
 		// TODO Auto-generated method stub
 		if (documentDAO == null) {

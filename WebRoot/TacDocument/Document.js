@@ -25,27 +25,19 @@ $(document).ready(function() {
 		if (this.value=="") this.value = "ËÑË÷×ÊÔ´";
 	});
 	$("#searchSlt").click(function(){
-		if (isDown) {
-			$("#catalogDiv").mouseleave();
-			return;
-		}
-		$("#catalogDiv").slideDown("medium");
+		if (isDown) return;
+		
+		$("#catalog").slideDown("medium");
 		isDown = true;
 		isUp = false;
 //		isAnimate = false;
 	});
-	$("#searchSltDiv").mouseleave(function(){
+	$("#cataDiv").mouseleave(function(){
 		if (isUp) return;
 		//isAnimate = true;
 		
-		$("#catalogDiv").slideUp("slow");
+		$("#catalog").slideUp("slow");
 		isUp = true;
 		isDown = false;
-	});
-	$(".searchSltBt").hover(function() {
-		$(this).css("background-image", "url(TacDocument/images/SelectHover.png)");
-	});
-	$(".searchSltBt").mouseleave(function() {
-		$(this).css("background-image", "none");
 	});
 });
