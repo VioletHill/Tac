@@ -39,6 +39,8 @@ public class HomeServlet extends HttpServlet {
 		AllNotices allNotices=new AllNotices();
 		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(1, 4));
 		
+//		System.out.print("ddd");
+//		System.out.print(allNotices.getAllNotices().size());
 		request.setAttribute("allProjects", allProjects);
 		request.setAttribute("allNotices", allNotices);
 		
