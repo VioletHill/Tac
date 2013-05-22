@@ -9,7 +9,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
-	<jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices"scope="request"></jsp:useBean>
+	<jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices" scope="request"></jsp:useBean>
 
 <head>
 	<style type="text/css" >
