@@ -8,7 +8,7 @@ public class DocumentData {
 	private List<Document> dataList;
 	private int pageNum = 1;
 	private static final int EACH_PAGE = 7;
-	private String catalog = "å…¨éƒ¨";
+	private String catalog = "È«²¿";
 	private DocumentDAO dao;
 
 	public DocumentData() {
@@ -21,7 +21,7 @@ public class DocumentData {
 
 	public String getContent(int n) {
 		int len = dataList.get(n).getDocumentContent().length();
-		len = (len > 50) ? 50 : len;
+		len = (len > 100) ? 100 : len;
 		return dataList.get(n).getDocumentContent().substring(0, len) + "...";
 	}
 
@@ -32,7 +32,7 @@ public class DocumentData {
 		cal.setTime(date);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-		return month + "â€˜Â¬" + day + "Â»â€™";
+		return month + "ÔÂ" + day + "ÈÕ";
 	}
 
 	public void setDataOfPage(int n) {
@@ -46,10 +46,10 @@ public class DocumentData {
 
 	private void setDataList() {
 		// dataList = dao.find_All(pageNum, EACH_PAGE);
-		System.out.println(this.dataList);
-		System.out.println(dao.findById(1));
+		// System.out.println(this.dataList);
+		// System.out.println(dao.findById(1));
 		this.dataList = this.dao.find_All(this.pageNum, this.EACH_PAGE);
-		System.out.println(this.dataList.get(0).getDocumentTitle());
+		// System.out.println(this.dataList.get(0).getDocumentTitle());
 	}
 
 	public void setDataList(List<Document> list) {

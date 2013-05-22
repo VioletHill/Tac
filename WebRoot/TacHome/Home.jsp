@@ -10,16 +10,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <style type="text/css">
 	
 	<%@include file="Navigation/HomeNavigation.css" %>
+  	body{
+  		padding: 0px;
+  		margin: 0px;
+  	}
 
-	body {
-		background-image: url("image/mainBG.png");
-		padding: 0px;
-		margin: 0px;
-	}
-	
   </style>
   
-  	<script src="jquery-1.9.1.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
  	<script src="http://jqueryrotate.googlecode.com/files/jQueryRotate.2.2.js"></script>
     <base href="<%=basePath%>">
       
@@ -34,7 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
-  
   
   <body onload="init()">
   

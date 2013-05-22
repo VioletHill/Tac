@@ -22,22 +22,22 @@ public class Document extends AbstractDocument implements java.io.Serializable {
 
 	/** java thought minimal, but not for DB */
 	public Document(String documentTitle, Integer documentDownloadCount,
-			Date documentTimestamp) {
-		super(documentTitle, documentDownloadCount, documentTimestamp);
+			Date documentTimestamp, String documentCatalog) {
+		super(documentTitle, documentDownloadCount, documentTimestamp, documentCatalog);
 	}
 
 	/** full constructor */
 	public Document(String documentTitle, String documentContent,
 			String documentFile, Integer documentDownloadCount,
-			Date documentTimestamp) {
+			Date documentTimestamp,String documentCatalog) {
 		super(documentTitle, documentContent, documentFile,
-				documentDownloadCount, documentTimestamp);
+				documentDownloadCount, documentTimestamp, documentCatalog);
 	}
 
 	public Document(Integer documentId, String documentTitle,
 			String documentContent, String documentFile,
-			Integer documentDownloadCount, Date documentTimestamp) {
+			Integer documentDownloadCount, Date documentTimestamp, String documentCatalog) {
 		super(documentId, documentTitle, documentContent, documentFile,
-				documentDownloadCount, documentTimestamp);
+				documentDownloadCount, documentTimestamp, documentCatalog);
 	}
 }
