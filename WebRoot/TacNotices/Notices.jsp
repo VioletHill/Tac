@@ -30,8 +30,6 @@
 
 	<style>
 		
-		<%@include file="Limit.js"%> 
-		
 		body {
 		background-image: url("image/mainBG.png");
 		padding: 0px;
@@ -242,7 +240,7 @@
 						</td>
 						
 						<td>
-							<div>
+							<div id="cataDiv">
 								<input type="button" value="<%=allNotices.getNoticeTime()%>" id="noticeTime"  onclick="changeItemState()" onmouseover="showItem(this);" style="width:160; height:50; background-image:url(TacNotices/Image/searchSelect.png); font-size:23">
 								<div id="catalog"   style="display:none;  position:absolute; background-image:url(TacNotices/Image/searchSelectPanel.png);  width:160; height:200">
 									  <table>
@@ -292,9 +290,12 @@
 					for (int i = 0; i < allNotices.getAllNotices().size(); i++) 
 					{%>
 						<tr style="height:30">
-							<td style="text-align:left">
-								<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>
-								<span style="color:red;"><%=allNotices.getAllNotices().get(i).getData()%></span>
+							<td style="text-align:left;">
+							
+									<div style="white-space:nowrap; text-overflow:ellipsis; overflow: hidden; width:1000;">
+										<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" title="<%=allNotices.getAllNotices().get(i).getNotice_title()%>"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>	
+									</div>	
+									<span style=color:red"><%=allNotices.getAllNotices().get(i).getData()%></span>
 							</td>
 						</tr>
 				  <%}%>
