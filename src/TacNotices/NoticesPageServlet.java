@@ -37,23 +37,26 @@ public class NoticesPageServlet extends HttpServlet {
 		String id = request.getParameter("indexNotices");
 		// 此处处理 id 的异常
 		int noticeId = -1;
-		try {
+		try 
+		{
 			noticeId = Integer.parseInt(id);
-		} catch (Exception e) {
+		} 
+		catch (Exception e)
+		{
 
 			System.err.println("wrong address input!  go to errorPage");
 		}
 
-		Notice notice = NoticesHibernate.sharedNoticesHibernate().find_ById(
-				noticeId);
+		Notice notice = NoticesHibernate.sharedNoticesHibernate().find_ById(noticeId);
 
-		if (notice == null) {
-			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(
-					request, response);
-		} else {
+		if (notice == null) 
+		{
+			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
+		} 
+		else 
+		{
 			request.setAttribute("notice", notice);
-			request.getRequestDispatcher("/TacNotices/NoticesPage.jsp")
-					.forward(request, response);
+			request.getRequestDispatcher("/TacNotices/NoticesPage.jsp").forward(request, response);
 		}
 	}
 
