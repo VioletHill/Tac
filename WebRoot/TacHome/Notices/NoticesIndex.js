@@ -1,5 +1,6 @@
 
 var last;
+var indexNow;
 function showNotice(index)
 {
 	var xmlhttp;
@@ -19,4 +20,10 @@ function showNotice(index)
 	$(last).rotate({ animateTo:0});
 	$(index).rotate({ animateTo:90}); 
 	last=index;
+	indexNow=indexNotices;
+}
+
+function selectNotice()
+{
+	window.location.href="Notices/NoticesPage?indexNotices="+indexNow;
 }

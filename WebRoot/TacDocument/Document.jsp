@@ -165,8 +165,7 @@
 												<table width="600px">
 													<tr>
 														<td><p class="title">
-																<%=DocumentData.getTitle(i) + "-"
-						+ DocumentData.getDate(i)%>
+																<%=DocumentData.getTitle(i) + "-"+ DocumentData.getDate(i)%>
 															</p></td>
 													</tr>
 													<tr>

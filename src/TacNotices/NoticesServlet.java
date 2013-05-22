@@ -161,7 +161,7 @@ public class NoticesServlet extends HttpServlet {
 			}
 			allNotices.setNoticeTime("È«²¿");
 		}
-
+		
 		request.setAttribute("allNotices", allNotices);
 		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(
 				request, response);
