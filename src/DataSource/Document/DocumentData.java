@@ -46,8 +46,8 @@ public class DocumentData {
 
 	private void setDataList() {
 		// dataList = dao.find_All(pageNum, EACH_PAGE);
-		System.out.println(this.dataList);
-		System.out.println(dao.findById(1));
+		// System.out.println(this.dataList);
+		// System.out.println(dao.findById(1));
 		this.dataList = this.dao.find_All(this.pageNum, this.EACH_PAGE);
 		System.out.println(this.dataList.get(0).getDocumentTitle());
 	}
