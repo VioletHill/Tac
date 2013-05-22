@@ -289,13 +289,12 @@
 					<%
 					for (int i = 0; i < allNotices.getAllNotices().size(); i++) 
 					{%>
-						<tr style="height:30">
+						<tr style="height:50">
 							<td style="text-align:left;">
-							
-									<div style="white-space:nowrap; text-overflow:ellipsis; overflow: hidden; width:1000;">
-										<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" title="<%=allNotices.getAllNotices().get(i).getNotice_title()%>"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>	
-									</div>	
-									<span style=color:red"><%=allNotices.getAllNotices().get(i).getData()%></span>
+								<div class="NoticesItemDiv" style="width:800;">
+									<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" title="<%=allNotices.getAllNotices().get(i).getNotice_title()%>"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>	
+								</div>
+								<span style="color:red; float:left; "><%=allNotices.getAllNotices().get(i).getData()%></span>	
 							</td>
 						</tr>
 				  <%}%>
