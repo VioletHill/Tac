@@ -8,7 +8,7 @@ public class DocumentData {
 	private List<Document> dataList;
 	private int pageNum = 1;
 	private static final int EACH_PAGE = 7;
-	private String catalog = "È«²¿";
+	private String catalog = "å…¨éƒ¨";
 	private DocumentDAO dao;
 
 	public DocumentData() {
@@ -32,7 +32,7 @@ public class DocumentData {
 		cal.setTime(date);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-		return month + "ÔÂ" + day + "ÈÕ";
+		return month + "æœˆ" + day + "æ—¥";
 	}
 
 	public void setDataOfPage(int n) {
