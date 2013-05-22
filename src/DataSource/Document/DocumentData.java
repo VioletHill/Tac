@@ -32,7 +32,7 @@ public class DocumentData {
 		cal.setTime(date);
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-		return month + "‘¬" + day + "»’";
+		return month + "月" + day + "日";
 	}
 
 	public void setDataOfPage(int n) {

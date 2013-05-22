@@ -66,6 +66,7 @@ public class EditNotices extends HttpServlet {
 			catch (Exception e) 
 			{
 				allNotices.setPageIndex(1);
+			
 			}
 		}
 
@@ -163,7 +164,8 @@ public class EditNotices extends HttpServlet {
 			}
 			allNotices.setNoticeTime("È«²¿");
 		}
-
+		
+		request.setAttribute("allNotices", allNotices);
 		request.getRequestDispatcher("/TacNotices/Admin/Edit.jsp").forward(request, response);
 	}
 

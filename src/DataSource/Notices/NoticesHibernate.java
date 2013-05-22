@@ -17,6 +17,23 @@ public class NoticesHibernate implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static NoticesHibernate noticesHibernate = null;
 
+	
+	public boolean delete(int id)
+	{
+		boolean delete=true;
+		NoticeDAO dao=new NoticeDAO();
+		Notice notice=dao.findById(id);
+		if(notice==null)
+		{
+			delete=false;
+			return delete;
+		}
+		else
+		{
+			dao.delete(id);
+			return delete;
+		}
+	}
 	public void insert(Notice notice) {
 		NoticeDAO dao = new NoticeDAO();
 		Calendar cal = Calendar.getInstance();

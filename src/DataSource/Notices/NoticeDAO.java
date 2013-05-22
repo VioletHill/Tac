@@ -53,7 +53,13 @@ public class NoticeDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-
+	public void delete(int id)
+	{
+		String query_string="delete Notice as n where n.notice_id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.executeUpdate();
+	}
 	public int search_number(String key) {
 		log.debug("getting Notice instance with id: " + key);
 		try {

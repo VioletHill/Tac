@@ -1,6 +1,7 @@
 package TacNotices.Admin;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,12 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import DataSource.Notices.Notice;
 import DataSource.Notices.NoticesHibernate;
 
-public class UpdateNotices extends HttpServlet {
+public class DeleteIndexNotices extends HttpServlet {
 
 	/**
-	 * 
+	 * Constructor of the object.
 	 */
-	private static final long serialVersionUID = 1L;
+	public DeleteIndexNotices() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -28,20 +39,27 @@ public class UpdateNotices extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//AllNotices allNotices=AllNotices.sharedAllNotices();
+			throws ServletException, IOException 
+	{	
+		int index=-1;
 		
-		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
-		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
-		
-		Notice notice=new Notice();
-
-		notice.setNotice_html(content);
-		notice.setNotice_title(title);
-		
-		NoticesHibernate.sharedNoticesHibernate().choose(notice);
-		//Ìø×ª»ØÖ÷Ò³
-		response.sendRedirect("Home");
+		try 
+		{
+			index=Integer.parseInt(request.getParameter("index"));
+		} 
+		catch (Exception e) 
+		{
+			
+		}
+		if (NoticesHibernate.sharedNoticesHibernate().delete(index))
+		{
+				
+		}
+		else 	//fail
+		{
+	
+		}
+		response.sendRedirect("EditNotices");
 	}
 
 	/**
@@ -58,6 +76,15 @@ public class UpdateNotices extends HttpServlet {
 			throws ServletException, IOException {
 
 		doGet(request, response);
+	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
+	public void init() throws ServletException {
+		// Put your code here
 	}
 
 }

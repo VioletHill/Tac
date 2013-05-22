@@ -37,8 +37,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		chat_content.document.execCommand("FontSize",false,fs.value);
        }
        
+       function getStrActualLen(sChars)
+	   {
+   			return sChars.replace(/[^\x00-\xff]/g,"xx").length;
+	   }
        function publish()
        {
+       		if (getStrActualLen(document.getElementById("title").value)>90)
+       		{
+       			alert("标题太长,通知发布失败");
+				return false;
+       		}
+       		
        		var contentHtml;
        		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
        		{
@@ -49,18 +59,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		else if (document.getElementById("chat_content").document.documentElement.innerHTML)
       		{
       			//alert("ie");
-      				document.getElementById("chat_content").document.body.contenteditable="false";
+      			document.getElementById("chat_content").document.body.contenteditable="false";
       			contentHtml=document.getElementById("chat_content").document.documentElement.innerHTML;
       		}
       		else
       		{
       			alert("你的浏览器不支持");
-      			return ;
+      			return false;
       		}
-
 			document.getElementById("publish_content").value=contentHtml;
        		alert("新通知已经被发布");
-       		
+       		return true;
        }
        
        function cancel()
@@ -91,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       		else
       		{
       			alert("你的浏览器不支持");
-      			return ;
+      			return false;
       		};
        }
   
@@ -107,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	<div style="width:700; margin-right:auto; margin-left:auto; text-align:center">
 	 		<br>
 	 		<br>
-	 		<form method="post" action="/Tac/UpdateNotices" onsubmit="publish()">
+	 		<form method="post" action="/Tac/UpdateNotices" onsubmit="return publish();">
 	 			<input id="title" type="text" value="<%=notice.getNotice_title() %>" name="title" style="width:300; height:50; text-align:center; font-size:20"> 
 	 			<br>
 	 			<br>
@@ -136,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			<br>
 	 			<input type="hidden" id="publish_content" value="" name="publish_content">
 	 			<div style="text-align:right">
-	 				<input type="submit"  style="width:100; font-size:20;" value="提交">
+	 				<input type="submit" style="width:100; font-size:20;" value="提交">
 	 				<input type="button" onclick="cancel();" style="width:100;  font-size:20;" value="取消">
 	 			</div>
 	 			<input type="hidden" name="id" value="<%=notice.getNotice_id()%>">
