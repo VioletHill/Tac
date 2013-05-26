@@ -1,0 +1,100 @@
+
+.RegisterDiv{
+	width:1163;
+	height:805;
+	background-image: url(Image/registerBG.png);
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+.RegisterItem{
+	width:503;
+	height:47;
+	position:relative;
+	left:345;
+	top:130;
+	border-style:none;
+	padding:0 0 0 50;
+	margin-top:10;
+	outline: none;
+	ime-mode: disabled;
+}
+
+.RegisterImg{
+	position:relative;
+	left:345;
+	top:136;
+	display:none;
+}
+
+.RegisterAccount
+{
+	background-image:url("Image/nameBox.png");
+}
+
+.RegisterAccount:focus
+{
+	background-image:url("Image/nameBoxSelected.png");
+}
+
+.RegisterPassword
+{
+	background-image:url("Image/passwordBox.png");
+}
+
+.RegisterPassword:focus
+{
+	background-image:url("Image/passwordBoxSelected.png");
+}
+
+.RegisterMail
+{
+	background-image:url("Image/mailBox.png");
+}
+
+.RegisterMail:focus
+{
+	background-image:url("Image/mailBoxSelected.png");
+}
+
+.RegisterPhone
+{
+	background-image:url("Image/phoneBox.png");
+}
+
+
+.RegisterPhone:focus
+{
+	background-image:url("Image/phoneBoxSelected.png");
+}
+
+.RegisterItemHeaderLabel
+{
+	background-image:url("Image/HeadBox.png");
+}
+
+.RegisterItemHeaderButton
+{
+	width:81;
+	height:25;
+	background-image:url("Image/chooseFile.png");
+}
+
+.RegisterItemSubmit
+{
+	width:243;
+	height:50;
+	background-image:url("Image/registerButton.png");
+	position:relative;
+	left:600;
+	top:150;
+}
+
+.RegisterInfor
+{
+	position:relative;
+	left:345;
+	top:130;
+	font-size:12;
+	opacity:0.5;
+}
