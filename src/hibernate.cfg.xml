@@ -23,6 +23,7 @@
 		</property>
 		<mapping resource="DataSource/Notices/Notice.hbm.xml" />
 		<mapping resource="DataSource/Document/Document.hbm.xml" />
+		<mapping resource="DataSource/User/User.hbm.xml" />
 
 	</session-factory>
 

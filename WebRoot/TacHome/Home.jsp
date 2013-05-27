@@ -1,16 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 	String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-  <style type="text/css">
-	
-	<%@include file="Navigation/HomeNavigation.css" %>
-	
+  <style type="text/css">	
 	body {
 		background-image: url("image/mainBG.png");
 		padding: 0px;
@@ -18,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	
   </style>
-  
+
   	<script src="jquery-1.9.1.js"></script>
  	<script src="http://jqueryrotate.googlecode.com/files/jQueryRotate.2.2.js"></script>
     <base href="<%=basePath%>">

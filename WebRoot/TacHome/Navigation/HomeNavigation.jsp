@@ -1,8 +1,10 @@
+<%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 
     <script type="text/javascript">
-   		 <%@include file="HomeNavigation.js" %>
+    	<%@include file="/TacHome/Navigation/HomeNavigation.js" %>
     </script>
+    <link rel="stylesheet" type="text/css" href="TacHome/Navigation/HomeNavigation.css">
 
 <!--  navigation -->
   	<div style="top:0;width:1200; height:607; vertical-align:bottom; background-image:url(TacHome/Image/NavigationBg.png); margin-right: auto; margin-left: auto;"  >
@@ -35,13 +37,33 @@
     			<img id="page3" src="TacHome/Image/ImagePage.png" onClick="setIndexImg(3)">
     	    </div>
     	    
-    	    <div style="position:relative">
+    	    <div>
     	    	<img src="TacHome/Image/LastPage.png" onclick="lastImg()" style="position:relative;   left:5; top:-200px; opacity:0.8">
     	  	  	<img src="TacHome/Image/NextPage.png" onclick="nextImg()" style="position:relative;   left:585; top:-200px; opacity:0.8">
    			</div>
-   			
     	</div>
-    
+    	
+    	<%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
+    	{%>
+    	<div class="loginFormDiv">
+    		<form class="loginForm" action="" method="post">
+				<input type="text" id="loginAccount" class="loginAccount"  name="account" placeholder="ÓÃ»§Ãû"> <br>   	
+				<input type="password" id="loginPassword" class="loginPassword" name="password" placeholder="ÃÜÂë"><br>
+				<input type="button" class="loginButton" id="loginButton" onclick="login()"><br>
+				<img class="loginImg" id="loginImg" src="TacHome/Image/imgbox-spinner.gif"><br>
+    		</form>
+    	</div>
+    	
+    	<div class="loginBufferBoxLogin" id="loginBufferBoxLogin">
+   			<button class="loginBufferLogin" onClick="showLoginForm()"></button> 
+   			<button class="loginBufferRegister" onclick="linkToRegister()"></button> 
+   		</div>
+   		
+   		<div class="loginBufferBoxCancel" id="loginBufferBoxCancel">
+   			<button class="loginBufferCancel" onClick="hiddenLoginForm()"></button> 
+   			<button class="loginBufferRegister" onclick="linkToRegister()"></button> 
+   		</div>
+   		<%}%>
    	</div> 
    	<div style="clear:both"> </div>
-   	
+

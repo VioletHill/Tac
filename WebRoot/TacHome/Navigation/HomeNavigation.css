@@ -4,10 +4,6 @@
 	background-color: #b0e0e6;
 }
 
-body {
-	background-image: url("../images/document/Background.png");
-}
-
 #top {
 	width: 1200px;
 	margin: auto;
@@ -77,5 +73,118 @@ td {
 	position: relative;
 	left: 540px;
 	top: -30;
-	z-index: 100;
+	z-index: 10;
+}
+
+
+.loginFormDiv
+{
+	position:relative;
+	width:242;
+	height:153;
+	left:830;
+	top:-180;
+}
+
+
+.loginForm
+{	
+	display:none;
+}
+
+
+.loginAccount
+{
+	position:relative;
+	width:240;
+	height:40;
+	background:url(../Image/loginAccount.png);
+	border-style:none;
+	padding:0 0 0 50;
+	margin-top:10;
+	outline: none;
+	ime-mode: disabled;
+	color:white;
+}
+
+.loginPassword
+{
+	position:relative;
+	width:240;
+	height:41;
+	background:url(../Image/loginPassword.png);
+	border-style:none;
+	padding:0 0 0 50;
+	margin-top:10;
+	outline: none;
+	ime-mode: disabled;
+	color:white;
+}
+
+.loginButton
+{
+	position:relative;
+	width:242;
+	height:42;
+	background:url(../Image/loginButton.png);
+	border-style:none;
+	margin-top:10;
+}
+
+.loginImg
+{
+	position:relative;
+	top:-30;
+	left:20;
+	display:none;
+}
+
+
+.loginBufferBoxLogin
+{
+	position:relative;
+	width:118;
+	height:41;
+	left:1060;
+	top:-100;
+	background-image:url(../Image/loginBufferBox.png);
+}
+
+.loginBufferLogin
+{	
+	width:30;
+	height:17;
+	background:url(../Image/loginBufferLogin.png);
+	margin:12 10 15 15;
+	border:0;
+
+}
+
+.loginBufferRegister
+{
+	width:30;
+	height:17;
+	background:url(../Image/loginBufferRegister.png);
+	margin:12 10 15 15;
+	border:0;
+}
+
+.loginBufferBoxCancel
+{
+	position:relative;
+	width:118;
+	height:41;
+	left:1060;
+	top:-100;
+	background-image:url(../Image/loginBufferBox.png);
+	display:none;
+}
+
+.loginBufferCancel
+{	
+	width:30;
+	height:17;
+	background:url(../Image/loginBufferCancel.png);
+	margin:12 10 15 15;
+	border:0;
 }

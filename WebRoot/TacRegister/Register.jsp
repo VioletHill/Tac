@@ -36,9 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<%@include file="/Navigation/Navigation.jsp" %>
    		
     	<div class="RegisterDiv">
-  			<form method="post" action="RegisterServlet" onsubmit="return canSubmit()">
-    			<input class="RegisterItem" type="hidden" name="isRegister" value="false"><br>
-    			
+  			<form method="post" action="Register"  enctype="multipart/form-data" onsubmit="return canSubmit()"> 
+    			<br>
     			<input class="RegisterItem RegisterAccount" type="text" name="account" placeholder="请输入账号" maxlength="30" onblur="checkAccount(this);">
     			<img id="accountImg" class="RegisterImg" src="TacRegister/Image/check.png">
     			<span id="accountInfor" class="RegisterInfor"></span><br>
@@ -47,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<img id="passwordImg" class="RegisterImg" src="TacRegister/Image/check.png">
     			<span id="passwordInfor" class="RegisterInfor"></span><br>
     			
-    			<input class="RegisterItem RegisterPassword" type="password" id="passwordAgain" name="passwordAgain" placeholder="请再次确认密码" maxlength="30" onblur="checkPasswordAgain();">
+    			<input class="RegisterItem RegisterPassword" type="password" id="passwordAgain" placeholder="请再次确认密码" maxlength="30" onblur="checkPasswordAgain();">
     			<img id="passwordAgainImg" class="RegisterImg" src="TacRegister/Image/check.png">
     			<span id="passwordAgainInfor" class="RegisterInfor"></span><br>
     			
@@ -55,14 +54,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<img id="emailImg" class="RegisterImg" src="TacRegister/Image/check.png">
     			<span id="emailInfor" class="RegisterInfor"></span><br>
     			
-    			<input class="RegisterItem RegisterPhone" type="text" name="phone" placeholder="请输入手机号码" maxlength="15"><br>
+    			<input class="RegisterItem RegisterPhone" type="text" name="phone" placeholder="请输入手机号码" maxlength="15"/><br>
     			
-    			<input class="RegisterItem RegisterItemHeaderLabel" id="headText" type="text" readonly placeholder="上传一张头像">
-    			<input class="RegisterItem RegisterItemHeaderButton" type="button" onclick="document.getElementById('headFile').click()"><br>	
+    			<input class="RegisterItem RegisterItemHeaderLabel" id="headText" type="text" readonly placeholder="上传一张头像"/>
+    			<input class="RegisterItem RegisterItemHeaderButton" type="button" onclick="document.getElementById('headFile').click()"/><br>	
    				
-   				<input type="file"  id="headFile" onchange="document.getElementById('headText').value=this.value" style="display:none">
+   				<input type="file"  id="headFile" name="headerImg" onchange="document.getElementById('headText').value=this.value" style="display:none"/>
    				
    				<input class="RegisterItemSubmit" type="submit" value="">
+   				
    			</form>	
     	</div>
     	

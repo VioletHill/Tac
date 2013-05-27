@@ -1,4 +1,4 @@
-package TacRegister;
+package TacHome;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,16 +7,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import DataSource.User.User;
+import DataSource.User.UserHibernate;
 
-
-public class Register extends HttpServlet {
+public class Login extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Constructor of the object.
+	 */
+	public Login() {
+		super();
+	}
+
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -29,60 +37,34 @@ public class Register extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{	
-		String account;
-		String password;
-		String email;
-		String phone;
-		String isRegister;
+			throws ServletException, IOException {
 		
-		try
+		PrintWriter out = response.getWriter();
+		String account=null;
+		String password=null;
+		
+		try 
 		{
 			account=request.getParameter("account");
 			password=request.getParameter("password");
-			email=request.getParameter("email");
-			phone=request.getParameter("phone");
 			
-			isRegister=request.getParameter("isRegister");
-			
-		
-			if (isRegister.equals("false"))
+			if (UserHibernate.sharedUserHibernate().judge_login(account, password))
 			{
-				response.setContentType("text/html; charset=gbk");
-				
-				//ºÏ≤‚’À∫≈ ±∫Ú±ª◊¢≤·
-				PrintWriter out = response.getWriter();
-				//if (User.get.) out.write("true");
 				out.write("true");
-				//else out.write("false");
-				out.flush();
-		
-				return ;
+				HttpSession session=request.getSession();
+				session.setAttribute("account", account);
+				session.setAttribute("isLog", true);
 			}
-			
-			
-			
-			User user=new User();
-			user.setAccount(account);
-			user.setPassword(password);
-			user.setEmail(email);
-			user.setPhone(phone);
-			
-		
-			
-		}
+			else 
+			{
+				out.write("false");
+			}
+		} 
 		catch (Exception e) 
 		{
-			log("can not read the user");
-			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
-			return ;
+			out.write("false");
 		}
-		
-		
-		
-		
-		
+		out.flush();
 	}
 
 	/**
@@ -96,8 +78,17 @@ public class Register extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
+	public void init() throws ServletException {
+		// Put your code here
+	}
+
 }
