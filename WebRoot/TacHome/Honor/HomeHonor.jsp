@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 
 <script type="text/javascript">
-	<%@include file="/TacHonor/ProjectsImage.js" %>
+	<%@include file="/TacHonor/Honor.js" %>
 	<%@include file="HomeHonor.js" %>
 </script>
 

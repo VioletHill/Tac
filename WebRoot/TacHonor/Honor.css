@@ -1,0 +1,16 @@
+.MainDiv
+{
+	width:1163;
+	height:1051;
+	background-image:url(Image/foreBG.png);
+	margin-right: auto; 
+	margin-left: auto;
+}
+
+.ImageDiv
+{
+	width:300; 
+	height:400;
+	text-align:center;
+	float:left;
+}

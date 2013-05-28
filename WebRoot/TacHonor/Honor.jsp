@@ -22,27 +22,45 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	<link rel="stylesheet" type="text/css" href="TacHonor/Honor.css">
    	<style>
   
   	  body
   	  {
   		padding: 0px;
   		margin: 0px;
+  		background-image:url("image/mainBG.png");
   	  }
  	</style> 
  	
+ 	<script type="text/javascript" src="TacHonor/Honor.js"></script>
   </head>
   
+    <jsp:useBean class="DataSource.Projects.AllProjects" id="allProjects" scope="request">
+ 	</jsp:useBean>
+  
   <body>
-
-	  <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
+	
+	  
 	 	<%@include file="/Navigation/Navigation.jsp" %>
-	 	<%@include file="ProjectsImage.jsp" %>
+	 	
+	 	<div class="MainDiv">
+	 		<%for (int i=0; i<allProjects.getProject().size(); i++)
+	  	 	{%>
+				<div class="ImageDiv">
+					<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>"onclick="linkToImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
+					<div>
+						<%=allProjects.getProject().get(i).getTitle() %>
+					</div>
+					<div>
+						<%=allProjects.getProject().get(i).getDescription() %>
+					</div>	
+				</div>
+			<%}%> 
+		</div>
+		
 	  	<%@include file="/Navigation/Footer.jsp" %>
-	 </div>	  
   </body>
   
   
