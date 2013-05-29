@@ -23,32 +23,32 @@
 	height: 100px;
 }
 
-#nav {
+#tacnav {
 	float: right;
 	align: center;
 }
 
-a.nav {
+a.tacnav {
 	display: block;
 	color: white;
 	text-decoration: none;
 	background-position: 50% 50%;
 }
 
-a.nav>div {
+a.tacnav>div {
 	height: 30px;
 	width: 132px;
 	align: center;
 }
 
-a.nav>div>p {
+a.tacnav>div>p {
 	padding: 5;
 }
 
-a.nav:hover {
+a.tacnav:hover {
 	float: center;
 	display: block;
-	background-image: url("Navigation/LinkSelect.png");
+	background: url(Navigation/LinkSelect.png);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 }

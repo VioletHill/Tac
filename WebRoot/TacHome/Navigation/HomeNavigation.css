@@ -44,7 +44,7 @@ a.nav>div {
 a.nav:hover {
 	float: left;
 	display: block;
-	background-image: url("Navigation/LinkSelect.png");
+	background: url(Navigation/LinkSelect.png);
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 }

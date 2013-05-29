@@ -1,4 +1,4 @@
-.MainDiv
+.ImageContain
 {
 	width:1163;
 	height:1051;
@@ -9,7 +9,7 @@
 
 .ImageDiv
 {
-	width:300; 
+	width:290; 
 	height:400;
 	text-align:center;
 	float:left;

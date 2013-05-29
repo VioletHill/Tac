@@ -12,12 +12,6 @@
 	<jsp:useBean id="allNotices" class="DataSource.Notices.AllNotices" scope="request"></jsp:useBean>
 
 <head>
-	<style type="text/css" >
-		<%@include file="NoticesItem.css" %>
-	</style>
-
-	<script src="jquery-1.9.1.js"></script>
-
 	<base href="<%=basePath%>">
 
 	<title>Tacпбоййб</title>
@@ -37,9 +31,9 @@
 		}
 	</style>
 
-
+	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
+	<script src="jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="TacNotices/Notices.js"></script>
-	
 </head>
 
 

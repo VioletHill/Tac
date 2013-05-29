@@ -23,7 +23,11 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	
+	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 	<link rel="stylesheet" type="text/css" href="TacHonor/Honor.css">
+	<link rel="stylesheet" href="LightBoxCss/lightbox.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="LightBoxCss/screen.css" type="text/css" media="screen" />
+	
    	<style>
   
   	  body
@@ -35,6 +39,10 @@
  	</style> 
  	
  	<script type="text/javascript" src="TacHonor/Honor.js"></script>
+ 	<script type="text/javascript" src="LightBoxJs/prototype.js"></script>
+	<script type="text/javascript" src="LightBoxJs/scriptaculous.js?load=effects"></script>
+	<script type="text/javascript" src="LightBoxJs/lightbox.js"></script>
+	<script type="text/javascript" src="LightBoxJs/effects.js"></script>
   </head>
   
     <jsp:useBean class="DataSource.Projects.AllProjects" id="allProjects" scope="request">
@@ -42,25 +50,24 @@
   
   <body>
 	
-	  
+	 <div id="MainDiv">
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	
-	 	<div class="MainDiv">
+	 	<div class="ImageContain">
 	 		<%for (int i=0; i<allProjects.getProject().size(); i++)
 	  	 	{%>
-				<div class="ImageDiv">
-					<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>"onclick="linkToImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
-					<div>
-						<%=allProjects.getProject().get(i).getTitle() %>
-					</div>
-					<div>
-						<%=allProjects.getProject().get(i).getDescription() %>
-					</div>	
+	  	 		<div  class="ImageDiv">
+					<a href="Navigation/Footer.png" rel="lightbox[roadtridasfp]">
+						<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>"onclick="clickImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
+					</a>
+					<br>
+					<a class="NoticesItem" href="Honor/Project?id=<%=i%>"><%=allProjects.getProject().get(i).getTitle() %></a>
 				</div>
 			<%}%> 
 		</div>
-		
+
 	  	<%@include file="/Navigation/Footer.jsp" %>
+	  </div>
   </body>
   
   
