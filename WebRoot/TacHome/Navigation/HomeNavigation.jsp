@@ -1,9 +1,7 @@
 <%@page import="java.nio.channels.SeekableByteChannel"%>
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 
-    <script type="text/javascript">
-    	<%@include file="/TacHome/Navigation/HomeNavigation.js" %>
-    </script>
+    <script type="text/javascript" src="TacHome/Navigation/HomeNavigation.js"></script>
     <link rel="stylesheet" type="text/css" href="TacHome/Navigation/HomeNavigation.css">
 
 <!--  navigation -->

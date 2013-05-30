@@ -20,46 +20,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
-	<script type="text/javascript">
-	/* 	function init()
-		{
-			var contentDiv=document.getElementById("content");
-			var position=contentDiv.getBoundingClientRect();
-			
-			var lastImg=document.createElement("img");
-			
-		 	lastImg.src="TacNotices/Image/LastNotice.png";
-			lastImg.style.position="absolute";
-			lastImg.id="lastNotice";
-		 	lastImg.style.left=position.left;
-		 	lastImg.style.top=(position.top+position.bottom)/2;
-		 	
-			
-			contentDiv.appendChild(lastImg);
-			
-			var nextImg=document.createElement("img");
-			nextImg.src="TacNotices/Image/LastNotice.png";
-			nextImg.id="nextNotice";
-			nextImg.style.position="absolute";
-			nextImg.style.left=position.right+document.body.scrollLeft-nextImg.width;
-			nextImg.style.top=(position.top+position.bottom)/2;
-			contentDiv.appendChild(nextImg);
-		}
-		
-		function resize()
-		{
-			var contentDiv=document.getElementById("content");
-			var lastImg=document.getElementById("lastNotice");
-			var position=contentDiv.getBoundingClientRect();
-			lastImg.style.left=position.left;
-		 	
-		 	var nextImg=document.getElementById("nextNotice");
-		 	nextImg.style.left=position.right+document.body.scrollLeft-nextImg.width;
-
-		 	
-		} */
-	</script>
   </head>
   
   <jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">

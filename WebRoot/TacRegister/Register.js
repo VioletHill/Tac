@@ -1,18 +1,35 @@
 
-var isAccountOk=false;
-var isPasswordOk=false;
-var isEmailOk=false;
+	var isAccountOk=false;
+	var isPasswordOk=false;
+	var isEmailOk=false;
 
+	var isShake=false;
+	function shake(time)
+	{
+		if (time==0)
+		{
+			$("#RegisterButton").animate({left:0},10,function (){isShake=false;});
+			return ;
+		}
+		$("#RegisterButton").animate({left:10},10,
+			function ()
+			{
+				$(this).animate({left:-10},10,function (){shake(time-1);});
+			});
+		
+	}
 	function canSubmit()
 	{
 		if (canRegister())
 		{
-			return true;
+			document.getElementById("form").submit();
 		}
 		else
 		{
-			alert("亲~~ 注册出现错误了~~ 检查下所有信息是否填写正确！");
-			return false;
+			if (isShake) return ;
+			isShake=true;
+			document.getElementById("RegisterButton").style.position="relative";
+			shake(15);
 		}
 	}
 
@@ -141,4 +158,3 @@ var isEmailOk=false;
 		 else	return true ;
 	 }
 	 
-	

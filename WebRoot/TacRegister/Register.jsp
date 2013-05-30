@@ -28,6 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
 	
 	<script type="text/javascript" src="TacRegister/Register.js"></script>
+	<script src="jquery-1.9.1.js"></script>
+	
   </head>
   
   <body>
@@ -36,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<%@include file="/Navigation/Navigation.jsp" %>
    		
     	<div class="RegisterDiv">
-  			<form method="post" action="Register"  enctype="multipart/form-data" onsubmit="return canSubmit()"> 
+  			<form id="form" method="post" action="Register"  enctype="multipart/form-data"> 
     			<br>
     			<input class="RegisterItem RegisterAccount" type="text" name="account" placeholder="ÇëÊäÈëÕËºÅ" maxlength="30" onblur="checkAccount(this);">
     			<img id="accountImg" class="RegisterImg" src="TacRegister/Image/check.png">
@@ -61,9 +63,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				
    				<input type="file"  id="headFile" name="headerImg" onchange="document.getElementById('headText').value=this.value" style="display:none"/>
    				
-   				<input class="RegisterItemSubmit" type="submit" value="">
-   				
+   				<div id="RegisterButton">
+   				<input class="RegisterItemSubmit"  type="button" onclick="canSubmit();">
+   				</div>
    			</form>	
+   				
     	</div>
     	
     </div>

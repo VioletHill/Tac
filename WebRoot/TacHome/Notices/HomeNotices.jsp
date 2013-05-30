@@ -6,9 +6,7 @@
 
 
 
-<style type="text/css">
-	<%@include file="/TacNotices/NoticesItem.css" %>
-</style>
+<style type="text/css" href="TacNotices/NoticesItem.css"></style>
 
 
   <jsp:useBean  id="allNotices" class="DataSource.Notices.AllNotices" scope="request">
