@@ -135,16 +135,16 @@
     {
     	setIndexImg(0);
 	}
-//	
-//	$(document).ready(function(){
-//		var div = document.getElementsByClassName('imageWheel')[0];		
-//		for (var i = 0; i != div.childNodes.length; i++)
-//			if (div.childNodes[i].nodeType == 3){
-//				div.removeChild(div.childNodes[i]);
-//				i--;
-//			}
-//	
-//	});
+	
+	$(document).ready(function(){
+		var div = document.getElementsByClassName('imageWheel')[0];		
+		for (var i = 0; i != div.childNodes.length; i++)
+			if (div.childNodes[i].nodeType == 3){
+				div.removeChild(div.childNodes[i]);
+				i--;
+			}
+	
+	});
 	
 	
 

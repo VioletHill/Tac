@@ -57,11 +57,15 @@
 	 		<%for (int i=0; i<allProjects.getProject().size(); i++)
 	  	 	{%>
 	  	 		<div  class="ImageDiv">
-					<a href="Navigation/Footer.png" rel="lightbox[roadtridasfp]">
+					<a href="<%=allProjects.getProject().get(i).getImage().get(0)%>" rel="lightbox[roadtridasfp]">
 						<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>"onclick="clickImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
 					</a>
 					<br>
 					<a class="NoticesItem" href="Honor/Project?id=<%=i%>"><%=allProjects.getProject().get(i).getTitle() %></a>
+					<%for (int j=1; j<allProjects.getProject().get(i).getImage().size(); j++) 
+	  	 			{%>
+	  	 				<a href="<%=allProjects.getProject().get(i).getImage().get(j)%>" rel="lightbox[roadtridasfp]"></a>	
+				  <%}%>
 				</div>
 			<%}%> 
 		</div>

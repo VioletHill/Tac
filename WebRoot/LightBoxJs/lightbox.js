@@ -296,12 +296,12 @@ Lightbox.prototype = {
 		objImageData.appendChild(objBottomNav);
 	
 	
-//		var objBottomNavCloseLink = document.createElement("a");
-//		objBottomNavCloseLink.setAttribute('id','bottomNavClose');
-//		objBottomNavCloseLink.setAttribute('href','#');
-//		objBottomNavCloseLink.onclick = function() { myLightbox.end(); return false; }
-//		objBottomNav.appendChild(objBottomNavCloseLink);
-//	
+		var objBottomNavCloseLink = document.createElement("a");
+		objBottomNavCloseLink.setAttribute('id','bottomNavClose');
+		objBottomNavCloseLink.setAttribute('href','#');
+		objBottomNavCloseLink.onclick = function() { myLightbox.end(); return false; }
+		objBottomNav.appendChild(objBottomNavCloseLink);
+	
 //		var objBottomNavCloseImage = document.createElement("img");
 //		objBottomNavCloseImage.setAttribute('src', fileBottomNavCloseImage);
 //		objBottomNavCloseLink.appendChild(objBottomNavCloseImage);
@@ -346,7 +346,7 @@ Lightbox.prototype = {
 		// calculate top offset for the lightbox and display 
 		var arrayPageSize = getPageSize();
 		var arrayPageScroll = getPageScroll();
-		var lightboxTop = arrayPageScroll[1] + (arrayPageSize[3] / 15);
+		var lightboxTop = arrayPageScroll[1] + (arrayPageSize[3] / 3);
 
 		Element.setTop('lightbox', lightboxTop);
 		Element.show('lightbox');
@@ -441,11 +441,11 @@ Lightbox.prototype = {
 //			Element.setInnerHTML( 'numberDisplay', "Image " + eval(activeImage + 1) + " of " + imageArray.length);
 //		}
 
-//		new Effect.Parallel(
-//			[ new Effect.SlideDown( 'imageDataContainer', { sync: true, duration: resizeDuration + 0.25, from: 0.0, to: 1.0 }), 
-//			  new Effect.Appear('imageDataContainer', { sync: true, duration: 1.0 }) ], 
-//			{ duration: 0.65, afterFinish: function() { myLightbox.updateNav();} } 
-//		);
+		new Effect.Parallel(
+			[ new Effect.SlideDown( 'imageDataContainer', { sync: true, duration: resizeDuration + 0.25, from: 0.0, to: 1.0 }), 
+			  new Effect.Appear('imageDataContainer', { sync: true, duration: 1.0 }) ], 
+			{ duration: 0.65, afterFinish: function() { myLightbox.updateNav();} } 
+		);
 	},
 
 	//
@@ -616,7 +616,6 @@ function getPageSize(){
 	} else {
 		pageWidth = xScroll;
 	}
-
 
 	arrayPageSize = new Array(pageWidth,pageHeight,windowWidth,windowHeight) 
 	return arrayPageSize;
