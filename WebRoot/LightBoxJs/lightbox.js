@@ -62,7 +62,7 @@
 var fileLoadingImage = "LightBoxJs/Image/loading.gif";		
 var fileBottomNavCloseImage = "LightBoxJs/Image/closelabel.gif";
 
-var resizeSpeed = 7;	// controls the speed of the image resizing (1=slowest and 10=fastest)
+var resizeSpeed = 0;	// controls the speed of the image resizing (1=slowest and 10=fastest)
 
 var borderSize = 10;	//if you adjust the padding in the CSS, you will need to update this variable
 
@@ -295,6 +295,7 @@ Lightbox.prototype = {
 		objBottomNav.setAttribute('id','bottomNav');
 		objImageData.appendChild(objBottomNav);
 	
+	
 //		var objBottomNavCloseLink = document.createElement("a");
 //		objBottomNavCloseLink.setAttribute('id','bottomNavClose');
 //		objBottomNavCloseLink.setAttribute('href','#');
@@ -368,7 +369,7 @@ Lightbox.prototype = {
 		Element.hide('prevLink');
 		Element.hide('nextLink');
 		Element.hide('imageDataContainer');
-		Element.hide('numberDisplay');		
+	//	Element.hide('numberDisplay');		
 		
 		imgPreloader = new Image();
 		
@@ -397,8 +398,10 @@ Lightbox.prototype = {
 		wDiff = (this.wCur - borderSize * 2) - imgWidth;
 		hDiff = (this.hCur - borderSize * 2) - imgHeight;
 
-		if(!( hDiff == 0)){ new Effect.Scale('outerImageContainer', this.yScale, {scaleX: false, duration: resizeDuration, queue: 'front'}); }
-		if(!( wDiff == 0)){ new Effect.Scale('outerImageContainer', this.xScale, {scaleY: false, delay: resizeDuration, duration: resizeDuration}); }
+		if(!( hDiff == 0)){ new Effect.Scale('outerImageContainer', this.yScale, {scaleX: false, duration: 0, queue: 'front'}); }
+		if(!( wDiff == 0)){ new Effect.Scale('outerImageContainer', this.xScale, {scaleY: false, duration: 0}); }
+//		if(!( hDiff == 0)){ new Effect.Scale('outerImageContainer', this.yScale, {scaleX: false, duration: resizeDuration, queue: 'front'}); }
+//		if(!( wDiff == 0)){ new Effect.Scale('outerImageContainer', this.xScale, {scaleY: false, delay: resizeDuration, duration: resizeDuration}); }
 
 		// if new and old image are same size and no scaling transition is necessary, 
 		// do a quick pause to prevent image flicker.
@@ -419,7 +422,7 @@ Lightbox.prototype = {
 	//
 	showImage: function(){
 		Element.hide('loading');
-		new Effect.Appear('lightboxImage', { duration: 0.5, queue: 'end', afterFinish: function(){	myLightbox.updateDetails(); } });
+		new Effect.Appear('lightboxImage', { duration: 0.0, queue: 'end', afterFinish: function(){	myLightbox.updateDetails(); } });
 		this.preloadNeighborImages();
 	},
 
@@ -648,7 +651,7 @@ function listenKey () {	document.onkeypress = getKey; }
 
 function showSelectBoxes(){
 	selects = document.getElementsByTagName("select");
-	for (i = 0; i != selects.length; i++) {
+	for (var i = 0; i != selects.length; i++) {
 		selects[i].style.visibility = "visible";
 	}
 }
@@ -657,7 +660,7 @@ function showSelectBoxes(){
 
 function hideSelectBoxes(){
 	selects = document.getElementsByTagName("select");
-	for (i = 0; i != selects.length; i++) {
+	for (var i = 0; i != selects.length; i++) {
 		selects[i].style.visibility = "hidden";
 	}
 }
