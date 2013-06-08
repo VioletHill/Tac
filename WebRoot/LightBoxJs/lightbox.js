@@ -60,7 +60,7 @@
 //	Configuration
 //
 var fileLoadingImage = "LightBoxJs/Image/loading.gif";		
-var fileBottomNavCloseImage = "LightBoxJs/Image/closelabel.gif";
+//var fileBottomNavCloseImage = "LightBoxJs/Image/closelabel.gif";
 
 var resizeSpeed = 0;	// controls the speed of the image resizing (1=slowest and 10=fastest)
 
@@ -159,6 +159,7 @@ Array.prototype.empty = function () {
 //
 var Lightbox = Class.create();
 
+var isNeedClear=true;
 Lightbox.prototype = {
 	
 	// initialize()
@@ -226,12 +227,24 @@ Lightbox.prototype = {
 		objBody.appendChild(objOverlay);
 		
 		var objLightbox = document.createElement("div");
+
 		objLightbox.setAttribute('id','lightbox');
 		objLightbox.style.display = 'none';
+		objLightbox.onclick=function ()
+							{
+								if (isNeedClear)
+								{
+									myLightbox.end(); 
+									isNeedClear=true;
+									return false;
+								}  
+								isNeedClear=true;
+							}
 		objBody.appendChild(objLightbox);
 	
 		var objOuterImageContainer = document.createElement("div");
 		objOuterImageContainer.setAttribute('id','outerImageContainer');
+		objOuterImageContainer.onclick=function(){isNeedClear=false};
 		objLightbox.appendChild(objOuterImageContainer);
 
 		var objImageContainer = document.createElement("div");
@@ -270,37 +283,37 @@ Lightbox.prototype = {
 		objLoadingImage.setAttribute('src', fileLoadingImage);
 		objLoadingLink.appendChild(objLoadingImage);
 
-		var objImageDataContainer = document.createElement("div");
-		objImageDataContainer.setAttribute('id','imageDataContainer');
-		objImageDataContainer.className = 'clearfix';
-		objLightbox.appendChild(objImageDataContainer);
-
-		var objImageData = document.createElement("div");
-		objImageData.setAttribute('id','imageData');
-		objImageDataContainer.appendChild(objImageData);
-	
-		var objImageDetails = document.createElement("div");
-		objImageDetails.setAttribute('id','imageDetails');
-		objImageData.appendChild(objImageDetails);
-	
-		var objCaption = document.createElement("span");
-		objCaption.setAttribute('id','caption');
-		objImageDetails.appendChild(objCaption);
-	
-		var objNumberDisplay = document.createElement("span");
-		objNumberDisplay.setAttribute('id','numberDisplay');
-		objImageDetails.appendChild(objNumberDisplay);
+//		var objImageDataContainer = document.createElement("div");
+//		objImageDataContainer.setAttribute('id','imageDataContainer');
+//		objImageDataContainer.className = 'clearfix';
+//		objLightbox.appendChild(objImageDataContainer);
+//
+//		var objImageData = document.createElement("div");
+//		objImageData.setAttribute('id','imageData');
+//		objImageDataContainer.appendChild(objImageData);
+//	
+//		var objImageDetails = document.createElement("div");
+//		objImageDetails.setAttribute('id','imageDetails');
+//		objImageData.appendChild(objImageDetails);
+//	
+//		var objCaption = document.createElement("span");
+//		objCaption.setAttribute('id','caption');
+//		objImageDetails.appendChild(objCaption);
+//	
+//		var objNumberDisplay = document.createElement("span");
+//		objNumberDisplay.setAttribute('id','numberDisplay');
+//		objImageDetails.appendChild(objNumberDisplay);
 		
-		var objBottomNav = document.createElement("div");
-		objBottomNav.setAttribute('id','bottomNav');
-		objImageData.appendChild(objBottomNav);
+//		var objBottomNav = document.createElement("div");
+//		objBottomNav.setAttribute('id','bottomNav');
+//		objImageData.appendChild(objBottomNav);
 	
 	
-		var objBottomNavCloseLink = document.createElement("a");
-		objBottomNavCloseLink.setAttribute('id','bottomNavClose');
-		objBottomNavCloseLink.setAttribute('href','#');
-		objBottomNavCloseLink.onclick = function() { myLightbox.end(); return false; }
-		objBottomNav.appendChild(objBottomNavCloseLink);
+//		var objBottomNavCloseLink = document.createElement("a");
+//		objBottomNavCloseLink.setAttribute('id','bottomNavClose');
+//		objBottomNavCloseLink.setAttribute('href','#');
+//		objBottomNavCloseLink.onclick = function() { myLightbox.end(); return false; }
+//		objBottomNav.appendChild(objBottomNavCloseLink);
 	
 //		var objBottomNavCloseImage = document.createElement("img");
 //		objBottomNavCloseImage.setAttribute('src', fileBottomNavCloseImage);
@@ -368,7 +381,7 @@ Lightbox.prototype = {
 		Element.hide('hoverNav');
 		Element.hide('prevLink');
 		Element.hide('nextLink');
-		Element.hide('imageDataContainer');
+	//	Element.hide('imageDataContainer');
 	//	Element.hide('numberDisplay');		
 		
 		imgPreloader = new Image();
@@ -411,7 +424,7 @@ Lightbox.prototype = {
 
 		Element.setHeight('prevLink', imgHeight);
 		Element.setHeight('nextLink', imgHeight);
-		Element.setWidth( 'imageDataContainer', imgWidth + (borderSize * 2));
+	//	Element.setWidth( 'imageDataContainer', imgWidth + (borderSize * 2));
 
 		this.showImage();
 	},
@@ -432,20 +445,20 @@ Lightbox.prototype = {
 	//
 	updateDetails: function() {
 	
-		Element.show('caption');
-		Element.setInnerHTML( 'caption', imageArray[activeImage][1]);
+//		Element.show('caption');
+//		Element.setInnerHTML( 'caption', imageArray[activeImage][1]);
 		
 		// if image is part of set display 'Image x of x' 
 //		if(imageArray.length > 1){
 //			Element.show('numberDisplay');
 //			Element.setInnerHTML( 'numberDisplay', "Image " + eval(activeImage + 1) + " of " + imageArray.length);
 //		}
-
-		new Effect.Parallel(
-			[ new Effect.SlideDown( 'imageDataContainer', { sync: true, duration: resizeDuration + 0.25, from: 0.0, to: 1.0 }), 
-			  new Effect.Appear('imageDataContainer', { sync: true, duration: 1.0 }) ], 
-			{ duration: 0.65, afterFinish: function() { myLightbox.updateNav();} } 
-		);
+//		new Effect.Parallel(
+////			[ new Effect.SlideDown( 'imageDataContainer', { sync: true, duration: resizeDuration + 0.25, from: 0.0, to: 1.0 }), 
+////			  new Effect.Appear('imageDataContainer', { sync: true, duration: 1.0 }) ], 
+//			{ duration: 0.65, afterFinish: function() { myLightbox.updateNav();} } 
+//		);
+		myLightbox.updateNav();
 	},
 
 	//
@@ -455,7 +468,6 @@ Lightbox.prototype = {
 	updateNav: function() {
 
 		Element.show('hoverNav');				
-
 		// if not first image in set, display prev image button
 		if(activeImage != 0){
 			Element.show('prevLink');

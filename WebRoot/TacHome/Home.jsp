@@ -17,7 +17,7 @@
   </style>
 
   	<script src="jquery-1.9.1.js"></script>
- 	<script src="http://jqueryrotate.googlecode.com/files/jQueryRotate.2.2.js"></script>
+ 	<script src="jQueryRotate.2.2.js"></script>
     <base href="<%=basePath%>">
       
     

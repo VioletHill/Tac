@@ -11,7 +11,7 @@ body {
 }
 
 #searchDiv {
-	float: right; //
+	float: right; 
 	position: absolute;
 	margin: 10px;
 	height: 50px;

@@ -58,7 +58,7 @@
 	  	 	{%>
 	  	 		<div  class="ImageDiv">
 					<a href="<%=allProjects.getProject().get(i).getImage().get(0)%>" rel="lightbox[roadtridasfp]">
-						<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>"onclick="clickImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
+						<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
 					</a>
 					<br>
 					<a class="NoticesItem" href="Honor/Project?id=<%=i%>"><%=allProjects.getProject().get(i).getTitle() %></a>
