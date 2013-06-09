@@ -87,7 +87,7 @@
 	
 	function linkToRegister()
 	{
-		window.open("TacRegister/Register.jsp");
+		window.location.href="TacRegister/Register.jsp";
 	}
 	
 	

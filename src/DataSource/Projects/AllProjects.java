@@ -32,6 +32,10 @@ public class AllProjects
 		projects.get(0).image.add("Projects/Project0/Project0_1.png");
 		projects.get(0).image.add("Projects/Project1/Project1_0.png");
 		projects.get(0).image.add("Projects/Project1/Project1_1.png");
+		projects.get(0).image.add("Projects/Project0/Project0_0.png");
+		projects.get(0).image.add("Projects/Project0/Project0_1.png");
+		projects.get(0).image.add("Projects/Project1/Project1_0.png");
+		projects.get(0).image.add("Projects/Project1/Project1_1.png");
 		projects.add(new Projects());
 		projects.get(1).title="Project1";
 		projects.get(1).description="第二个作品";

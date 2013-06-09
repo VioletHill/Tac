@@ -1,0 +1,55 @@
+.MainDiv
+{
+	width:1163;
+	margin-right: auto; 
+	margin-left: auto;
+}
+
+.ProjectAppIcon
+{
+	position:relative;
+	left:100;
+}
+
+.ProjectTitle
+{
+	position:relative;
+	
+	top:-100;
+	left:300;
+	background-color:green;
+}
+
+.ImageScroll
+{
+	height:230;
+	width:1163;
+	white-space: nowrap;
+	overflow:hidden;
+}
+
+.imageViewContainer
+{
+	position:relative;
+}
+
+.ImageView
+{
+	position:relative;
+	margin-left:57;
+	top:50;
+}
+
+.NextView
+{
+	position:relative;
+	top:-180;
+	left:1100;
+}
+
+.LastView
+{
+	position:relative;
+	top:-180;
+	left:30;
+}	

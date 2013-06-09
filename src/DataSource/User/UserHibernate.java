@@ -48,6 +48,12 @@ public class UserHibernate implements Serializable
 			return false;
 		}
 	}
+	public User find_by_account(String account)
+	{
+		User user=new User();
+		UserDAO dao=new UserDAO();
+		return dao.find_by_account(account);
+	}
 	public UserHibernate() {
 		// TODO Auto-generated constructor stub
 	}

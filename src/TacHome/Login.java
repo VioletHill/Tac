@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DataSource.User.User;
 import DataSource.User.UserHibernate;
 
 public class Login extends HttpServlet {
@@ -51,8 +52,10 @@ public class Login extends HttpServlet {
 			if (UserHibernate.sharedUserHibernate().judge_login(account, password))
 			{
 				out.write("true");
+				User user=UserHibernate.sharedUserHibernate().find_by_account(account);
 				HttpSession session=request.getSession();
 				session.setAttribute("account", account);
+				session.setAttribute("headAdd", user.getHeader_add());
 				session.setAttribute("isLog", true);
 			}
 			else 

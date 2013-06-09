@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Projects.AllProjects;
 
-public class ProjectPageServlet extends HttpServlet {
+public class HonorPageServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -48,7 +48,7 @@ public class ProjectPageServlet extends HttpServlet {
 		else 
 		{
 			request.setAttribute("project", allProjects.getProject().get(proId));
-			request.getRequestDispatcher("/TacHonor/ProjectPage.jsp").forward(request, response);
+			request.getRequestDispatcher("/TacHonor/HonorPage.jsp").forward(request, response);
 		}
 		
 	}

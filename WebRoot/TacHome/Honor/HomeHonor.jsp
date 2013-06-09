@@ -26,9 +26,7 @@
 		<br>
 		<div style="overflow:hidden; white-space:nowrap; width:1000; background-color:green; left:100; position:relative;">
 			<div class="showTimeImage" style="position:relative">
-
-
-				<%for (int i = 0; i < allProjects.getProject().size(); i++) 
+			  <%for (int i = 0; i < allProjects.getProject().size(); i++) 
 				{%>
 					<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size()%>" src="<%=allProjects.getProject().get(i).getImage().get(0)%>" onclick="linkToImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="position:relative; margin-left:100;">
 			  <%}%>

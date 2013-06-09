@@ -6,15 +6,45 @@ public class Projects
 {
 	String title=null;
 	String description=null;
+	String appString=null;
+	String time;
+	String teamMember;
+
 	Vector<String> image=null;
-	Vector<String> teamMember;
+	
 	private int indexImg=0;
 	
+	
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	
+	public String getTeamMember() {
+		return teamMember;
+	}
+
+	public void setTeamMember(String teamMember) {
+		this.teamMember = teamMember;
+	}
+
 	public Projects()
 	{
 		image=new Vector<String>();
 	}
 
+	public String getAppString() {
+		return appString;
+	}
+
+	public void setAppString(String appString) {
+		this.appString = appString;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -47,11 +77,4 @@ public class Projects
 		indexImg=0;
 	}
 
-	public Vector<String> getTeamMember() {
-		return teamMember;
-	}
-
-	public void setTeamMember(Vector<String> teamMember) {
-		this.teamMember = teamMember;
-	}
 }
