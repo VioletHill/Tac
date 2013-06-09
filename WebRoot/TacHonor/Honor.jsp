@@ -11,6 +11,10 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+
+    <jsp:useBean class="DataSource.Honor.AllHonor" id="allHonor" scope="request">
+ 	</jsp:useBean>
+ 	
   <head>
 
     <base href="<%=basePath%>">
@@ -43,26 +47,28 @@
 	<script type="text/javascript" src="LightBoxJs/scriptaculous.js?load=effects"></script>
 	<script type="text/javascript" src="LightBoxJs/lightbox.js"></script>
 	<script type="text/javascript" src="LightBoxJs/effects.js"></script>
+	
   </head>
-  
-    <jsp:useBean class="DataSource.Projects.AllProjects" id="allProjects" scope="request">
- 	</jsp:useBean>
+
   
   <body>
   	<%@include file="/Navigation/Navigation.jsp" %>
 	<div class="ImageContain">
-	 	<%for (int i=0; i<allProjects.getProject().size(); i++)
+	 	<%for (int i=0; i<allHonor.getList().size(); i++)
 	  	 {%>
 	  	 	<div  class="ImageDiv">
-				<a href="<%=allProjects.getProject().get(i).getImage().get(0)%>" rel="lightbox[roadtridasfp]">
-				<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size() %>"src="<%=allProjects.getProject().get(i).getImage().get(0) %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
+				<a href="<%=allHonor.getList().get(i).getPicture()[0]%>" rel="lightbox[<%=i%>]">
+					<img id="<%=allHonor.getList().get(i).getHonor_id()%>" name="<%=allHonor.getList().get(i).getPicture().length %>" src="<%=allHonor.getList().get(i).getPicture()[0] %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
 				</a>
+				
 				<br>
-				<a class="NoticesItem" href="Honor/Project?id=<%=i%>"><%=allProjects.getProject().get(i).getTitle() %></a>
-				<%for (int j=1; j<allProjects.getProject().get(i).getImage().size(); j++) 
+				
+				<a class="NoticesItem" href="Honor/Project?id=<%=allHonor.getList().get(i).getHonor_id()%>"><%=allHonor.getList().get(i).getTitle() %></a>
+				<%for (int j=1; j<allHonor.getList().get(i).getPicture().length; j++) 
 	  	 		{%>
-	  	 			<a href="<%=allProjects.getProject().get(i).getImage().get(j)%>" rel="lightbox[roadtridasfp]"></a>	
+	  	 			<a href="<%=allHonor.getList().get(i).getPicture()[j]%>" rel="lightbox[<%=i%>]"></a>	
 			  <%}%>
+			  
 			</div>
 		<%}%> 
 	</div>
@@ -71,3 +77,4 @@
   
   
 </html>
+  

@@ -2,9 +2,6 @@ package DataSource.Notices;
 
 import java.util.List;
 
-
-
-
 public class AllNotices 
 {
 	List<Notice> list;

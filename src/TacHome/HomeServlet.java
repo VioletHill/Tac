@@ -7,9 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DataSource.Honor.AllHonor;
+import DataSource.Honor.HonorHibernate;
 import DataSource.Notices.AllNotices;
 import DataSource.Notices.NoticesHibernate;
-import DataSource.Projects.AllProjects;
 
 
 public class HomeServlet extends HttpServlet {
@@ -34,14 +35,16 @@ public class HomeServlet extends HttpServlet {
 	{
 		//String userName=request.getParameter("userName");
 		//String userPassword=request.getParameter("userPassword");
-		AllProjects allProjects=AllProjects.sharedAllProjects();
+	
+		AllHonor allHonor=new AllHonor();
+		allHonor.setList(HonorHibernate.sharedNoticesHibernate().find_honor(16, 1));
 		
 		AllNotices allNotices=new AllNotices();
 		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(1, 4));
 		
 //		System.out.print("ddd");
 //		System.out.print(allNotices.getAllNotices().size());
-		request.setAttribute("allProjects", allProjects);
+		request.setAttribute("allHonor", allHonor);
 		request.setAttribute("allNotices", allNotices);
 		
 		request.getRequestDispatcher("/TacHome/Home.jsp").forward(request, response);

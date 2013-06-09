@@ -5,7 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
- <jsp:useBean class="DataSource.Projects.Projects" id="project" scope="request">
+ <jsp:useBean class="DataSource.Honor.Honor" id="project" scope="request">
  	</jsp:useBean>
 <html>
   <head>
@@ -42,26 +42,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		<div style="background-color:white">
    			<p>
    			<%-- 	<img src="<%=project.getAppString()%>"> --%>
-   				<img  src=<%=project.getImage().get(0)%> align="left">
+   				<img  src=<%=project.getCover_add()%> align="left">
 				<p style="position:relative; left:100;"><%=project.getTitle()%></p>
    				<br>
-   				<p>上架时间：<%=project.getTime()%></p>
-   				<p>开发团队：<%=project.getTeamMember() %></p>
+   				<p>上架时间：<%= project.getDate() %></p>
+   				<p>开发团队：<%= project.getDeveloper() %></p>
 			</p>		
    		</div>
+   		
    		<div class="ImageScroll" >
    			<div class="ImageViewContainer">
-   				<%for (int i=0; i<project.getImage().size(); i++)
+   				<%for (int i=0; i<project.getPicture().length; i++)
    				{%>
-   					<img class="ImageView" src="<%=project.getImage().get(i)%>">
+   					<img class="ImageView" src="<%=project.getPicture()[i]%>">
    			  <%}%>
    			</div>
    		</div>
-   		<img class="LastView" onclick="preView(<%=project.getImage().size() %>);" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/LastView.png">
-   		<img class="NextView" onclick="nextView(<%=project.getImage().size() %>)" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/NextView.png">
+   		<img class="LastView" onclick="preView(<%=project.getPicture().length %>);" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/LastView.png">
+   		<img class="NextView" onclick="nextView(<%=project.getPicture().length %>)" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/NextView.png">
+   		
    		<div style="background-color:white">
    			<p style="position:relative; left:100">简介</p>	
-   			<p style="position:relative; left:100"><%=project.getDescription() %></p>
+   			<p style="position:relative; left:100"><%=project.getContent() %></p>
    		</div>
    	</div>
    	

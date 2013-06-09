@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Projects.AllProjects;
+import DataSource.Honor.Honor;
+import DataSource.Honor.HonorHibernate;
 
 public class HonorPageServlet extends HttpServlet {
 
@@ -33,21 +34,24 @@ public class HonorPageServlet extends HttpServlet {
 		
 		//此处处理 id 的异常
 		int proId=-1;
-		try {
+		try 
+		{
 			proId=Integer.parseInt(id);
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 	
 			System.err.println("wrong address input!  go to errorPage");
 		}
-		AllProjects allProjects=AllProjects.sharedAllProjects();
 		
-		if (proId<0 || proId>=allProjects.getProject().size())
+		Honor project=HonorHibernate.sharedNoticesHibernate().find(proId);
+		if (project==null)
 		{
 			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
 		}
 		else 
 		{
-			request.setAttribute("project", allProjects.getProject().get(proId));
+			request.setAttribute("project",project);
 			request.getRequestDispatcher("/TacHonor/HonorPage.jsp").forward(request, response);
 		}
 		

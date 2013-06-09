@@ -5,7 +5,7 @@
 	<%@include file="HomeHonor.js" %>
 </script>
 
-<jsp:useBean class="DataSource.Projects.AllProjects" id="allProjects" scope="request">
+<jsp:useBean class="DataSource.Honor.AllHonor" id="allHonor" scope="request">
 </jsp:useBean>
 
 <style type="text/css">
@@ -26,15 +26,15 @@
 		<br>
 		<div style="overflow:hidden; white-space:nowrap; width:1000; background-color:green; left:100; position:relative;">
 			<div class="showTimeImage" style="position:relative">
-			  <%for (int i = 0; i < allProjects.getProject().size(); i++) 
+			  <%for (int i = 0; i < allHonor.getList().size(); i++) 
 				{%>
-					<img id="<%=i%>" name="<%=allProjects.getProject().get(i).getImage().size()%>" src="<%=allProjects.getProject().get(i).getImage().get(0)%>" onclick="linkToImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="position:relative; margin-left:100;">
+					<img id="<%=allHonor.getList().get(i).getHonor_id()%>" name="<%=allHonor.getList().get(i).getPicture().length%>" src="<%=allHonor.getList().get(i).getPicture()[0]%>" onclick="linkToImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="position:relative; margin-left:100;">
 			  <%}%>
 			</div>
 		</div>
 	</div>
-	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/LastPage.png" onclick="lastShowTime(this)"> 
-	<img id=<%=allProjects.getProject().size()%>	src="TacHome/Image/NextPage.png" onclick="nextShowTime(this)">
+	<img id=<%=allHonor.getList().size()%>	src="TacHome/Image/LastPage.png" onclick="lastShowTime(this)"> 
+	<img id=<%=allHonor.getList().size()%>	src="TacHome/Image/NextPage.png" onclick="nextShowTime(this)">
 </div>
 
 <div style="clear:both"> </div>

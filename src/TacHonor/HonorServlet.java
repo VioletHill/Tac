@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Projects.AllProjects;
+import DataSource.Honor.AllHonor;
+import DataSource.Honor.Honor;
+import DataSource.Honor.HonorHibernate;
 
 public class HonorServlet extends HttpServlet {
 
@@ -28,9 +30,22 @@ public class HonorServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AllProjects	allProjects=AllProjects.sharedAllProjects();
-	
-		request.setAttribute("allProjects", allProjects);
+		
+		final int pageNum=16;
+		AllHonor allHonor=new AllHonor();
+		// »ñÈ¡Ò³Êý
+		try 
+		{
+			allHonor.setPage(Integer.parseInt(request.getParameter("pageIndex")));
+		}
+		catch (Exception e) 
+		{
+			allHonor.setPage(1);
+		}
+		allHonor.setList(HonorHibernate.sharedNoticesHibernate().find_honor(pageNum, allHonor.getPage()));
+		allHonor.setAllPage((HonorHibernate.sharedNoticesHibernate().Honor_number()-1)/pageNum+1);
+		
+		request.setAttribute("allHonor",allHonor);
 		request.getRequestDispatcher("/TacHonor/Honor.jsp").forward(request, response);
 	}
 

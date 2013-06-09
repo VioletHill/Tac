@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Projects.AllProjects;
+import DataSource.Honor.Honor;
+import DataSource.Honor.HonorHibernate;
 
 public class GetProjectImage extends HttpServlet {
 
@@ -32,10 +33,12 @@ public class GetProjectImage extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		
-		AllProjects allProjects=AllProjects.sharedAllProjects();
 		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
 		int indexImage=Integer.parseInt(request.getParameter("indexImage"));
-		out.write(allProjects.getProject().get(indexProject).getImage().get(indexImage));
+		
+		Honor honor=HonorHibernate.sharedNoticesHibernate().find(indexProject);
+		
+		out.write(honor.getPicture()[indexImage]);
 		out.flush();
 	}
 
