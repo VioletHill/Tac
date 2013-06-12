@@ -53,6 +53,7 @@
   
   <body>
   	<%@include file="/Navigation/Navigation.jsp" %>
+  	
 	<div class="ImageContain">
 	 	<%for (int i=0; i<allHonor.getList().size(); i++)
 	  	 {%>
@@ -72,6 +73,7 @@
 			</div>
 		<%}%> 
 	</div>
+	
 	<%@include file="/Navigation/Footer.jsp" %>
   </body>
   

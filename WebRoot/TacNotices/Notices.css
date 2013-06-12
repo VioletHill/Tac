@@ -1,0 +1,109 @@
+
+.helpTable
+{
+	position:float;
+	float:right;
+}
+
+#search
+{
+	width:450; 
+	height:50;
+	font-size:24;
+	text-align:center;
+	position:float;
+	float:right;
+}
+
+#noticeTime
+{
+	width:162; 
+	height:51;
+	background-image:url(Image/SelectButton.png);
+	font-size:23;
+}
+
+#catalog
+{
+	display:none; 
+	position:absolute; 
+	background-image:url(Image/SearchSelectPanel.png); 
+	z-index:999; 
+	width:163; 
+	height:205
+}
+
+#todayTime
+{
+	width:165; 
+	height:51; 
+	font-size:18.5;
+}
+
+#weekTime
+{
+	width:161; 
+	height:51; 
+	font-size:18.5;
+}
+
+#monthTime
+{
+	width:161;
+	height:52;
+	font-size:18.5
+}
+
+#allTime
+{
+	width:163; 
+	height:51; 
+	font-size:18.5;
+}
+
+.searchTime
+{
+	background-image:url(Image/SearchButton.png); 
+	width:160; 
+	height:50;
+}
+
+
+.content
+{
+	width:1163; 
+	height:1051; 
+	margin-left:auto; 
+	margin-right:auto; 
+	//background-image:url(Image/ForeBG.png);
+	background-color:white;
+}
+
+.noticeLogo
+{
+	position:relative; 
+	top:4; 
+	width:158; 
+	height:29;
+}
+
+#time
+{
+	font-size:24;
+	opacity:0.2;
+}
+
+.noticesTitle
+{
+	position:relative;
+	text-align:left;
+	left:120;
+	border-bottom:1px dashed #ccc;
+}
+.pageNum
+{
+	float:right; 
+	position:relative; 
+	top:-70; 
+	left:-100;
+}

@@ -13,7 +13,7 @@
               <td><a class="nav" href="Home"><div><p>首页</p></div></a></td>
               <td><a class="nav" href="Document"><div><p>资料室</p></div></a></td>
               <td><a class="nav" href=""><div><p>留言墙</p></div></a></td>
-              <td><a class="nav" href=""><div><p>聚创意</p></div></a></td>
+              <td><a class="nav" href="Team"><div><p>求包养</p></div></a></td>
             </tr>
         </table>
         </div>

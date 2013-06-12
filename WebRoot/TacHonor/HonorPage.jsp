@@ -41,7 +41,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<div class="MainDiv">
    		<div style="background-color:white">
    			<p>
-   			<%-- 	<img src="<%=project.getAppString()%>"> --%>
    				<img  src=<%=project.getCover_add()%> align="left">
 				<p style="position:relative; left:100;"><%=project.getTitle()%></p>
    				<br>

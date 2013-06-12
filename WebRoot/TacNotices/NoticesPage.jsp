@@ -20,28 +20,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<style>
+		body 
+		{
+			background-image: url("image/mainBG.png");
+			padding: 0px;
+			margin: 0px;
+		}
+	</style>
   </head>
-  
+
   <jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">
   </jsp:useBean>
   
   <body>
-    <div style="top:0; width:1200;  margin-right: auto; margin-left: auto;">
-    	<%@include file="/Navigation/Navigation.jsp" %>
-	 	
+  
+    <%@include file="/Navigation/Navigation.jsp" %>
+    <div style="top:0; width:1163;  margin-right: auto; margin-left: auto; background-color:white">	
 	 	<br>
 	 	<br>
 	 	<div>
 	 		<div id="title" style="text-align:center; word-break:break-all; margin-left:100; margin-right:100">
 	 			<%=notice.getNotice_title()%>
 			</div>
+			
 			<div id="data" style="text-align:right;  margin-left:100; margin-right:100">
 				<%=notice.getData()%>
 			</div>
+			
 			<br>
 			<br>
 		
-			<div id="content" style="word-break:break-all; background-color:red">
+			<div id="content" style="word-break:break-all;">
 				<div style="margin-left:100; margin-right:100">
 					<%=notice.getNotice_html()%>
 				</div>
@@ -49,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	</div>
 	 	
 	 	<br>
-	  	<%@include file="/Navigation/Footer.jsp" %>
     </div>
+    <%@include file="/Navigation/Footer.jsp" %>
   </body>
 </html>

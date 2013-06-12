@@ -1,0 +1,57 @@
+var isPeopleAnimate=false;
+var isTypeAnimate=false;
+
+function showPeopleItem()
+{
+   	if (isPeopleAnimate) return ;
+   	isPeopleAnimate=true;
+   	$("#cataPeopleLog").slideDown("medium");
+}
+   	
+function showTypeItem()
+{
+	if (isTypeAnimate) return ;
+   	isTypeAnimate=true;
+   	$("#cataTypeLog").slideDown("medium");
+}
+
+function clearTypeItem()
+{
+	$("#cataTypeLog").slideUp("slow",function (){isTypeAnimate=false;});
+}
+
+function clearPeopleItem()
+{
+	$("#cataPeopleLog").slideUp("slow",function (){isPeopleAnimate=false;});
+}
+
+
+function changePeopleState()
+{
+ 	 if (isPeopleAnimate) clearPeopleItem();
+ 	else showPeopleItem();   		
+}
+
+function changeTypeState()
+{
+	 if (isTypeAnimate) clearTypeItem();
+	 else showTypeItem();  
+}
+
+function getAbsoluteX(e)
+{
+   	return e.getBoundingClientRect().left+document.body.scrollLeft;
+}
+   		
+function getAbsoluteY(e)
+{
+ 	return e.getBoundingClientRect().top+document.body.scrollTop;
+}
+
+function init()
+{
+   	$("#cataPeopleDiv").mouseleave(function(){clearPeopleItem();});
+   	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
+}
+   		
+   		
