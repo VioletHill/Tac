@@ -38,7 +38,8 @@
 		<column name="Permission" property="permission"></column>
 		<column name="Header_add" property="header_add"></column>
 	</table>
-	<table name="Honor" catalog="TacWebsite" class="DataSource.Honor.Honor">
+	<table name="Honor" catalog="TacWebsite"
+		class="DataSource.Honor.Honor">
 		<primary-key>
 			<key-column name="Honor_id" property="honor_id" />
 		</primary-key>
@@ -48,5 +49,19 @@
 		<column name="Picture_add" property="picture_add"></column>
 		<column name="Developer" property="developer"></column>
 		<column name="Date" property="date"></column>
+	</table>
+	<table name="Team" catalog="TacWebsite"
+		class="Datasource.Team.Team">
+		<primary-key>
+			<key-column name="id" property="id" />
+		</primary-key>
+		<column name="title" property="title"></column>
+		<column name="content" property="content"></column>
+		<column name="type" property="type"></column>
+		<column name="interestedcount" property="interestedCount"></column>
+		<column name="publisher_account" property="publisher_account"></column>
+		<column name="year" property="year"></column>
+		<column name="month" property="month"></column>
+		<column name="day" property="day"></column>
 	</table>
 </hibernate-reverse-engineering>

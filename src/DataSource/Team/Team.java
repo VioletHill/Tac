@@ -3,6 +3,7 @@ package DataSource.Team;
 import java.util.Vector;
 
 import DataSource.User.User;
+import DataSource.User.UserHibernate;
 
 
 public class Team 
@@ -12,13 +13,27 @@ public class Team
 	String content;
 	int type;	
 	int interestedCount;
-	boolean isInterested;
 	Vector<User> joinUsers;
 	Vector<User> waitUsers;
-	User publishUser;
+	User publishUser=null;
+	String  publisher_account;
 	int month;
 	int day;
 	int year;
+	public User getPublishUser() {
+		if (publishUser==null)
+		{
+			publishUser=UserHibernate.sharedUserHibernate().find_by_account(publisher_account);
+		}
+		return publishUser;
+	}
+	public void setPublishUser(User publishUser) 
+	{
+		publisher_account=publishUser.getAccount();
+		this.publishUser = publishUser;
+	}
+
+
 	
 	public int getMonth() {
 		return month;
@@ -73,20 +88,38 @@ public class Team
 	public void setInterestedCount(int interestedCount) {
 		this.interestedCount = interestedCount;
 	}
-	public boolean isInterested() {
-		return isInterested;
-	}
-	public void setInterested(boolean isInterested) {
-		this.isInterested = isInterested;
+
+	public int getId() {
+		return id;
 	}
 
-	public User getPublishUser() {
-		return publishUser;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setPublishUser(User publishUser) {
-		this.publishUser = publishUser;
+	public Vector<User> getJoinUsers() {
+		return joinUsers;
 	}
+
+	public void setJoinUsers(Vector<User> joinUsers) {
+		this.joinUsers = joinUsers;
+	}
+
+	public Vector<User> getWaitUsers() {
+		return waitUsers;
+	}
+
+	public void setWaitUsers(Vector<User> waitUsers) {
+		this.waitUsers = waitUsers;
+	}
+	public String getPublisher_account() {
+		return publisher_account;
+	}
+	public void setPublisher_account(String publisher_account) {
+		this.publisher_account = publisher_account;
+	}
+
+
 
 
 }
