@@ -17,7 +17,20 @@ public class AllTeam
 		newTeam.setTitle("aa");
 		newTeam.setContent("asf");
 		newTeam.setType(1);
+		newTeam.setDay(5);
+		newTeam.setMonth(4);
 		allTeams.add(newTeam);
+
+		allTeams.add(newTeam);
+		
+		Team newTeam2=new Team();
+		newTeam2.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account("a"));
+		newTeam2.setTitle("aa");
+		newTeam2.setContent("asf");
+		newTeam2.setType(1);
+		newTeam2.setDay(5);
+		newTeam2.setMonth(3);
+		allTeams.add(newTeam2);
 	}
 	public Vector<Team> getAllTeams() {
 		return allTeams;

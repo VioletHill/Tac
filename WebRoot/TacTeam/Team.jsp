@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%@include file="/Navigation/Navigation.jsp" %>
     
   	<div class="mainDiv">
-  		<!-- navigation -->
+  		<!--help navigation -->
   		<div>
   			<form action="Team" method="post" id="form">
   				<table class="helpTable">
@@ -80,20 +80,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		<div style="clear:both"> </div>
   		<br>
-  		<div>
+  		<div style="background-color:white">
+  		<div id="contentDiv" style="width:1100; background-color:pink;">
   			<%
   			for (int i=0; i<allTeam.getAllTeams().size(); i++)
   			{%>
   				<div>
-  					<img src="<%= allTeam.getAllTeams().get(i).getPublishUser().getHeader_add()%>">
-  					<div style="widht:50; height:100; background-color:red">
-  						<span><%=allTeam.getAllTeams().get(i).getPublishUser().getUser_id()%></span>
-  						<span>发布于 <%=allTeam.getAllTeams().get(i).getType()%></span>
-  						<span><%=allTeam.getAllTeams().get(i).getTitle()%></span>
-  					</div>
-  				</div>		
+  					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %> style="position:relative; top:41;" 
+  					onload="addDate(<%=allTeam.getAllTeams().get(i).getMonth()%>,<%=allTeam.getAllTeams().get(i).getDay()%>,this)">
+  				</div>
+  				<div style="position:relative; left:100; top:-41;">
+					<table frame="box" style="background-color:white;">
+  						<tr>
+  							<td>
+  								<!-- 标题 -->
+  								<table>
+  									<tr>
+  										<td><%=allTeam.getAllTeams().get(i).getPublishUser().getUser_id()%></td>
+  										<td>发布于 <%=allTeam.getAllTeams().get(i).getType()%></td>
+  										<td><%=allTeam.getAllTeams().get(i).getTitle()%></td>
+  										<td><div style="width:20; overflow:hidden">asdfdafasdfsdfasdfsadfsadfksdalfjksadf;kadsf</div></td>
+  										<td>dd</td>
+  									</tr>
+  								</table>	
+  								<td><span style="float:right;">afdsf</span></td>
+  							</td>
+							<tr>
+								<td>
+									<div style="width:500; position:relative; word-break:break-all">
+  										<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
+  									</div>
+								</td>
+							</tr>
+  						</tr>
+						<tr>
+							<td></td>
+							<td style="float:right">
+								<img src="ds">
+								<span>
+									d
+								</span>
+							<td>
+						</tr>	
+						<tr>
+							<td style="position:relative; ">
+								<div style="overflow:hidden; width:500; text-align:left;">
+									<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
+								</div>
+							</td>
+						</tr>
+  					</table>
+  					saf
+  				</div>
   		   <%}%> 
   		</div>
+  	</div>
   	</div>
   	<%@include file="/Navigation/Footer.jsp" %>
   </body>

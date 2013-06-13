@@ -7,14 +7,43 @@ import DataSource.User.User;
 
 public class Team 
 {
+	int id;
 	String title;
 	String content;
 	int type;	
 	int interestedCount;
 	boolean isInterested;
-	Vector<User> joinTeam;
+	Vector<User> joinUsers;
+	Vector<User> waitUsers;
 	User publishUser;
+	int month;
+	int day;
+	int year;
 	
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
 	public Team()
 	{
 		
@@ -50,9 +79,7 @@ public class Team
 	public void setInterested(boolean isInterested) {
 		this.isInterested = isInterested;
 	}
-	public Vector<User> getJoinTeam() {
-		return joinTeam;
-	}
+
 	public User getPublishUser() {
 		return publishUser;
 	}
@@ -61,8 +88,5 @@ public class Team
 		this.publishUser = publishUser;
 	}
 
-	public void setJoinTeam(Vector<User> joinTeam) {
-		this.joinTeam = joinTeam;
-	}
-	
+
 }

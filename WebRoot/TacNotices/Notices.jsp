@@ -91,7 +91,7 @@
 					for (int i = 0; i < allNotices.getAllNotices().size(); i++) 
 					{%>
 						<tr style="height:50; width:1100; height:72">
-							<td class="noticesTitle">
+							<td class="noticesTitle" >
 								<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" title="<%=allNotices.getAllNotices().get(i).getNotice_title()%>" style="font-size:14"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>	
 								<span style="color:red; font-size:14"><%=allNotices.getAllNotices().get(i).getData()%></span>	
 							</td>
