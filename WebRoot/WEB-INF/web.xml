@@ -19,8 +19,8 @@
 	<servlet>
 		<description>This is the description of my J2EE component</description>
 		<display-name>This is the display name of my J2EE component</display-name>
-		<servlet-name>ProjectPageServlet</servlet-name>
-		<servlet-class>TacHonor.ProjectPageServlet</servlet-class>
+		<servlet-name>HonorPageServlet</servlet-name>
+		<servlet-class>TacHonor.HonorPageServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<description>This is the description of my J2EE component</description>
@@ -88,6 +88,13 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>TacHome.Login</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>TeamServlet</servlet-name>
+    <servlet-class>TacTeam.TeamServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -104,7 +111,7 @@
 		<url-pattern>/Honor</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>ProjectPageServlet</servlet-name>
+		<servlet-name>HonorPageServlet</servlet-name>
 		<url-pattern>/Honor/Project</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -151,6 +158,10 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TeamServlet</servlet-name>
+    <url-pattern>/Team</url-pattern>
   </servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

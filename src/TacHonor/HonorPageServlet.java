@@ -1,7 +1,6 @@
 package TacHonor;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import DataSource.Honor.Honor;
 import DataSource.Honor.HonorHibernate;
 
-public class GetProjectImage extends HttpServlet {
+public class HonorPageServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -29,17 +28,33 @@ public class GetProjectImage extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+			throws ServletException, IOException 
+	{
+		String id=request.getParameter("id");
 		
-		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
-		int indexImage=Integer.parseInt(request.getParameter("indexImage"));
+		//此处处理 id 的异常
+		int proId=-1;
+		try 
+		{
+			proId=Integer.parseInt(id);
+		} 
+		catch (Exception e) 
+		{
+	
+			System.err.println("wrong address input!  go to errorPage");
+		}
 		
-		Honor honor=HonorHibernate.sharedNoticesHibernate().find(indexProject);
+		Honor project=HonorHibernate.sharedNoticesHibernate().find(proId);
+		if (project==null)
+		{
+			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
+		}
+		else 
+		{
+			request.setAttribute("project",project);
+			request.getRequestDispatcher("/TacHonor/HonorPage.jsp").forward(request, response);
+		}
 		
-		out.write(honor.getPicture()[indexImage]);
-		out.flush();
 	}
 
 	/**
@@ -54,7 +69,6 @@ public class GetProjectImage extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 

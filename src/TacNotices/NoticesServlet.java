@@ -155,6 +155,7 @@ public class NoticesServlet extends HttpServlet {
 		{
 			if (search == "") 
 			{
+				System.out.println(noticesHibernate.find_number_All());
 				allNotices.setAllPage((noticesHibernate.find_number_All() - 1)/ pageNum + 1);
 				allNotices.setList(noticesHibernate.find_All(allNotices.getPageIndex(), pageNum));
 				allNotices.setSearch("ËÑË÷ÐÅÏ¢");

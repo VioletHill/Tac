@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Document.DocumentData;
-import DataSource.Projects.AllProjects;
 
 public class DocumentServlet extends HttpServlet {
 

@@ -158,3 +158,9 @@
 		 else	return true ;
 	 }
 	 
+	 function initRegister()
+	 {
+			isAccountOk=false;
+			isPasswordOk=false;
+			isEmailOk=false;
+	 }

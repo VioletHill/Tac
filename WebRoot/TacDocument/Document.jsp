@@ -38,7 +38,6 @@
 
 	<div style="top:0; width:1200;  margin-right: auto; margin-left: auto;">
 		<%@include file="/Navigation/Navigation.jsp"%>
-
 		<div id="searchDiv">
 			<form action="" method="get">
 				<table>

@@ -42,30 +42,20 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
-	{	
-		String account;
-		String password;
-		String email;
-		String phone="";
-		String isRegister;
-		
+	{			
 		try
 		{
-			
 			RequestContext requestContext = new ServletRequestContext(request);
 			if(ServletFileUpload.isMultipartContent(requestContext))
 			{
 				User user=new User();
 
 				DiskFileItemFactory factory = new DiskFileItemFactory();
-				factory.setSizeThreshold(4 * 1024);
-				//设置文件的缓存路径
-				String webRootPath=request.getContextPath();
-	
-				String path=webRootPath+"/Test";
-				System.out.print(path);
-				factory.setRepository(new File(path));
 				ServletFileUpload upload = new ServletFileUpload(factory);
+				
+		//		factory.setSizeThreshold(4 * 1024);
+				//设置文件的缓存路径
+//				String webRootPath=request.getContextPath();
 				//设置上传文件大小的上限，-1表示无上限 
 				upload.setSizeMax(10*1024*1024);
 				
@@ -91,7 +81,6 @@ public class RegisterServlet extends HttpServlet {
 				while(it.hasNext())
 				{
 				    FileItem fileItem = it.next();
-				    System.out.println(fileItem.getFieldName());
 				    //如果是普通字段
 				    if(fileItem.isFormField())
 				    {   
@@ -115,16 +104,30 @@ public class RegisterServlet extends HttpServlet {
 				    }
 				    else
 				    {
-				        System.out.println("else"+fileItem.getFieldName() + "   " +
-				           fileItem.getName() + "   " +
-				           fileItem.isInMemory() + "    " +
-				           fileItem.getContentType() + "   " +
-				           fileItem.getSize());
 				        //保存文件，其实就是把缓存里的数据写到目标路径下
 				        if(fileItem.getName()!=null && fileItem.getSize()!=0)
 				        {
-				        	File fullFile = new File(fileItem.getName());
-				        	File newFile = new File("/" + fullFile.getName());
+				        	String dir=new String(request.getSession().getServletContext().getRealPath("/")+"/User/"+user.getAccount());
+				        	File userFile=new File(dir);
+				        			        	
+				        	try 
+				        	{
+				        		userFile.mkdirs();
+							}
+				        	catch (Exception e) 
+				        	{
+								// TODO: handle exception
+							}
+				        
+				        	String fileName=fileItem.getName();
+				        	fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+				        	File newFile = new File(dir+"/"+"head."+fileName);
+				        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
+				        	System.out.println(user.getHeader_add());
+				        	if (newFile.exists())	newFile.delete();
+				        	
+				        	newFile.createNewFile();
+				        	
 				        	try 
 				        	{
 				        		fileItem.write(newFile);
@@ -140,11 +143,13 @@ public class RegisterServlet extends HttpServlet {
 				       }
 				     }
 				}
+				UserHibernate.sharedUserHibernate().insert(user);
+				request.getRequestDispatcher("/TacRegister/RegisterSuccess.jsp").forward(request, response);
 			}
 			else	//ajax 询问时候可以注册 
 			{
 				response.setContentType("text/html; charset=gbk");
-				account=request.getParameter("account");
+				String account=request.getParameter("account");
 				//检测账号时候被注册
 				PrintWriter out = response.getWriter();
 				if (UserHibernate.sharedUserHibernate().judge(account)) out.write("true");

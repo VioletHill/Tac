@@ -45,13 +45,13 @@ var search;
    		
 	function focusSearch(element)
 	{
-		element.style.opacity=1;
+		//element.style.opacity=1;
 		if (element.value=="搜索信息") element.value="";
 	}
    		
 	function blurSearch(element)
 	{
-		element.style.opacity=0.2;
+		//element.style.opacity=0.2;
 		if (element.value=="") element.value="搜索信息";
 	}
    		
@@ -112,7 +112,7 @@ var search;
    		$("#catalog").slideUp("slow",function (){isAnimate=false;});
    	}
    	   	
-   	function showItem(obj)
+   	function showItem()
    	{
    		if (isAnimate) return ;
    		isAnimate=true;

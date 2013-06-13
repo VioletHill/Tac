@@ -20,7 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="TacRegister/Register.css">
 	
 	<style>
-		body {
+		body 
+		{
 			background-image: url("image/mainBG.png");
 			padding: 0px;
 			margin: 0px;
@@ -32,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
   </head>
   
-  <body>
+  <body onload="initRegister()">
  	 <div style="top:0; width:1200;  margin-right: auto; margin-left: auto;">
  	 
    		<%@include file="/Navigation/Navigation.jsp" %>

@@ -38,4 +38,15 @@
 		<column name="Permission" property="permission"></column>
 		<column name="Header_add" property="header_add"></column>
 	</table>
+	<table name="Honor" catalog="TacWebsite" class="DataSource.Honor.Honor">
+		<primary-key>
+			<key-column name="Honor_id" property="honor_id" />
+		</primary-key>
+		<column name="Title" property="title"></column>
+		<column name="Cover_add" property="cover_add"></column>
+		<column name="Content" property="content"></column>
+		<column name="Picture_add" property="picture_add"></column>
+		<column name="Developer" property="developer"></column>
+		<column name="Date" property="date"></column>
+	</table>
 </hibernate-reverse-engineering>

@@ -1,0 +1,55 @@
+.MainDiv
+{
+	width:1163;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.helpTable
+{
+	position:float;
+	float:right;
+}
+
+#cataTypeLog
+{
+	display:none; 
+	position:absolute; 
+	background-image:url(Image/PeopleSelectPanel.png); 
+	z-index:999; 
+	width:163; 
+	height:205
+}
+
+#teamType
+{
+	width:162; 
+	height:51;
+	background-image:url(Image/SelectButton.png);
+	font-size:23;
+}
+
+#cataPeopleLog
+{
+	display:none; 
+	position:absolute; 
+	background-image:url(Image/PeopleSelectPanel.png); 
+	z-index:999; 
+	width:163; 
+	height:205
+}
+
+#teamPeople
+{
+	width:162; 
+	height:51;
+	background-image:url(Image/SelectButton.png);
+	font-size:23;
+}
+
+#publishButton
+{
+	background-image:url(Image/PublishButton.png); 
+	width:160; 
+	height:50;
+}

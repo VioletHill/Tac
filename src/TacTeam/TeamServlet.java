@@ -1,20 +1,31 @@
-package TacHonor;
+package TacTeam;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DataSource.Projects.AllProjects;
+import DataSource.Team.AllTeam;
 
-public class ProjectPageServlet extends HttpServlet {
+public class TeamServlet extends HttpServlet {
 
 	/**
-	 * 
+	 * Constructor of the object.
 	 */
-	private static final long serialVersionUID = 1L;
+	public TeamServlet() {
+		super();
+	}
+
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -27,30 +38,11 @@ public class ProjectPageServlet extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
-		String id=request.getParameter("id");
+			throws ServletException, IOException {
 		
-		//此处处理 id 的异常
-		int proId=-1;
-		try {
-			proId=Integer.parseInt(id);
-		} catch (Exception e) {
-	
-			System.err.println("wrong address input!  go to errorPage");
-		}
-		AllProjects allProjects=AllProjects.sharedAllProjects();
-		
-		if (proId<0 || proId>=allProjects.getProject().size())
-		{
-			request.getRequestDispatcher("/ErrorPage/ErrorPage.html").forward(request, response);
-		}
-		else 
-		{
-			request.setAttribute("project", allProjects.getProject().get(proId));
-			request.getRequestDispatcher("/TacHonor/ProjectPage.jsp").forward(request, response);
-		}
-		
+		AllTeam allTeam=new AllTeam();
+		request.setAttribute("allTeam", allTeam);
+		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
 	}
 
 	/**
@@ -65,7 +57,17 @@ public class ProjectPageServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doGet(request, response);
+	}
+
+	/**
+	 * Initialization of the servlet. <br>
+	 *
+	 * @throws ServletException if an error occurs
+	 */
+	public void init() throws ServletException {
+		// Put your code here
 	}
 
 }
