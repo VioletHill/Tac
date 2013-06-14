@@ -55,7 +55,7 @@ td {
 
 .container {
 	position: relative;
-	top: 165;
+	top: 60;
 	left: 45px;
 	width: 614;
 	height: 384px;
@@ -83,7 +83,7 @@ td {
 	width:242;
 	height:153;
 	left:830;
-	top:-50;
+	top:-150;
 }
 
 
@@ -146,7 +146,7 @@ td {
 	width:118;
 	height:41;
 	left:1060;
-	top:0;
+	top:-100;
 	background-image:url(../Image/loginBufferBox.png);
 }
 
@@ -175,7 +175,7 @@ td {
 	width:118;
 	height:41;
 	left:1060;
-	top:0;
+	top:-100;
 	background-image:url(../Image/loginBufferBox.png);
 	display:none;
 }
@@ -187,4 +187,14 @@ td {
 	background:url(../Image/loginBufferCancel.png);
 	margin:12 10 15 15;
 	border:0;
+}
+
+.headDiv
+{
+ 	border-radius: 19px;
+   -moz-border-radius: 19px;
+   -webkit-border-radius: 19px;
+   overflow:hidden;
+   width:38;
+   height:38;
 }

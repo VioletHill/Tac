@@ -2,6 +2,7 @@ package TacHome;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.channels.SeekableByteChannel;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -57,6 +58,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("account", account);
 				session.setAttribute("headAdd", user.getHeader_add());
 				session.setAttribute("isLog", true);
+				session.setAttribute("permission", user.getPermission());
 			}
 			else 
 			{

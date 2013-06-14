@@ -26,6 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<jsp:useBean class="DataSource.Notices.AllNotices" id="allNotices" scope="request">
    	</jsp:useBean>
    	
+
+	
 	<script>
 		function choosePage(index)
    		{
@@ -78,6 +80,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  	<%
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false") || session.getAttribute("permission").equals("0"))
+		{
+			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
+			return ;
+		} 
+	%>
    	 <div  style="top:0; width:1200;  margin-right: auto; margin-left: auto;"  >
 	 	<%@include file="/Navigation/Navigation.jsp" %>
 	 	

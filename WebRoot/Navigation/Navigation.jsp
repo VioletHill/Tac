@@ -16,7 +16,7 @@
                <%}
                else
                {%>
-               		<td><img src="<%=session.getAttribute("headAdd")%>"></td>
+               		<td><div class="headDiv"><img src="<%=session.getAttribute("headAdd")%>"></div></td>
                <%}%>
               	<td><a class="tacnav" href="Home"><div><p>Ê×Ò³</p></div></a></td>
               	<td><a class="tacnav" href="Document"><div><p>×ÊÁÏ¿â</p></div></a></td>
