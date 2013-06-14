@@ -19,7 +19,7 @@
 	<div>
 		<img src="TacHome/Image/ShowtimeHeader.png" >
 		<br>
-	</div>
+	</div>	
 
 	<div style="width:1200; height:300; background-color:yellow;">
 		<a class="NoticesItem" href="Honor" style="float:right;">查看全部</a>

@@ -7,7 +7,8 @@
 <div id="top">
       <div id="topBG">
         <div id="tacnav">
-          <table style="height:100; width:600; "> 
+          <table style="height:100; width:600;cellpadding="0" cellspacing="0"
+					border="0" "> 
             <tr>
             	<%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
             	{
