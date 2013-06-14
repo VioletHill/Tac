@@ -55,7 +55,7 @@ td {
 
 .container {
 	position: relative;
-	top: 60;
+	top: 170;
 	left: 45px;
 	width: 614;
 	height: 384px;
@@ -83,7 +83,7 @@ td {
 	width:242;
 	height:153;
 	left:830;
-	top:-150;
+	top:-50;
 }
 
 
@@ -146,7 +146,7 @@ td {
 	width:118;
 	height:41;
 	left:1060;
-	top:-100;
+	top:0;
 	background-image:url(../Image/loginBufferBox.png);
 }
 
@@ -175,7 +175,7 @@ td {
 	width:118;
 	height:41;
 	left:1060;
-	top:-100;
+	top:0;
 	background-image:url(../Image/loginBufferBox.png);
 	display:none;
 }

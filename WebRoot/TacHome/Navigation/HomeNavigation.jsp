@@ -9,7 +9,14 @@
   		 <div id="nav">
           <table> 
             <tr>
-              <td width="150px"> <div class="headDiv"><img src="images/document/_0009s_0001_ring.png"></div></td>
+              <%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
+            	{%>
+            	
+               <%}
+               else
+               {%>
+               		<td><div class="headDiv"><img src="<%=session.getAttribute("headAdd")%>"></div></td>
+               <%}%>
               <td><a class="nav" href="Home"><div><p>สืาณ</p></div></a></td>
               <td><a class="nav" href="Document"><div><p>ืสมฯสา</p></div></a></td>
               <td><a class="nav" href=""><div><p>ม๔ัิวฝ</p></div></a></td>

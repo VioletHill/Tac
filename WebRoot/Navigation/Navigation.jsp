@@ -11,8 +11,8 @@
 					border="0" "> 
             <tr>
             	<%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
-            	{
-            		System.out.println(session.getAttribute("isLog"));%>
+            	{%>
+            	
                <%}
                else
                {%>
