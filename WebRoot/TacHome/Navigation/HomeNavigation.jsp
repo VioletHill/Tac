@@ -6,14 +6,14 @@
 
 <!--  navigation -->
   	<div style="top:0;width:1200; height:607; vertical-align:bottom; background-image:url(TacHome/Image/NavigationBg.png); margin-right: auto; margin-left: auto;"  >
-  		 <div id="nav">
+  		 <div id="tacnav">
           <table> 
             <tr>
               <td width="150px"> <img src="images/document/_0009s_0001_ring.png"></td>
-              <td><a class="nav" href="Home"><div><p>首页</p></div></a></td>
-              <td><a class="nav" href="Document"><div><p>资料室</p></div></a></td>
-              <td><a class="nav" href=""><div><p>留言墙</p></div></a></td>
-              <td><a class="nav" href="Team"><div><p>求包养</p></div></a></td>
+              <td><a class="tacnav" href="Home"><div><p>首页</p></div></a></td>
+              <td><a class="tacnav" href="Document"><div><p>资料室</p></div></a></td>
+              <td><a class="tacnav" href=""><div><p>留言墙</p></div></a></td>
+              <td><a class="tacnav" href="Team"><div><p>求包养</p></div></a></td>
             </tr>
         </table>
         </div>

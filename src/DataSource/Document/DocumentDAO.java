@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 public class DocumentDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory
 			.getLogger(DocumentDAO.class);
+
 	// property constants
 	public static final String DOCUMENT_TITLE = "documentTitle";
 	public static final String DOCUMENT_CONTENT = "documentContent";
@@ -31,6 +32,7 @@ public class DocumentDAO extends BaseHibernateDAO {
 	public static final String DOCUMENT_DOWNLOAD_COUNT = "documentDownloadCount";
 	public static final String DOCUMENT_CATALOG = "documentCatalog";
 
+	//singleton
 	public static DocumentDAO documentDAO = null;
 
 	public void save(Document transientInstance) {
@@ -190,5 +192,129 @@ public class DocumentDAO extends BaseHibernateDAO {
 			documentDAO = new DocumentDAO();
 		}
 		return documentDAO;
+	}
+	
+	
+	/*
+	 * 以下为获得条目个数的函数
+	 */
+	public int getCountWithSearchKey(String key) {
+		log.debug("getting count of Document instance with search key: " + key);
+		try {
+			String query_string = "select count(*) from Document as d where d.documentTitle like '%"
+					+ key + "%'";
+			Query query = getSession().createQuery(query_string);
+//			List list = query.list();
+			return  ((Integer) query.iterate().next()).intValue();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	
+	public int getCountOfCatalog(String catalog) {
+		log.debug("getting count of Document instance of Catalog: " + catalog);
+		try {
+			String query_string = "select count(*) from Document as d where d.documentCatalog="
+					+ catalog;
+			Query query = getSession().createQuery(query_string);
+//			List list = query.list();
+			return  ((Integer) query.iterate().next()).intValue();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	
+	public int getCountOfCatalogWithSearch(String catalog, String searchKey) {
+		log.debug("getting count of Document instance of catalog with search key: " + catalog);
+		try {
+			String query_string = "select count(*) from Document as d where d.documentCatalog="
+					+ catalog + "and d.documentTitle like '%" + searchKey + "%'";
+			Query query = getSession().createQuery(query_string);
+//			List list = query.list();
+			return  ((Integer) query.iterate().next()).intValue();
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+	
+	/*
+	 * 以下为带条件的问询
+	 * 类别
+	 * 搜索关键词
+	 */
+	public List find(int page, int eachPage, String searchKey, String catalog) {
+		log.debug("finding all Document instances");
+		try {
+			if (page > 0) {
+				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp,documentCatalog) " +
+						"from Document as d where d.documentCatalog = '" + catalog +
+						"' and d.documentTitle like '%" +
+						searchKey + "%'" + "order by d.documentId desc "
+						;
+//				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp,documentCatalog) " +
+//						"from Document as d order by d.documentId desc " +
+//						"where d.documentCatalog=lib and d.documentTitle like '%测试%'";
+				Query query = getSession().createQuery(query_string);
+				int number = (page - 1) * eachPage;
+				query.setFirstResult(number);
+				query.setMaxResults(eachPage);
+				return query.list();
+			} else {
+				List list = null;
+				return list;
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findWithSearchKey(int page, int eachPage, String searchKey) {
+		log.debug("finding all Notice instances");
+		try {
+			if (page > 0) {
+				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp,documentCatalog) " +
+						"from Document as d where d.documentTitle like '%" +
+						searchKey + "%'" + " order by d.documentId desc "
+						;
+				Query query = getSession().createQuery(query_string);
+				int number = (page - 1) * eachPage;
+				query.setFirstResult(number);
+				query.setMaxResults(eachPage);
+				return query.list();
+			} else {
+				List list = null;
+				return list;
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
+	
+	public List findOfCatalog(int page, int eachPage, String catalog) {
+		log.debug("finding all Notice instances");
+		try {
+			if (page > 0) {
+				String query_string = "select new Document(documentId,documentTitle,documentContent,documentFile,documentDownloadCount,documentTimestamp,documentCatalog) " +
+						"from Document as d where d.documentCatalog = '" + catalog +
+						"' order by d.documentId desc "
+						;
+				Query query = getSession().createQuery(query_string);
+				int number = (page - 1) * eachPage;
+				query.setFirstResult(number);
+				query.setMaxResults(eachPage);
+				return query.list();
+			} else {
+				List list = null;
+				return list;
+			}
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
 	}
 }

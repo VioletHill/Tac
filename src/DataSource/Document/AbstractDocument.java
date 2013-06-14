@@ -10,7 +10,9 @@ import java.util.Date;
 public abstract class AbstractDocument implements java.io.Serializable {
 
 	// Fields
-
+	/*
+	 * 这些是 Document 表里包含的属性
+	 */
 	private Integer documentId;
 	private String documentTitle;
 	private String documentContent;
@@ -25,6 +27,11 @@ public abstract class AbstractDocument implements java.io.Serializable {
 	public AbstractDocument() {
 	}
 
+	/*
+	 * 取得一条资料记录的时候，至少要标题 其他的属性可以默认为缺省
+	 * 
+	 * 需要改进：应该还要文件
+	 */
 	/** self define minimal */
 	public AbstractDocument(String documentTitle) {
 		this.documentTitle = documentTitle;
@@ -32,6 +39,9 @@ public abstract class AbstractDocument implements java.io.Serializable {
 		this.documentTimestamp = new Date();
 	}
 
+	/*
+	 * 这个构造函数是自动生成的，根据是表的主键
+	 */
 	/** minimal constructor */
 	public AbstractDocument(String documentTitle,
 			Integer documentDownloadCount, Date documentTimestamp,
@@ -43,6 +53,22 @@ public abstract class AbstractDocument implements java.io.Serializable {
 	}
 
 	/** full constructor */
+	public AbstractDocument(Integer documentId, String documentTitle,
+			String documentContent, String documentFile,
+			Integer documentDownloadCount, Date documentTimestamp,
+			String documentCatalog) {
+		this.documentId = documentId;
+		this.documentTitle = documentTitle;
+		this.documentContent = documentContent;
+		this.documentFile = documentFile;
+		this.documentDownloadCount = documentDownloadCount;
+		this.documentTimestamp = documentTimestamp;
+		this.documentCatalog = documentCatalog;
+	}
+
+	/*
+	 * 实际上是不需要id的，id默认递增
+	 */
 	public AbstractDocument(String documentTitle, String documentContent,
 			String documentFile, Integer documentDownloadCount,
 			Date documentTimestamp, String documentCatalog) {
@@ -53,21 +79,9 @@ public abstract class AbstractDocument implements java.io.Serializable {
 		this.documentTimestamp = documentTimestamp;
 		this.documentCatalog = documentCatalog;
 	}
-	
-	public AbstractDocument(Integer documentId, String documentTitle, String documentContent,
-			String documentFile, Integer documentDownloadCount,
-			Date documentTimestamp, String documentCatalog) {
-		this.documentId = documentId;
-		this.documentTitle = documentTitle;
-		this.documentContent = documentContent;
-		this.documentFile = documentFile;
-		this.documentDownloadCount = documentDownloadCount;
-		this.documentTimestamp = documentTimestamp;
-		this.documentCatalog = documentCatalog;
-	}
 
 	// Property accessors
-
+	
 	public Integer getDocumentId() {
 		return this.documentId;
 	}

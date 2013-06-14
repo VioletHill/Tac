@@ -27,6 +27,13 @@ public class Document extends AbstractDocument implements java.io.Serializable {
 	}
 
 	/** full constructor */
+	public Document(Integer documentId, String documentTitle,
+			String documentContent, String documentFile,
+			Integer documentDownloadCount, Date documentTimestamp, String documentCatalog) {
+		super(documentId, documentTitle, documentContent, documentFile,
+				documentDownloadCount, documentTimestamp, documentCatalog);
+	}
+	
 	public Document(String documentTitle, String documentContent,
 			String documentFile, Integer documentDownloadCount,
 			Date documentTimestamp,String documentCatalog) {
@@ -34,10 +41,4 @@ public class Document extends AbstractDocument implements java.io.Serializable {
 				documentDownloadCount, documentTimestamp, documentCatalog);
 	}
 
-	public Document(Integer documentId, String documentTitle,
-			String documentContent, String documentFile,
-			Integer documentDownloadCount, Date documentTimestamp, String documentCatalog) {
-		super(documentId, documentTitle, documentContent, documentFile,
-				documentDownloadCount, documentTimestamp, documentCatalog);
-	}
 }

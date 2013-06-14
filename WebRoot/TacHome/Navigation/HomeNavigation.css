@@ -23,11 +23,11 @@
 	height: 100px;
 }
 
-#nav {
+#tacnav {
 	float: right;
 }
 
-a.nav {
+a.tacnav {
 	float: left;
 	width: 110;
 	height: 100;
@@ -36,12 +36,12 @@ a.nav {
 	text-decoration: none;
 }
 
-a.nav>div {
+a.tacnav>div {
 	margin-top: 40px;
 	width: 110px;
 }
 
-a.nav:hover {
+a.tacnav:hover {
 	float: left;
 	display: block;
 	background: url(../Image/LinkSelect.png);
@@ -55,7 +55,7 @@ td {
 
 .container {
 	position: relative;
-	top: 165;
+	top: 60;
 	left: 45px;
 	width: 614;
 	height: 384px;
