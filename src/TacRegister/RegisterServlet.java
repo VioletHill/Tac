@@ -123,7 +123,6 @@ public class RegisterServlet extends HttpServlet {
 				        	fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
 				        	File newFile = new File(dir+"/"+"head."+fileName);
 				        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
-				        	System.out.println(user.getHeader_add());
 				        	if (newFile.exists())	newFile.delete();
 				        	
 				        	newFile.createNewFile();

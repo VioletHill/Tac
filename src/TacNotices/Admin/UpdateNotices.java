@@ -29,15 +29,23 @@ public class UpdateNotices extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//AllNotices allNotices=AllNotices.sharedAllNotices();
-		
+
 		String title=new String(request.getParameter("title").getBytes("iso-8859-1"),"gbk");
 		String content=new String(request.getParameter("publish_content").getBytes("iso-8859-1"),"gbk");
-		
+		int id=0;
+		try 
+		{
+			id=Integer.parseInt(new String(request.getParameter("id").getBytes("iso-8859-1"),"gbk"));
+		} 
+		catch (Exception e) 
+		{
+			id=0;
+		}
 		Notice notice=new Notice();
 
 		notice.setNotice_html(content);
 		notice.setNotice_title(title);
+		notice.setNotice_id(id);
 		
 		NoticesHibernate.sharedNoticesHibernate().choose(notice);
 		//Ìø×ª»ØÖ÷Ò³

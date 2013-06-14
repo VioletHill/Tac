@@ -85,10 +85,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<%
   			for (int i=0; i<allTeam.getAllTeams().size(); i++)
   			{%>
-  				<div>
-  					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %> style="position:relative; top:41;" 
-  					onload="addDate(<%=allTeam.getAllTeams().get(i).getMonth()%>,<%=allTeam.getAllTeams().get(i).getDay()%>,this)">
+  				<!-- 头像 -->
+  				<div >
+  					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %> style="position:relative; top:41;">
   				</div>
+  	
+  				<!-- 内容 -->
   				<div style="position:relative; left:100; top:-41;">
 					<table frame="box" style="background-color:white;">
   						<tr>
@@ -103,15 +105,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   										<td>dd</td>
   									</tr>
   								</table>	
+  								<!-- end 标题 -->
   								<td><span style="float:right;">afdsf</span></td>
   							</td>
-							<tr>
-								<td>
-									<div style="width:500; position:relative; word-break:break-all">
-  										<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
-  									</div>
-								</td>
-							</tr>
+						<tr>
+							<td>
+								<div style="width:500; position:relative; word-break:break-all">
+  									<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
+  								</div>
+							</td>
   						</tr>
 						<tr>
 							<td></td>
@@ -132,6 +134,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					</table>
   					saf
   				</div>
+  				<!-- end 内容 -->
+  				
+  				<!-- 日期 -->
+  				<%if (i==0 || allTeam.getAllTeams().get(i-1).getMonth()!=allTeam.getAllTeams().get(i).getMonth() || allTeam.getAllTeams().get(i-1).getDay()!=allTeam.getAllTeams().get(i).getDay())
+  				{%>
+  				<div  style="background-color:red; width:40; height:40; position:relative; left:-50;">
+  					<div>
+  						<img src="ab">
+  					</div>
+  					<div>
+  						<img src="ab">
+  					</div>
+  				</div>
+  				<%}%>
   		   <%}%> 
   		</div>
   	</div>
