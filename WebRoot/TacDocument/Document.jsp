@@ -1,4 +1,3 @@
-
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 
@@ -43,7 +42,8 @@
 				<table>
 					<tr>
 						<td><input id="searchTF" type="text" name="search"
-							value="搜索资源" /></td>
+							value="搜索资源" />
+						</td>
 						<td><div id="searchSltDiv">
 								<input id="searchSlt" type="button" value="  分类">
 								<div id="catalogDiv">
@@ -52,45 +52,48 @@
 										<tr style="padding:0px;margin:0px;">
 											<td style="padding:0px;margin:0px;"><input
 												class="searchSltBt" value="  所有" style="text-align=left;"
-												type="button">
-											</td>
+												type="button"></td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" value="  文档"
 														style="text-align=left;" type="button">
-												</div></td>
+												</div>
+											</td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" value="  类库"
 														style="text-align=left;" type="button">
-												</div></td>
+												</div>
+											</td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" value="  源码"
 														style="text-align=left;" type="button">
-												</div></td>
+												</div>
+											</td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" value="  软件"
 														style="text-align=left;" type="button">
-												</div></td>
+												</div>
+											</td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" value="  设计"
 														style="text-align=left;" type="button">
-												</div></td>
+												</div>
+											</td>
 										</tr>
 
 									</table>
 								</div>
 							</div>
-						<td><input id="searchSb" type="submit" value="">
-						</td>
+						<td><input id="searchSb" type="submit" value=""></td>
 					</tr>
 				</table>
 			</form>
@@ -103,45 +106,53 @@
 						<td><div class="catalogLeft">
 								<img src="TacDocument/images/category_all.png" id="catalogo">
 								<input class="cateBt" type="button" value="所有" />
-							</div></td>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><div class="catalogLeft">
-								<img src="TacDocument/images/category_document.png" id="catalogo">
-								<input class="cateBt" type="button" value="文档" />
-							</div></td>
+								<img src="TacDocument/images/category_document.png"
+									id="catalogo"> <input class="cateBt" type="button"
+									value="文档" />
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><div class="catalogLeft">
 								<img src="TacDocument/images/category_lib.png" id="catalogo">
 								<input class="cateBt" type="button" value="类库" />
-							</div></td>
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><div class="catalogLeft">
-								<img src="TacDocument/images/category_sourceCode.png" id="catalogo">
-								<input class="cateBt" type="button" value="源码" />
-							</div></td>
+								<img src="TacDocument/images/category_sourceCode.png"
+									id="catalogo"> <input class="cateBt" type="button"
+									value="源码" />
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><div class="catalogLeft">
-								<img src="TacDocument/images/category_software.png" id="catalogo">
-								<input class="cateBt" type="button" value="软件" />
-							</div></td>
+								<img src="TacDocument/images/category_software.png"
+									id="catalogo"> <input class="cateBt" type="button"
+									value="软件" />
+							</div>
+						</td>
 					</tr>
 					<tr>
 						<td><div class="catalogLeft">
 								<img src="TacDocument/images/category_design.png" id="catalogo">
 								<input class="cateBt" type="button" value="设计" />
-							</div></td>
+							</div>
+						</td>
 					</tr>
 				</table>
 
 			</div>
 
-			<div id="contentDiv" >
-				<table cellpadding="0" cellspacing="0"
-					border="0">
+			<div id="contentDiv">
+				<table cellpadding="0" cellspacing="0" border="0">
 					<%
 						for (int i = 0; i < DocumentData.getDataList().size(); i++) {
 					%>
@@ -151,30 +162,32 @@
 								<table>
 									<tr>
 										<td><img id="photo_cate"
-											src="TacDocument/images/design.png" alt="design">
-										</td>
+											src="TacDocument/images/design.png" alt="design"></td>
 										<td>
 											<div>
 												<table width="600px">
 													<tr>
 														<td><p class="title">
 																<%=DocumentData.getTitle(i) + "-"+ DocumentData.getDate(i)%>
-															</p></td>
+															</p>
+														</td>
 													</tr>
 													<tr>
 														<td><p class="detail">
 																<%=DocumentData.getContent(i)%>
-															</p></td>
+															</p>
+														</td>
 													</tr>
 												</table>
-											</div></td>
+											</div>
+										</td>
 										<td><a class="download" href="w3schools.com"><img
 												src="TacDocument/images/active_down.png" width="30px"
-												alt="download"> </a></td>
+												alt="download"> </a>
+										</td>
 									</tr>
 								</table>
-							</div>
-						</td>
+							</div></td>
 					</tr>
 					<%
 						}

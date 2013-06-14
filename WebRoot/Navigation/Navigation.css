@@ -36,8 +36,8 @@ a.tacnav {
 }
 
 a.tacnav>div {
-	height: 30px;
-	width: 132px;
+	height: 32px;
+	//width: 132px;
 	align: center;
 }
 
