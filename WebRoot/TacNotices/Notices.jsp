@@ -37,8 +37,6 @@
 	<script type="text/javascript" src="TacNotices/Notices.js"></script>
 </head>
 
-
-
 <body onload="init()">
 
  	<%@include file="/Navigation/Navigation.jsp"%>

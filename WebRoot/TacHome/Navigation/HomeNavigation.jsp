@@ -9,11 +9,20 @@
   		 <div id="tacnav">
           <table> 
             <tr>
-              <td width="150px"> <img src="images/document/_0009s_0001_ring.png"></td>
-              <td><a class="tacnav" href="Home"><div><p>首页</p></div></a></td>
-              <td><a class="tacnav" href="Document"><div><p>资料室</p></div></a></td>
-              <td><a class="tacnav" href=""><div><p>留言墙</p></div></a></td>
-              <td><a class="tacnav" href="Team"><div><p>求包养</p></div></a></td>
+
+              <%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
+            	{%>
+            	
+               <%}
+               else
+               {%>
+               		<td style="position:relative; left:-100;"><div class="headDiv"><img src="<%=session.getAttribute("headAdd")%>"></div></td>
+               <%}%>
+              <td><a class="nav" href="Home"><div><p>首页</p></div></a></td>
+              <td><a class="nav" href="Document"><div><p>资料室</p></div></a></td>
+              <td><a class="nav" href=""><div><p>留言墙</p></div></a></td>
+              <td><a class="nav" href="Team"><div><p>求包养</p></div></a></td>
+
             </tr>
         </table>
         </div>

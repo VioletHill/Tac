@@ -51,8 +51,9 @@ function getAbsoluteY(e)
 
 var lastMonth=0;
 var lastDay=0;
-function addDate(month,day,headImg)
+function addDate()
 {
+	alert("a");
 	if (lastMonth!=month || lastDay!=day)
 	{
 		lastMonth=month;
@@ -61,7 +62,7 @@ function addDate(month,day,headImg)
 		newDiv.setAttribute("style","background-color:red; width:50; height:40;");
 		document.getElementById("contentDiv").appendChild(newDiv);
 		
-		var x=getAbsoluteX(headImg)-getAbsoluteX(newDiv)-20;
+		var x=getAbsoluteX(headImg)-getAbsoluteX(newDiv);
 		var y=getAbsoluteY(headImg)-getAbsoluteY(newDiv);
 	
 		newDiv.setAttribute("style","background-color:red; width:50; height:40; position:relative; left:"+x+"; top:"+y);

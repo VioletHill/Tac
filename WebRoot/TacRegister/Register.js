@@ -164,3 +164,17 @@
 			isPasswordOk=false;
 			isEmailOk=false;
 	 }
+	 
+	 function addHeader(obj)
+	 {
+		document.getElementById('headText').value=obj.value;
+		document.getElementById("headForm").submit();
+	 }
+	 
+	 function callback(a)
+	 {
+		 document.getElementById("headFile").value=a;
+		 document.getElementById('imgphoto').src=a;
+	 }
+	 
+	 

@@ -23,11 +23,11 @@
 	height: 100px;
 }
 
-#tacnav {
+#nav {
 	float: right;
 }
 
-a.tacnav {
+a.nav {
 	float: left;
 	width: 110;
 	height: 100;
@@ -55,7 +55,7 @@ td {
 
 .container {
 	position: relative;
-	top: 60;
+	top: 170;
 	left: 45px;
 	width: 614;
 	height: 384px;
@@ -187,4 +187,14 @@ td {
 	background:url(../Image/loginBufferCancel.png);
 	margin:12 10 15 15;
 	border:0;
+}
+
+.headDiv
+{
+ 	border-radius: 19px;
+   -moz-border-radius: 19px;
+   -webkit-border-radius: 19px;
+   overflow:hidden;
+   width:38;
+   height:38;
 }

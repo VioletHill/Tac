@@ -33,17 +33,12 @@ public class HomeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{
-		//String userName=request.getParameter("userName");
-		//String userPassword=request.getParameter("userPassword");
-	
 		AllHonor allHonor=new AllHonor();
 		allHonor.setList(HonorHibernate.sharedNoticesHibernate().find_honor(16, 1));
 		
 		AllNotices allNotices=new AllNotices();
 		allNotices.setList(NoticesHibernate.sharedNoticesHibernate().find_All(1, 4));
 		
-//		System.out.print("ddd");
-//		System.out.print(allNotices.getAllNotices().size());
 		request.setAttribute("allHonor", allHonor);
 		request.setAttribute("allNotices", allNotices);
 		

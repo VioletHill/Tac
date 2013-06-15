@@ -21,6 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
+	 <%
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false") || session.getAttribute("permission").equals("0"))
+		{
+			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
+			return ;
+		} 
+	%>
+	
 	<jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">
   	</jsp:useBean>
 	
@@ -77,33 +85,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        		windows.location.href="Home";
        		alert("已经取消新通知的发布");
        }
-       
-       function setContent()
-       {
+      function setContent()
+      {
        		<%
-       			if (notice.getNotice_html()==null)
-       			{
-       				notice.setNotice_html("");
-       			}
+       		if (notice.getNotice_html()==null)
+       		{
+       			notice.setNotice_html("");
+       		}
        		%>
-       		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML)
+       		var a='<%=notice.getNotice_html()%>';
+
+       		if (document.getElementById("chat_content").contentWindow.document.body.innerHTML!=null)
        		{
        			//alert("chrome / safari /fixfox");
-       			document.getElementById("chat_content").contentWindow.document.body.innerHTML='<%=notice.getNotice_html()%>';
+       			document.getElementById("chat_content").contentWindow.document.body.innerHTML=a;
        		}
-      		else if (document.getElementById("chat_content").document.documentElement.innerHTML)
+       		
+      		else if (document.getElementById("chat_content").document.documentElement.innerHTML!=null)
       		{
       			//alert("ie");
-      			document.getElementById("chat_content").document.documentElement.innerHTML='<%=notice.getNotice_html()%>';
+      			document.getElementById("chat_content").document.documentElement.innerHTML=a;
       		
       		}
       		else
       		{
       			alert("你的浏览器不支持");
       			return false;
-      		};
+      		}
        }
-  
+
      </script>
   </head>
   
@@ -146,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 			<input type="hidden" id="publish_content" value="" name="publish_content">
 	 			<div style="text-align:right">
 	 				<input type="submit" style="width:100; font-size:20;" value="提交">
-	 				<input type="button" onclick="cancel();" style="width:100;  font-size:20;" value="取消">
+	 				<input type="button" onclick="cancel()" style="width:100;  font-size:20;" value="取消">
 	 			</div>
 	 			<input type="hidden" name="id" value="<%=notice.getNotice_id()%>">
 	 		</form>

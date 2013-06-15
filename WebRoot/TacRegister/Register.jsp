@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'Rigister.jsp' starting page</title>
+    <title>欢迎加入Tac</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -60,15 +60,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<input class="RegisterItem RegisterPhone" type="text" name="phone" placeholder="请输入手机号码" maxlength="15"/><br>
     			
     			<input class="RegisterItem RegisterItemHeaderLabel" id="headText" type="text" readonly placeholder="上传一张头像"/>
-    			<input class="RegisterItem RegisterItemHeaderButton" type="button" onclick="document.getElementById('headFile').click()"/><br>	
+    			<input class="RegisterItem RegisterItemHeaderButton" type="button" onclick="document.getElementById('tempHeadFile').click()"/><br>	
    				
-   				<input type="file"  id="headFile" name="headerImg" onchange="document.getElementById('headText').value=this.value" style="display:none"/>
+   				<input type="text"  id="headFile" name="headerImg"  value="" style="display:none"/>
    				
+   				<div class=" RegisterHeaderBox">	
+   					<img id="imgphoto"  style="border-width:0px;" />
+   				</div>
    				<div id="RegisterButton">
    				<input class="RegisterItemSubmit"  type="button" onclick="canSubmit();">
    				</div>
    			</form>	
-   				
+   		
+   			<form id="headForm" method="post" action="TempHeader"  enctype="multipart/form-data" target="abc">
+   				<input type="file"  id="tempHeadFile" name="headerImg" onchange="addHeader(this)" style="display:none"/>
+   			</form>
+   			
+   			<iframe name="abc" id="abc" style="display:none"></iframe>
     	</div>
     	
     </div>

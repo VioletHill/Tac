@@ -81,15 +81,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<div style="clear:both"> </div>
   		<br>
   		<div style="background-color:white">
-  		<div id="contentDiv" style="width:1100; background-color:pink;">
+  		<br>
+  		<div id="contentDiv" style="width:830; position:relative; left:300;">
   			<%
-  			for (int i=0; i<allTeam.getAllTeams().size(); i++)
+  			for (int i=0; i<3; i++)
   			{%>
-  				<div>
-  					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %> style="position:relative; top:41;" 
-  					onload="addDate(<%=allTeam.getAllTeams().get(i).getMonth()%>,<%=allTeam.getAllTeams().get(i).getDay()%>,this)">
+				<div style="background-color:pink;" >
+  				<!-- 日期 -->
+  				<%if (i==0 || allTeam.getAllTeams().get(i-1).getMonth()!=allTeam.getAllTeams().get(i).getMonth() || allTeam.getAllTeams().get(i-1).getDay()!=allTeam.getAllTeams().get(i).getDay())
+  				{%>
+  				<div  style=" background-color:red; width:40; height:40; position:relative; left:-200; top:38;">
+  					<div>
+  						<img src="ab">
+  					</div>
+  					<div>
+  						<img src="ab">
+  					</div>
   				</div>
-  				<div style="position:relative; left:100; top:-41;">
+  				<%}%>
+  				
+  				<!-- 头像 -->
+  				<div class="headDiv" style="float:left; position:relative; left:-50;">
+  					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %>>
+  				</div>
+  	
+  				<!-- 内容 -->
+  				<div style="position:relative; left:30;">
 					<table frame="box" style="background-color:white;">
   						<tr>
   							<td>
@@ -103,15 +120,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   										<td>dd</td>
   									</tr>
   								</table>	
+  								<!-- end 标题 -->
   								<td><span style="float:right;">afdsf</span></td>
   							</td>
-							<tr>
-								<td>
-									<div style="width:500; position:relative; word-break:break-all">
-  										<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
-  									</div>
-								</td>
-							</tr>
+						<tr>
+							<td>
+								<div style="width:700; position:relative; word-break:break-all">
+  									<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
+  								</div>
+							</td>
   						</tr>
 						<tr>
 							<td></td>
@@ -132,6 +149,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					</table>
   					saf
   				</div>
+  				<!-- end 内容 -->
+  				</div>
+  				<br>
   		   <%}%> 
   		</div>
   	</div>

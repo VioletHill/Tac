@@ -1,7 +1,10 @@
 package TacRegister;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
@@ -101,13 +104,10 @@ public class RegisterServlet extends HttpServlet {
 				    	{
 				    		user.setPhone(fileItem.getString());
 				    	}
-				    }
-				    else
-				    {
-				        //保存文件，其实就是把缓存里的数据写到目标路径下
-				        if(fileItem.getName()!=null && fileItem.getSize()!=0)
-				        {
-				        	String dir=new String(request.getSession().getServletContext().getRealPath("/")+"/User/"+user.getAccount());
+				    	else if (fileItem.getFieldName().equals("headerImg"))
+				    	{
+				    		if (fileItem.getString().isEmpty()) continue;
+				    		String dir=new String(request.getSession().getServletContext().getRealPath("/")+"User/"+user.getAccount());
 				        	File userFile=new File(dir);
 				        			        	
 				        	try 
@@ -118,30 +118,19 @@ public class RegisterServlet extends HttpServlet {
 				        	{
 								// TODO: handle exception
 							}
-				        
-				        	String fileName=fileItem.getName();
+				        	
+				        	String fileName=fileItem.getString();
 				        	fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
-				        	File newFile = new File(dir+"/"+"head."+fileName);
+				        	File newFile = new File(dir+"/head."+fileName);
+				        	
 				        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
-				        	System.out.println(user.getHeader_add());
 				        	if (newFile.exists())	newFile.delete();
-				        	
 				        	newFile.createNewFile();
-				        	
-				        	try 
-				        	{
-				        		fileItem.write(newFile);
-				        	} 
-				        	catch (Exception e) 
-				        	{
-				        		e.printStackTrace();
-				        	}
-				       }
-				       else
-				       {
-				    	    System.out.println("文件没有选择 或 文件内容为空");
-				       }
-				     }
+
+				        	copyFile(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString(), dir+"/head."+fileName);
+				        	delFile(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());
+				    	}
+				    }
 				}
 				UserHibernate.sharedUserHibernate().insert(user);
 				request.getRequestDispatcher("/TacRegister/RegisterSuccess.jsp").forward(request, response);
@@ -186,4 +175,45 @@ public class RegisterServlet extends HttpServlet {
 	{
 		doGet(request, response);
 	}
+	
+	public static void copyFile(String oldPath, String newPath) {
+        try {
+            int bytesum = 0;
+            int byteread = 0;
+            File oldfile = new File(oldPath);
+            if (oldfile.exists()) { // 文件存在时
+                InputStream inStream = new FileInputStream(oldPath); // 读入原文件
+                FileOutputStream fs = new FileOutputStream(newPath);
+                byte[] buffer = new byte[1444];
+                while ((byteread = inStream.read(buffer)) != -1) {
+                    bytesum += byteread; // 字节数 文件大小
+                    fs.write(buffer, 0, byteread);
+                }
+                inStream.close();
+            }
+        } catch (Exception e) {
+            System.out.println("复制单个文件操作出错");
+            e.printStackTrace();
+
+        }
+
+    }
+	
+	  public static void delFile(String filePathAndName) 
+	  {
+	        try {
+	            String filePath = filePathAndName;
+	            filePath = filePath.toString();
+	            java.io.File myDelFile = new java.io.File(filePath);
+	            myDelFile.delete();
+
+	        } catch (Exception e) {
+	            System.out.println("删除文件操作出错");
+	            e.printStackTrace();
+
+	        }
+
+	    }
 }
+
+	
