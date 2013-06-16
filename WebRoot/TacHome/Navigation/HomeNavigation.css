@@ -36,12 +36,12 @@ a.nav {
 	text-decoration: none;
 }
 
-a.nav>div {
+a.tacnav>div {
 	margin-top: 40px;
 	width: 110px;
 }
 
-a.nav:hover {
+a.tacnav:hover {
 	float: left;
 	display: block;
 	background: url(../Image/LinkSelect.png);

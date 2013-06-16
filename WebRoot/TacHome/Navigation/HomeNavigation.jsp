@@ -6,9 +6,10 @@
 
 <!--  navigation -->
   	<div style="top:0;width:1200; height:607; vertical-align:bottom; background-image:url(TacHome/Image/NavigationBg.png); margin-right: auto; margin-left: auto;"  >
-  		 <div id="nav">
+  		 <div id="tacnav">
           <table> 
             <tr>
+
               <%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
             	{%>
             	
@@ -21,6 +22,7 @@
               <td><a class="nav" href="Document"><div><p>资料室</p></div></a></td>
               <td><a class="nav" href=""><div><p>留言墙</p></div></a></td>
               <td><a class="nav" href="Team"><div><p>求包养</p></div></a></td>
+
             </tr>
         </table>
         </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*"   pageEncoding="GB18030"%>
 
+<!-- include /Navigation/Navigation.jsp -->
 <style >
 	 <%@include file="/Navigation/Navigation.css" %>
 </style>
@@ -11,8 +12,9 @@
 					border="0" "> 
             <tr>
             	<%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
-            	{%>
-            	
+            	{
+            		/* System.out.println(session.getAttribute("isLog")); */
+            		%>
                <%}
                else
                {%>
@@ -28,3 +30,4 @@
       </div>
  </div>
  <div style="clear:both"></div>
+ <!-- end /Navigation/Navigation.jsp -->

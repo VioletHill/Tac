@@ -41,7 +41,6 @@ public class AllNotices
 		this.noticeTime = notieceTime;
 	}
 
-	
 	public int getAllPage() {
 		return allPage;
 	}

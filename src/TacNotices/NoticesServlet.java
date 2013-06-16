@@ -49,7 +49,7 @@ public class NoticesServlet extends HttpServlet {
 			{
 				isFirst = true;
 			}
-		} 
+		}
 		catch (Exception e) 
 		{
 			isFirst = false;
@@ -58,7 +58,7 @@ public class NoticesServlet extends HttpServlet {
 		if (isFirst) 
 		{
 			allNotices.setPageIndex(1);
-		} 
+		}
 		else 
 		{
 			// »ñÈ¡Ò³Êý
