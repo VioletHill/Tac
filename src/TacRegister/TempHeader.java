@@ -63,6 +63,11 @@ public class TempHeader extends HttpServlet {
 		catch (SizeLimitExceededException e) 
 		{
             System.out.println("size limit exception!");
+            response.setContentType("text/html; charset=gbk");
+			PrintWriter out = response.getWriter();	
+			out.println("<script>parent.fail()</script>");
+			out.flush();
+			return ;
         }
 		catch (FileUploadException e1) 
 		{	
@@ -71,59 +76,67 @@ public class TempHeader extends HttpServlet {
 		    return ;
 		}
 		
-		Iterator<FileItem> it = items.iterator();
-		while(it.hasNext())
-		{
-			File newFile=null;
-		    FileItem fileItem = it.next();
-		    if(!fileItem.isFormField())
-		    {   
+		try 
+		{	
+			Iterator<FileItem> it = items.iterator();
+			while(it.hasNext())
+			{
+				File newFile=null;
+				FileItem fileItem = it.next();
+				if(!fileItem.isFormField())
+				{   
 		    	 //保存文件，其实就是把缓存里的数据写到目标路径下
-		        if(fileItem.getName()!=null && fileItem.getSize()!=0)
-		        {
-		        	String dir=new String(request.getSession().getServletContext().getRealPath("/")+"/Temp/");
-		        	File userFile=new File(dir);
-		        			        	
-		        	try 
-		        	{
-		        		userFile.mkdirs();
-					}
-		        	catch (Exception e) 
-		        	{
-						// TODO: handle exception
-					}
+					if(fileItem.getName()!=null && fileItem.getSize()!=0)
+					{
+						String dir=new String(request.getSession().getServletContext().getRealPath("/")+"/Temp/");
+						File userFile=new File(dir);
+		        	
+						userFile.mkdirs();
 		        
-		        	String fileName=fileItem.getName();
-	        		fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+						String fileName=fileItem.getName();
+						fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
 	        		
-		        	for (int i=0; i>=0; i++)
-		        	{	
-		        		filePath="Temp/"+i+"."+fileName;
-			        	newFile = new File(dir+"/"+i+"."+fileName);
-			        	if (newFile.exists()) continue;
-			        	else break;
-		        	}
+						for (int i=0; i>=0; i++)
+						{	
+							filePath="Temp/"+i+"."+fileName;
+							newFile = new File(dir+"/"+i+"."+fileName);
+							if (newFile.exists()) continue;
+							else break;
+						}
+		        		
+						newFile.createNewFile();
 		        	
-		        	
-		        	newFile.createNewFile();
-		        	
-		        	try 
-		        	{
-		        		fileItem.write(newFile);
-		        	} 
-		        	catch (Exception e) 
-		        	{
-		        		e.printStackTrace();
-		        	}
-		       }
-		       response.setContentType("text/html; charset=gbk");
-				//检测账号时候被注册
-		       PrintWriter out = response.getWriter();
-		       out.println("<script>parent.callback("+"'"+filePath+"'"+")</script>");
-		       
-		       out.flush();
-		     }
-		    } 
+						try 
+						{
+							fileItem.write(newFile);
+						} 
+						catch (Exception e) 
+						{
+							e.printStackTrace();
+						}
+					}
+					if (ImageTool.getImgHeight(newFile)<38 || ImageTool.getImgWidth(newFile)<38)
+					{
+						response.setContentType("text/html; charset=gbk");
+						PrintWriter out = response.getWriter();	
+						out.println("<script>parent.fail()</script>");
+						out.flush();
+						return ;
+					}
+					response.setContentType("text/html; charset=gbk");
+					PrintWriter out = response.getWriter();	
+					out.println("<script>parent.callback("+"'"+filePath+"'"+")</script>");
+					out.flush();
+				}
+			}
+		}
+		catch (Exception e) 
+		{
+			response.setContentType("text/html; charset=gbk");
+			PrintWriter out = response.getWriter();	
+			out.println("<script>parent.fail()</script>");
+			out.flush();
+		}
 	}
 
 	/**

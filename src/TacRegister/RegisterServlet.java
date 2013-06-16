@@ -46,6 +46,8 @@ public class RegisterServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{			
+		int x = 0;
+		int y = 0;
 		try
 		{
 			RequestContext requestContext = new ServletRequestContext(request);
@@ -100,6 +102,28 @@ public class RegisterServlet extends HttpServlet {
 				    	{
 				    		user.setEmail(fileItem.getString());
 				    	}
+				    	else if (fileItem.getFieldName().equals("txt_top"))
+				    	{
+				    		try 
+				    		{
+				    			y=Integer.parseInt(fileItem.getString());
+							} 
+				    		catch (Exception e) 
+							{
+								y=0;
+							}
+				    	}
+				    	else if (fileItem.getFieldName().equals("txt_left"))
+				    	{
+				    		try 
+				    		{
+				    			x=Integer.parseInt(fileItem.getString());
+							} 
+				    		catch (Exception e) 
+							{
+								x=0;
+							}
+				    	}
 				    	else if (fileItem.getFieldName().equals("phone"))
 				    	{
 				    		user.setPhone(fileItem.getString());
@@ -125,9 +149,13 @@ public class RegisterServlet extends HttpServlet {
 				        	
 				        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
 				        	if (newFile.exists())	newFile.delete();
-				        	newFile.createNewFile();
-
-				        	copyFile(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString(), dir+"/head."+fileName);
+				        	
+				            ImageCut o  =   new  ImageCut( x, y , 38 , 38);  
+				            o.setSrcpath(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());    
+				            o.setSubpath( dir+"/head."+fileName );  
+				            o.setExtendName(fileName);
+				            o.cut() ;   
+				  
 				        	delFile(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());
 				    	}
 				    }

@@ -28,8 +28,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	</style>
 	
-	<script type="text/javascript" src="TacRegister/Register.js"></script>
 	<script src="jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="TacRegister/jquery1.2.6.pack.js"></script>
+	<script  type="text/javascript" src="TacRegister/ui.core.packed.js" ></script>
+	<script type="text/javascript" src="TacRegister/ui.draggable.packed.js"></script>
+	<script type="text/javascript" src="TacRegister/Register.js"></script>	
+	<script type="text/javascript" src="TacRegister/CutHeader.js"></script>
 	
   </head>
   
@@ -59,17 +63,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			
     			<input class="RegisterItem RegisterPhone" type="text" name="phone" placeholder="请输入手机号码" maxlength="15"/><br>
     			
-    			<input class="RegisterItem RegisterItemHeaderLabel" id="headText" type="text" readonly placeholder="上传一张头像"/>
-    			<input class="RegisterItem RegisterItemHeaderButton" type="button" onclick="document.getElementById('tempHeadFile').click()"/><br>	
-   				
+    			<input name="txt_top" type="hidden" value="0" id="txt_top" />
+                <input name="txt_left" type="hidden" value="0" id="txt_left" />
+    			
    				<input type="text"  id="headFile" name="headerImg"  value="" style="display:none"/>
+   				<input class="RegisterItem RegisterItemHeaderLabel" id="headText" type="text" readonly placeholder="上传一张头像"/>
+    			<input class="RegisterItem RegisterItemHeaderButton" type="button" onclick="document.getElementById('tempHeadFile').click()"/><br>
+   				<!-- 头像 -->
    				
-   				<div class=" RegisterHeaderBox">	
-   					<img id="imgphoto"  style="border-width:0px;" />
-   				</div>
+   				
+   				<div id="ImageDragContainer">                               
+                    <img id="ImageDrag" class="imagePhoto" src="" style="border-width:0px;" onload="startCut()"/>                                                        
+                </div>
+ 
+    
    				<div id="RegisterButton">
    				<input class="RegisterItemSubmit"  type="button" onclick="canSubmit();">
    				</div>
+   			
    			</form>	
    		
    			<form id="headForm" method="post" action="TempHeader"  enctype="multipart/form-data" target="abc">
