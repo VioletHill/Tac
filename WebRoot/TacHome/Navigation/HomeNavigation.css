@@ -189,6 +189,37 @@ td {
 	border:0;
 }
 
+
+.logoutBufferBoxLogout
+{
+	position:relative;
+	width:118;
+	height:41;
+	left:1060;
+	top:0;
+	background-image:url(../Image/loginBufferBox.png);
+}
+
+.logoutBufferLogout
+{	
+	width:30;
+	height:17;
+	background:url(../Image/loginBufferLogin.png);
+	margin:12 10 15 15;
+	border:0;
+
+}
+
+.logoutBufferLogout
+{	
+	width:30;
+	height:17;
+	background:url(../Image/loginBufferLogin.png);
+	margin:12 10 15 15;
+	border:0;
+
+}
+
 .headDiv
 {
  	border-radius: 19px;

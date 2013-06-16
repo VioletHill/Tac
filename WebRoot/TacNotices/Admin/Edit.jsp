@@ -7,9 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-  	<style>
-  		<%@include file="/TacNotices/NoticesItem.css" %>  
-  	</style>
+
     <base href="<%=basePath%>">
     
     <title>My JSP 'Edit.jsp' starting page</title>
@@ -19,9 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 	
 	<jsp:useBean class="DataSource.Notices.AllNotices" id="allNotices" scope="request">
    	</jsp:useBean>
@@ -81,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<%
-		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false") || session.getAttribute("permission").equals("0"))
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false) || session.getAttribute("permission").equals(0))
 		{
 			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
 			return ;

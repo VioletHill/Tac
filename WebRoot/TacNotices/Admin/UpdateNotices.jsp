@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	
 	 <%
-		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false") || session.getAttribute("permission").equals("0"))
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false) || session.getAttribute("permission").equals(0))
 		{
 			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
 			return ;

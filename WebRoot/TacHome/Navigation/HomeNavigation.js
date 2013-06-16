@@ -21,11 +21,17 @@
 		$("#loginBufferBoxLogin").fadeIn(function (){isLoginAnimate=false;});
 	}
 	
-	var isLog=false;
+	function logout()
+	{
+		window.location.href="Logout";
+	}
+	
+	
+	var isLoging=false;
 	function login()
 	{
-		if (isLog) return ;
-		isLog=true;
+		if (isLoging) return ;
+		isLoging=true;
 		
 		document.getElementById("loginImg").style.display="inline";
 		
@@ -49,7 +55,7 @@
 		{
 			loginFail();
 		}	
-		isLog=false;
+		isLoging=false;
 	}
 	
 	var isShake=false;

@@ -9,8 +9,8 @@
   		 <div id="tacnav">
           <table> 
             <tr>
-
-              <%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
+              <%
+              if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false))
             	{%>
             	
                <%}
@@ -48,17 +48,16 @@
     	  	  	<img src="TacHome/Image/NextPage.png" onclick="nextImg()" style="position:relative;   left:585; top:-200px; opacity:0.8">
    			</div>
     	</div>
-    	
-    	<%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals("false"))
-    	{%>
-    	<div class="loginFormDiv">
+ 		<div class="loginFormDiv">
     		<form class="loginForm" action="" method="post">
 				<input type="text" id="loginAccount" class="loginAccount"  name="account" placeholder="ÓÃ»§Ãû"> <br>   	
 				<input type="password" id="loginPassword" class="loginPassword" name="password" placeholder="ÃÜÂë"><br>
 				<input type="button" class="loginButton" id="loginButton" onclick="login()"><br>
 				<img class="loginImg" id="loginImg" src="TacHome/Image/imgbox-spinner.gif"><br>
     		</form>
-    	</div>
+    	</div>   	
+    	<%if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false))
+    	{%>
     	
     	<div class="loginBufferBoxLogin" id="loginBufferBoxLogin">
    			<button class="loginBufferLogin" onClick="showLoginForm()"></button> 
@@ -69,7 +68,14 @@
    			<button class="loginBufferCancel" onClick="hiddenLoginForm()"></button> 
    			<button class="loginBufferRegister" onclick="linkToRegister()"></button> 
    		</div>
-   		<%}%>
+   		<%}
+   		else
+   		{%>
+   		<div class="logoutBufferBoxLogout" id="logoutBufferBoxLogout">
+   			<button class="logoutBufferLogout" onClick="logout();"></button> 
+   			<button class="loginBufferRegister" onclick="linkToRegister()"></button> 
+   		</div>
+   	  <%}%>
    	</div> 
    	<div style="clear:both"> </div>
 
