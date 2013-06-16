@@ -23,11 +23,11 @@
 	height: 100px;
 }
 
-#nav {
+#tacnav {
 	float: right;
 }
 
-a.nav {
+a.tacnav {
 	float: left;
 	width: 110;
 	height: 100;
