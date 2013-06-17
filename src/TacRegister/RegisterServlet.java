@@ -64,7 +64,6 @@ public class RegisterServlet extends HttpServlet {
 				//设置上传文件大小的上限，-1表示无上限 
 				upload.setSizeMax(10*1024*1024);
 				
-				String headerType[] = {".jpg",".png",".jpeg",".gif"};
 				List<FileItem> items = null;
 				try 
 				{

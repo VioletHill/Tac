@@ -13,7 +13,7 @@ public class AllTeam
 	public AllTeam()
 	{
 		Team newTeam=new Team();
-		newTeam.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account("a"));
+		newTeam.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account("Hill"));
 		newTeam.setTitle("aa");
 		newTeam.setContent("asf");
 		newTeam.setType(1);
@@ -24,7 +24,7 @@ public class AllTeam
 		allTeams.add(newTeam);
 		
 		Team newTeam2=new Team();
-		newTeam2.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account("a"));
+		newTeam2.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account("Hill"));
 		newTeam2.setTitle("aa");
 		newTeam2.setContent("asf");
 		newTeam2.setType(1);

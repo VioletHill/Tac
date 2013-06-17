@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
 							</td>
 							<td style="float:right">
-								<img src="TacTeam/Image/like.png">
+								<img src="TacTeam/Image/like.png" name="like" onclick="changeLike(this)">
 								<span>
 									d
 								</span>

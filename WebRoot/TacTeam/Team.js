@@ -90,5 +90,20 @@ function init()
 }
 
 
+function changeLike(obj)
+{
+	if (obj.name=="like")
+	{
+		obj.name="dislike";
+		obj.src="TacTeam/Image/dislike.png";
+	}
+	else
+	{
+		obj.name="like";
+		obj.src="TacTeam/Image/like.png";
+	}
+}
+
+
 
    		
