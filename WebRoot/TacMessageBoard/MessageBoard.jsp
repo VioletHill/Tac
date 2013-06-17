@@ -19,11 +19,9 @@
 </head>
 
 <body>
+<%@include file="/Navigation/Navigation.jsp"%>
 	<div id="allcontent">
-		<header>
-			<img src="image/commentPage_header.png" alt="header"
-				id="headerimg" />
-		</header>
+		
 
 		<div id="right">
 			<div class="block">
@@ -65,10 +63,7 @@
 			</div>
 		</div>
 
-		<footer>
-			<p>copyright</p>
-			<button>More</button>
-		</footer>
+		<%@include file="/Navigation/Footer.jsp" %> 
 	</div>
 </body>
 </html>
