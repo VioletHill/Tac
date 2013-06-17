@@ -20,6 +20,7 @@ public class Team
 	int month;
 	int day;
 	int year;
+	
 	public User getPublishUser() {
 		if (publishUser==null)
 		{

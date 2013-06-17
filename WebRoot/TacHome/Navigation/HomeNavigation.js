@@ -45,7 +45,7 @@
 		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		xmlhttp.open("POST", "Login?account="+document.getElementById("loginAccount").value+ "&password="+document.getElementById("loginPassword").value, false);
+		xmlhttp.open("POST", "Login?account="+document.getElementById("loginAccount").value+ "&password="+MD5(document.getElementById("loginPassword").value), false);
 		xmlhttp.send();
 		if (xmlhttp.responseText=="true")
 		{

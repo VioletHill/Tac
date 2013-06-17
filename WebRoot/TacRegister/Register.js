@@ -22,6 +22,7 @@
 	{
 		if (canRegister())
 		{
+			document.getElementById("password").value=MD5(document.getElementById("password").value);
 			document.getElementById("form").submit();
 		}
 		else

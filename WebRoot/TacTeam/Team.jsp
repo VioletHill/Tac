@@ -80,13 +80,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		<div style="clear:both"> </div>
   		<br>
+  		
   		<div style="background-color:white">
   		<br>
   		<div id="contentDiv" style="width:830; position:relative; left:300;">
   			<%
-  			for (int i=0; i<3; i++)
+  			for (int i=0; i<allTeam.getAllTeams().size(); i++)
   			{%>
-				<div style="background-color:pink;" >
+				<div style="background-color:rgb(146,192,60);" >
   				<!-- 日期 -->
   				<%if (i==0 || allTeam.getAllTeams().get(i-1).getMonth()!=allTeam.getAllTeams().get(i).getMonth() || allTeam.getAllTeams().get(i-1).getDay()!=allTeam.getAllTeams().get(i).getDay())
   				{%>
@@ -121,39 +122,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   									</tr>
   								</table>	
   								<!-- end 标题 -->
-  								<td><span style="float:right;">afdsf</span></td>
+  								<%if (allTeam.getAllTeams().get(i).getType()==1) 
+  								{%>
+  									<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
+  							  <%}%>
   							</td>
 						<tr>
 							<td>
 								<div style="width:700; position:relative; word-break:break-all">
-  									<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
+  									<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
   								</div>
 							</td>
   						</tr>
 						<tr>
-							<td></td>
+							<td>
+								<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
+							</td>
 							<td style="float:right">
-								<img src="ds">
+								<img src="TacTeam/Image/like.png">
 								<span>
 									d
 								</span>
 							<td>
 						</tr>	
-						<tr>
-							<td style="position:relative; ">
-								<div style="overflow:hidden; width:500; text-align:left;">
-									<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
-								</div>
-							</td>
-						</tr>
   					</table>
-  					saf
+  					<div>
+  						asjk
+  					</div>
+  					<br>
   				</div>
   				<!-- end 内容 -->
   				</div>
-  				<br>
   		   <%}%> 
   		</div>
+  		<br>
   	</div>
   	</div>
   	<%@include file="/Navigation/Footer.jsp" %>

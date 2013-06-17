@@ -130,33 +130,41 @@ public class RegisterServlet extends HttpServlet {
 				    	}
 				    	else if (fileItem.getFieldName().equals("headerImg"))
 				    	{
-				    		if (fileItem.getString().isEmpty()) continue;
-				    		String dir=new String(request.getSession().getServletContext().getRealPath("/")+"User/"+user.getAccount());
-				        	File userFile=new File(dir);
-				        			        	
-				        	try 
-				        	{
-				        		userFile.mkdirs();
+				    		try 
+				    		{
+				    			if (fileItem.getString().isEmpty()) continue;
+					    		String dir=new String(request.getSession().getServletContext().getRealPath("/")+"User/"+user.getAccount());
+					        	File userFile=new File(dir);
+					        			        	
+					        	try 
+					        	{
+					        		userFile.mkdirs();
+								}
+					        	catch (Exception e) 
+					        	{
+									// TODO: handle exception
+								}
+					        	
+					        	String fileName=fileItem.getString();
+					        	fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+					        	File newFile = new File(dir+"/head."+fileName);
+					        	
+					        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
+					        	if (newFile.exists())	newFile.delete();
+					        	
+					            ImageCut o  =   new  ImageCut( x, y , 38 , 38);  
+					            o.setSrcpath(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());    
+					            o.setSubpath( dir+"/head."+fileName );  
+					            o.setExtendName(fileName);
+					            o.cut() ;   
+					  
+					        	delFile(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());
+							} 
+				    		catch (Exception e) 
+							{
+								continue;
 							}
-				        	catch (Exception e) 
-				        	{
-								// TODO: handle exception
-							}
-				        	
-				        	String fileName=fileItem.getString();
-				        	fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
-				        	File newFile = new File(dir+"/head."+fileName);
-				        	
-				        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
-				        	if (newFile.exists())	newFile.delete();
-				        	
-				            ImageCut o  =   new  ImageCut( x, y , 38 , 38);  
-				            o.setSrcpath(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());    
-				            o.setSubpath( dir+"/head."+fileName );  
-				            o.setExtendName(fileName);
-				            o.cut() ;   
-				  
-				        	delFile(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());
+				    		
 				    	}
 				    }
 				}

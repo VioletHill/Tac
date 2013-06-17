@@ -28,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 	</style>
 	
+	<script  type="text/javascript" src="MD5.js" ></script>
 	<script src="jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="TacRegister/jquery1.2.6.pack.js"></script>
 	<script  type="text/javascript" src="TacRegister/ui.core.packed.js" ></script>
