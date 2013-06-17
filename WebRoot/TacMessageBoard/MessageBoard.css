@@ -29,16 +29,27 @@ p {
 }
 
 div.block {
-	margin-top: 15px;
-	background-color: #fcfaed;
+	margin-top: 20px;
 	padding-bottom: 20px;
 	background-color: #fcfaed;
-	box-shadow: 10px 10px 30px #888;
+	box-shadow: 1px 1px 20px #888;
 }
 
 .headphoto {
 	height: 50px;
 	float: left;
+}
+
+#addNote {
+	width: 400px;
+}
+
+#addNoteBlock {
+	margin-top: 20px;
+}
+
+#publish {
+	width: 400px;
 }
 
 p.notecontent {
@@ -65,7 +76,6 @@ p.notecontent {
 p.ownername {
 	padding-left: 10px;
 	padding-top: 18px;
-	
 }
 
 #right {
