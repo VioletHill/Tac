@@ -64,4 +64,20 @@
 		<column name="month" property="month"></column>
 		<column name="day" property="day"></column>
 	</table>
+	<table name="TeamJoinusers" catalog="TacWebsite"
+		class="DataSource.Team.TeamJoinusers">
+		<primary-key>
+			<key-column name="id" property="id" />
+		</primary-key>
+		<column name="team_id" property="team_id"></column>
+		<column name="user_account" property="user_account"></column>
+	</table>
+	<table name="TeamWaitusers" catalog="TacWebsite"
+		class="DataSource.Team.TeamWaitusers">
+		<primary-key>
+			<key-column name="id" property="id" />
+		</primary-key>
+		<column name="team_id" property="team_id"></column>
+		<column name="user_account" property="user_account"></column>
+	</table>
 </hibernate-reverse-engineering>

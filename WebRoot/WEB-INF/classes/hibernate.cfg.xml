@@ -26,6 +26,8 @@
 		<mapping resource="DataSource/User/User.hbm.xml" />
 		<mapping resource="DataSource/Honor/Honor.hbm.xml" />
 		<mapping resource="DataSource/Team/Team.hbm.xml" />
+		<mapping resource="DataSource/Team/TeamJoinusers.hbm.xml" />
+		<mapping resource="DataSource/Team/TeamWaitusers.hbm.xml" />
 
 	</session-factory>
 

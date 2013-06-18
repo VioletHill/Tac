@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td style="float:right">
 								<img src="TacTeam/Image/like.png" name="like" onclick="changeLike(this)">
 								<span>
-									d
+									<%=allTeam.getAllTeams().get(i).getInterestedCount()%>
 								</span>
 							<td>
 						</tr>	

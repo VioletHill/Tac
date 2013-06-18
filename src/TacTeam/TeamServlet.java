@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Team.AllTeam;
+import DataSource.Team.TeamHibernate;
 
 public class TeamServlet extends HttpServlet {
 
@@ -39,8 +40,11 @@ public class TeamServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		final int pageNum=10;
 		
 		AllTeam allTeam=new AllTeam();
+		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
+		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
 		request.setAttribute("allTeam", allTeam);
 		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
 	}

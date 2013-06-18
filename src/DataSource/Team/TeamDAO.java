@@ -171,4 +171,36 @@ public class TeamDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	public void delete(int id)
+	{
+		String query_string="delete Team as n where n.id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.executeUpdate();
+	}
+	public void update(Team team) {
+		String query_string="update Team as n set n.title=?,n.content=?,n.type=? where n.id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, team.getTitle());
+		query.setParameter(1, team.getContent());
+		query.setParameter(2, team.getType());
+		query.setParameter(3, team.getId());
+		query.executeUpdate();
+	}
+	public List findByPage(int account,int page)
+	{
+		if(page>0)
+		{
+			String query_string="from Team as n order by n.id desc";
+			Query query=getSession().createQuery(query_string);
+			int number = (page - 1) * account;
+			query.setFirstResult(number);
+			query.setMaxResults(account);
+			return query.list();
+		}
+		else {
+			List list=null;
+			return list;
+		}
+	}
 }
