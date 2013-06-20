@@ -21,7 +21,7 @@
                <%}%>
               <td><a class="tacnav" href="Home"><div><p>首页</p></div></a></td>
               <td><a class="tacnav" href="Document"><div><p>资料室</p></div></a></td>
-              <td><a class="tacnav" href=""><div><p>留言墙</p></div></a></td>
+              <td><a class="tacnav" href="MessageBoard"><div><p>留言墙</p></div></a></td>
               <td><a class="tacnav" href="Team"><div><p>求包养</p></div></a></td>
 
             </tr>
