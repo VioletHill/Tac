@@ -119,6 +119,7 @@ public class TeamHibernate implements Serializable {
 	}
 	public int interestedcountSub(int id,String user_account) {
 		String query_string="from Team as n where n.id=?";
+		String test;
 		Session session=HibernateSessionFactory.getSession();
 		Query query=session.createQuery(query_string);
 		query.setParameter(0, id);
