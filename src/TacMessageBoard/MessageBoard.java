@@ -1,3 +1,4 @@
+package TacMessageBoard;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -7,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class TacMessageBoard extends HttpServlet {
+public class MessageBoard extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TacMessageBoard() {
+	public MessageBoard() {
 		super();
 	}
 
