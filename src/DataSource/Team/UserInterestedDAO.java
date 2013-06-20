@@ -228,13 +228,13 @@ public class UserInterestedDAO extends BaseHibernateDAO {
 		query.setParameter(0, id);
 		query.setParameter(1, user_account);
 		List list=query.list();
-		if(list==null)
+		if(list.size()>0)
 		{
-			return false;
+			return true;
 		}
 		else
 		{
-			return true;
+			return false;
 		}
 	}
 }
