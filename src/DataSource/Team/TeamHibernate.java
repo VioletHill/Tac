@@ -87,7 +87,7 @@ public class TeamHibernate implements Serializable {
 			update(team);
 		}
 	}
-	public void interestedcountAdd(int id,String user_account)
+	public int interestedcountAdd(int id,String user_account)
 	{
 		String query_string="from Team as n where n.id=?";
 		Session session=HibernateSessionFactory.getSession();
@@ -115,8 +115,9 @@ public class TeamHibernate implements Serializable {
 		userInterested.setType(((Team)list.get(0)).getType());
 		UserInterestedDAO dao=new UserInterestedDAO();
 		dao.save(userInterested);
+		return ((Team)list.get(0)).getInterestedCount()+1;
 	}
-	public void interestedcountSub(int id,String user_account) {
+	public int interestedcountSub(int id,String user_account) {
 		String query_string="from Team as n where n.id=?";
 		Session session=HibernateSessionFactory.getSession();
 		Query query=session.createQuery(query_string);
@@ -139,6 +140,7 @@ public class TeamHibernate implements Serializable {
 		session2.close();
 		UserInterestedDAO dao=new UserInterestedDAO();
 		dao.delete(id, user_account);
+		return ((Team)list.get(0)).getInterestedCount()-1;
 	}
 	public boolean delete(int id)
 	{
