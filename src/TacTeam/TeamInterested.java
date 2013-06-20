@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import DataSource.Team.TeamHibernate;
 
-public class TeamLike extends HttpServlet {
+public class TeamInterested extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TeamLike() {
+	public TeamInterested() {
 		super();
 	}
 
@@ -39,9 +39,29 @@ public class TeamLike extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		int id=0;
+		try 
+		{
+			id=Integer.parseInt(request.getParameter("id"));
+		} 
+		catch (Exception e) 
+		{
+			// TODO: handle exception
+			return ;
+		}
+		
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
-	
+		if (request.getParameter("isInterested").equals("interested"))
+		{
+//			teamHibernate.
+		}
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println(teamHibernate.interestedcountAdd(id));
+		
+		out.flush();
+		out.close();
 	}
 
 	/**

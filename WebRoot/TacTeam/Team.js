@@ -90,18 +90,33 @@ function init()
 }
 
 
-function changeLike(obj)
+function changeInterested(obj,id)
 {
-	if (obj.name=="like")
+	var xmlhttp;
+	if (window.XMLHttpRequest)
 	{
-		obj.name="dislike";
-		obj.src="TacTeam/Image/dislike.png";
+	  xmlhttp=new XMLHttpRequest();
 	}
 	else
 	{
-		obj.name="like";
-		obj.src="TacTeam/Image/like.png";
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
+	xmlhttp.open("POST", "Team/Interested?isInterested="+obj.name+"&id="+id, false);
+	xmlhttp.send();
+	if (obj.name=="interested")
+	{
+		
+		document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
+		obj.src="TacTeam/Image/uninterested.png";
+		obj.name="uninterested";
+	}
+	else
+	{
+		document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
+		obj.src="TacTeam/Image/interested.png";
+		obj.name="interested";
+	}
+	
 }
 
 

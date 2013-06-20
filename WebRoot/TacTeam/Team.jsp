@@ -160,8 +160,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
 							</td>
 							<td style="float:right">
-								<img src="TacTeam/Image/like.png" name="like" onclick="changeLike(this)">
-								<span>
+								<img src="TacTeam/Image/Interested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>">
 									<%=allTeam.getAllTeams().get(i).getInterestedCount()%>
 								</span>
 							<td>
