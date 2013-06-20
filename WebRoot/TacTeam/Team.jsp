@@ -34,6 +34,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <jsp:useBean id="allTeam" class="DataSource.Team.AllTeam" scope="request"></jsp:useBean>
   
+  	 <%
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false))
+		{
+			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
+			return ;
+		} 
+	%>
+  
   <body onload="init()">
   
     <%@include file="/Navigation/Navigation.jsp" %>
@@ -107,34 +115,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				</div>
   	
   				<!-- 内容 -->
-  				<div style="position:relative; left:30;">
-					<table frame="box" style="background-color:white;">
+  				<div>
+					<table frame="box" style="background-color:white; width:750; position:relative; left:;">
   						<tr>
+  							<td><div style="width:70; overflow:hidden; text-align:left"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
   							<td>
   								<!-- 标题 -->
   								<table>
   									<tr>
-  										<td><%=allTeam.getAllTeams().get(i).getPublishUser().getUser_id()%></td>
-  										<td>发布于 <%=allTeam.getAllTeams().get(i).getType()%></td>
-  										<td><%=allTeam.getAllTeams().get(i).getTitle()%></td>
-  										<td><div style="width:20; overflow:hidden">asdfdafasdfsdfasdfsadfsadfksdalfjksadf;kadsf</div></td>
-  										<td>dd</td>
+  										<%
+  										if (allTeam.getAllTeams().get(i).getType()==0)
+  										{%>
+  											<td style="width:120; text-align:left">发布于:<span style="color:red; float:right">创意</span></td>
+  										<%}
+  										else
+  										{%>
+  											<td style="width:120; text-align:left">发布于:<span style="color:black; float:right">招募</span></td>
+  										<%}%>
+  										
+  										<td><div style="width:120; overflow:hidden"><%=allTeam.getAllTeams().get(i).getTitle()%></div></td>
   									</tr>
   								</table>	
-  								<!-- end 标题 -->
-  								<%if (allTeam.getAllTeams().get(i).getType()==1) 
-  								{%>
-  									<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
-  							  <%}%>
   							</td>
+  							<!-- end 标题 -->
+  							<%if (allTeam.getAllTeams().get(i).getType()==1) 
+  							{%>
+  								<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
+  							<%}
+  							else
+  							{%>
+  							  	<td></td>
+  						  <%}%>
 						<tr>
+							<td></td>
 							<td>
-								<div style="width:700; position:relative; word-break:break-all">
-  									<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
+								<div style="width:600;  word-break:break-all">
+  									<p style="text-align:left;"><%=allTeam.getAllTeams().get(i).getContent()%></p>
   								</div>
 							</td>
   						</tr>
 						<tr>
+							<td></td>
 							<td>
 								<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
 							</td>

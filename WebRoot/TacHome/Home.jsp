@@ -43,7 +43,6 @@
     <%@include file="Notices/HomeNotices.jsp"%> 
       
     <!-- ÈÙÓþÊÒ -->
-     <br>
 	<%@include file="Honor/HomeHonor.jsp" %>
     
     <%@include file="/Navigation/Footer.jsp" %> 

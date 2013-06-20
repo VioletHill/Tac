@@ -21,13 +21,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	
-	 <%
+<%-- 	 <%
 		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false) || session.getAttribute("permission").equals(0))
 		{
 			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
 			return ;
 		} 
-	%>
+	%> --%>
 	
 	<jsp:useBean id="notice" class="DataSource.Notices.Notice" scope="request">
   	</jsp:useBean>
