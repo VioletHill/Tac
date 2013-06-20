@@ -157,10 +157,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td></td>
 							<td>
-								<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
+								<%for (int j=0; j<allTeam.getAllTeams().get(i).getJoinUsers().size(); j++)
+								{
+									if (j>10) break;
+								%>
+									<div style="width:45; float:left">
+										<div class="headDiv">
+											<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%> >
+										</div>
+									</div>
+								<%}%>
 							</td>
 							<td style="float:right">
-								<img src="TacTeam/Image/Interested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+								<img src="TacTeam/Image/interested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
 								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>">
 									<%=allTeam.getAllTeams().get(i).getInterestedCount()%>
 								</span>

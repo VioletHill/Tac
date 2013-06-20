@@ -1,6 +1,6 @@
 /* @charset "utf-8"; */
 
-/* body,p,div,header,footer,img {
+ body,p,div,header,footer,img {
 	padding: 0px;
 	margin: 0px;
 }
@@ -13,8 +13,8 @@ body {
 header {
 	
 }
- */
-/* img#headerimg {
+
+img#headerimg {
 	width: 980px;
 }
 
@@ -87,4 +87,4 @@ p.ownername {
 
 footer {
 	clear: right;
-} */
+}

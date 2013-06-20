@@ -2,11 +2,15 @@ package TacTeam;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.channels.SeekableByteChannel;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
 
 import DataSource.Team.TeamHibernate;
 
@@ -50,16 +54,21 @@ public class TeamInterested extends HttpServlet {
 			return ;
 		}
 		
+		HttpSession session=request.getSession();
+		String account=(String) session.getAttribute("account");
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
 		if (request.getParameter("isInterested").equals("interested"))
 		{
-//			teamHibernate.
+			out.println(teamHibernate.interestedcountSub(id,account));
 		}
-		
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println(teamHibernate.interestedcountAdd(id));
-		
+		else 
+		{
+			out.println(teamHibernate.interestedcountAdd(id,account));
+		}
+	
 		out.flush();
 		out.close();
 	}
