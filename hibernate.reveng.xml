@@ -80,4 +80,25 @@
 		<column name="team_id" property="team_id"></column>
 		<column name="user_account" property="user_account"></column>
 	</table>
+	<table name="UserInterested" catalog="TacWebsite"
+		class="DataSource.Team.UserInterested">
+		<primary-key>
+			<key-column name="id" property="id" />
+		</primary-key>
+		<column name="user_account" property="user_account"></column>
+		<column name="team_id" property="team_id"></column>
+		<column name="type" property="type"></column>
+	</table>
+	<table name="Message" catalog="TacWebsite"
+		class="DataSource.Message.Message">
+		<primary-key>
+			<key-column name="id" property="id" />
+		</primary-key>
+		<column name="user_account" property="user_account"></column>
+		<column name="content" property="content"></column>
+		<column name="picture" property="picture"></column>
+		<column name="year" property="year"></column>
+		<column name="month" property="month"></column>
+		<column name="day" property="day"></column>
+	</table>
 </hibernate-reverse-engineering>

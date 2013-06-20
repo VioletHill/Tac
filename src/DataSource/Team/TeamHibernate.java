@@ -1,6 +1,7 @@
 package DataSource.Team;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
@@ -9,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import DataSource.User.User;
+import DataSource.User.UserDAO;
 import TacHibernateSessionFactory.HibernateSessionFactory;
 
 public class TeamHibernate implements Serializable {
@@ -158,6 +160,187 @@ public class TeamHibernate implements Serializable {
 	public List findByPage(int account,int page)
 	{
 		TeamDAO dao=new TeamDAO();
-		return dao.findByPage(account, page);
+		List list=dao.findByPage(account, page);
+		UserDAO userDAO=new UserDAO();
+		Vector<User> joinUsers=new Vector<User>();
+		Vector<User> waitUsers=new Vector<User>();
+		List<Team> teams=new ArrayList<Team>();
+		if(list!=null)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				Team team=(Team)list.get(i);
+				List joinerList=dao.findJoiner(team.getId());
+				List waiterList=dao.findWaiter(team.getId());
+				if(joinerList!=null)
+				{
+					for (int j = 0; j <joinerList.size(); j++) {
+						String user_account=((TeamJoinusers)joinerList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account);
+						joinUsers.add(user);
+					}
+				}
+				if(waiterList!=null)
+				{
+					for (int j = 0; j < waiterList.size(); j++) {
+						String user_account=((TeamWaitusers)waiterList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account);
+						waitUsers.add(user);
+					}
+				}
+				team.setJoinUsers(joinUsers);
+				team.setWaitUsers(waitUsers);
+				teams.add(team);
+ 			}
+			return teams;
+		}
+		else {
+			return list;
+		}
+
 	}
+	public int number_findByPage()
+	{
+		TeamDAO dao=new TeamDAO();
+		return dao.number_findByPage();
+	}
+	
+	public List findByType(int type,int account,int page)
+	{
+		TeamDAO dao=new TeamDAO();
+		List list=dao.findByType(account, page, type);
+		UserDAO userDAO=new UserDAO();
+		Vector<User> joinUsers=new Vector<User>();
+		Vector<User> waitUsers=new Vector<User>();
+		List<Team> teams=new ArrayList<Team>();
+		if(list!=null)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				Team team=(Team)list.get(i);
+				List joinerList=dao.findJoiner(team.getId());
+				List waiterList=dao.findWaiter(team.getId());
+				if(joinerList!=null)
+				{
+					for (int j = 0; j <joinerList.size(); j++) {
+						String user_account=((TeamJoinusers)joinerList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account);
+						joinUsers.add(user);
+					}
+				}
+				if(waiterList!=null)
+				{
+					for (int j = 0; j < waiterList.size(); j++) {
+						String user_account=((TeamWaitusers)waiterList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account);
+						waitUsers.add(user);
+					}
+				}
+				team.setJoinUsers(joinUsers);
+				team.setWaitUsers(waitUsers);
+				teams.add(team);
+ 			}
+			return teams;
+		}
+		else {
+			return list;
+		}
+	}
+	public int number_findByType(int type)
+	{
+		TeamDAO dao=new TeamDAO();
+		return dao.number_findByType(type);
+	}
+	
+	public List findMyType(int type,String user_account,int account,int page) {
+		TeamDAO dao=new TeamDAO();
+		List list=dao.findMyType(account, page, type, user_account);
+		UserDAO userDAO=new UserDAO();
+		Vector<User> joinUsers=new Vector<User>();
+		Vector<User> waitUsers=new Vector<User>();
+		List<Team> teams=new ArrayList<Team>();
+		if(list!=null)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				Team team=(Team)list.get(i);
+				List joinerList=dao.findJoiner(team.getId());
+				List waiterList=dao.findWaiter(team.getId());
+				if(joinerList!=null)
+				{
+					for (int j = 0; j <joinerList.size(); j++) {
+						String user_account1=((TeamJoinusers)joinerList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account1);
+						joinUsers.add(user);
+					}
+				}
+				if(waiterList!=null)
+				{
+					for (int j = 0; j < waiterList.size(); j++) {
+						String user_account1=((TeamWaitusers)waiterList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account1);
+						waitUsers.add(user);
+					}
+				}
+				team.setJoinUsers(joinUsers);
+				team.setWaitUsers(waitUsers);
+				teams.add(team);
+ 			}
+			return teams;
+		}
+		else {
+			return list;
+		}
+	}
+	public int number_findMyType(int type,String user_account) {
+		TeamDAO dao=new TeamDAO();
+		return dao.number_findMyType(type, user_account);
+	}
+	
+
+	
+	public List findInterestedType(int type,String user_account,int account,int page)
+	{
+		UserInterestedDAO dao1=new UserInterestedDAO();
+		List list=dao1.findInterestedType(type, user_account, account, page);
+		TeamDAO dao=new TeamDAO();
+		UserDAO userDAO=new UserDAO();
+		Vector<User> joinUsers=new Vector<User>();
+		Vector<User> waitUsers=new Vector<User>();
+		List<Team> teams=new ArrayList<Team>();
+		if(list!=null)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				Team team=(Team)list.get(i);
+				List joinerList=dao.findJoiner(team.getId());
+				List waiterList=dao.findWaiter(team.getId());
+				if(joinerList!=null)
+				{
+					for (int j = 0; j <joinerList.size(); j++) {
+						String user_account1=((TeamJoinusers)joinerList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account1);
+						joinUsers.add(user);
+					}
+				}
+				if(waiterList!=null)
+				{
+					for (int j = 0; j < waiterList.size(); j++) {
+						String user_account1=((TeamWaitusers)waiterList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account1);
+						waitUsers.add(user);
+					}
+				}
+				team.setJoinUsers(joinUsers);
+				team.setWaitUsers(waitUsers);
+				teams.add(team);
+ 			}
+			return teams;
+		}
+		else {
+			return list;
+		}
+	}
+	public int number_findInterestedType(int type,String user_account)
+	{
+		UserInterestedDAO dao=new UserInterestedDAO();
+		return dao.number_findInterestedType(type, user_account);
+	}
+	
 }
