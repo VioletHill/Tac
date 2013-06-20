@@ -206,4 +206,19 @@ public class UserInterestedDAO extends BaseHibernateDAO {
 			return team_list.size();
 		}
 	}
+	public void delete(int id)
+	{
+		String query_string="delete UserInterested as n where n.team_id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.executeUpdate();
+	}
+	public void delete(int id,String user_account)
+	{
+		String query_string="delete UserInterested as n where n.team_id=? and n.user_account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.setParameter(1, user_account);
+		query.executeUpdate();
+	}
 }
