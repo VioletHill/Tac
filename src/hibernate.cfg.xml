@@ -29,6 +29,7 @@
 		<mapping resource="DataSource/Team/TeamJoinusers.hbm.xml" />
 		<mapping resource="DataSource/Team/TeamWaitusers.hbm.xml" />
 		<mapping resource="DataSource/Team/UserInterested.hbm.xml" />
+		<mapping resource="DataSource/Message/Message.hbm.xml" />
 
 	</session-factory>
 
