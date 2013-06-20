@@ -328,6 +328,11 @@ public class TeamHibernate implements Serializable {
 		return dao.number_findMyType(type, user_account);
 	}
 	
+	public boolean IsInterested(int id,String user_account)
+	{
+		UserInterestedDAO dao=new UserInterestedDAO();
+		return dao.IsInterested(id, user_account);
+	}
 
 	
 	public List findInterestedType(int type,String user_account,int account,int page)

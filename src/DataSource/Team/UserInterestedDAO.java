@@ -221,4 +221,20 @@ public class UserInterestedDAO extends BaseHibernateDAO {
 		query.setParameter(1, user_account);
 		query.executeUpdate();
 	}
+	public boolean IsInterested(int id,String user_account)
+	{
+		String query_string="from UserInterested as n where n.team_id=? and n.user_account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.setParameter(1, user_account);
+		List list=query.list();
+		if(list==null)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 }
