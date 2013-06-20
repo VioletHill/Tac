@@ -87,7 +87,7 @@ public class TeamHibernate implements Serializable {
 			update(team);
 		}
 	}
-	public int interestedcountAdd(int id)
+	public void interestedcountAdd(int id,String user_account)
 	{
 		String query_string="from Team as n where n.id=?";
 		Session session=HibernateSessionFactory.getSession();
@@ -109,13 +109,43 @@ public class TeamHibernate implements Serializable {
 		session2.getTransaction().commit();
 		session2.flush();
 		session2.close();
-		return ((Team)list.get(0)).getInterestedCount();	
+		UserInterested userInterested=new UserInterested();
+		userInterested.setTeam_id(id);
+		userInterested.setUser_account(user_account);
+		userInterested.setType(((Team)list.get(0)).getType());
+		UserInterestedDAO dao=new UserInterestedDAO();
+		dao.save(userInterested);
+	}
+	public void interestedcountSub(int id,String user_account) {
+		String query_string="from Team as n where n.id=?";
+		Session session=HibernateSessionFactory.getSession();
+		Query query=session.createQuery(query_string);
+		query.setParameter(0, id);
+		session.beginTransaction();
+		List list=null;
+		list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		String query_string2="update Team as n set n.interestedCount=? where n.id=?";
+		Session session2=HibernateSessionFactory.getSession();
+		Query query2=session2.createQuery(query_string2);
+		query2.setParameter(0, ((Team)list.get(0)).getInterestedCount()-1);
+		query2.setParameter(1, id);
+		session2.beginTransaction();
+		query2.executeUpdate();
+		session2.getTransaction().commit();
+		session2.flush();
+		session2.close();
+		UserInterestedDAO dao=new UserInterestedDAO();
+		dao.delete(id, user_account);
 	}
 	public boolean delete(int id)
 	{
 		TeamDAO dao=new TeamDAO();
 		TeamJoinusersDAO dao2=new TeamJoinusersDAO();
 		TeamWaitusersDAO dao3=new TeamWaitusersDAO();
+		UserInterestedDAO dao4=new UserInterestedDAO();
 		Team team=dao.findById(id);
 		if(team==null)
 		{
@@ -124,6 +154,7 @@ public class TeamHibernate implements Serializable {
 		else {
 			dao2.delete(id);
 			dao3.delete(id);
+			dao4.delete(id);
 			dao.delete(id);
 			return true;
 		}
