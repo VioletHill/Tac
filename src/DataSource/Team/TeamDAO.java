@@ -171,4 +171,111 @@ public class TeamDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	public void delete(int id)
+	{
+		String query_string="delete Team as n where n.id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.executeUpdate();
+	}
+	public void update(Team team) {
+		String query_string="update Team as n set n.title=?,n.content=?,n.type=? where n.id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, team.getTitle());
+		query.setParameter(1, team.getContent());
+		query.setParameter(2, team.getType());
+		query.setParameter(3, team.getId());
+		query.executeUpdate();
+	}
+	public List findByPage(int account,int page)
+	{
+		if(page>0)
+		{
+			String query_string="from Team as n order by n.id desc";
+			Query query=getSession().createQuery(query_string);
+			int number = (page - 1) * account;
+			query.setFirstResult(number);
+			query.setMaxResults(account);
+			return query.list();
+		}
+		else {
+			List list=null;
+			return list;
+		}
+	}
+	public int number_findByPage()
+	{
+		String query_string="from Team";
+		Query query=getSession().createQuery(query_string);
+		List list=query.list();
+		if(list==null)
+		{
+			return 0;
+		}
+		else {
+			return list.size();
+		}
+	}
+	public List findByType(int account,int page,int type)
+	{
+		String query_string="from Team as n where n.type=? order by n.id desc";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, type);
+		int number = (page - 1) * account;
+		query.setFirstResult(number);
+		query.setMaxResults(account);
+		return query.list();
+	}
+	public int number_findByType(int type) {
+		String query_string="from Team as n where n.type=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, type);
+		List list=query.list();
+		if(list==null)
+		{
+			return 0;
+		}
+		else {
+			return list.size();
+		}
+	}
+	public List findMyType(int account,int page,int type,String user_account)
+	{
+		String query_string="from Team as n where n.type=? and n.publisher_account=? order by n.id desc";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, type);
+		query.setParameter(1, user_account);
+		int number = (page - 1) * account;
+		query.setFirstResult(number);
+		query.setMaxResults(account);
+		return query.list();
+	}
+	public int number_findMyType(int type,String user_account) {
+		String query_string="from Team as n where n.type=? and n.publisher_account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, type);
+		query.setParameter(1, user_account);
+		List list=query.list();
+		if(list==null)
+		{
+			return 0;
+		}
+		else {
+			return list.size();
+		}
+	}
+	public List findJoiner(int id)
+	{
+		String query_string="from TeamJoinusers as n where n.team_id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		return query.list();
+	}
+	public List findWaiter(int id) {
+		String query_string="from TeamWaitusers as n where n.team_id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		return query.list();
+		
+	}
 }

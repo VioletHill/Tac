@@ -89,6 +89,58 @@ function init()
    	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
 }
 
+var isInterestedSend=false;
+function changeInterested(obj,id)
+{
+	if (isInterestedSend) return ;
+	isInterestedSend=true;
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+	  xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("POST", "Team/Interested?isInterested="+obj.name+"&id="+id, false);
+	xmlhttp.send();
+	if (obj.name=="interested")
+	{
+		
+		if (xmlhttp.responseText)
+		{
+			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
+			obj.src="TacTeam/Image/uninterested.png";
+			obj.name="uninterested";
+		}
+	}
+	else
+	{
+		if (xmlhttp.responseText)
+		{
+			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
+			obj.src="TacTeam/Image/interested.png";
+			obj.name="interested";
+		}
+	}
+	isInterestedSend=false;
+}
+
+
+function showInfor(joinUserId)
+{
+	if (document.getElementById(joinUserId).style.display=="none")
+	{
+		$('#'+joinUserId).fadeIn();
+	}
+	else
+	{
+		$('#'+joinUserId).fadeOut();
+		document.getElementById(joinUserId).style.display="none";
+	}
+}
+
 
 
    		

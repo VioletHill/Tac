@@ -1,17 +1,25 @@
+package TacTeam;
+
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.channels.SeekableByteChannel;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
 
-public class TacMessageBoard extends HttpServlet {
+import DataSource.Team.TeamHibernate;
+
+public class TeamInterested extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TacMessageBoard() {
+	public TeamInterested() {
 		super();
 	}
 
@@ -35,23 +43,34 @@ public class TacMessageBoard extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int id=0;
+		try 
+		{
+			id=Integer.parseInt(request.getParameter("id"));
+		} 
+		catch (Exception e) 
+		{
+			// TODO: handle exception
+			return ;
+		}
 		
-		request.getRequestDispatcher("/TacMessageBoard/MessageBoard.jsp").forward(request, response);
-		return;
+		HttpSession session=request.getSession();
+		String account=(String) session.getAttribute("account");
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 		
-//		response.setContentType("text/html");
-//		PrintWriter out = response.getWriter();
-//		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-//		out.println("<HTML>");
-//		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-//		out.println("  <BODY>");
-//		out.print("    This is ");
-//		out.print(this.getClass());
-//		out.println(", using the GET method");
-//		out.println("  </BODY>");
-//		out.println("</HTML>");
-//		out.flush();
-//		out.close();
+		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
+		if (request.getParameter("isInterested").equals("interested"))
+		{
+			out.println(teamHibernate.interestedcountSub(id,account));
+		}
+		else 
+		{
+			out.println(teamHibernate.interestedcountAdd(id,account));
+		}
+	
+		out.flush();
+		out.close();
 	}
 
 	/**
@@ -66,22 +85,8 @@ public class TacMessageBoard extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
-		return;
 
-		// response.setContentType("text/html");
-		// PrintWriter out = response.getWriter();
-		// out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		// out.println("<HTML>");
-		// out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		// out.println("  <BODY>");
-		// out.print("    This is ");
-		// out.print(this.getClass());
-		// out.println(", using the POST method");
-		// out.println("  </BODY>");
-		// out.println("</HTML>");
-		// out.flush();
-		// out.close();
+		doGet(request, response);
 	}
 
 	/**

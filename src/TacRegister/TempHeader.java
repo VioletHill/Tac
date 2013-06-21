@@ -53,7 +53,6 @@ public class TempHeader extends HttpServlet {
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setSizeMax(10*1024*1024);
-		String headerType[] = {".jpg",".png",".jpeg",".gif"};
 		List<FileItem> items = null;
 		try 
 		{
@@ -94,8 +93,9 @@ public class TempHeader extends HttpServlet {
 						userFile.mkdirs();
 		        
 						String fileName=fileItem.getName();
+						//获取文件扩展名
 						fileName=fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
-	        		
+				
 						for (int i=0; i>=0; i++)
 						{	
 							filePath="Temp/"+i+"."+fileName;

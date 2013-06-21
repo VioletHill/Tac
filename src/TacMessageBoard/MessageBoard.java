@@ -1,28 +1,18 @@
-package TacTeam;
-
+package TacMessageBoard;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
 
-import com.jspsmart.upload.Request;
-
-import DataSource.Team.AllTeam;
-import DataSource.Team.TeamHibernate;
-import DataSource.User.User;
-
-public class TeamServlet extends HttpServlet {
+public class MessageBoard extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TeamServlet() {
+	public MessageBoard() {
 		super();
 	}
 
@@ -46,22 +36,23 @@ public class TeamServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		final int pageNum=10;
 		
-		HttpSession session=request.getSession();
+		request.getRequestDispatcher("/TacMessageBoard/MessageBoard.jsp").forward(request, response);
+		return;
 		
-		AllTeam allTeam=new AllTeam();
-		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
-		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
-		
-		String account=(String)session.getAttribute("account");
-		for (int i=0; i<allTeam.getAllTeams().size(); i++)
-		{
-			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));
-//			allTeam.getAllTeams().get(i).setJoin(hibernate.);
-		}
-		request.setAttribute("allTeam", allTeam);
-		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
+//		response.setContentType("text/html");
+//		PrintWriter out = response.getWriter();
+//		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+//		out.println("<HTML>");
+//		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+//		out.println("  <BODY>");
+//		out.print("    This is ");
+//		out.print(this.getClass());
+//		out.println(", using the GET method");
+//		out.println("  </BODY>");
+//		out.println("</HTML>");
+//		out.flush();
+//		out.close();
 	}
 
 	/**
@@ -76,8 +67,22 @@ public class TeamServlet extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		doGet(request, response);
+		return;
+
+		// response.setContentType("text/html");
+		// PrintWriter out = response.getWriter();
+		// out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		// out.println("<HTML>");
+		// out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		// out.println("  <BODY>");
+		// out.print("    This is ");
+		// out.print(this.getClass());
+		// out.println(", using the POST method");
+		// out.println("  </BODY>");
+		// out.println("</HTML>");
+		// out.flush();
+		// out.close();
 	}
 
 	/**

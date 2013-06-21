@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script src="jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="TacTeam/Team.js"></script>
+
 	
 	<style>
 		body {
@@ -33,6 +34,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <jsp:useBean id="allTeam" class="DataSource.Team.AllTeam" scope="request"></jsp:useBean>
+  
+  	 <%
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false))
+		{
+			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
+			return ;
+		} 
+	%>
   
   <body onload="init()">
   
@@ -102,56 +111,102 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<%}%>
   				
   				<!-- 头像 -->
+  					<div style="clear:both"> </div>
   				<div class="headDiv" style="float:left; position:relative; left:-50;">
   					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %>>
   				</div>
   	
   				<!-- 内容 -->
-  				<div style="position:relative; left:30;">
-					<table frame="box" style="background-color:white;">
+  				<div>
+					<table frame="box" style="background-color:white; width:750;">
   						<tr>
+  							<td><div style="width:70; overflow:hidden; text-align:left"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
   							<td>
   								<!-- 标题 -->
   								<table>
   									<tr>
-  										<td><%=allTeam.getAllTeams().get(i).getPublishUser().getUser_id()%></td>
-  										<td>发布于 <%=allTeam.getAllTeams().get(i).getType()%></td>
-  										<td><%=allTeam.getAllTeams().get(i).getTitle()%></td>
-  										<td><div style="width:20; overflow:hidden">asdfdafasdfsdfasdfsadfsadfksdalfjksadf;kadsf</div></td>
-  										<td>dd</td>
+  										<%
+  										if (allTeam.getAllTeams().get(i).getType()==0)
+  										{%>
+  											<td style="width:120; text-align:left">发布于:<span style="color:red; float:right">创意</span></td>
+  										<%}
+  										else
+  										{%>
+  											<td style="width:120; text-align:left">发布于:<span style="color:black; float:right">招募</span></td>
+  										<%}%>
+  										
+  										<td><div style="width:120; overflow:hidden"><%=allTeam.getAllTeams().get(i).getTitle()%></div></td>
   									</tr>
   								</table>	
-  								<!-- end 标题 -->
-  								<%if (allTeam.getAllTeams().get(i).getType()==1) 
-  								{%>
-  									<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
-  							  <%}%>
   							</td>
+  							<!-- end 标题 -->
+  							<%if (allTeam.getAllTeams().get(i).getType()==1) 
+  							{
+  								%>
+  								<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
+  							<%}
+  							else
+  							{%>
+  							  	<td></td>
+  						  <%}%>
 						<tr>
+							<td></td>
 							<td>
-								<div style="width:700; position:relative; word-break:break-all">
-  									<p style="text-align:left;">ljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljasdsfjalskdjffalksdfjkkafljflasdjflsdkjfljas</p>
+								<div style="width:600;  word-break:break-all">
+  									<p style="text-align:left;"><%=allTeam.getAllTeams().get(i).getContent()%></p>
   								</div>
 							</td>
   						</tr>
 						<tr>
+							<td></td>
 							<td>
-								<div style="float:left"><img src="ds"></div><div style="float:left"><img src="ds"></div>
+								<%for (int j=0; j<allTeam.getAllTeams().get(i).getJoinUsers().size(); j++)
+								{
+									String joinUserId=allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount();
+									if (j>10) break;
+								%>
+									<div style="width:45; float:left">
+										<div class="headDiv">
+											<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%> name=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount()%> onclick="showInfor('<%=joinUserId%>')">
+										</div>
+										<div id="<%=joinUserId%>" style="background-color:green; width:100; height:100; position:absolute; display:none">
+												
+										</div>
+									</div>
+								<%}%>
 							</td>
 							<td style="float:right">
-								<img src="TacTeam/Image/like.png">
-								<span>
-									d
+								<%if (allTeam.getAllTeams().get(i).getIsInterested())
+								{%>
+									<img src="TacTeam/Image/interested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+								<%}
+								 else
+								 {%>
+								 	<img src="TacTeam/Image/uninterested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+								<%}%>
+								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>">
+									<%=allTeam.getAllTeams().get(i).getInterestedCount()%>
 								</span>
 							<td>
 						</tr>	
   					</table>
-  					<div>
-  						asjk
-  					</div>
   					<br>
+  					<%if (allTeam.getAllTeams().get(i).getWaitUsers().size()!=0)
+  					{%>
+  						<div style="position:relative; left:50; height:50">
+  						<%	
+  						for (int j=0; j<allTeam.getAllTeams().get(i).getWaitUsers().size(); j++) 
+  						{%>
+  							<div style="width:45; height:50; float:left; ">
+  								<div class="headDiv">
+  									<img src=<%=allTeam.getAllTeams().get(i).getWaitUsers().get(j).getHeader_add()%>>
+  								</div>
+  							</div>
+  						<%}%>
+  					<%}%>
+  					</div>
   				</div>
-  				<!-- end 内容 -->
+  				<!-- end 内容 -->  				
   				</div>
   		   <%}%> 
   		</div>

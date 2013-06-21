@@ -1,0 +1,33 @@
+.ImageScroll
+{
+	height:230;
+	width:1163;
+	white-space: nowrap;
+	overflow:hidden;
+}
+
+.imageViewContainer
+{
+	position:relative;
+}
+
+.ImageView
+{
+	position:relative;
+	margin-left:57;
+	top:50;
+}
+
+.NextView
+{
+	position:relative;
+	top:-180;
+	left:1100;
+}
+
+.LastView
+{
+	position:relative;
+	top:-180;
+	left:30;
+}	

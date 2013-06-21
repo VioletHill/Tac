@@ -1,13 +1,13 @@
-@charset "utf-8";
+/* @charset "utf-8"; */
 
-body,p,div,header,footer,img {
+ body,p,div,header,footer,img {
 	padding: 0px;
 	margin: 0px;
 }
 
 body {
 	background-image: url(/Tac/image/mainBG.png);
-	font-family: "Reenie Beanie", å¾®è½¯é›…é»‘, å¹¼åœ†, Georigia, Times, serif;
+	font-family: "Reenie Beanie", Î¢ÈíÑÅºÚ, Ó×Ô², Georigia, Times, serif;
 }
 
 header {

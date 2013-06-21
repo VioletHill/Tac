@@ -20,6 +20,8 @@ public class Team
 	int month;
 	int day;
 	int year;
+	boolean isInterested;
+	boolean isJoin;
 	
 	public User getPublishUser() {
 		if (publishUser==null)
@@ -119,8 +121,16 @@ public class Team
 	public void setPublisher_account(String publisher_account) {
 		this.publisher_account = publisher_account;
 	}
-
-
-
-
+	public boolean getIsInterested() {
+		return isInterested;
+	}
+	public void setIsInterested(boolean isInterested) {
+		this.isInterested = isInterested;
+	}
+	public boolean isJoin() {
+		return isJoin;
+	}
+	public void setJoin(boolean isJoin) {
+		this.isJoin = isJoin;
+	}
 }

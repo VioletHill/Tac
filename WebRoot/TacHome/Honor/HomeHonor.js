@@ -1,19 +1,28 @@
-var position=0;
-var isMoveDone=true;
-function lastShowTime(pro)
+var indexWheel=0;
+var isMove=false;
+
+function setImage()
 {
-	if (!isMoveDone) return ;
-	if (position==-(pro.id-1)*300) return ;
-	isMoveDone=false;
-	position=position-300;
-	$(".showTimeImage").animate({left:position},function(){isMoveDone=true;});
+	var wheelPosition=-indexWheel*(61+document.getElementsByClassName("ImageView")[0].width);
+	$(".ImageViewContainer").animate({left:wheelPosition},function (){isMove=false;});
 }
 
-function nextShowTime(pro)
+function nextView(totImage)
 {
-	if (!isMoveDone) return ;
-	if (position==600) return ;
-	isMoveDone=false;
-	position=position+300;
-	$(".showTimeImage").animate({left:position},function(){isMoveDone=true;});
+	totImage=parseInt(totImage);
+	if (indexWheel<=0) return ;
+	if (isMove) return ;
+	isMove=true;
+	indexWheel--;
+	setImage();
+}
+
+function preView(totImage)
+{
+	totImage=parseInt(totImage);
+	if (indexWheel>=totImage-4) return ;
+	if (isMove) return ;
+	isMove=true;
+	indexWheel++;
+	setImage();
 }

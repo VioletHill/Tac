@@ -1,11 +1,6 @@
  <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 
-<script type="text/javascript">
-	<%@include file="NoticesIndex.js" %>
-</script>
-
-
-
+<script src="TacHome/Notices/NoticesIndex.js"></script>
 <style type="text/css" href="TacNotices/NoticesItem.css"></style>
 
 
@@ -16,21 +11,21 @@
 <div style="clear:both"> </div>
 
 
-<div style="width:1200; margin-left:auto; margin-right:auto">
+<div style="width:1163; margin-left:auto; margin-right:auto; background-color:white" >
 
 	<div>
 		<img src="TacHome/Image/NoticesHeader.png">
 		<br>
 	</div>
 
- 	<div style="width:800; height:400;  float:left; ">
+ 	<div style="width:800; height:400;  float:left;  background-color:white;">
  	
  		<br>
  		 <div>
- 	 		<a class="NoticesItem" href="javascript:selectNotice();">查看本通知</a>
+ 	 		<a class="NoticesItem" href="javascript:selectNotice();" style="position:relative; left:30;">查看本通知</a>
  	 	</div>
  	 	
- 		<div  id="notice" style="height:305;  margin-right:50; margin-top:30; word-break:break-all; overflow:auto;">
+ 		<div  id="notice" style="height:305;  margin-right:50; margin-top:30; word-break:break-all; overflow:auto; position:relative; left:30">
 			<!--此处为内容  -->
  		</div>
 		
@@ -38,9 +33,10 @@
  	 
  	</div>
  	
- 	 <div  style="width:400; height:400; float:left;" >
+ 	 <div  style="width:363; height:400; float:left; background-color:white" >
+ 	 	<br>
  	 	<div>
- 	 		<a class="NoticesItem" href="Notices" style="float:right;">查看全部</a>
+ 	 		<a class="NoticesItem" href="Notices" style="float:right; position:relative; left:-20">查看全部</a>
  	 	</div>
  	 	
  	 	<%for (int i=0; i<allNotices.getAllNotices().size(); i++)
