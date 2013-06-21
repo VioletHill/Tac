@@ -349,6 +349,17 @@ public class TeamHibernate implements Serializable {
 		return dao.IsInterested(id, user_account);
 	}
 
+	public boolean IsJoin(int id,String user_account)
+	{
+		TeamJoinusersDAO dao=new TeamJoinusersDAO();
+		return dao.IsJoin(id, user_account);
+	}
+
+	public boolean IsWait(int id,String user_account)
+	{
+		TeamWaitusersDAO dao=new TeamWaitusersDAO();
+		return dao.IsWait(id, user_account);
+	}
 	
 	public List findInterestedType(int type,String user_account,int account,int page)
 	{
