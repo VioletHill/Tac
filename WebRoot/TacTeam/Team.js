@@ -128,5 +128,19 @@ function changeInterested(obj,id)
 }
 
 
+function showInfor(joinUserId)
+{
+	if (document.getElementById(joinUserId).style.display=="none")
+	{
+		$('#'+joinUserId).fadeIn();
+	}
+	else
+	{
+		$('#'+joinUserId).fadeOut();
+		document.getElementById(joinUserId).style.display="none";
+	}
+}
+
+
 
    		

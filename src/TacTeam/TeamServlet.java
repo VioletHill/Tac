@@ -15,6 +15,7 @@ import com.jspsmart.upload.Request;
 
 import DataSource.Team.AllTeam;
 import DataSource.Team.TeamHibernate;
+import DataSource.User.User;
 
 public class TeamServlet extends HttpServlet {
 
@@ -53,10 +54,11 @@ public class TeamServlet extends HttpServlet {
 		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
 		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
 		
+		String account=(String)session.getAttribute("account");
 		for (int i=0; i<allTeam.getAllTeams().size(); i++)
 		{
-			System.out.println(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(), (String)session.getAttribute("account")));
-			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(), (String)session.getAttribute("account")));
+			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));
+//			allTeam.getAllTeams().get(i).setJoin(hibernate.);
 		}
 		request.setAttribute("allTeam", allTeam);
 		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);

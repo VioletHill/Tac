@@ -21,6 +21,7 @@ public class Team
 	int day;
 	int year;
 	boolean isInterested;
+	boolean isJoin;
 	
 	public User getPublishUser() {
 		if (publishUser==null)
@@ -126,8 +127,10 @@ public class Team
 	public void setIsInterested(boolean isInterested) {
 		this.isInterested = isInterested;
 	}
-
-
-
-
+	public boolean isJoin() {
+		return isJoin;
+	}
+	public void setJoin(boolean isJoin) {
+		this.isJoin = isJoin;
+	}
 }

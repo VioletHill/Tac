@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script src="jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="TacTeam/Team.js"></script>
+
 	
 	<style>
 		body {
@@ -110,13 +111,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<%}%>
   				
   				<!-- 头像 -->
+  					<div style="clear:both"> </div>
   				<div class="headDiv" style="float:left; position:relative; left:-50;">
   					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %>>
   				</div>
   	
   				<!-- 内容 -->
   				<div>
-					<table frame="box" style="background-color:white; width:750; position:relative; left:;">
+					<table frame="box" style="background-color:white; width:750;">
   						<tr>
   							<td><div style="width:70; overflow:hidden; text-align:left"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
   							<td>
@@ -139,7 +141,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							</td>
   							<!-- end 标题 -->
   							<%if (allTeam.getAllTeams().get(i).getType()==1) 
-  							{%>
+  							{
+  								%>
   								<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
   							<%}
   							else
@@ -159,19 +162,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>
 								<%for (int j=0; j<allTeam.getAllTeams().get(i).getJoinUsers().size(); j++)
 								{
+									String joinUserId=allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount();
 									if (j>10) break;
 								%>
 									<div style="width:45; float:left">
 										<div class="headDiv">
-											<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%> >
+											<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%> name=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount()%> onclick="showInfor('<%=joinUserId%>')">
+										</div>
+										<div id="<%=joinUserId%>" style="background-color:green; width:100; height:100; position:absolute; display:none">
+												
 										</div>
 									</div>
 								<%}%>
 							</td>
 							<td style="float:right">
 								<%if (allTeam.getAllTeams().get(i).getIsInterested())
-								{System.out.println(allTeam.getAllTeams().get(i).getIsInterested());%>
-								
+								{%>
 									<img src="TacTeam/Image/interested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
 								<%}
 								 else
@@ -184,12 +190,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>
 						</tr>	
   					</table>
-  					<div>
-  						asjk
-  					</div>
   					<br>
+  					<%if (allTeam.getAllTeams().get(i).getWaitUsers().size()!=0)
+  					{%>
+  						<div style="position:relative; left:50; height:50">
+  						<%	
+  						for (int j=0; j<allTeam.getAllTeams().get(i).getWaitUsers().size(); j++) 
+  						{%>
+  							<div style="width:45; height:50; float:left; ">
+  								<div class="headDiv">
+  									<img src=<%=allTeam.getAllTeams().get(i).getWaitUsers().get(j).getHeader_add()%>>
+  								</div>
+  							</div>
+  						<%}%>
+  					<%}%>
+  					</div>
   				</div>
-  				<!-- end 内容 -->
+  				<!-- end 内容 -->  				
   				</div>
   		   <%}%> 
   		</div>
