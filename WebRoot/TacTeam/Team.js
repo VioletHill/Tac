@@ -128,6 +128,62 @@ function changeInterested(obj,id)
 }
 
 
+var isJoin=false;
+function changeWanntIn(obj,id,divId,headAdd)
+{
+	if (isJoin) return ;
+	isJoin=true;
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+	  xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("POST", "Team/WantIn?isWant="+obj.name+"&id="+id, false);
+	xmlhttp.send();
+	
+	if (obj.name=="in")
+	{
+		if (xmlhttp.responseText=="success")
+		{
+			obj.src="TacTeam/Image/iwantin.png";
+			var child=document.getElementById(divId);
+			document.getElementById("waitUserDiv"+id).removeChild(child);
+			obj.name="not";
+		}
+	}
+	else
+	{
+		if (xmlhttp.responseText=="success")
+		{
+			obj.src="TacTeam/Image/iamin.png";
+			obj.name="in";
+			
+//			<div class="waitDiv" id="<%=waitId%>">
+//				<div class="headDiv">
+//					<img src=<%=allTeam.getAllTeams().get(i).getWaitUsers().get(j).getHeader_add()%>>
+//				</div>
+//			</div>
+			
+			var waitDiv=document.createElement("div");
+			waitDiv.setAttribute("class","waitDiv");
+			waitDiv.setAttribute("id",divId);
+			var headDiv=document.createElement("div");
+			headDiv.setAttribute("class","headDiv");
+			waitDiv.appendChild(headDiv);
+			var headImg=document.createElement("img");
+			headImg.setAttribute("src", headAdd);
+			headDiv.appendChild(headImg);
+			document.getElementById("waitUserDiv"+id).appendChild(waitDiv);
+		}
+	}
+	isJoin=false;
+}
+
+
 function showInfor(joinUserId)
 {
 	if (document.getElementById(joinUserId).style.display=="none")
