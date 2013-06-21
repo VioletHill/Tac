@@ -160,5 +160,20 @@ public class TeamJoinusersDAO extends BaseHibernateDAO {
 		query.setParameter(0, id);
 		query.executeUpdate();
 	}
-
+	public boolean IsJoin(int id,String user_account)
+	{
+		String query_string="from TeamJoinusers as n where n.team_id=? and n.user_account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.setParameter(1, user_account);
+		List list=query.list();
+		if(list.size()>0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
