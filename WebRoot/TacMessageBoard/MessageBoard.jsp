@@ -13,8 +13,8 @@
 
 <title>Home Page</title>
 <meta charset=utf-8 />
-<link type="text/css" rel="stylesheet"
-	href="TacMessageBoard/MessageBoard.css" />
+<link type="text/css" rel="stylesheet" href="TacMessageBoard/MessageBoard.css" />
+<script type="text/javascript" src="/TacMessageBoard/MessageBoard.js"></script>
 
 </head>
 
