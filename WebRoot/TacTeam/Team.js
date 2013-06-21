@@ -89,9 +89,11 @@ function init()
    	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
 }
 
-
+var isInterestedSend=false;
 function changeInterested(obj,id)
 {
+	if (isInterestedSend) return ;
+	isInterestedSend=true;
 	var xmlhttp;
 	if (window.XMLHttpRequest)
 	{
@@ -106,17 +108,23 @@ function changeInterested(obj,id)
 	if (obj.name=="interested")
 	{
 		
-		document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-		obj.src="TacTeam/Image/uninterested.png";
-		obj.name="uninterested";
+		if (xmlhttp.responseText)
+		{
+			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
+			obj.src="TacTeam/Image/uninterested.png";
+			obj.name="uninterested";
+		}
 	}
 	else
 	{
-		document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-		obj.src="TacTeam/Image/interested.png";
-		obj.name="interested";
+		if (xmlhttp.responseText)
+		{
+			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
+			obj.src="TacTeam/Image/interested.png";
+			obj.name="interested";
+		}
 	}
-	
+	isInterestedSend=false;
 }
 
 

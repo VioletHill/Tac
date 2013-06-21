@@ -7,6 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
+
+import com.jspsmart.upload.Request;
 
 import DataSource.Team.AllTeam;
 import DataSource.Team.TeamHibernate;
@@ -42,9 +47,17 @@ public class TeamServlet extends HttpServlet {
 			throws ServletException, IOException {
 		final int pageNum=10;
 		
+		HttpSession session=request.getSession();
+		
 		AllTeam allTeam=new AllTeam();
 		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
 		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
+		
+		for (int i=0; i<allTeam.getAllTeams().size(); i++)
+		{
+			System.out.println(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(), (String)session.getAttribute("account")));
+			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(), (String)session.getAttribute("account")));
+		}
 		request.setAttribute("allTeam", allTeam);
 		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
 	}
