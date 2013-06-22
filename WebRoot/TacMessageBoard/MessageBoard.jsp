@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="DataSource.Message.Message"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
@@ -47,6 +48,8 @@
 				Iterator<Message> it = list.iterator();
 				while (it.hasNext()) {
 					Message message = it.next();
+					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String dateString = format.format(message.getTime());
 					%>
 					<div class="block">
 						<div class="content">
@@ -55,7 +58,7 @@
 								<p class="ownername"><%=message.getUser_account() %></p>
 							</div>
 							<p class="notecontent"><%= message.getContent() %></p>
-							<p class="publishtime"><%= message.getTime() %></p>
+							<p class="publishtime"><%= dateString %></p>
 						</div>
 					</div>
 					<%

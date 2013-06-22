@@ -51,10 +51,6 @@ public class MessageBoard extends HttpServlet {
 		request.setAttribute("message", list);
 
 		Iterator<Message> it = list.iterator();
-		while (it.hasNext()) {
-			Message message = it.next();
-			System.out.println(message.getUser_account() + " " + message.getContent());
-		}
 
 		request.getRequestDispatcher("/TacMessageBoard/MessageBoard.jsp")
 				.forward(request, response);
