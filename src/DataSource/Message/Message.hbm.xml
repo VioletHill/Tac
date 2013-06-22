@@ -20,7 +20,7 @@
    <column length="200" name="picture"/>
   </property>
   <property generated="never" lazy="false" name="time" type="timestamp">
-   <column length="19" name="time" not-null="true"/>
+   <column length="19" name="time" not-null="false"/>
   </property>
  </class>
 </hibernate-mapping>

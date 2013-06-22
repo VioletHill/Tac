@@ -44,6 +44,7 @@ public class Publish extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.getRequestDispatcher("/MessageBoard").forward(request, response);
 		return;
 	}
 
@@ -65,6 +66,8 @@ public class Publish extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf8");
+		
 		HttpSession session = request.getSession();
 		if (session.getAttribute("account") == null) {
 			request.getRequestDispatcher("/MessageBoard").forward(request, response);
@@ -84,11 +87,16 @@ public class Publish extends HttpServlet {
 		
 		Message message = new Message();
 		message.setContent(content);
-		message.setPicture(null);
-		message.setTime(null);
+//		message.setPicture(null);
+//		message.setTime(null);
 		message.setUser_account(account);
 		System.out.println(message);
-//		MessageHibernate.sharedMessageHibernate().insert(message);
+		if (!MessageHibernate.sharedMessageHibernate().insert(message)) {
+			//error
+			request.getRequestDispatcher("/Home").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/MessageBoard").forward(request, response);
+		}
 	}
 
 	/**
