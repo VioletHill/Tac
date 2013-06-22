@@ -12,8 +12,39 @@ $(document).ready(function() {
 		}
 	}
 	
+	$('#publishCount').text($('#publishContent').val().length);
+	
+	$('#publishBlock').hide();
+	
+	var clickflag = false;
 	$('#addNoteBlock').click(function() {
+		if (clickflag) 
+			return;
 		$('#addNoteBlock').css("background-position", "-800px 0px");
+		$('#publishBlock').show();
+		$('#publishBlock #publishContent').focus();
+		clickflag = true;
 		return;
+	});
+	
+	$('#publishContent').keypress(function() {
+		$('#publishCount').text($('#publishContent').val().length);
+	});
+	
+	$('#publishContent').keydown(function() {
+		$('#publishCount').text($('#publishContent').val().length);
+	});
+	
+	$('#publishContent').keyup(function() {
+		$('#publishCount').text($('#publishContent').val().length);
+	});
+	
+	$('#submitButton').click(function() {
+		if (!$('#publishContent').val()) {
+			$('#publishContent').focus();
+			return false;
+		} else {
+			return true;
+		}
 	});
 });
