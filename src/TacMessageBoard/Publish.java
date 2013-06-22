@@ -6,8 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DataSource.Message.Message;
+import DataSource.Message.MessageHibernate;
 
 public class Publish extends HttpServlet {
 
@@ -62,7 +64,14 @@ public class Publish extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("account") == null) {
+			request.getRequestDispatcher("/MessageBoard").forward(request, response);
+			return;
+		}
+		String account = (String) session.getAttribute("account");
+				
 		String content = request.getParameter("content");
 		content = content.replaceAll("&","&amp;");
 		content = content.replaceAll(" ","&nbsp;");
@@ -72,6 +81,14 @@ public class Publish extends HttpServlet {
 		content = content.replaceAll("\"","&quot;");
 		content = content.replaceAll("\'","&#39;");
 		System.out.println(content);
+		
+		Message message = new Message();
+		message.setContent(content);
+		message.setPicture(null);
+		message.setTime(null);
+		message.setUser_account(account);
+		System.out.println(message);
+//		MessageHibernate.sharedMessageHibernate().insert(message);
 	}
 
 	/**
