@@ -19,6 +19,7 @@ public class Team
 	int month;
 	int day;
 	int year;
+<<<<<<< HEAD
 	private String join_head;
 	private String join_user;
 	public String getJoin_head() {
@@ -33,6 +34,11 @@ public class Team
 	public void setJoin_user(String join_user) {
 		this.join_user = join_user;
 	}
+=======
+	boolean isInterested;
+	boolean isJoin;
+	
+>>>>>>> 94ee17137bcc7d8c2e0deadabc0176e961153d10
 	public User getPublishUser() {
 		if (publishUser==null)
 		{
@@ -124,10 +130,23 @@ public class Team
 	public void setPublisher_account(String publisher_account) {
 		this.publisher_account = publisher_account;
 	}
+<<<<<<< HEAD
 
 
 
 
+=======
+	public boolean getIsInterested() {
+		return isInterested;
+	}
+	public void setIsInterested(boolean isInterested) {
+		this.isInterested = isInterested;
+	}
+	public boolean getIsJoin() {
+		return isJoin;
+	}
+	public void setIsJoin(boolean isJoin) {
+		this.isJoin = isJoin;
+	}
+>>>>>>> 94ee17137bcc7d8c2e0deadabc0176e961153d10
 }
-
-
