@@ -94,5 +94,6 @@
 		<column name="year" property="year"></column>
 		<column name="month" property="month"></column>
 		<column name="day" property="day"></column>
+		<column name="time" property="time"></column>
 	</table>
 </hibernate-reverse-engineering>

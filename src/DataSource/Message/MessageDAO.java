@@ -1,6 +1,7 @@
 package DataSource.Message;
 
 import TacHibernate.BaseHibernateDAO;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
@@ -26,9 +27,6 @@ public class MessageDAO extends BaseHibernateDAO {
 	public static final String USER_ACCOUNT = "userAccount";
 	public static final String CONTENT = "content";
 	public static final String PICTURE = "picture";
-	public static final String YEAR = "year";
-	public static final String MONTH = "month";
-	public static final String DAY = "day";
 
 	public void save(Message transientInstance) {
 		log.debug("saving Message instance");
@@ -106,18 +104,6 @@ public class MessageDAO extends BaseHibernateDAO {
 		return findByProperty(PICTURE, picture);
 	}
 
-	public List findByYear(Object year) {
-		return findByProperty(YEAR, year);
-	}
-
-	public List findByMonth(Object month) {
-		return findByProperty(MONTH, month);
-	}
-
-	public List findByDay(Object day) {
-		return findByProperty(DAY, day);
-	}
-
 	public List findAll() {
 		log.debug("finding all Message instances");
 		try {
@@ -181,7 +167,7 @@ public class MessageDAO extends BaseHibernateDAO {
 	}
 	public List<Message> find()
 	{
-		String query_string="from Message as n order by n.id desc";
+		String query_string="from Message as n order by n.time desc";
 		Query query=getSession().createQuery(query_string);
 		List<Message> list=query.list();
 		return list;
