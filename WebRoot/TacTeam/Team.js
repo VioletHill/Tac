@@ -89,93 +89,57 @@ function init()
    	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
 }
 
-var isInterestedSend=false;
 function changeInterested(obj,id)
 {
-	if (isInterestedSend) return ;
-	isInterestedSend=true;
-	var xmlhttp;
-	if (window.XMLHttpRequest)
+	if (obj.name=="yes")
 	{
-	  xmlhttp=new XMLHttpRequest();
+		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
+			{
+				document.getElementById('interestedCount'+id).innerHTML=msg;
+				obj.src="TacTeam/Image/uninterested.png";
+				obj.name="no";
+			});
 	}
 	else
 	{
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
+				{
+					document.getElementById('interestedCount'+id).innerHTML=msg;
+					obj.src="TacTeam/Image/interested.png";
+					obj.name="yes";
+				});
 	}
-	xmlhttp.open("POST", "Team/Interested?isInterested="+obj.name+"&id="+id, false);
-	xmlhttp.send();
-	if (obj.name=="interested")
-	{
-		
-		if (xmlhttp.responseText)
-		{
-			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-			obj.src="TacTeam/Image/uninterested.png";
-			obj.name="uninterested";
-		}
-	}
-	else
-	{
-		if (xmlhttp.responseText)
-		{
-			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-			obj.src="TacTeam/Image/interested.png";
-			obj.name="interested";
-		}
-	}
-	isInterestedSend=false;
 }
 
 
-var isJoin=false;
-function changeWanntIn(obj,id,divId,headAdd)
+function changeWanntIn(obj,id)
 {
-	if (isJoin) return ;
-	isJoin=true;
-	var xmlhttp;
-	if (window.XMLHttpRequest)
-	{
-	  xmlhttp=new XMLHttpRequest();
-	}
-	else
-	{
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.open("POST", "Team/Join?isJoin="+obj.name+"&id="+id, false);
-	xmlhttp.send();
-	
-	if (obj.name=="yes")
-	{
-		if (xmlhttp.responseText=="true")
-		{
-			obj.src="TacTeam/Image/iwantin.png";
-			obj.name="not";
-		}
-	}
-	else
-	{
-		if (xmlhttp.responseText=="true")
-		{
-			obj.src="TacTeam/Image/iamin.png";
-			obj.name="in";
-		}
-	}
-	isJoin=false;
+	$.post("Team/Join",{ id:id,isJoin:obj.name }, function(msg)
+			{
+				window.location.reload(); 
+			});
 }
 
 
 function showInfor(joinUserId)
 {
-	if (document.getElementById(joinUserId).style.display=="none")
+	try
 	{
-		$('#'+joinUserId).fadeIn();
+		if (document.getElementById(joinUserId).style.display=="none")
+		{
+			$('#'+joinUserId).fadeIn();
+		}
+		else
+		{
+			$('#'+joinUserId).fadeOut();
+			document.getElementById(joinUserId).style.display="none";
+		}
 	}
-	else
+	catch(e)
 	{
-		$('#'+joinUserId).fadeOut();
-		document.getElementById(joinUserId).style.display="none";
+		
 	}
+	
 }
 
 

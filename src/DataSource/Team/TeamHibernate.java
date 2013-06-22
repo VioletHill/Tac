@@ -76,74 +76,78 @@ public class TeamHibernate implements Serializable {
 	}
 	public int interestedcountAdd(int id,String user_account)
 	{
-		String query_string="from Team as n where n.id=?";
-		Session session=HibernateSessionFactory.getSession();
-		Query query=session.createQuery(query_string);
-		query.setParameter(0, id);
-		session.beginTransaction();
-		List list=null;
-		list=query.list();
-		session.getTransaction().commit();
-		session.flush();
-		session.close();
-		if(!IsInterested(id, user_account))
+		synchronized (this) 
 		{
-			String query_string2="update Team as n set n.interestedCount=? where n.id=?";
-			Session session2=HibernateSessionFactory.getSession();
-			Query query2=session2.createQuery(query_string2);
-			query2.setParameter(0, ((Team)list.get(0)).getInterestedCount()+1);
-			query2.setParameter(1, id);
-			session2.beginTransaction();
-			query2.executeUpdate();
-			session2.getTransaction().commit();
-			session2.flush();
-			session2.close();
-			UserInterested userInterested=new UserInterested();
-			userInterested.setTeam_id(id);
-			userInterested.setUser_account(user_account);
-			userInterested.setType(((Team)list.get(0)).getType());
-			UserInterestedDAO dao=new UserInterestedDAO();
-			dao.save(userInterested);
-			return ((Team)list.get(0)).getInterestedCount()+1;
+			String query_string="from Team as n where n.id=?";
+			Session session=HibernateSessionFactory.getSession();
+			Query query=session.createQuery(query_string);
+			query.setParameter(0, id);
+			session.beginTransaction();
+			List list=null;
+			list=query.list();
+			session.getTransaction().commit();
+			session.flush();
+			session.close();
+			if(!IsInterested(id, user_account))
+			{
+				String query_string2="update Team as n set n.interestedCount=? where n.id=?";
+				Session session2=HibernateSessionFactory.getSession();
+				Query query2=session2.createQuery(query_string2);
+				query2.setParameter(0, ((Team)list.get(0)).getInterestedCount()+1);
+				query2.setParameter(1, id);
+				session2.beginTransaction();
+				query2.executeUpdate();
+				session2.getTransaction().commit();
+				session2.flush();
+				session2.close();
+				UserInterested userInterested=new UserInterested();
+				userInterested.setTeam_id(id);
+				userInterested.setUser_account(user_account);
+				userInterested.setType(((Team)list.get(0)).getType());
+				UserInterestedDAO dao=new UserInterestedDAO();
+				dao.save(userInterested);
+				return ((Team)list.get(0)).getInterestedCount()+1;
+			}
+			else
+			{
+				return -1;
+			}
 		}
-		else
-		{
-			return ((Team)list.get(0)).getInterestedCount();
-		}
-
 	}
 	public int interestedcountSub(int id,String user_account) {
-		String query_string="from Team as n where n.id=?";
-		String test;
-		Session session=HibernateSessionFactory.getSession();
-		Query query=session.createQuery(query_string);
-		query.setParameter(0, id);
-		session.beginTransaction();
-		List list=null;
-		list=query.list();
-		session.getTransaction().commit();
-		session.flush();
-		session.close();
-		if(IsInterested(id, user_account))
+		synchronized (this)
 		{
-			String query_string2="update Team as n set n.interestedCount=? where n.id=?";
-			Session session2=HibernateSessionFactory.getSession();
-			Query query2=session2.createQuery(query_string2);
-			query2.setParameter(0, ((Team)list.get(0)).getInterestedCount()-1);
-			query2.setParameter(1, id);
-			session2.beginTransaction();
-			query2.executeUpdate();
-			session2.getTransaction().commit();
-			session2.flush();
-			session2.close();
-			UserInterestedDAO dao=new UserInterestedDAO();
-			dao.delete(id, user_account);
-			return ((Team)list.get(0)).getInterestedCount()-1;
+			String query_string="from Team as n where n.id=?";
+			String test;
+			Session session=HibernateSessionFactory.getSession();
+			Query query=session.createQuery(query_string);
+			query.setParameter(0, id);
+			session.beginTransaction();
+			List list=null;
+			list=query.list();
+			session.getTransaction().commit();
+			session.flush();
+			session.close();
+			if(IsInterested(id, user_account))
+			{
+				String query_string2="update Team as n set n.interestedCount=? where n.id=?";
+				Session session2=HibernateSessionFactory.getSession();
+				Query query2=session2.createQuery(query_string2);
+				query2.setParameter(0, ((Team)list.get(0)).getInterestedCount()-1);
+				query2.setParameter(1, id);
+				session2.beginTransaction();
+				query2.executeUpdate();
+				session2.getTransaction().commit();
+				session2.flush();
+				session2.close();
+				UserInterestedDAO dao=new UserInterestedDAO();
+				dao.delete(id, user_account);
+				return ((Team)list.get(0)).getInterestedCount()-1;
+			}
+			else{
+				return -1;
+			}
 		}
-		else{
-			return ((Team)list.get(0)).getInterestedCount();
-		}
-		
 	}
 	public boolean delete(int id)
 	{

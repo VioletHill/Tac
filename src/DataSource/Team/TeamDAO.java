@@ -256,7 +256,7 @@ public class TeamDAO extends BaseHibernateDAO {
 			query3.executeUpdate();
 		}
 		else {
-			String join_head=null;
+			String join_head="";
 			String query_string2="update Team as n set n.join_head=? where n.id=?";
 			Query query2=getSession().createQuery(query_string2);
 			query2.setParameter(0, join_head);
@@ -291,7 +291,7 @@ public class TeamDAO extends BaseHibernateDAO {
 			}
 		}
 		else {
-			String join_user="没有人加入项目";
+			String join_user="";
 			String query_string2="update Team as n set n.join_user=? where n.id=?";
 			Query query2=getSession().createQuery(query_string2);
 			query2.setParameter(0, join_user);

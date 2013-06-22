@@ -56,11 +56,10 @@ public class TeamInterested extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		String account=(String) session.getAttribute("account");
-		response.setContentType("text/html");
+		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
-		if (request.getParameter("isInterested").equals("interested"))
+		if (request.getParameter("isInterested").equals("yes"))
 		{
 			out.println(teamHibernate.interestedcountSub(id,account));
 		}
@@ -68,7 +67,7 @@ public class TeamInterested extends HttpServlet {
 		{
 			out.println(teamHibernate.interestedcountAdd(id,account));
 		}
-	
+		
 		out.flush();
 		out.close();
 	}

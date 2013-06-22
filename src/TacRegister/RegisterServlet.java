@@ -172,7 +172,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 			else	//ajax 询问时候可以注册 
 			{
-				response.setContentType("text/html; charset=gbk");
+				response.setContentType("text/plain; charset=gbk");
 				String account=request.getParameter("account");
 				//检测账号时候被注册
 				PrintWriter out = response.getWriter();
