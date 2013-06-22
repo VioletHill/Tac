@@ -127,10 +127,10 @@ public class Team
 	public void setIsInterested(boolean isInterested) {
 		this.isInterested = isInterested;
 	}
-	public boolean isJoin() {
+	public boolean getIsJoin() {
 		return isJoin;
 	}
-	public void setJoin(boolean isJoin) {
+	public void setIsJoin(boolean isJoin) {
 		this.isJoin = isJoin;
 	}
 }

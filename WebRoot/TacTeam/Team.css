@@ -54,6 +54,13 @@
 	height:50;
 }
 
+.waitDiv
+{
+	width:45; 
+	height:45;
+	float:left;
+}
+
 .headDiv
 {
  	border-radius: 19px;
@@ -63,3 +70,6 @@
    width:38;
    height:38;
 }
+
+
+

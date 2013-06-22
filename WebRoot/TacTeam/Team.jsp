@@ -142,8 +142,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<!-- end ±êÌâ -->
   							<%if (allTeam.getAllTeams().get(i).getType()==1) 
   							{
+  								String waitDiv="wait"+allTeam.getAllTeams().get(i).getId()+session.getAttribute("account");
+  								if (allTeam.getAllTeams().get(i).getIsJoin())
+  								{			
   								%>
-  								<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
+  									<td><img src="TacTeam/Image/iamin.png" name="in" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>,'<%=waitDiv%>','<%=(String)session.getAttribute("headAdd")%>')"></td>
+  								<%}
+  								else
+  								{%>
+  									<td><img src="TacTeam/Image/iwantin.png" name="not" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>,'<%=waitDiv%>','<%=(String)session.getAttribute("headAdd") %>')"></td>
+  							  <%}%>
   							<%}
   							else
   							{%>
@@ -162,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>
 								<%for (int j=0; j<allTeam.getAllTeams().get(i).getJoinUsers().size(); j++)
 								{
-									String joinUserId=allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount();
+									String joinUserId="join"+allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount();
 									if (j>10) break;
 								%>
 									<div style="width:45; float:left">
@@ -190,21 +198,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>
 						</tr>	
   					</table>
-  					<br>
-  					<%if (allTeam.getAllTeams().get(i).getWaitUsers().size()!=0)
-  					{%>
-  						<div style="position:relative; left:50; height:50">
+  					
+  					<div id="<%="waitUserDiv"+allTeam.getAllTeams().get(i).getId()%>" style=" position:relative; left:50;">
   						<%	
   						for (int j=0; j<allTeam.getAllTeams().get(i).getWaitUsers().size(); j++) 
-  						{%>
-  							<div style="width:45; height:50; float:left; ">
+  						{
+  							String waitId="wait"+allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getWaitUsers().get(j).getAccount();
+  						%>
+  							<div class="waitDiv" id="<%=waitId%>">
   								<div class="headDiv">
   									<img src=<%=allTeam.getAllTeams().get(i).getWaitUsers().get(j).getHeader_add()%>>
   								</div>
   							</div>
   						<%}%>
-  					<%}%>
   					</div>
+  					<br>	
   				</div>
   				<!-- end ÄÚÈÝ -->  				
   				</div>
