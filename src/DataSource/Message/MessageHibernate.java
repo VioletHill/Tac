@@ -14,10 +14,6 @@ public class MessageHibernate implements Serializable {
 	public boolean insert(Message message)
 	{
 		MessageDAO dao=new MessageDAO();
-		Calendar cal = Calendar.getInstance();
-		message.setYear(cal.get(Calendar.YEAR));
-		message.setMonth(cal.get(Calendar.MONTH)+1);
-		message.setDay(cal.get(Calendar.DAY_OF_MONTH));
 		if(message.getUser_account()==null)
 		{
 			return false;
@@ -59,7 +55,6 @@ public class MessageHibernate implements Serializable {
 		MessageDAO dao=new MessageDAO();
 		return dao.find();
 	}
-	
 	
 	public MessageHibernate() {
 		// TODO Auto-generated constructor stub

@@ -29,101 +29,18 @@
 		<div id="left">
 			<div class="block">
 				<div id="addNoteBlock">
+					<div id="publishBlock">
+						<form action="Publish" method="post">
+							<textarea id="publishContent" name="content"></textarea>
+							<p id="publishCount">0</p>
+							<input type="submit" id="submitButton" />
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div id="collection" hidden="hidden">
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx1.png" alt="Shawn" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx2.png" alt="路捷" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">我要吃好吃的</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx3.png" alt="Shawn" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx1.png" alt="Shawn" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx2.png" alt="路捷" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">我要吃好吃的</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx3.png" alt="Shawn" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx1.png" alt="Shawn" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx2.png" alt="路捷" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">我要吃好吃的</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
-			<div class="block">
-				<div class="content">
-					<div class="notetitle">
-						<img src="image/tx3.png" alt="Shawn" class="headphoto" />
-						<p class="ownername">Shawn</p>
-					</div>
-					<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-					<p class="publishtime">2013.5.18</p>
-				</div>
-			</div>
 			<div class="block">
 				<div class="content">
 					<div class="notetitle">
