@@ -5,6 +5,7 @@ import TacHibernate.BaseHibernateDAO;
 import java.util.List;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -317,9 +318,14 @@ public class TeamDAO extends BaseHibernateDAO {
 	}
 	public int number_findByPage()
 	{
+		Session session=this.getSession();
 		String query_string="from Team";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
+		session.beginTransaction();
 		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
 		if(list==null)
 		{
 			return 0;
@@ -330,19 +336,30 @@ public class TeamDAO extends BaseHibernateDAO {
 	}
 	public List findByType(int account,int page,int type)
 	{
+		Session session=this.getSession();
 		String query_string="from Team as n where n.type=? order by n.id desc";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
 		query.setParameter(0, type);
 		int number = (page - 1) * account;
 		query.setFirstResult(number);
 		query.setMaxResults(account);
-		return query.list();
+		session.beginTransaction();
+		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		return list;
 	}
 	public int number_findByType(int type) {
+		Session session=this.getSession();
 		String query_string="from Team as n where n.type=?";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
 		query.setParameter(0, type);
+		session.beginTransaction();
 		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
 		if(list==null)
 		{
 			return 0;
@@ -353,21 +370,32 @@ public class TeamDAO extends BaseHibernateDAO {
 	}
 	public List findMyType(int account,int page,int type,String user_account)
 	{
+		Session session=this.getSession();
 		String query_string="from Team as n where n.type=? and n.publisher_account=? order by n.id desc";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
 		query.setParameter(0, type);
 		query.setParameter(1, user_account);
 		int number = (page - 1) * account;
 		query.setFirstResult(number);
 		query.setMaxResults(account);
-		return query.list();
+		session.beginTransaction();
+		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		return list;
 	}
 	public int number_findMyType(int type,String user_account) {
+		Session session=this.getSession();
 		String query_string="from Team as n where n.type=? and n.publisher_account=?";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
 		query.setParameter(0, type);
 		query.setParameter(1, user_account);
+		session.beginTransaction();
 		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
 		if(list==null)
 		{
 			return 0;
@@ -378,9 +406,15 @@ public class TeamDAO extends BaseHibernateDAO {
 	}
 	public List findJoiner(int id)
 	{
+		Session session=this.getSession();
 		String query_string="from TeamJoinusers as n where n.team_id=?";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
 		query.setParameter(0, id);
-		return query.list();
+		session.beginTransaction();
+		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		return list;
 	}
 }
