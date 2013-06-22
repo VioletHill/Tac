@@ -89,42 +89,26 @@ function init()
    	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
 }
 
-var isInterestedSend=false;
 function changeInterested(obj,id)
 {
-	if (isInterestedSend) return ;
-	isInterestedSend=true;
-	var xmlhttp;
-	if (window.XMLHttpRequest)
+	if (obj.name=="yes")
 	{
-	  xmlhttp=new XMLHttpRequest();
+		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
+			{
+				document.getElementById('interestedCount'+id).innerHTML=msg;
+				obj.src="TacTeam/Image/uninterested.png";
+				obj.name="no";
+			});
 	}
 	else
 	{
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
+				{
+					document.getElementById('interestedCount'+id).innerHTML=msg;
+					obj.src="TacTeam/Image/interested.png";
+					obj.name="yes";
+				});
 	}
-	xmlhttp.open("POST", "Team/Interested?isInterested="+obj.name+"&id="+id, false);
-	xmlhttp.send();
-	if (obj.name=="interested")
-	{
-		
-		if (xmlhttp.responseText)
-		{
-			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-			obj.src="TacTeam/Image/uninterested.png";
-			obj.name="uninterested";
-		}
-	}
-	else
-	{
-		if (xmlhttp.responseText)
-		{
-			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-			obj.src="TacTeam/Image/interested.png";
-			obj.name="interested";
-		}
-	}
-	isInterestedSend=false;
 }
 
 
@@ -142,8 +126,17 @@ function changeWanntIn(obj,id,divId,headAdd)
 	{
 	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xmlhttp.open("POST", "Team/Join?isJoin="+obj.name+"&id="+id, false);
-	xmlhttp.send();
+
+	try
+	{
+		xmlhttp.open("POST", "Team/Join?isJoin="+obj.name+"&id="+id, false);
+		xmlhttp.send();
+	}
+	catch(e)
+	{
+		isJoin=false;
+		return ;
+	}
 	
 	if (obj.name=="yes")
 	{

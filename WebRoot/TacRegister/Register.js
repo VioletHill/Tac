@@ -53,27 +53,19 @@
 			return ;
 		}
 		
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("POST", "Register?account="+account+ "&isRegister="+"false", false);
-		xmlhttp.send();
-		
-		if (xmlhttp.responseText=="true")
-		{
-			isAccountOk=true;
-			document.getElementById("accountImg").style.display="inline";
-		}
-		else
-		{
-			document.getElementById("accountInfor").innerHTML="该账号已被注册";
-		}
+		$.post("Register",{account:account,isRegister:"false" }, function(msg)
+				{
+					if (msg=="true")
+					{
+						isAccountOk=true;
+						document.getElementById("accountImg").style.display="inline";
+					}
+					else
+					{
+						document.getElementById("accountInfor").innerHTML="该账号已被注册";
+					}
+					
+				});
 		
 	}
 	

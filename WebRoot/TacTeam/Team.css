@@ -60,4 +60,15 @@
 }
 
 
+.JoinUserInfo
+{
+	-moz-box-shadow: 2px 2px 10px #909090;
+	-webkit-box-shadow: 2px 2px 10px #909090;
+	box-shadow:2px 2px 10px #909090;
+	background-color:#f6f6f6; 
+	position:absolute; 
+	display:none;
+	z-index:10;
+}
+
 
