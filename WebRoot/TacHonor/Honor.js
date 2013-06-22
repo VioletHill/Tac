@@ -43,58 +43,35 @@
 	{
 		var tot=parseInt(pro.name);
 		indexImg=(indexImg+1)%tot;
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("POST", "Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
-		xmlhttp.send();
-		pro.src=xmlhttp.responseText;
-		x=event.clientX;
-		y=event.clientY;
+
+		$.post("Honor/GetProjectImage",{ indexProject:pro.id,indexImage:indexImg }, function(msg)
+				{
+					pro.src=msg;
+					x=event.clientX;
+					y=event.clientY;
+				});
 	}
 	
 	function moveLastImg(pro)
 	{
 		var tot=parseInt(pro.name);
 		indexImg=(indexImg-1+tot)%tot;
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("POST", "Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage="+indexImg, false);
-		xmlhttp.send();
-		pro.src=xmlhttp.responseText;
-		x=event.clientX;
-		y=event.clientY;
+		$.post("Honor/GetProjectImage",{ indexProject:pro.id,indexImage:indexImg }, function(msg)
+				{
+					pro.src=msg;
+					x=event.clientX;
+					y=event.clientY;
+				});
 	}
 	
 	function leaveImg(pro)
 	{
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("POST", "Honor/GetProjectImage?indexProject="+pro.id+ "&indexImage=0", false);
-		xmlhttp.send();
-		pro.src=xmlhttp.responseText;
-		x=event.clientX;
-		y=event.clientY;
+		$.post("Honor/GetProjectImage",{ indexProject:pro.id,indexImage:0 }, function(msg)
+				{
+					pro.src=msg;
+					x=event.clientX;
+					y=event.clientY;
+				});
 		isFirst=true;
 	}
 	

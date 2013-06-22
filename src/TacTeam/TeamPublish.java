@@ -1,7 +1,6 @@
-package TacHome;
+package TacTeam;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,23 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DataSource.User.User;
+import DataSource.Team.Team;
+import DataSource.Team.TeamHibernate;
 import DataSource.User.UserHibernate;
 
-public class Login extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class TeamPublish extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Login() {
+	public TeamPublish() {
 		super();
 	}
 
+	/**
+	 * Destruction of the servlet. <br>
+	 */
+	public void destroy() {
+		super.destroy(); // Just puts "destroy" string in log
+		// Put your code here
+	}
 
 	/**
 	 * The doGet method of the servlet. <br>
@@ -39,36 +41,18 @@ public class Login extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		PrintWriter out = response.getWriter();
-		String account=null;
-		String password=null;
-		
-		try 
+
+		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
+		HttpSession session=request.getSession();
+		for (int i=0; i<10; i++)
 		{
-			account=request.getParameter("account");
-			password=request.getParameter("password");
-			
-			if (UserHibernate.sharedUserHibernate().judge_login(account, password))
-			{
-				out.write("true");
-				User user=UserHibernate.sharedUserHibernate().find_by_account(account);
-				HttpSession session=request.getSession();
-				session.setAttribute("account", account);
-				session.setAttribute("headAdd", user.getHeader_add());
-				session.setAttribute("isLog", true);
-				session.setAttribute("permission", user.getPermission());
-			}
-			else 
-			{
-				out.write("false");
-			}
-		} 
-		catch (Exception e) 
-		{
-			out.write("false");
+			Team team=new Team();
+			team.setTitle("abc");
+			team.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account((String)session.getAttribute("account")));
+			team.setContent("wwwwccccc");
+			team.setType(i%2);
+			teamHibernate.insert(team);
 		}
-		out.flush();
 	}
 
 	/**
@@ -83,6 +67,7 @@ public class Login extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

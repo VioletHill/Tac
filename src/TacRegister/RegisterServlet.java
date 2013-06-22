@@ -150,7 +150,7 @@ public class RegisterServlet extends HttpServlet {
 					        	
 					        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
 					        	if (newFile.exists())	newFile.delete();
-					        	
+					        
 					            ImageCut o  =   new  ImageCut( x, y , 38 , 38);  
 					            o.setSrcpath(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());    
 					            o.setSubpath( dir+"/head."+fileName );  
@@ -172,7 +172,7 @@ public class RegisterServlet extends HttpServlet {
 			}
 			else	//ajax —ØŒ  ±∫Úø…“‘◊¢≤· 
 			{
-				response.setContentType("text/html; charset=gbk");
+				response.setContentType("text/plain; charset=gbk");
 				String account=request.getParameter("account");
 				//ºÏ≤‚’À∫≈ ±∫Ú±ª◊¢≤·
 				PrintWriter out = response.getWriter();

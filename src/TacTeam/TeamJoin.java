@@ -56,16 +56,16 @@ public class TeamJoin extends HttpServlet {
 		}
 		
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
-		response.setContentType("text/html");
+		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		
 		if (request.getParameter("isJoin").equals("yes"))
 		{
-//			out.println(teamHibernate.delete_join(id, account));
+			out.print(teamHibernate.delete_join(id, account));
 		}
 		else 
 		{
-//			out.println(teamHibernate.add_join(id, account));
+			out.print(teamHibernate.add_join(id, account));
 		}
 		
 		out.flush();

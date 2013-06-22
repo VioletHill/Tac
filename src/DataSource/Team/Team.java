@@ -21,6 +21,22 @@ public class Team
 	int year;
 	private String join_head;
 	private String join_user;
+	boolean isInterested;
+	boolean isJoin;
+	
+	
+	public boolean getIsInterested() {
+		return isInterested;
+	}
+	public void setIsInterested(boolean isInterested) {
+		this.isInterested = isInterested;
+	}
+	public boolean getIsJoin() {
+		return isJoin;
+	}
+	public void setIsJoin(boolean isJoin) {
+		this.isJoin = isJoin;
+	}
 	public String getJoin_head() {
 		return join_head;
 	}

@@ -30,7 +30,7 @@ public class GetProjectImage extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html");
+		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		
 		int indexProject=Integer.parseInt(request.getParameter("indexProject"));
