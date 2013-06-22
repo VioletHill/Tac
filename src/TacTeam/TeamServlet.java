@@ -51,18 +51,64 @@ public class TeamServlet extends HttpServlet {
 		final int pageNum=10;
 		
 		HttpSession session=request.getSession();
+		String account=(String)session.getAttribute("account");
+		
+		int page=1;
+		try 
+		{
+			page=Integer.parseInt(request.getParameter("page"));
+			if (page==0) page=1;
+		} 
+		catch (Exception e) 
+		{
+			page=1;
+		}
+		
+		String peopleType="allPeople";
+		try 
+		{
+			peopleType=request.getParameter("peopleType");
+			if (peopleType==null) peopleType="allPeople";
+		}
+		catch (Exception e)
+		{
+			 peopleType="allPeople";
+		}
+		
+		
+		String type="allType";
+		try 
+		{
+			type=request.getParameter("type");
+			if (type==null) type="allType";
+		} 
+		catch (Exception e) 
+		{
+			 type="allType";
+		}
 		
 		AllTeam allTeam=new AllTeam();
 		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
-		List<Team> testList=hibernate.findByPage(pageNum, 1);
-		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
+		if (peopleType.equals("allPeople"))
+		{
+			if (type.equals("allType"))
+			{
+				allTeam.setAllTeams(hibernate.findByPage(pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findByPage()- 1)/ pageNum + 1);
+			}
+			else if (type.equals("myPeople"))
+			{
+//				allTeam.setAllTeams(hibernate.fin)
+			}
+		}
 		
-		String account=(String)session.getAttribute("account");
 		for (int i=0; i<allTeam.getAllTeams().size(); i++)
 		{
 			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));
 			allTeam.getAllTeams().get(i).setIsJoin(hibernate.IsJoin(allTeam.getAllTeams().get(i).getId(), account));
 		}
+
 		request.setAttribute("allTeam", allTeam);
 		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
 	}
