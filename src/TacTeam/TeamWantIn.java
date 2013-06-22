@@ -9,20 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
-
-import com.jspsmart.upload.Request;
-
-import DataSource.Team.AllTeam;
 import DataSource.Team.TeamHibernate;
-import DataSource.User.User;
 
-public class TeamServlet extends HttpServlet {
+public class TeamWantIn extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TeamServlet() {
+	public TeamWantIn() {
 		super();
 	}
 
@@ -45,23 +39,38 @@ public class TeamServlet extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		final int pageNum=10;
-		
+			throws ServletException, IOException 
+	{
 		HttpSession session=request.getSession();
+		String account=(String) session.getAttribute("account");
 		
-		AllTeam allTeam=new AllTeam();
-		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
-		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
-		
-		String account=(String)session.getAttribute("account");
-		for (int i=0; i<allTeam.getAllTeams().size(); i++)
+		int id=0;
+		try 
 		{
-			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));
-			allTeam.getAllTeams().get(i).setIsJoin(hibernate.IsJoin(allTeam.getAllTeams().get(i).getId(), account));
+			id=Integer.parseInt(request.getParameter("id"));
+		} 
+		catch (Exception e) 
+		{
+			// TODO: handle exception
+			return ;
 		}
-		request.setAttribute("allTeam", allTeam);
-		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
+		
+		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
+		
+		if (request.getParameter("isWant").equals("in"))
+		{
+			teamHibernate.delete_wait(id, account);
+		}
+		else 
+		{
+			teamHibernate.add_wait(id, account);
+		}
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.print("success");
+		out.flush();
+		out.close();
 	}
 
 	/**

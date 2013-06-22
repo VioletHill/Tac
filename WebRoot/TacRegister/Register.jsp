@@ -34,7 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script  type="text/javascript" src="TacRegister/ui.core.packed.js" ></script>
 	<script type="text/javascript" src="TacRegister/ui.draggable.packed.js"></script>
 	<script type="text/javascript" src="TacRegister/Register.js"></script>	
-	<script type="text/javascript" src="TacRegister/CutHeader.js"></script>
 	
   </head>
   
