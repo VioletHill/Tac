@@ -326,7 +326,6 @@ Lightbox.prototype = {
 	//
 	start: function(imageLink) {	
 		hideSelectBoxes();
-
 		// stretch overlay to fill page and fade in
 		var arrayPageSize = getPageSize();
 		Element.setHeight('overlay', arrayPageSize[1]);

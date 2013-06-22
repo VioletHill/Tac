@@ -11,12 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import DataSource.Team.TeamHibernate;
 
-public class TeamWantIn extends HttpServlet {
+public class TeamJoin extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public TeamWantIn() {
+	public TeamJoin() {
 		super();
 	}
 
@@ -39,8 +39,8 @@ public class TeamWantIn extends HttpServlet {
 	 * @throws IOException if an error occurred
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException 
-	{
+			throws ServletException, IOException {
+
 		HttpSession session=request.getSession();
 		String account=(String) session.getAttribute("account");
 		
@@ -56,19 +56,18 @@ public class TeamWantIn extends HttpServlet {
 		}
 		
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 		
-		if (request.getParameter("isWant").equals("in"))
+		if (request.getParameter("isJoin").equals("yes"))
 		{
-			teamHibernate.delete_wait(id, account);
+//			out.println(teamHibernate.delete_join(id, account));
 		}
 		else 
 		{
-			teamHibernate.add_wait(id, account);
+//			out.println(teamHibernate.add_join(id, account));
 		}
 		
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.print("success");
 		out.flush();
 		out.close();
 	}

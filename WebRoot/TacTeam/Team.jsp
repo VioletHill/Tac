@@ -146,13 +146,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								if (allTeam.getAllTeams().get(i).getIsJoin())
   								{			
   								%>
-  									<td><img src="TacTeam/Image/iamin.png" name="in" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>,'<%=waitDiv%>','<%=(String)session.getAttribute("headAdd")%>')"></td>
+  									<td><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>,'<%=waitDiv%>','<%=(String)session.getAttribute("headAdd")%>')"></td>
   								<%}
   								else
   								{%>
-  									<td><img src="TacTeam/Image/iwantin.png" name="not" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>,'<%=waitDiv%>','<%=(String)session.getAttribute("headAdd") %>')"></td>
+  									<td><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>,'<%=waitDiv%>','<%=(String)session.getAttribute("headAdd") %>')"></td>
   							  <%}%>
-  							<%}
+  						  <%}
   							else
   							{%>
   							  	<td></td>
@@ -199,22 +199,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>	
   					</table>
   					
-  					<div id="<%="waitUserDiv"+allTeam.getAllTeams().get(i).getId()%>" style=" position:relative; left:50;">
-  						<%	
-  						for (int j=0; j<allTeam.getAllTeams().get(i).getWaitUsers().size(); j++) 
-  						{
-  							String waitId="wait"+allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getWaitUsers().get(j).getAccount();
-  						%>
-  							<div class="waitDiv" id="<%=waitId%>">
-  								<div class="headDiv">
-  									<img src=<%=allTeam.getAllTeams().get(i).getWaitUsers().get(j).getHeader_add()%>>
-  								</div>
-  							</div>
-  						<%}%>
+  					<div id="" style="position:relative; left:50; height:45">
   					</div>
-  					<br>	
+  					<br>
   				</div>
-  				<!-- end ÄÚÈÝ -->  				
+  				<!-- end ÄÚÈÝ -->  			
   				</div>
   		   <%}%> 
   		</div>
