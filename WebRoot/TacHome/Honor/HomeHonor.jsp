@@ -2,7 +2,6 @@
 
 
 <script src="TacHome/Honor/HomeHonor.js"></script>
-<script src="TacHonor/Honor.js"> </script>
 
 <link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 <link rel="stylesheet" type="text/css" href="TacHome/Honor/HomeHonor.css">
@@ -13,10 +12,10 @@
 <div style="clear:both"> </div>
 <br>
 <br>
-<div style="width:1163; margin-left:auto; margin-right:auto; background-color:white">	
+<div style="width:1163; margin-left:auto; margin-right:auto; background-color:white">
+	
 	<div>
 		<img src="TacHome/Image/ShowtimeHeader.png" >
-
 	</div>	
 
 	<div style="width:1163; height:300;">
@@ -27,7 +26,12 @@
    			<div class="ImageViewContainer">
    				<%for (int i = 0; i < allHonor.getList().size(); i++) 
 				{%>
-					<img class="ImageView" id="<%=allHonor.getList().get(i).getHonor_id()%>" name="<%=allHonor.getList().get(i).getPicture().length%>" src="<%=allHonor.getList().get(i).getPicture()[0]%>" onclick="linkToImg(this)" onmousemove="changeImg(this)" onmouseout="leaveImg(this)">
+					<img class="ImageView"  name="<%=i%>" src="<%=allHonor.getList().get(i).getPicture()[0] %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" onclick="linkToPorject(this)">
+					<%
+						for (int j=0; j<allHonor.getList().get(i).getPicture().length; j++)
+						{%>
+							<a href="<%=allHonor.getList().get(i).getPicture()[j]%>" rel="changeImg[<%=i%>]"></a>
+					  <%}%>	
 			  <%}%>
    			</div>
    		</div>

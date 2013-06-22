@@ -27,6 +27,7 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	
+	
 	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 	<link rel="stylesheet" type="text/css" href="TacHonor/Honor.css">
 	<link rel="stylesheet" href="LightBoxCss/lightbox.css" type="text/css" media="screen" />
@@ -42,6 +43,7 @@
   	  }
  	</style> 
  	
+ 	<script type="text/javascript" src="jquery-1.9.1.js"></script>
  	<script type="text/javascript" src="TacHonor/Honor.js"></script>
  	<script type="text/javascript" src="LightBoxJs/prototype.js"></script>
 	<script type="text/javascript" src="LightBoxJs/scriptaculous.js?load=effects"></script>
@@ -59,14 +61,17 @@
 	  	 {%>
 	  	 	<div  class="ImageDiv">
 				<a href="<%=allHonor.getList().get(i).getPicture()[0]%>" rel="lightbox[<%=i%>]">
-					<img id="<%=allHonor.getList().get(i).getHonor_id()%>" name="<%=allHonor.getList().get(i).getPicture().length %>" src="<%=allHonor.getList().get(i).getPicture()[0] %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
+					<img name="<%=i%>" src="<%=allHonor.getList().get(i).getPicture()[0] %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
 				</a>
 				
 				<br>
 				
 				<a class="NoticesItem" href="Honor/Project?id=<%=allHonor.getList().get(i).getHonor_id()%>"><%=allHonor.getList().get(i).getTitle() %></a>
+				
+				<a href="<%=allHonor.getList().get(i).getPicture()[0]%>" rel="changeImg[<%=i%>]"></a>
 				<%for (int j=1; j<allHonor.getList().get(i).getPicture().length; j++) 
 	  	 		{%>
+	  	 			<a href="<%=allHonor.getList().get(i).getPicture()[j]%>" rel="changeImg[<%=i%>]"></a>
 	  	 			<a href="<%=allHonor.getList().get(i).getPicture()[j]%>" rel="lightbox[<%=i%>]"></a>	
 			  <%}%>
 			  
