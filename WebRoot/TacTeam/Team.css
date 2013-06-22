@@ -54,11 +54,6 @@
 	height:50;
 }
 
-.DataDiv
-{
-	
-}
-
 
 .JoinUserInfo
 {
@@ -69,6 +64,20 @@
 	position:absolute; 
 	display:none;
 	z-index:10;
+}
+
+.DataDiv
+{
+	background-color:red; 
+	width:40; 
+	height:40; 
+	position:relative; 
+	left:-200; 
+	top:38;	
+	border-radius: 20px;
+   -moz-border-radius: 20px;
+   -webkit-border-radius: 20px;
+   overflow:hidden;
 }
 
 
