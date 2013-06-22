@@ -101,11 +101,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<%if (i==0 || allTeam.getAllTeams().get(i-1).getMonth()!=allTeam.getAllTeams().get(i).getMonth() || allTeam.getAllTeams().get(i-1).getDay()!=allTeam.getAllTeams().get(i).getDay())
   				{%>
   				<div  class="DataDiv">
-  					<div>
-  						
+  					<div class="DataDay">
+  						<%=allTeam.getAllTeams().get(i).getDay()%>
   					</div>
-  					<div>
-  						<img src="ab">
+  					<div class="DataMonth">
+  						<%=allTeam.getAllTeams().get(i).getMonth()+"ÔÂ"%>
   					</div>
   				</div>
   				<%}%>
@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	
   				<!-- ÄÚÈÝ -->
   				<div>
-					<table frame="box" style="background-color:#f6f6f6; width:750;">
+					<table frame="box" style="background-color:#f4f4f4; width:750;">
   						<tr>
   							<td><div style="width:70; overflow:hidden; text-align:left"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
   							<td>

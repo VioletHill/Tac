@@ -150,7 +150,7 @@ public class RegisterServlet extends HttpServlet {
 					        	
 					        	user.setHeader_add("User/"+user.getAccount()+"/head."+fileName);
 					        	if (newFile.exists())	newFile.delete();
-					        	
+					        
 					            ImageCut o  =   new  ImageCut( x, y , 38 , 38);  
 					            o.setSrcpath(request.getSession().getServletContext().getRealPath("/")+"/"+fileItem.getString());    
 					            o.setSubpath( dir+"/head."+fileName );  

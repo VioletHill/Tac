@@ -43,6 +43,8 @@ public class TeamHibernate implements Serializable {
 		team.setMonth(cal.get(Calendar.MONTH) + 1);
 		team.setDay(cal.get(Calendar.DAY_OF_MONTH));
 		Vector<User> joinuser=team.getJoinUsers();
+		team.setJoin_head("");
+		team.setJoin_user("");
 		dao.save(team);
 		int team_id=team.getId();
 		if(joinuser!=null)
@@ -169,39 +171,45 @@ public class TeamHibernate implements Serializable {
 	}
 	public boolean add_join(int id,String account)
 	{
-		boolean check=IsJoin(id, account);
-		if(!check)
-		{
-			TeamJoinusers joinusers=new TeamJoinusers();
-			joinusers.setTeam_id(id);
-			joinusers.setUser_account(account);
-			TeamJoinusersDAO dao=new TeamJoinusersDAO();
-			TeamDAO dao2=new TeamDAO();
-			dao2.update_join_head(id, account);
-			dao2.update_join_user(id, account);
-			dao.save(joinusers);
-			return check;
+		synchronized (this) {
+			boolean check=IsJoin(id, account);
+			if(!check)
+			{
+				TeamJoinusers joinusers=new TeamJoinusers();
+				joinusers.setTeam_id(id);
+				joinusers.setUser_account(account);
+				TeamJoinusersDAO dao=new TeamJoinusersDAO();
+				TeamDAO dao2=new TeamDAO();
+				dao2.update_join_head(id, account);
+				dao2.update_join_user(id, account);
+				dao.save(joinusers);
+				return check;
+			}
+			else {
+				return check;
+			}
 		}
-		else {
-			return check;
-		}
+		
 	}
 
 	public boolean delete_join(int id,String account)
 	{
-		boolean check=IsJoin(id, account);
-		if(check)
-		{
-			TeamDAO dao2=new TeamDAO();
-			TeamJoinusersDAO dao=new TeamJoinusersDAO();
-			dao.delete(id, account);
-			dao2.delete_join_head(id, account);
-			dao2.delete_join_user(id, account);
-			return check;
+		synchronized (this) {
+			boolean check=IsJoin(id, account);
+			if(check)
+			{
+				TeamDAO dao2=new TeamDAO();
+				TeamJoinusersDAO dao=new TeamJoinusersDAO();
+				dao.delete(id, account);
+				dao2.delete_join_head(id, account);
+				dao2.delete_join_user(id, account);
+				return check;
+			}
+			else {
+				return check;
+			}
 		}
-		else {
-			return check;
-		}
+		
 	}
 	
 	
@@ -209,12 +217,12 @@ public class TeamHibernate implements Serializable {
 	{
 		TeamDAO dao=new TeamDAO();
 		List list=dao.findByPage(account, page);
-		UserDAO userDAO=new UserDAO();
-		Vector<User> joinUsers=new Vector<User>();
+		UserDAO userDAO=new UserDAO();	
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
+				Vector<User> joinUsers=new Vector<User>();
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
 				if(joinerList!=null)

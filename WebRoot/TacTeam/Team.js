@@ -89,24 +89,36 @@ function init()
    	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
 }
 
+var isInterested=false;
 function changeInterested(obj,id)
 {
+	if (isInterested) return ;
 	if (obj.name=="yes")
 	{
 		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
 			{
-				document.getElementById('interestedCount'+id).innerHTML=msg;
-				obj.src="TacTeam/Image/uninterested.png";
-				obj.name="no";
+				if (msg!=-1)
+				{
+					isInterested=true;
+					document.getElementById('interestedCount'+id).innerHTML=msg;
+					obj.src="TacTeam/Image/uninterested.png";	
+					obj.name="no";
+					isInterested=false;
+				}
 			});
 	}
 	else
 	{
 		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
 				{
-					document.getElementById('interestedCount'+id).innerHTML=msg;
-					obj.src="TacTeam/Image/interested.png";
-					obj.name="yes";
+					if (msg!=-1)
+					{
+						isInterested=true;
+						document.getElementById('interestedCount'+id).innerHTML=msg;
+						obj.src="TacTeam/Image/interested.png";
+						obj.name="yes";
+						isInterested=false;
+					}
 				});
 	}
 }
@@ -116,7 +128,12 @@ function changeWanntIn(obj,id)
 {
 	$.post("Team/Join",{ id:id,isJoin:obj.name }, function(msg)
 			{
-				window.location.reload(); 
+				alert(msg);
+				if (msg==false)
+				{
+					alert("a");
+//					window.location.reload(); 
+				}
 			});
 }
 

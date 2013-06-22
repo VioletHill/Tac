@@ -56,9 +56,11 @@ public class TeamInterested extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		String account=(String) session.getAttribute("account");
+		
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
+		
 		if (request.getParameter("isInterested").equals("yes"))
 		{
 			out.println(teamHibernate.interestedcountSub(id,account));

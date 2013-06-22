@@ -61,11 +61,11 @@ public class TeamJoin extends HttpServlet {
 		
 		if (request.getParameter("isJoin").equals("yes"))
 		{
-			out.println(teamHibernate.delete_join(id, account));
+			out.print(teamHibernate.delete_join(id, account));
 		}
 		else 
 		{
-			out.println(teamHibernate.add_join(id, account));
+			out.print(teamHibernate.add_join(id, account));
 		}
 		
 		out.flush();
