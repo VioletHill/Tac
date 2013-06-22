@@ -1,6 +1,6 @@
 /* @charset "utf-8"; */
 
- body,p,div,header,footer,img {
+ body,p,div,header,footer,img,table,li,ui,h1,h2,h3,h4,h5,h6 {
 	padding: 0px;
 	margin: 0px;
 }
@@ -8,10 +8,6 @@
 body {
 	background-image: url(/Tac/image/mainBG.png);
 	font-family: "Reenie Beanie", Î¢ÈíÑÅºÚ, Ó×Ô², Georigia, Times, serif;
-}
-
-header {
-	
 }
 
 img#headerimg {
@@ -26,6 +22,11 @@ img#headerimg {
 
 div.block {
 	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 400px;
+}
+
+div.content {
 	padding-bottom: 20px;
 	background-color: #fcfaed;
 	box-shadow: 1px 1px 20px #888;
@@ -41,7 +42,18 @@ div.block {
 }
 
 #addNoteBlock {
-	margin-top: 20px;
+	background-image: url(../image/addNotePic.png);
+	background-position: 0px 0px;
+	width: 400px;
+	height: 217px;
+}
+
+#addNoteBlock:hover {
+	background-position: -400px 0px;
+}
+
+#addNoteBlock:active {
+	background-position: 0px 0px;
 }
 
 #publish {
