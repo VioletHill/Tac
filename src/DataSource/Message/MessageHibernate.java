@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import DataSource.User.User;
+import DataSource.User.UserDAO;
+
 
 public class MessageHibernate implements Serializable {
 	
@@ -23,6 +26,9 @@ public class MessageHibernate implements Serializable {
 			return false;
 		}
 		else {
+			UserDAO dao2=new UserDAO();
+			User user=dao2.find_by_account(message.getUser_account());
+			message.setPicture(user.getHeader_add());
 			dao.save(message);
 			return true;
 		}

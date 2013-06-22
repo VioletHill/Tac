@@ -216,7 +216,22 @@ public class TeamHibernate implements Serializable {
 	public List findByPage(int account,int page)
 	{
 		TeamDAO dao=new TeamDAO();
-		List list=dao.findByPage(account, page);
+		List list=null;
+		if(page>0)
+		{
+			Session session=HibernateSessionFactory.getSession();
+			String query_string="from Team as n order by n.id desc";
+			Query query=session.createQuery(query_string);
+			int number = (page - 1) * account;
+			query.setFirstResult(number);
+			query.setMaxResults(account);
+			session.beginTransaction();
+			list=query.list();
+			session.getTransaction().commit();
+			session.flush();
+			session.close();
+			
+		}
 		UserDAO userDAO=new UserDAO();	
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
