@@ -1,5 +1,6 @@
 package DataSource.Team;
 
+import DataSource.User.User;
 import TacHibernate.BaseHibernateDAO;
 import java.util.List;
 import org.hibernate.LockMode;
@@ -31,6 +32,8 @@ public class TeamDAO extends BaseHibernateDAO {
 	public static final String YEAR = "year";
 	public static final String MONTH = "month";
 	public static final String DAY = "day";
+	public static final String JOIN_HEAD = "joinHead";
+	public static final String JOIN_USER = "joinUser";
 
 	public void save(Team transientInstance) {
 		log.debug("saving Team instance");
@@ -126,6 +129,14 @@ public class TeamDAO extends BaseHibernateDAO {
 		return findByProperty(DAY, day);
 	}
 
+	public List findByJoinHead(Object joinHead) {
+		return findByProperty(JOIN_HEAD, joinHead);
+	}
+
+	public List findByJoinUser(Object joinUser) {
+		return findByProperty(JOIN_USER, joinUser);
+	}
+
 	public List findAll() {
 		log.debug("finding all Team instances");
 		try {
@@ -171,13 +182,6 @@ public class TeamDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
-	public void delete(int id)
-	{
-		String query_string="delete Team as n where n.id=?";
-		Query query=getSession().createQuery(query_string);
-		query.setParameter(0, id);
-		query.executeUpdate();
-	}
 	public void update(Team team) {
 		String query_string="update Team as n set n.title=?,n.content=?,n.type=? where n.id=?";
 		Query query=getSession().createQuery(query_string);
@@ -186,6 +190,114 @@ public class TeamDAO extends BaseHibernateDAO {
 		query.setParameter(2, team.getType());
 		query.setParameter(3, team.getId());
 		query.executeUpdate();
+		// TODO Auto-generated method stub
+	}
+
+	public void delete(int id) {
+		String query_string="delete Team as n where n.id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		query.executeUpdate();
+		// TODO Auto-generated method stub
+	}
+	public void update_join_head(int id,String user_account)
+	{
+		String query_string="from User as n where n.account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, user_account);
+		List list=query.list();
+		String join_head=((User)list.get(0)).getHeader_add();
+		String query_string2="update Team as n set n.join_head=? where n.id=?";
+		Query query2=getSession().createQuery(query_string2);
+		query2.setParameter(0, join_head);
+		query2.setParameter(1, id);
+		query2.executeUpdate();
+	}
+	public void update_join_user(int id,String user_account)
+	{
+		String query_string="from TeamJoinusers as n where n.team_id=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		List list=query.list();
+		if(list.size()>0)
+		{
+			String join_user=user_account+"等人加入了项目";
+			String query_string2="update Team as n set n.join_user=? where n.id=?";
+			Query query2=getSession().createQuery(query_string2);
+			query2.setParameter(0, join_user);
+			query2.setParameter(1, id);
+			query2.executeUpdate();
+		}
+		else {
+			String join_user=user_account+"加入了项目";
+			String query_string2="update Team as n set n.join_user=? where n.id=?";
+			Query query2=getSession().createQuery(query_string2);
+			query2.setParameter(0, join_user);
+			query2.setParameter(1, id);
+			query2.executeUpdate();
+		}
+	}
+	public void delete_join_head(int id,String user_account)
+	{
+		String query_string="from TeamJoinusers as n where n.team_id=? order by n.id desc";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		List list=query.list();
+		if (list.size()>0) {
+			String join_user=((TeamJoinusers)list.get(0)).getUser_account();
+			String query_String2="from User as n where n.account=?";
+			Query query2=getSession().createQuery(query_String2);
+			query2.setParameter(0, join_user);
+			String join_head=((User)query2.list().get(0)).getHeader_add();
+			String query_string3="update Team as n set n.join_head=? where n.id=?";
+			Query query3=getSession().createQuery(query_string3);
+			query3.setParameter(0, join_head);
+			query3.setParameter(1, id);
+			query3.executeUpdate();
+		}
+		else {
+			String join_head=null;
+			String query_string2="update Team as n set n.join_head=? where n.id=?";
+			Query query2=getSession().createQuery(query_string2);
+			query2.setParameter(0, join_head);
+			query2.setParameter(1, id);
+			query2.executeUpdate();
+		}
+	}
+	public void delete_join_user(int id,String user_account)
+	{
+		String query_string="from TeamJoinusers as n where n.team_id=? order by n.id desc";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, id);
+		List list=query.list();
+		if (list.size()>0) {
+			String join_user=((TeamJoinusers)list.get(0)).getUser_account();
+			if(list.size()>1)
+			{
+				String join_user_name=join_user+"等人加入了项目";
+				String query_string3="update Team as n set n.join_user=? where n.id=?";
+				Query query3=getSession().createQuery(query_string3);
+				query3.setParameter(0, join_user_name);
+				query3.setParameter(1, id);
+				query3.executeUpdate();
+			}
+			else {
+				String join_user_name=join_user+"加入了项目";
+				String query_string3="update Team as n set n.join_user=? where n.id=?";
+				Query query3=getSession().createQuery(query_string3);
+				query3.setParameter(0, join_user_name);
+				query3.setParameter(1, id);
+				query3.executeUpdate();
+			}
+		}
+		else {
+			String join_user="没有人加入项目";
+			String query_string2="update Team as n set n.join_user=? where n.id=?";
+			Query query2=getSession().createQuery(query_string2);
+			query2.setParameter(0, join_user);
+			query2.setParameter(1, id);
+			query2.executeUpdate();
+		}
 	}
 	public List findByPage(int account,int page)
 	{
@@ -270,12 +382,5 @@ public class TeamDAO extends BaseHibernateDAO {
 		Query query=getSession().createQuery(query_string);
 		query.setParameter(0, id);
 		return query.list();
-	}
-	public List findWaiter(int id) {
-		String query_string="from TeamWaitusers as n where n.team_id=?";
-		Query query=getSession().createQuery(query_string);
-		query.setParameter(0, id);
-		return query.list();
-		
 	}
 }

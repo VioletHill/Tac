@@ -54,21 +54,9 @@
 	height:50;
 }
 
-.waitDiv
+.DataDiv
 {
-	width:45; 
-	height:45;
-	float:left;
-}
-
-.headDiv
-{
- 	border-radius: 19px;
-   -moz-border-radius: 19px;
-   -webkit-border-radius: 19px;
-   overflow:hidden;
-   width:38;
-   height:38;
+	
 }
 
 

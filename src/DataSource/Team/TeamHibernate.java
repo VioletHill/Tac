@@ -43,8 +43,6 @@ public class TeamHibernate implements Serializable {
 		team.setMonth(cal.get(Calendar.MONTH) + 1);
 		team.setDay(cal.get(Calendar.DAY_OF_MONTH));
 		Vector<User> joinuser=team.getJoinUsers();
-		Vector<User> waitusers=team.getWaitUsers();
-		team.setInterestedCount(0);
 		dao.save(team);
 		int team_id=team.getId();
 		if(joinuser!=null)
@@ -56,17 +54,6 @@ public class TeamHibernate implements Serializable {
 				teamJoinusers.setUser_account(joinuser.elementAt(i).getAccount());
 				TeamJoinusersDAO dao2=new TeamJoinusersDAO();
 				dao2.save(teamJoinusers);
-			}
-		}
-		if(waitusers!=null)
-		{
-			for(int i=0;i<waitusers.size();i++)
-			{
-				TeamWaitusers teamWaitusers=new TeamWaitusers();
-				teamWaitusers.setTeam_id(team_id);
-				teamWaitusers.setUser_account(waitusers.elementAt(i).getAccount());
-				TeamWaitusersDAO dao2=new TeamWaitusersDAO();
-				dao2.save(teamWaitusers);
 			}
 		}
 	}
@@ -162,7 +149,6 @@ public class TeamHibernate implements Serializable {
 	{
 		TeamDAO dao=new TeamDAO();
 		TeamJoinusersDAO dao2=new TeamJoinusersDAO();
-		TeamWaitusersDAO dao3=new TeamWaitusersDAO();
 		UserInterestedDAO dao4=new UserInterestedDAO();
 		Team team=dao.findById(id);
 		if(team==null)
@@ -171,55 +157,62 @@ public class TeamHibernate implements Serializable {
 		}
 		else {
 			dao2.delete(id);
-			dao3.delete(id);
 			dao4.delete(id);
 			dao.delete(id);
 			return true;
 		}
 		
 	}
-	public void add_join(int id,String account)
+	public boolean add_join(int id,String account)
 	{
-		TeamJoinusers joinusers=new TeamJoinusers();
-		joinusers.setTeam_id(id);
-		joinusers.setUser_account(account);
-		TeamJoinusersDAO dao=new TeamJoinusersDAO();
-		dao.save(joinusers);
-		TeamWaitusersDAO dao2=new TeamWaitusersDAO();
-		dao2.delete(id, account);
+		boolean check=IsJoin(id, account);
+		if(!check)
+		{
+			TeamJoinusers joinusers=new TeamJoinusers();
+			joinusers.setTeam_id(id);
+			joinusers.setUser_account(account);
+			TeamJoinusersDAO dao=new TeamJoinusersDAO();
+			TeamDAO dao2=new TeamDAO();
+			dao2.update_join_head(id, account);
+			dao2.update_join_user(id, account);
+			dao.save(joinusers);
+			return check;
+		}
+		else {
+			return check;
+		}
 	}
-	public void add_wait(int id,String account)
+
+	public boolean delete_join(int id,String account)
 	{
-		TeamWaitusers waitusers=new TeamWaitusers();
-		waitusers.setTeam_id(id);
-		waitusers.setUser_account(account);
-		TeamWaitusersDAO dao=new TeamWaitusersDAO();
-		dao.save(waitusers);
+		boolean check=IsJoin(id, account);
+		if(check)
+		{
+			TeamDAO dao2=new TeamDAO();
+			TeamJoinusersDAO dao=new TeamJoinusersDAO();
+			dao.delete(id, account);
+			dao2.delete_join_head(id, account);
+			dao2.delete_join_user(id, account);
+			return check;
+		}
+		else {
+			return check;
+		}
 	}
-	public void delete_wait(int id,String account)
-	{
-		TeamWaitusersDAO dao=new TeamWaitusersDAO();
-		dao.delete(id, account);
-	}
-	public void delete_join(int id,String account)
-	{
-		TeamJoinusersDAO dao=new TeamJoinusersDAO();
-		dao.delete(id, account);
-	}
+	
+	
 	public List findByPage(int account,int page)
 	{
 		TeamDAO dao=new TeamDAO();
 		List list=dao.findByPage(account, page);
 		UserDAO userDAO=new UserDAO();
 		Vector<User> joinUsers=new Vector<User>();
-		Vector<User> waitUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
-				List waiterList=dao.findWaiter(team.getId());
 				if(joinerList!=null)
 				{
 					for (int j = 0; j <joinerList.size(); j++) {
@@ -228,16 +221,7 @@ public class TeamHibernate implements Serializable {
 						joinUsers.add(user);
 					}
 				}
-				if(waiterList!=null)
-				{
-					for (int j = 0; j < waiterList.size(); j++) {
-						String user_account=((TeamWaitusers)waiterList.get(j)).getUser_account();
-						User user=userDAO.find_by_account(user_account);
-						waitUsers.add(user);
-					}
-				}
 				team.setJoinUsers(joinUsers);
-				team.setWaitUsers(waitUsers);
 				teams.add(team);
  			}
 			return teams;
@@ -259,14 +243,12 @@ public class TeamHibernate implements Serializable {
 		List list=dao.findByType(account, page, type);
 		UserDAO userDAO=new UserDAO();
 		Vector<User> joinUsers=new Vector<User>();
-		Vector<User> waitUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
-				List waiterList=dao.findWaiter(team.getId());
 				if(joinerList!=null)
 				{
 					for (int j = 0; j <joinerList.size(); j++) {
@@ -275,16 +257,7 @@ public class TeamHibernate implements Serializable {
 						joinUsers.add(user);
 					}
 				}
-				if(waiterList!=null)
-				{
-					for (int j = 0; j < waiterList.size(); j++) {
-						String user_account=((TeamWaitusers)waiterList.get(j)).getUser_account();
-						User user=userDAO.find_by_account(user_account);
-						waitUsers.add(user);
-					}
-				}
 				team.setJoinUsers(joinUsers);
-				team.setWaitUsers(waitUsers);
 				teams.add(team);
  			}
 			return teams;
@@ -304,14 +277,12 @@ public class TeamHibernate implements Serializable {
 		List list=dao.findMyType(account, page, type, user_account);
 		UserDAO userDAO=new UserDAO();
 		Vector<User> joinUsers=new Vector<User>();
-		Vector<User> waitUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
-				List waiterList=dao.findWaiter(team.getId());
 				if(joinerList!=null)
 				{
 					for (int j = 0; j <joinerList.size(); j++) {
@@ -320,16 +291,8 @@ public class TeamHibernate implements Serializable {
 						joinUsers.add(user);
 					}
 				}
-				if(waiterList!=null)
-				{
-					for (int j = 0; j < waiterList.size(); j++) {
-						String user_account1=((TeamWaitusers)waiterList.get(j)).getUser_account();
-						User user=userDAO.find_by_account(user_account1);
-						waitUsers.add(user);
-					}
-				}
+
 				team.setJoinUsers(joinUsers);
-				team.setWaitUsers(waitUsers);
 				teams.add(team);
  			}
 			return teams;
@@ -343,23 +306,7 @@ public class TeamHibernate implements Serializable {
 		return dao.number_findMyType(type, user_account);
 	}
 	
-	public boolean IsInterested(int id,String user_account)
-	{
-		UserInterestedDAO dao=new UserInterestedDAO();
-		return dao.IsInterested(id, user_account);
-	}
 
-	public boolean IsJoin(int id,String user_account)
-	{
-		TeamJoinusersDAO dao=new TeamJoinusersDAO();
-		return dao.IsJoin(id, user_account);
-	}
-
-	public boolean IsWait(int id,String user_account)
-	{
-		TeamWaitusersDAO dao=new TeamWaitusersDAO();
-		return dao.IsWait(id, user_account);
-	}
 	
 	public List findInterestedType(int type,String user_account,int account,int page)
 	{
@@ -368,14 +315,12 @@ public class TeamHibernate implements Serializable {
 		TeamDAO dao=new TeamDAO();
 		UserDAO userDAO=new UserDAO();
 		Vector<User> joinUsers=new Vector<User>();
-		Vector<User> waitUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
-				List waiterList=dao.findWaiter(team.getId());
 				if(joinerList!=null)
 				{
 					for (int j = 0; j <joinerList.size(); j++) {
@@ -384,16 +329,8 @@ public class TeamHibernate implements Serializable {
 						joinUsers.add(user);
 					}
 				}
-				if(waiterList!=null)
-				{
-					for (int j = 0; j < waiterList.size(); j++) {
-						String user_account1=((TeamWaitusers)waiterList.get(j)).getUser_account();
-						User user=userDAO.find_by_account(user_account1);
-						waitUsers.add(user);
-					}
-				}
+
 				team.setJoinUsers(joinUsers);
-				team.setWaitUsers(waitUsers);
 				teams.add(team);
  			}
 			return teams;
@@ -406,6 +343,17 @@ public class TeamHibernate implements Serializable {
 	{
 		UserInterestedDAO dao=new UserInterestedDAO();
 		return dao.number_findInterestedType(type, user_account);
+	}
+	
+	public boolean IsInterested(int id,String user_account)
+	{
+		UserInterestedDAO dao=new UserInterestedDAO();
+		return dao.IsInterested(id, user_account);
+	}
+	public boolean IsJoin(int id,String user_account)
+	{
+		TeamJoinusersDAO dao=new TeamJoinusersDAO();
+		return dao.IsJoin(id, user_account);
 	}
 	
 }
