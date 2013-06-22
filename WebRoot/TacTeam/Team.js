@@ -128,11 +128,9 @@ function changeWanntIn(obj,id)
 {
 	$.post("Team/Join",{ id:id,isJoin:obj.name }, function(msg)
 			{
-				alert(msg);
-				if (msg==false)
+				if (msg=="true")
 				{
-					alert("a");
-//					window.location.reload(); 
+					window.location.reload(); 
 				}
 			});
 }

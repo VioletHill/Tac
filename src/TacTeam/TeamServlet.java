@@ -2,6 +2,7 @@ package TacTeam;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import org.hibernate.Session;
 import com.jspsmart.upload.Request;
 
 import DataSource.Team.AllTeam;
+import DataSource.Team.Team;
 import DataSource.Team.TeamHibernate;
 import DataSource.User.User;
 
@@ -52,6 +54,7 @@ public class TeamServlet extends HttpServlet {
 		
 		AllTeam allTeam=new AllTeam();
 		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
+		List<Team> testList=hibernate.findByPage(pageNum, 1);
 		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
 		
 		String account=(String)session.getAttribute("account");
