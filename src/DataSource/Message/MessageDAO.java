@@ -1,13 +1,15 @@
 package DataSource.Message;
 
-import TacHibernate.BaseHibernateDAO;
-import java.util.Date;
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import TacHibernate.BaseHibernateDAO;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -167,9 +169,14 @@ public class MessageDAO extends BaseHibernateDAO {
 	}
 	public List<Message> find()
 	{
+		Session session=this.getSession();
 		String query_string="from Message as n order by n.time desc";
-		Query query=getSession().createQuery(query_string);
+		Query query=session.createQuery(query_string);
+		session.beginTransaction();
 		List<Message> list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
 		return list;
 	}
 }

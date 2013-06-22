@@ -53,7 +53,18 @@ public class MessageHibernate implements Serializable {
 	public List<Message> find()
 	{
 		MessageDAO dao=new MessageDAO();
-		return dao.find();
+		List<Message> list=dao.find();
+		if(list!=null)
+		{
+			for(int i=0;i<list.size();i++)
+			{
+				if(list.get(i).getTime()==null)
+				{
+					list.get(i).setTime(dao.findById(list.get(i).getId()).getTime());
+				}
+			}
+		}
+		return list;
 	}
 	
 	public MessageHibernate() {
