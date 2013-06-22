@@ -14,14 +14,25 @@ public class Team
 	int type;	
 	int interestedCount;
 	Vector<User> joinUsers;
-	Vector<User> waitUsers;
 	User publishUser=null;
 	String  publisher_account;
 	int month;
 	int day;
 	int year;
-	boolean isInterested;
-	
+	private String join_head;
+	private String join_user;
+	public String getJoin_head() {
+		return join_head;
+	}
+	public void setJoin_head(String join_head) {
+		this.join_head = join_head;
+	}
+	public String getJoin_user() {
+		return join_user;
+	}
+	public void setJoin_user(String join_user) {
+		this.join_user = join_user;
+	}
 	public User getPublishUser() {
 		if (publishUser==null)
 		{
@@ -106,25 +117,12 @@ public class Team
 	public void setJoinUsers(Vector<User> joinUsers) {
 		this.joinUsers = joinUsers;
 	}
-
-	public Vector<User> getWaitUsers() {
-		return waitUsers;
-	}
-
-	public void setWaitUsers(Vector<User> waitUsers) {
-		this.waitUsers = waitUsers;
-	}
+	
 	public String getPublisher_account() {
 		return publisher_account;
 	}
 	public void setPublisher_account(String publisher_account) {
 		this.publisher_account = publisher_account;
-	}
-	public boolean getIsInterested() {
-		return isInterested;
-	}
-	public void setIsInterested(boolean isInterested) {
-		this.isInterested = isInterested;
 	}
 
 
