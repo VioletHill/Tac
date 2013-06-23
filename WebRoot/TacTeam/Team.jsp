@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>	
 						</td>
 						
-						<td><button type="button" id="publishButton"></button></td>
+						<td><button type="button" id="publishButton" onclick="publishTeam()"></button></td>
 					</tr>
 				</table>	
   			</form>

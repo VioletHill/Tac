@@ -39,3 +39,20 @@ function checkContentNumber()
 	}
 	document.getElementById("contentNumber").innerHTML=parseInt(remain/2);
 }
+
+
+function checkTeamPublish()
+{
+	if (document.getElementById("title").value=="")
+	{
+		alert("标题不得为空");
+		return false;
+	}
+	if (document.getElementById("content")=="")
+	{
+		alert("内容不得为空");
+		return false;
+	}
+	return true;
+}
+

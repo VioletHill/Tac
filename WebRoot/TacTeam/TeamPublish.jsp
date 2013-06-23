@@ -59,12 +59,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</tr>
 			</table>
 		<br>
-     	<form method="post">
+     	<form method="post" action="Team/TeamPublish" onsubmit="return checkTeamPublish()">
      		<input type="hidden" name="type" value="0">
      		<span class="titleFont">БъЬт</span><input type="text" class="title" name="title" maxlength="10">	<br>
      		<br>
-     		<input type="hidden" name="content" value="">
-     		<textarea class="content" id="content" onkeyup="checkContentNumber()"></textarea>
+     		<!-- <input type="hidden" name="content" value=""> -->
+     		<textarea class="content" id="content" name="content" onkeyup="checkContentNumber()"></textarea>
      		<div id="contentNumber">140</div><br>
      		<br>
      		<input type="reset" class="cancelButton" value="">

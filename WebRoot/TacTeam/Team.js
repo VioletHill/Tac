@@ -184,6 +184,9 @@ function lastPage()
 	choosePage(index);
 }
 
-
+function publishTeam()
+{
+	window.location.href="Team/TeamPublish";
+}
 
    		
