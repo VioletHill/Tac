@@ -269,11 +269,11 @@ public class TeamHibernate implements Serializable {
 		TeamDAO dao=new TeamDAO();
 		List list=dao.findByType(account, page, type);
 		UserDAO userDAO=new UserDAO();
-		Vector<User> joinUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
+				Vector<User> joinUsers=new Vector<User>();
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
 				if(joinerList!=null)
@@ -298,16 +298,48 @@ public class TeamHibernate implements Serializable {
 		TeamDAO dao=new TeamDAO();
 		return dao.number_findByType(type);
 	}
-	
-	public List findMyType(int type,String user_account,int account,int page) {
+	public List findMyTeam(String user_account,int account,int page) {
 		TeamDAO dao=new TeamDAO();
-		List list=dao.findMyType(account, page, type, user_account);
+		List list=dao.findMyTeam(account, page, user_account);
 		UserDAO userDAO=new UserDAO();
-		Vector<User> joinUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
+				Vector<User> joinUsers=new Vector<User>();
+				Team team=(Team)list.get(i);
+				List joinerList=dao.findJoiner(team.getId());
+				if(joinerList!=null)
+				{
+					for (int j = 0; j <joinerList.size(); j++) {
+						String user_account1=((TeamJoinusers)joinerList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account1);
+						joinUsers.add(user);
+					}
+				}
+
+				team.setJoinUsers(joinUsers);
+				teams.add(team);
+ 			}
+			return teams;
+		}
+		else {
+			return list;
+		}
+	}
+	public int number_findMyTeam(String user_account) {
+		TeamDAO dao=new TeamDAO();
+		return dao.number_findMyTeam(user_account);
+	}
+	public List findMyType(int type,String user_account,int account,int page) {
+		TeamDAO dao=new TeamDAO();
+		List list=dao.findMyType(account, page, type, user_account);
+		UserDAO userDAO=new UserDAO();
+		List<Team> teams=new ArrayList<Team>();
+		if(list!=null)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				Vector<User> joinUsers=new Vector<User>();
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
 				if(joinerList!=null)
@@ -333,7 +365,42 @@ public class TeamHibernate implements Serializable {
 		return dao.number_findMyType(type, user_account);
 	}
 	
+	public List findInterestedTeam(String user_account,int account,int page)
+	{
+		UserInterestedDAO dao1=new UserInterestedDAO();
+		List list=dao1.findInterestedTeam(user_account, account, page);
+		TeamDAO dao=new TeamDAO();
+		UserDAO userDAO=new UserDAO();
+		List<Team> teams=new ArrayList<Team>();
+		if(list!=null)
+		{
+			for (int i = 0; i < list.size(); i++) {
+				Vector<User> joinUsers=new Vector<User>();
+				Team team=(Team)list.get(i);
+				List joinerList=dao.findJoiner(team.getId());
+				if(joinerList!=null)
+				{
+					for (int j = 0; j <joinerList.size(); j++) {
+						String user_account1=((TeamJoinusers)joinerList.get(j)).getUser_account();
+						User user=userDAO.find_by_account(user_account1);
+						joinUsers.add(user);
+					}
+				}
 
+				team.setJoinUsers(joinUsers);
+				teams.add(team);
+ 			}
+			return teams;
+		}
+		else {
+			return list;
+		}
+	}
+	public int number_findInterestedTeam(String user_account)
+	{
+		UserInterestedDAO dao=new UserInterestedDAO();
+		return dao.number_findInterestedTeam(user_account);
+	}
 	
 	public List findInterestedType(int type,String user_account,int account,int page)
 	{
@@ -341,11 +408,11 @@ public class TeamHibernate implements Serializable {
 		List list=dao1.findInterestedType(type, user_account, account, page);
 		TeamDAO dao=new TeamDAO();
 		UserDAO userDAO=new UserDAO();
-		Vector<User> joinUsers=new Vector<User>();
 		List<Team> teams=new ArrayList<Team>();
 		if(list!=null)
 		{
 			for (int i = 0; i < list.size(); i++) {
+				Vector<User> joinUsers=new Vector<User>();
 				Team team=(Team)list.get(i);
 				List joinerList=dao.findJoiner(team.getId());
 				if(joinerList!=null)

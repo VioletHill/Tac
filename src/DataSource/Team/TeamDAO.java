@@ -368,6 +368,40 @@ public class TeamDAO extends BaseHibernateDAO {
 			return list.size();
 		}
 	}
+	public List findMyTeam(int account,int page,String user_account)
+	{
+		Session session=this.getSession();
+		String query_string="from Team as n where n.publisher_account=? order by n.id desc";
+		Query query=session.createQuery(query_string);
+		query.setParameter(0, user_account);
+		int number = (page - 1) * account;
+		query.setFirstResult(number);
+		query.setMaxResults(account);
+		session.beginTransaction();
+		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		return list;
+	}
+	public int number_findMyTeam(String user_account) {
+		Session session=this.getSession();
+		String query_string="from Team as n where n.publisher_account=?";
+		Query query=session.createQuery(query_string);
+		query.setParameter(0, user_account);
+		session.beginTransaction();
+		List list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
+		if(list==null)
+		{
+			return 0;
+		}
+		else {
+			return list.size();
+		}
+	}
 	public List findMyType(int account,int page,int type,String user_account)
 	{
 		Session session=this.getSession();
