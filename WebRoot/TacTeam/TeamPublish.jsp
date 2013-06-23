@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="TacTeam/TeamPublish.css">
 	
 	<script src="jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="TacTeam/Team.js"></script>
+	<script type="text/javascript" src="TacTeam/TeamPublish.js"></script>
 	
 	<style>
 		body 
@@ -39,6 +39,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <div class="mainDiv">
      		<table class="helpTable">
 				<tr>
+					<td>
+						<span>
+							发布
+						</span>	
+					</td>
 					<!-- 类别 -->
 					<td>
 						<div id="cataTypeDiv">
@@ -53,12 +58,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 				</tr>
 			</table>
-     	<form>
+		<br>
+     	<form method="post">
      		<input type="hidden" name="type" value="0">
-     		<input type="text" name="title">	<br>
+     		<span class="titleFont">标题</span><input type="text" class="title" name="title" maxlength="10">	<br>
+     		<br>
      		<input type="hidden" name="content" value="">
-     		<textarea rows="10" cols="4" ></textarea>
+     		<textarea class="content" id="content" onkeyup="checkContentNumber()"></textarea>
+     		<div id="contentNumber">140</div><br>
+     		<br>
+     		<input type="reset" class="cancelButton" value="">
+     		<input type="submit" class="publishButton" value="">
      	</form>
+     	<br>
      </div>
      
      <%@include file="/Navigation/Footer.jsp" %>
