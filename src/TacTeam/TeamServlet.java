@@ -64,42 +64,89 @@ public class TeamServlet extends HttpServlet {
 			page=1;
 		}
 		
-		String peopleType="allPeople";
+		int peopleType=2;
 		try 
 		{
-			peopleType=request.getParameter("peopleType");
-			if (peopleType==null) peopleType="allPeople";
+			peopleType=Integer.parseInt(request.getParameter("peopleType"));
 		}
 		catch (Exception e)
 		{
-			 peopleType="allPeople";
+			 peopleType=2;
 		}
 		
 		
-		String type="allType";
+		int type=2;
 		try 
 		{
-			type=request.getParameter("type");
-			if (type==null) type="allType";
+			type=Integer.parseInt(request.getParameter("type"));
 		} 
 		catch (Exception e) 
 		{
-			 type="allType";
 		}
 		
 		AllTeam allTeam=new AllTeam();
 		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
-		if (peopleType.equals("allPeople"))
+		if (peopleType==2)
 		{
-			if (type.equals("allType"))
+			if (type==2)
 			{
 				allTeam.setAllTeams(hibernate.findByPage(pageNum, page));
 				allTeam.setPageIndex(page);
 				allTeam.setAllPage((hibernate.number_findByPage()- 1)/ pageNum + 1);
 			}
-			else if (type.equals("myPeople"))
+			else if (type==0)
 			{
-//				allTeam.setAllTeams(hibernate.fin)
+				allTeam.setAllTeams(hibernate.findByType(0, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findByType(0)-1)/pageNum+1);
+			}
+			else if (type==1)
+			{
+				allTeam.setAllTeams(hibernate.findByType(1, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findByType(1)-1)/pageNum+1);
+			}
+		}
+		else if (peopleType==0)//我感兴趣的
+		{
+			if (type==2)
+			{
+				allTeam.setAllTeams(hibernate.findMyTeam(account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findMyTeam(account)- 1)/ pageNum + 1);
+			}
+			else if (type==0)
+			{
+				allTeam.setAllTeams(hibernate.findMyType(0, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findMyType(0, account)- 1)/ pageNum + 1);
+			}
+			else if (type==1)
+			{
+				allTeam.setAllTeams(hibernate.findMyType(1, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findMyType(1, account)- 1)/ pageNum + 1);
+			}
+		}
+		else if (peopleType==1)	//我加入的队伍
+		{
+			if (type==2)
+			{
+				allTeam.setAllTeams(hibernate.findInterestedTeam(account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findInterestedTeam(account)- 1)/ pageNum + 1);
+			}
+			else if (type==0)
+			{
+				allTeam.setAllTeams(hibernate.findInterestedType(0, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findInterestedType(0, account)- 1)/ pageNum + 1);
+			}
+			else if (type==1)
+			{
+				allTeam.setAllTeams(hibernate.findInterestedType(1, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findInterestedType(1, account)- 1)/ pageNum + 1);
 			}
 		}
 		
@@ -108,7 +155,6 @@ public class TeamServlet extends HttpServlet {
 			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));
 			allTeam.getAllTeams().get(i).setIsJoin(hibernate.IsJoin(allTeam.getAllTeams().get(i).getId(), account));
 		}
-
 		request.setAttribute("allTeam", allTeam);
 		request.getRequestDispatcher("/TacTeam/Team.jsp").forward(request, response);
 	}

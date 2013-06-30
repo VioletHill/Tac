@@ -45,7 +45,7 @@ public class DocumentServlet extends HttpServlet {
 		// request.setAttribute("allProjects", allProjects);
 		// // request.setAttribute("allNotices", allNotices);
 		//
-		System.out.println("server started");
+	//	System.out.println("server started");
 		DocumentData data = new DocumentData();
 		//data.setPageNum(Integer.parseInt(request.getParameter("page")));
 		data.setDataOfPage(1);
@@ -110,13 +110,17 @@ public class DocumentServlet extends HttpServlet {
 			catalog = "all";
 		}
 		
+		data.setSearch(searchKey);
 		//searchKey = "≤‚ ‘";
 		//catalog = "lib";
-		System.out.println("data refresh started");
-		System.out.println(searchKey+" "+catalog);
+//		System.out.println("data refresh started");
+//		System.out.println(searchKey+" "+catalog);
+		System.out.print(searchKey);
 		data.setDataWithSearchKeyOfCatalog(searchKey, catalog);
 		//System.out.println(data.getDataList());
 //		System.out.println(data.getTitle(0));
+		if (searchKey.equals(""))	data.setSearch("À—À˜–≈œ¢");
+		else data.setSearch(searchKey);
 		request.setAttribute("DocumentData", data);
 		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(
 				request, response);

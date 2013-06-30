@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</tr>
 												<tr>
 													<td>@:</td>
-													<td>fasdfsdfs<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getEmail()%></td>
+													<td><%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getEmail()%></td>
 												</tr>
 											</table>
 										</div>
@@ -234,7 +234,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>	
   					</table>
   					
-  					<div style="float:left; position:relative; left:50; height:45;">
+  					<!-- 加入信息 -->
+  					<%if (allTeam.getAllTeams().get(i).getType()==1)
+  					{%>
+  					<div style="position:relative; left:50; height:45;">
   						<table>
   							<tr>
   								<td>
@@ -248,7 +251,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							</tr>
   						</table>
   					</div>
-  					<br>
+  					<%}
+  					else
+  					{%>
+  						<br>
+  					<%}%>
   				</div>
   				<!-- end 内容 -->  			
   				</div>

@@ -53,7 +53,6 @@ var lastMonth=0;
 var lastDay=0;
 function addDate()
 {
-	alert("a");
 	if (lastMonth!=month || lastDay!=day)
 	{
 		lastMonth=month;
@@ -160,6 +159,7 @@ function showInfor(joinUserId)
 
 function choosePage(index) 
 {
+	document.getElementById("pageText").value=index;
 	document.getElementById("form").submit();
 }
 

@@ -8,6 +8,7 @@ public class DocumentData {
 	private List<Document> dataList;
 	// private List<Document> allData;
 	private int pageIndex = 1;
+	private String search;
 	private static final int EACH_PAGE = 7;
 	// private String catalog = "全部";
 	private DocumentDAO dao;
@@ -49,6 +50,14 @@ public class DocumentData {
 	public void setDataOfPage(int n) {
 		setPageIndex(n);
 		setDataList();
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 	public List<Document> getDataList() {

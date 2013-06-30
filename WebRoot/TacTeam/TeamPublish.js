@@ -10,6 +10,7 @@ function showTypeItem()
 
 function clearTypeItem()
 {
+	alert("a");
 	$("#cataTypeLog").slideUp("slow",function (){isTypeAnimate=false;});
 }
 

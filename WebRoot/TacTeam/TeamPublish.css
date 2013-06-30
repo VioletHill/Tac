@@ -15,10 +15,10 @@
 {
 	display:none; 
 	position:absolute; 
-	background-image:url(Image/PeopleSelectPanel.png); 
+	background-image:url(Image/publish/type.png); 
 	z-index:999; 
-	width:163; 
-	height:205;
+	width:124; 
+	height:88;
 }
 
 #teamType
@@ -52,6 +52,7 @@
 
 .cancelButton
 {
+	margin-left:400;
 	border:none;
 	width:178;
 	height:54;
