@@ -14,7 +14,6 @@
 	if (idstr != null) {
 		id = Integer.parseInt(idstr);	
 	}
-	System.out.println("id = " + id);
 	List<Message> list = (List<Message>) request
 			.getAttribute("message");
 	Iterator<Message> it = list.iterator();
@@ -27,7 +26,7 @@
 		}
 		i++;
 		SimpleDateFormat format = new SimpleDateFormat(
-				"yyyy-MM-dd HH:mm:ss");
+				"yyyy-MM-dd HH:mm");
 		String dateString = format.format(message.getTime());
 %>
 <div class="block">
@@ -37,7 +36,7 @@
 			<p class="ownername"><%=message.getUser_account()%></p>
 		</div>
 		<p class="notecontent"><%=message.getContent()%></p>
-		<p class="publishtime"><%=message.getId()%>*******<%=dateString%></p>
+		<p class="publishtime"><%=dateString%></p>
 		<p style="display:none;" class="id"><%=message.getId()%></p>
 	</div>
 </div>
