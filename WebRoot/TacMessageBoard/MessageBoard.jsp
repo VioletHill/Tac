@@ -1,6 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="DataSource.Message.Message"%>
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -14,7 +14,7 @@
 <base href="<%=basePath%>">
 
 <title>Home Page</title>
-<meta charset=utf-8 />
+<!-- <meta charset=utf-8 /> -->
 <link type="text/css" rel="stylesheet"
 	href="TacMessageBoard/MessageBoard.css" />
 <script type="text/javascript" src="jquery-1.9.1.js"></script>

@@ -1,7 +1,8 @@
 .ImageScroll
 {
+	margin-left:18;
 	height:230;
-	width:1163;
+	width:1164;
 	white-space: nowrap;
 	overflow:hidden;
 }
@@ -21,13 +22,34 @@
 .NextView
 {
 	position:relative;
-	top:-180;
-	left:1100;
+	top:-130;
+	left:1088;
 }
 
 .LastView
 {
 	position:relative;
-	top:-180;
-	left:30;
-}	
+	top:-130;
+	left:38;
+}
+
+
+a.HomeHonorAll:link {
+	font-size:12;
+	text-decoration:none; 
+ 	current:point;
+	color:dd8c5c;
+}
+
+a.HomeHonorAll:visited {
+	font-size:12;
+	text-decoration:none; 
+ 	current:point;
+	color:dd8c5c;
+}
+
+a.HomeHonorAll:hover {
+	font-size:12;
+	color:dd8c5c;
+	text-decoration: underline;
+}

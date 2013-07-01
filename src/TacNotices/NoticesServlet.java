@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import DataSource.Notices.AllNotices;
 import DataSource.Notices.NoticesHibernate;
@@ -168,9 +169,20 @@ public class NoticesServlet extends HttpServlet {
 			}
 			allNotices.setNoticeTime("È«²¿");
 		}
-		
-		request.setAttribute("allNotices", allNotices);
-		request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);
+		System.out.println("enter");
+		HttpSession session=request.getSession();
+		System.out.println(session.getAttribute("permission"));
+		System.out.println(session.getAttribute("isLog"));
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false) || session.getAttribute("permission").equals(0))
+		{
+			request.setAttribute("allNotices", allNotices);
+			request.getRequestDispatcher("/TacNotices/Notices.jsp").forward(request, response);
+			return ;
+		} 
+		else 
+		{
+			response.sendRedirect("/Admin/EditNotices");
+		}
 
 	}
 

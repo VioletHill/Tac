@@ -71,7 +71,7 @@
 
 .content
 {
-	width:1163; 
+	width:1200; 
 	height:1051; 
 	margin-left:auto; 
 	margin-right:auto; 
@@ -83,8 +83,8 @@
 {
 	position:relative; 
 	top:4; 
-	width:158; 
-	height:29;
+	width:94; 
+	height:24;
 }
 
 #time
@@ -107,4 +107,39 @@
 	position:relative; 
 	top:-70; 
 	left:-100;
+}
+
+a.NoticesContentItem:link {
+	text-decoration:none; 
+ 	current:point;
+	color:#646464;
+	font-size:20.5;
+}
+
+a.NoticesContentItem:visited {
+	text-decoration:none; 
+ 	current:point;
+	color:#646464;
+	font-size:20.5;
+}
+
+a.NoticesContentItem:hover {
+	color:#646464;
+	text-decoration: underline;
+	font-size:20.5;
+}
+
+div.NoticesItemDiv
+{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+.NoticesContentData
+{
+	color:#e8712b; 
+	font-size:20.5; 
+	margin-left:28;
 }

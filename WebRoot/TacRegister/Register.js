@@ -121,7 +121,7 @@
 		document.getElementById("emailInfor").innerHTML="";
 		
 		isEmailOk=false;
-		var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 		if (element.value=="") return ;
 		
 		if (reg.test(element.value))

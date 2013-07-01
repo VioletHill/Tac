@@ -55,18 +55,30 @@
   
   <body>
   	<%@include file="/Navigation/Navigation.jsp" %>
-  	
 	<div class="ImageContain">
+		<div style="margin-top:21">
+			<img src="TacHonor/Image/HonorHeader.png" style="margin-left:23; margin-top:26;">
+		</div>
+		<div style="height:40">
+		</div>
 	 	<%for (int i=0; i<allHonor.getList().size(); i++)
 	  	 {%>
-	  	 	<div  class="ImageDiv">
+
+			<%if (i%4==0)
+			{%>
+				<div class="ImageDiv" style="margin-left:108">
+			<%}
+			else
+			{%>
+				<div  class="ImageDiv">
+			<%}%>
 				<a href="<%=allHonor.getList().get(i).getPicture()[0]%>" rel="lightbox[<%=i%>]">
-					<img name="<%=i%>" src="<%=allHonor.getList().get(i).getPicture()[0] %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)" style="margin-top:50">
+					<img name="<%=i%>" src="<%=allHonor.getList().get(i).getPicture()[0] %>" onmousemove="changeImg(this)" onmouseout="leaveImg(this)">
 				</a>
 				
-				<br>
-				
-				<a class="NoticesItem" href="Honor/Project?id=<%=allHonor.getList().get(i).getHonor_id()%>"><%=allHonor.getList().get(i).getTitle() %></a>
+				<div class="HonorTitle">
+					<a style="color:#666666;" href="Honor/Project?id=<%=allHonor.getList().get(i).getHonor_id()%>"><%=allHonor.getList().get(i).getTitle() %></a>
+				</div>
 				
 				<a href="<%=allHonor.getList().get(i).getPicture()[0]%>" rel="changeImg[<%=i%>]"></a>
 				<%for (int j=1; j<allHonor.getList().get(i).getPicture().length; j++) 
@@ -74,7 +86,6 @@
 	  	 			<a href="<%=allHonor.getList().get(i).getPicture()[j]%>" rel="changeImg[<%=i%>]"></a>
 	  	 			<a href="<%=allHonor.getList().get(i).getPicture()[j]%>" rel="lightbox[<%=i%>]"></a>	
 			  <%}%>
-			  
 			</div>
 		<%}%> 
 	</div>

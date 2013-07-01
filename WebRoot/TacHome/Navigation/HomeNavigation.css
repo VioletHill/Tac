@@ -204,21 +204,12 @@ td {
 {	
 	width:30;
 	height:17;
-	background:url(../Image/loginBufferLogin.png);
+	background:url(../Image/logoutBufferLogout.png);
 	margin:12 10 15 15;
 	border:0;
 
 }
 
-.logoutBufferLogout
-{	
-	width:30;
-	height:17;
-	background:url(../Image/loginBufferLogin.png);
-	margin:12 10 15 15;
-	border:0;
-
-}
 
 .headDiv
 {
