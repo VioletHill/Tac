@@ -18,7 +18,8 @@
 <link type="text/css" rel="stylesheet"
 	href="TacMessageBoard/MessageBoard.css" />
 <script type="text/javascript" src="jquery-1.9.1.js"></script>
-<script type="text/javascript" src="TacMessageBoard/MessageBoard.js"></script>
+<script type="text/javascript" src="TacMessageBoard/MessageBoard.js" charset="utf-8"></script>
+<script type="text/javascript" src="TacMessageBoard/loadmore.js"></script>
 
 </head>
 
@@ -43,30 +44,11 @@
 		</div>
 
 		<div id="collection" hidden="hidden">
-			<%
-				List<Message> list = (List<Message>) request.getAttribute("message");
-				Iterator<Message> it = list.iterator();
-				while (it.hasNext()) {
-					Message message = it.next();
-					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					String dateString = format.format(message.getTime());
-					%>
-					<div class="block">
-						<div class="content">
-							<div class="notetitle">
-								<img src="image/tx3.png" alt="Shawn" class="headphoto" />
-								<p class="ownername"><%=message.getUser_account() %></p>
-							</div>
-							<p class="notecontent"><%= message.getContent() %></p>
-							<p class="publishtime"><%= dateString %></p>
-						</div>
-					</div>
-					<%
-				}
-				request.removeAttribute("message");
-			%>
+		<jsp:include page="/TacMessageBoard/Block.jsp"></jsp:include>
 		</div>
+		<div id="null"></div>
 	</div>
+	<button id="loadmore">more</button>
 	<%@include file="/Navigation/Footer.jsp"%>
 </body>
 </html>
