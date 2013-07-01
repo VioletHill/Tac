@@ -57,16 +57,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>		
    		</div>
    		
-   		<div class="ImageScroll" >
-   			<div style="margin-left:94; margin-top:49; font-size:22; color:#6e6e6e">精选</div>
-   			<div class="ImageViewContainer">
-   				<%for (int i=0; i<project.getPicture().length; i++)
-   				{%>
-   					<img class="ImageView" src="<%=project.getPicture()[i]%>">
-   			  <%}%>
+   		<div class="ImageScrollDiv">
+   			<div class="ImageScroll" >
+   				<div style="margin-left:94; margin-top:49; font-size:22; color:#6e6e6e">精选</div>
+   				<div class="ImageViewContainer">
+   					<%for (int i=0; i<project.getPicture().length; i++)
+   					{%>
+   						<img class="ImageView" src="<%=project.getPicture()[i]%>">
+   			 	 <%}%>
+   				</div>
+   				<img class="LastView" onclick="preView(<%=project.getPicture().length %>);" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/LastView.png">
+   				<img class="NextView" onclick="nextView(<%=project.getPicture().length %>)" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/NextView.png">
    			</div>
-   			<img class="LastView" onclick="preView(<%=project.getPicture().length %>);" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/LastView.png">
-   			<img class="NextView" onclick="nextView(<%=project.getPicture().length %>)" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/NextView.png">
    		</div>
    	
    		<div style="background-color:white">

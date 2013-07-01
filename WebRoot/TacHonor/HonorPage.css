@@ -1,6 +1,7 @@
 .MainDiv
 {
 	width:1200;
+	background-image:url("Image/ShowImg.png");
 	margin-right: auto; 
 	margin-left: auto;
 }
@@ -14,8 +15,8 @@
 .ImageScroll
 {
 	height:336;
-	width:1200;
-	background-image:url("Image/ShowImg.png");
+	width:1164;
+	margin-left:16;
 	white-space: nowrap;
 	overflow:hidden;
 }
@@ -23,6 +24,7 @@
 .ImageViewContainer
 {
 	position:relative;
+	
 }
 
 .ImageView
@@ -35,15 +37,15 @@
 .NextView
 {
 	position:relative;
-	top:-180;
-	left:1100;
+	top:-70;
+	left:1093;
 }
 
 .LastView
 {
 	position:relative;
-	top:-180;
-	left:30;
+	top:-70;
+	left:0;
 }
 
 .HonorPageTitle
