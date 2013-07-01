@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 
 	<link rel="stylesheet" type="text/css" href="TacTeam/Team.css">
+	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 	
 	<script src="jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="TacTeam/Team.js"></script>
@@ -46,6 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body onload="init()">
   
     <%@include file="/Navigation/Navigation.jsp" %>
+    
+    <form id="form">
+    	<input type="hidden" id="peopleTypeText" name="peopleType" value="<%=allTeam.getPeopleType()%>">
+    	<input type="hidden" id="typeText" name="type" value="<%=allTeam.getType()%>">
+    	<input type="hidden" id="pageText" name="page" value="<%=allTeam.getPageIndex()%>">
+    </form>
     
   	<div class="mainDiv">
   		<!--help navigation -->
@@ -80,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>	
 						</td>
 						
-						<td><button type="button" id="publishButton"></button></td>
+						<td><button type="button" id="publishButton" onclick="publishTeam()"></button></td>
 					</tr>
 				</table>	
   			</form>
@@ -202,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 												</tr>
 												<tr>
 													<td>@:</td>
-													<td>fasdfsdfs<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getEmail()%></td>
+													<td><%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getEmail()%></td>
 												</tr>
 											</table>
 										</div>
@@ -227,7 +234,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>	
   					</table>
   					
-  					<div style="float:left; position:relative; left:50; height:45;">
+  					<!-- 加入信息 -->
+  					<%if (allTeam.getAllTeams().get(i).getType()==1)
+  					{%>
+  					<div style="position:relative; left:50; height:45;">
   						<table>
   							<tr>
   								<td>
@@ -241,13 +251,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							</tr>
   						</table>
   					</div>
-  					<br>
+  					<%}
+  					else
+  					{%>
+  						<br>
+  					<%}%>
   				</div>
   				<!-- end 内容 -->  			
   				</div>
   		   <%}%> 
   		</div>
   		<br>
+  		<!--页号-->
+		<div class="pageNum">
+			<a href="javascript:choosePage(1);" class="NoticesItem">首页</a> 
+			<a href="javascript:lastPage();" class="NoticesItem">上一页</a>
+			<%
+				for (int i = 1; i <= allTeam.getAllPage(); i++) 
+				{
+					if (i == allTeam.getPageIndex()) 
+					{%>
+						<a style="color:red"><%=i%></a>
+				  <%} 
+					else 
+					{%>
+						<a href="javascript:choosePage(<%=i%>);" class="NoticesItem"><%=i%></a>
+				  <%}%>
+				<%}%>
+				 
+			<a href="javascript:nextPage(<%=allTeam.getAllPage()%>);" class="NoticesItem">下一页</a> 
+			<a href="javascript:choosePage(<%=allTeam.getAllPage()%>);" class="NoticesItem">尾页</a>
+		</div>
+		<!-- 页号 -->
+		<br>
   	</div>
   	</div>
   	<%@include file="/Navigation/Footer.jsp" %>

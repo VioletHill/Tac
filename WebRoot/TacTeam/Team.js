@@ -53,7 +53,6 @@ var lastMonth=0;
 var lastDay=0;
 function addDate()
 {
-	alert("a");
 	if (lastMonth!=month || lastDay!=day)
 	{
 		lastMonth=month;
@@ -158,5 +157,36 @@ function showInfor(joinUserId)
 }
 
 
+function choosePage(index) 
+{
+	document.getElementById("pageText").value=index;
+	document.getElementById("form").submit();
+}
+
+function nextPage(totPage) 
+{
+	var index = parseInt(document.getElementById("pageText").value) + 1;
+	if (index > totPage) 
+	{
+		alert("亲！已经最后一页了~~");
+		return;
+	}
+	choosePage(index);
+}
+function lastPage() 
+{
+	var index = parseInt(document.getElementById("pageText").value) - 1;
+	if (index <= 0) 
+	{
+		alert("亲！已经第一页了~~");
+		return;
+	}
+	choosePage(index);
+}
+
+function publishTeam()
+{
+	window.location.href="Team/TeamPublish";
+}
 
    		

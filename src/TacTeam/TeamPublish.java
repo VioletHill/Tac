@@ -2,6 +2,7 @@ package TacTeam;
 
 import java.io.IOException;
 
+import javax.rmi.CORBA.Tie;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,17 +43,44 @@ public class TeamPublish extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String title=null;
+		try {
+			title=new String(request.getParameter("title").getBytes("iso-8859-1"), "gbk");
+		} catch (Exception e) {
+		}
+		
+		String content=null;
+		try {
+			content=new String(request.getParameter("content").getBytes("iso-8859-1"), "gbk");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+			
+		int type=0;
+		try {
+			type=Integer.parseInt(request.getParameter("type"));
+		} catch (Exception e) {
+			// TODO: handle exception
+			type=0;
+		}
+		if (title==null || title.equals("") || content==null || content.equals(""))
+		{
+			request.getRequestDispatcher("/TacTeam/TeamPublish.jsp").forward(request, response);
+			return ;
+		}
+		
+		
 		TeamHibernate teamHibernate=TeamHibernate.sharedTeamHibernate();
 		HttpSession session=request.getSession();
-		for (int i=0; i<10; i++)
-		{
-			Team team=new Team();
-			team.setTitle("abc");
-			team.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account((String)session.getAttribute("account")));
-			team.setContent("wwwwccccc");
-			team.setType(i%2);
-			teamHibernate.insert(team);
-		}
+		
+		Team team=new Team();
+		team.setTitle(title);
+		team.setPublishUser(UserHibernate.sharedUserHibernate().find_by_account((String)session.getAttribute("account")));
+		team.setContent(content);
+		team.setType(type);
+		teamHibernate.insert(team);
+		
+		response.sendRedirect("/Tac/Team");
 	}
 
 	/**

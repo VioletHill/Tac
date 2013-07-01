@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'TeamPublish.jsp' starting page</title>
+    <title>发布你的求包养吧</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="TacTeam/TeamPublish.css">
 	
 	<script src="jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="TacTeam/Team.js"></script>
+	<script type="text/javascript" src="TacTeam/TeamPublish.js"></script>
 	
 	<style>
 		body 
@@ -32,13 +32,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
   </head>
   
-  <body>
+  <body onload="init()">
   
      <%@include file="/Navigation/Navigation.jsp" %>
    
      <div class="mainDiv">
      		<table class="helpTable">
 				<tr>
+					<td>
+						<span>
+							发布
+						</span>	
+					</td>
 					<!-- 类别 -->
 					<td>
 						<div id="cataTypeDiv">
@@ -53,12 +58,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 				</tr>
 			</table>
-     	<form>
+		<br>
+     	<form method="post" action="Team/TeamPublish" onsubmit="return checkTeamPublish()">
      		<input type="hidden" name="type" value="0">
-     		<input type="text" name="title">	<br>
-     		<input type="hidden" name="content" value="">
-     		<textarea rows="10" cols="4" ></textarea>
+     		<span class="titleFont">标题</span><input type="text" class="title" name="title" maxlength="10">	<br>
+     		<br>
+     		<!-- <input type="hidden" name="content" value=""> -->
+     		<textarea class="content" id="content" name="content" onkeyup="checkContentNumber()"></textarea>
+     		<div id="contentNumber">140</div><br>
+     		<br>
+     		<input type="reset" class="cancelButton" value="">
+     		<input type="submit" class="publishButton" value="">
      	</form>
+     	<br>
      </div>
      
      <%@include file="/Navigation/Footer.jsp" %>

@@ -134,6 +134,8 @@ $(document)
 
 // 此函数为搜索栏选择类别响应点击事件 包括左边栏
 function clickSelectSearch(ele) {
+	
+	checkSearchIsNull();
 	keepSearchContent();
 //	alert(ele.id);
 	switch (ele.id) {
@@ -194,7 +196,7 @@ function rewriteSearchContent() {
 function choosePage(index) {
 	// 如果不是新的搜索 还原搜索框中数据
 	document.getElementById("searchTF").value = searchKey;
-	// checkSearchIsNull();
+	checkSearchIsNull();
 	document.getElementById("pageIndex").value = index;
 	document.getElementById("pageForm").submit();
 }
@@ -216,6 +218,25 @@ function lastPage() {
 	choosePage(index);
 }
 
+
+
+function checkSearchIsNull() {
+	if (document.getElementById("searchTF").value == "搜索信息") {
+		document.getElementById("searchTF").value = "";
+	}
+}
+
+function focusSearch(element) {
+	// element.style.opacity=1;
+	if (element.value == "搜索信息")
+		element.value = "";
+}
+
+function blurSearch(element) {
+	// element.style.opacity=0.2;
+	if (element.value == "")
+		element.value = "搜索信息";
+}
 
 /*
  * 页面初始化

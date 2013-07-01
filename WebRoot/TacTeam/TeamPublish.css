@@ -8,18 +8,17 @@
 
 .helpTable
 {
-	position:float;
-	float:right;
+	margin-left:100;
 }
 
 #cataTypeLog
 {
 	display:none; 
 	position:absolute; 
-	background-image:url(Image/PeopleSelectPanel.png); 
+	background-image:url(Image/publish/type.png); 
 	z-index:999; 
-	width:163; 
-	height:205
+	width:124; 
+	height:88;
 }
 
 #teamType
@@ -28,4 +27,51 @@
 	height:51;
 	background-image:url(Image/SelectButton.png);
 	font-size:23;
+}
+
+.titleFont
+{
+	margin-left:200;
+}
+
+
+.title
+{
+	width:160;
+	margin-left:20;
+}
+
+
+.content
+{
+	resize: none;
+	width:500;
+	height:300;
+	margin-left:200;
+}
+
+.cancelButton
+{
+	margin-left:400;
+	border:none;
+	width:178;
+	height:54;
+	background-image:url(Image/publish/cancelButton.png);
+}
+
+
+.PublishButton
+{
+	border:none;
+	width:178;
+	height:54;
+	background-image:url(Image/publish/publishButton.png);
+}
+
+#contentNumber
+{
+	opacity:0.5;
+	font-size:25;
+	margin-left:600;
+	margin-top:-50;
 }

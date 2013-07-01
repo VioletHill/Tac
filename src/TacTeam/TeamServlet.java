@@ -51,13 +51,105 @@ public class TeamServlet extends HttpServlet {
 		final int pageNum=10;
 		
 		HttpSession session=request.getSession();
+		String account=(String)session.getAttribute("account");
+		
+		int page=1;
+		try 
+		{
+			page=Integer.parseInt(request.getParameter("page"));
+			if (page==0) page=1;
+		} 
+		catch (Exception e) 
+		{
+			page=1;
+		}
+		
+		int peopleType=2;
+		try 
+		{
+			peopleType=Integer.parseInt(request.getParameter("peopleType"));
+		}
+		catch (Exception e)
+		{
+			 peopleType=2;
+		}
+		
+		
+		int type=2;
+		try 
+		{
+			type=Integer.parseInt(request.getParameter("type"));
+		} 
+		catch (Exception e) 
+		{
+		}
 		
 		AllTeam allTeam=new AllTeam();
 		TeamHibernate hibernate=TeamHibernate.sharedTeamHibernate();
-		List<Team> testList=hibernate.findByPage(pageNum, 1);
-		allTeam.setAllTeams(hibernate.findByPage(pageNum, 1));
+		if (peopleType==2)
+		{
+			if (type==2)
+			{
+				allTeam.setAllTeams(hibernate.findByPage(pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findByPage()- 1)/ pageNum + 1);
+			}
+			else if (type==0)
+			{
+				allTeam.setAllTeams(hibernate.findByType(0, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findByType(0)-1)/pageNum+1);
+			}
+			else if (type==1)
+			{
+				allTeam.setAllTeams(hibernate.findByType(1, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findByType(1)-1)/pageNum+1);
+			}
+		}
+		else if (peopleType==0)//我感兴趣的
+		{
+			if (type==2)
+			{
+				allTeam.setAllTeams(hibernate.findMyTeam(account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findMyTeam(account)- 1)/ pageNum + 1);
+			}
+			else if (type==0)
+			{
+				allTeam.setAllTeams(hibernate.findMyType(0, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findMyType(0, account)- 1)/ pageNum + 1);
+			}
+			else if (type==1)
+			{
+				allTeam.setAllTeams(hibernate.findMyType(1, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findMyType(1, account)- 1)/ pageNum + 1);
+			}
+		}
+		else if (peopleType==1)	//我加入的队伍
+		{
+			if (type==2)
+			{
+				allTeam.setAllTeams(hibernate.findInterestedTeam(account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findInterestedTeam(account)- 1)/ pageNum + 1);
+			}
+			else if (type==0)
+			{
+				allTeam.setAllTeams(hibernate.findInterestedType(0, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findInterestedType(0, account)- 1)/ pageNum + 1);
+			}
+			else if (type==1)
+			{
+				allTeam.setAllTeams(hibernate.findInterestedType(1, account, pageNum, page));
+				allTeam.setPageIndex(page);
+				allTeam.setAllPage((hibernate.number_findInterestedType(1, account)- 1)/ pageNum + 1);
+			}
+		}
 		
-		String account=(String)session.getAttribute("account");
 		for (int i=0; i<allTeam.getAllTeams().size(); i++)
 		{
 			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));

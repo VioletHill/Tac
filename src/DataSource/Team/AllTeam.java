@@ -8,6 +8,16 @@ public class AllTeam
 	private	int pageIndex;
 	private int allPage;
 	private int type;
+	private int peopleType;
+	
+	public int getPeopleType() {
+		return peopleType;
+	}
+
+	public void setPeopleType(int peopleType) {
+		this.peopleType = peopleType;
+	}
+
 	public AllTeam()
 	{
 	}
@@ -42,6 +52,5 @@ public class AllTeam
 	public void setAllTeams(List<Team> allTeams) {
 		this.allTeams = allTeams;
 	}
-	
 	
 }
