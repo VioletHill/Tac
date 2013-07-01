@@ -35,7 +35,7 @@ div.block {
 div.content {
 	padding-bottom: 20px;
 	background-color: #fcfaed;
-	box-shadow: 1px 1px 20px #888;
+	box-shadow: 1px 2px 5px #888;
 }
 
 .headphoto {
