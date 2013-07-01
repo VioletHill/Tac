@@ -19,8 +19,9 @@
 {
 	width:162; 
 	height:51;
-	background-image:url(Image/SelectButton.png);
-	font-size:23;
+	background:url(Image/SelectButton.png);
+	font-size:19;
+	border:none;
 }
 
 #catalog
@@ -30,7 +31,8 @@
 	background-image:url(Image/SearchSelectPanel.png); 
 	z-index:999; 
 	width:163; 
-	height:205
+	height:205;
+	border:none;
 }
 
 #todayTime
@@ -51,14 +53,14 @@
 {
 	width:161;
 	height:52;
-	font-size:18.5
+	font-size:18.5;
 }
 
 #allTime
 {
 	width:163; 
 	height:51; 
-	font-size:18.5;
+	font-size:18.5;	
 }
 
 .searchTime

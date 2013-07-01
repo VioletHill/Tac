@@ -268,9 +268,9 @@
 				</form>
 			</div>
 
-			<%@include file="/Navigation/Footer.jsp"%>
 		</div>
 	</div>
+	<%@include file="/Navigation/Footer.jsp"%>
 </body>
 
 

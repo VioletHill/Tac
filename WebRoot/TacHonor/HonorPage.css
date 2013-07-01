@@ -1,6 +1,6 @@
 .MainDiv
 {
-	width:1163;
+	width:1200;
 	margin-right: auto; 
 	margin-left: auto;
 }
@@ -11,19 +11,11 @@
 	left:100;
 }
 
-.ProjectTitle
-{
-	position:relative;
-	
-	top:-100;
-	left:300;
-	background-color:green;
-}
-
 .ImageScroll
 {
-	height:230;
-	width:1163;
+	height:336;
+	width:1200;
+	background-image:url("Image/ShowImg.png");
 	white-space: nowrap;
 	overflow:hidden;
 }
@@ -52,4 +44,23 @@
 	position:relative;
 	top:-180;
 	left:30;
-}	
+}
+
+.HonorPageTitle
+{
+	background-color:white; 
+	height:340;
+}
+
+.DecTitle
+{
+	margin-left:95px;
+	font-size:22px;
+}
+
+.DecContent
+{
+	margin-left:115px;
+	font-size:16.7;
+}
+
