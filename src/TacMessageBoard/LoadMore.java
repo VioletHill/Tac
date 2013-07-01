@@ -1,7 +1,7 @@
 package TacMessageBoard;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import DataSource.Message.Message;
 import DataSource.Message.MessageHibernate;
 
-public class MessageBoard extends HttpServlet {
+public class LoadMore extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public MessageBoard() {
+	public LoadMore() {
 		super();
 	}
 
@@ -46,29 +46,19 @@ public class MessageBoard extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		List<Message> list = MessageHibernate.sharedMessageHibernate().find();
-		
-		request.setAttribute("message", list);
-
-		Iterator<Message> it = list.iterator();
-
-		request.getRequestDispatcher("/TacMessageBoard/MessageBoard.jsp")
-				.forward(request, response);
-		return;
-
-		// response.setContentType("text/html");
-		// PrintWriter out = response.getWriter();
-		// out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		// out.println("<HTML>");
-		// out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		// out.println("  <BODY>");
-		// out.print("    This is ");
-		// out.print(this.getClass());
-		// out.println(", using the GET method");
-		// out.println("  </BODY>");
-		// out.println("</HTML>");
-		// out.flush();
-		// out.close();
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
+		out.print("    This is ");
+		out.print(this.getClass());
+		out.println(", using the GET method");
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
 	}
 
 	/**
@@ -88,20 +78,28 @@ public class MessageBoard extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+
+		List<Message> list = MessageHibernate.sharedMessageHibernate().find();
+		
+		request.setAttribute("message", list);
+		request.getRequestDispatcher("/TacMessageBoard/Block.jsp")
+				.include(request, response);
 		return;
 
 		// response.setContentType("text/html");
 		// PrintWriter out = response.getWriter();
+		// //
 		// out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-		// out.println("<HTML>");
-		// out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
-		// out.println("  <BODY>");
-		// out.print("    This is ");
-		// out.print(this.getClass());
-		// out.println(", using the POST method");
-		// out.println("  </BODY>");
-		// out.println("</HTML>");
+		// // out.println("<HTML>");
+		// // out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		// // out.println("  <BODY>");
+		// // out.print("    This is ");
+		// // out.print(this.getClass());
+		// // out.println(", using the POST method");
+		// // out.println("  </BODY>");
+		// // out.println("</HTML>");
+		// String id = request.getParameter("id");
+		// out.println("hello" + id);
 		// out.flush();
 		// out.close();
 	}
