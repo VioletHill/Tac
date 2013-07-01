@@ -150,7 +150,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							<%if (allTeam.getAllTeams().get(i).getType()==1) 
   							{
   								String waitDiv="wait"+allTeam.getAllTeams().get(i).getId()+session.getAttribute("account");
-  								if (allTeam.getAllTeams().get(i).getIsJoin())
+  								if (allTeam.getAllTeams().get(i).getPublisher_account().equals(session.getAttribute("account")))
+  								{%>
+  									<td><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;"></td>
+  							  <%}
+  								else if (allTeam.getAllTeams().get(i).getIsJoin())
   								{			
   								%>
   									<td><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>

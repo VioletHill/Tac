@@ -1,0 +1,18 @@
+.ContentTitle
+{
+	text-align:left; 
+	word-break:break-all; 
+	margin-left:100; 
+	margin-right:100;
+	font-size:21.5;
+	color:#2c2c2c;
+}
+
+.ContentData
+{
+	text-align:right;  
+	margin-left:100; 
+	margin-right:100;
+	font-size:20;
+	color:#e8712b;
+}

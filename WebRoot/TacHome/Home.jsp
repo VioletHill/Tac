@@ -34,12 +34,10 @@
   
   
   <body onload="init()">
-  
+
 	<%@include file="Navigation/HomeNavigation.jsp" %>
-	
+	<br>
    	<!-- ÐÅÏ¢À¸Ä¿ -->
-   	<br>
-   	<br>
     <%@include file="Notices/HomeNotices.jsp"%> 
       
     <!-- ÈÙÓþÊÒ -->

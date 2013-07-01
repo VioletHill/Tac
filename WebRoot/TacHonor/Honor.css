@@ -1,7 +1,7 @@
 .ImageContain
 {
-	width:1163;
-	height:1051;
+	width:1200;
+	height:1156;
 	margin-right: auto; 
 	margin-left: auto;
 	background-color:white;
@@ -9,8 +9,15 @@
 
 .ImageDiv
 {
-	width:290; 
-	height:400;
+	margin-top:56;
 	text-align:center;
 	float:left;
+	height:191;
+	margin-left:39;
+}
+
+.HonorTitle
+{
+	font-size:15.8;
+	margin-top:15;
 }

@@ -17,9 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesPage.css">
 	<style>
 		body 
 		{
@@ -36,15 +34,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   
     <%@include file="/Navigation/Navigation.jsp" %>
-    <div style="top:0; width:1163;  margin-right: auto; margin-left: auto; background-color:white">	
+    <div style="top:0; width:1200;  margin-right: auto; margin-left: auto; background-color:white">	
 	 	<br>
 	 	<br>
 	 	<div>
-	 		<div id="title" style="text-align:center; word-break:break-all; margin-left:100; margin-right:100">
+	 		<div id="title" class="ContentTitle">
 	 			<%=notice.getNotice_title()%>
 			</div>
 			
-			<div id="data" style="text-align:right;  margin-left:100; margin-right:100">
+			<div id="data" class="ContentData">
 				<%=notice.getData()%>
 			</div>
 			

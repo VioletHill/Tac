@@ -1,0 +1,60 @@
+
+a.HomeNoticesTitle:link {
+	font-size:14;
+	text-decoration:none; 
+ 	current:point;
+	color:dd8c5c;
+}
+
+a.HomeNoticesTitle:visited {
+	font-size:14;
+	text-decoration:none; 
+ 	current:point;
+	color:dd8c5c;
+}
+
+a.HomeNoticesTitle:hover {
+	font-size:14;
+	color:dd8c5c;
+	text-decoration: underline;
+}
+
+a.HomeNoticesAll:link {
+	font-size:12;
+	text-decoration:none; 
+ 	current:point;
+	color:dd8c5c;
+}
+
+a.HomeNoticesAll:visited {
+	font-size:12;
+	text-decoration:none; 
+ 	current:point;
+	color:dd8c5c;
+}
+
+a.HomeNoticesAll:hover {
+	font-size:12;
+	color:dd8c5c;
+	text-decoration: underline;
+}
+
+a.HomeNoticesShow:link {
+	font-size:12;
+	text-decoration:none; 
+ 	current:point;
+	color:black;
+}
+
+a.HomeNoticesShow:visited {
+	font-size:12;
+	text-decoration:none; 
+ 	current:point;
+	color:black;
+}
+
+a.HomeNoticesShow:hover {
+	font-size:12;
+	color:black;
+	text-decoration: underline;
+}
