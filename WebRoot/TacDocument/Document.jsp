@@ -219,7 +219,7 @@
 													</tr>
 												</table>
 											</div></td>
-										<td><a class="download" href="<%=DocumentData.getFile(i)%>"><img
+										<td><a class="download" href="TacDocument/download.jsp?filepath=/Tac/upload/&filename=<%=DocumentData.getFile(i)%>"><img
 												src="TacDocument/images/active_down.png" width="30px"
 												alt="download"> </a></td>
 									</tr>
