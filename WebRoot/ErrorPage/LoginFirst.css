@@ -1,0 +1,75 @@
+.MainDiv
+{
+	width:1200;
+	height:806;
+	background-color:white;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+.account
+{
+	margin-left:369;
+	margin-top:57;
+	width:503;
+	height:47;
+	position:relative;
+	border-style:none;
+	padding:0 0 0 50;
+	margin-top:10;
+	outline: none;
+	ime-mode: disabled;
+	background-image:url("Image/LoginFirst/nameBox.png");
+}
+
+.password:focus
+{
+	background-image:url("Image/LoginFirst/nameBoxSelected.png");
+}
+
+.password
+{
+	margin-left:369px;
+	width:503;
+	height:47;
+	position:relative;
+	border-style:none;
+	padding:0 0 0 50;
+	margin-top:10;
+	outline: none;
+	ime-mode: disabled;
+	background-image:url("Image/LoginFirst/passwordBox.png");
+}
+
+.password:focus
+{
+	background-image:url("Image/LoginFirst/passwordBoxSelected.png");
+}
+
+.Submit
+{
+	margin-top:44px;
+	margin-left:369px;
+	width:243px;
+	height:50px;
+	background-image:url("Image/LoginFirst/registerButton.png");
+	border:none;
+}
+
+.Login
+{
+	margin-left:627px;
+	width:243px;
+	height:50px;
+	margin-top:-50px;
+	background-image:url("Image/LoginFirst/login.png");
+	border:none;
+	position:relative;
+}
+
+.loginFirst
+{
+	margin-left:369;
+	margin-top:76;
+}
