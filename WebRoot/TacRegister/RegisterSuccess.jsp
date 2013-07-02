@@ -7,6 +7,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
+  
+  <link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
     <base href="<%=basePath%>">
     
     <title>My JSP 'RegisterSuccess.jsp' starting page</title>

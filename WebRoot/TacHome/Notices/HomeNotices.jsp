@@ -1,6 +1,10 @@
  <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 
 <script src="TacHome/Notices/NoticesIndex.js"></script>
+
+<link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
+	
 <link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 <link rel="stylesheet" type="text/css" href="TacHome/Notices/HomeNotices.css">
 

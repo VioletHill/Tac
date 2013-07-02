@@ -11,6 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>My JSP 'Developer.jsp' starting page</title>
     
+    <link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
+    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    

@@ -83,14 +83,12 @@ public class Publish extends HttpServlet {
 		content = content.replaceAll("\n","&nbsp;");
 		content = content.replaceAll("\"","&quot;");
 		content = content.replaceAll("\'","&#39;");
-		System.out.println(content);
 		
 		Message message = new Message();
 		message.setContent(content);
 //		message.setPicture(null);
 //		message.setTime(null);
 		message.setUser_account(account);
-		System.out.println(message);
 		if (!MessageHibernate.sharedMessageHibernate().insert(message)) {
 			//error
 			request.getRequestDispatcher("/Home").forward(request, response);
