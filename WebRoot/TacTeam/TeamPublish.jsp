@@ -52,8 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							
 							<div id="cataTypeLog">
 								 <table cellspacing="0" cellpadding="0">	
-								 	<tr><td id="create" onclick="changeType(0)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">创意</span></td></tr>
-								  	<tr><td id="enlist" onclick="changeType(1)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">招募</span></td></tr>			
+								 	<tr><td id="create" onclick="changeType(0)" onmouseover="enterTypeItem(this)" onmouseout="outTypeItem(this)"><span class="TypeFont">创意</span></td></tr>
+								  	<tr><td id="enlist" onclick="changeType(1)" onmouseover="enterTypeItem(this)" onmouseout="outTypeItem(this)"><span class="TypeFont">招募</span></td></tr>			
 								</table>
 							</div>
 						</div>

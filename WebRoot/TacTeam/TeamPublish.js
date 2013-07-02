@@ -71,7 +71,7 @@ function changeType(val)
 	clearTypeItem();
 }
 
-function enterItem(ele) {
+function enterTypeItem(ele) {
 	switch (ele.id) {
 	case "create":
 		ele.style.backgroundImage = 'url(TacTeam/Image/publish/new_top_hover.png)';
@@ -83,7 +83,7 @@ function enterItem(ele) {
 
 }
 
-function outItem(ele) {
+function outTypeItem(ele) {
 	ele.style.backgroundImage = 'none';
 }
 

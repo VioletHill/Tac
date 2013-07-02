@@ -107,7 +107,7 @@ public class TeamServlet extends HttpServlet {
 				allTeam.setAllPage((hibernate.number_findByType(1)-1)/pageNum+1);
 			}
 		}
-		else if (peopleType==0)//我感兴趣的
+		else if (peopleType==0)//我发布的
 		{
 			if (type==2)
 			{
@@ -128,7 +128,7 @@ public class TeamServlet extends HttpServlet {
 				allTeam.setAllPage((hibernate.number_findMyType(1, account)- 1)/ pageNum + 1);
 			}
 		}
-		else if (peopleType==1)	//我加入的队伍
+		else if (peopleType==1)	//我感兴趣的
 		{
 			if (type==2)
 			{
@@ -149,7 +149,8 @@ public class TeamServlet extends HttpServlet {
 				allTeam.setAllPage((hibernate.number_findInterestedType(1, account)- 1)/ pageNum + 1);
 			}
 		}
-		
+		allTeam.setType(type);
+		allTeam.setPeopleType(peopleType);
 		for (int i=0; i<allTeam.getAllTeams().size(); i++)
 		{
 			allTeam.getAllTeams().get(i).setIsInterested(hibernate.IsInterested(allTeam.getAllTeams().get(i).getId(),account));
