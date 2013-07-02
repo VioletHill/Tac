@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	 <%
 		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false))
 		{
-			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html"); 
+			response.sendRedirect("/Tac/ErrorPage/LoginFirst.jsp"); 
 			return ;
 		} 
 	%>
@@ -66,12 +66,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 类别 -->
 						<td>
 							<div id="cataTypeDiv">
-								<input type="button" id="teamType" value="所有" onmouseover="showTypeItem();" onclick="changeTypeState()">
+								<%
+								String type=null;
+									if (allTeam.getType()==0)  type="  创意";
+									else if (allTeam.getType()==1) type="  招募";
+									else type="  所有";
+								%>
+								<input type="button" id="teamType" value="<%=type%>" onmouseover="showTypeItem();" onclick="changeTypeState()" style="font-size:23; text-align:left">
 								<div id="cataTypeLog">
 								 	<table cellspacing="0" cellpadding="0">	
-									  	<tr><td id="enlist">招募</td></tr>			
-										<tr><td id="create">创意</td></tr>
-										<tr><td id="allType">所有</td></tr>
+									  	<tr><td id="crate" class="TopHover" onclick="changeType(0)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">创意</span></td></tr>			
+										<tr><td id="enlist" class="MidHover" onclick="changeType(1)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">招募</span></td></tr>
+										<tr><td id="allType" class="BottomHover" onclick="changeType(2)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">所有</span></td></tr>
 									</table>
 								</div>
 							</div>
@@ -79,12 +85,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<!-- 所有人类别 -->
 						<td>
 							<div id="cataPeopleDiv">
-								<input type="button" id="teamPeople" value="所有人" onmouseover="showPeopleItem();" onclick="changePeopleState()">
+								<%
+								String peopleType=null;
+									if (allTeam.getPeopleType()==0)  peopleType="  我发布";
+									else if (allTeam.getPeopleType()==1) peopleType="  我喜欢";
+									else peopleType="  所有的";
+								%>
+								<input type="button" id="teamPeople" value="<%=peopleType %>" onmouseover="showPeopleItem();" onclick="changePeopleState()" style="font-size:23; text-align:left">
 								<div id="cataPeopleLog">
 								 	<table cellspacing="0" cellpadding="0">	
-									  	<tr><td id="myPeople">我发布的</td></tr>			
-										<tr><td id="myTeamPeople">我加入的</td></tr>
-										<tr><td id="allPeople">所有人</td></tr>
+									  	<tr><td id="myPeople" class="TopHover" onclick="changePeopleType(0)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">我发布</span></td></tr>			
+										<tr><td id="myTeamPeople" class="MidHover"  onclick="changePeopleType(1)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">我喜欢</span></td></tr>
+										<tr><td id="allPeople" class="BottomHover"  onclick="changePeopleType(2)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">所有的</span></td></tr>
 									</table>
 								</div>
 							</div>	
