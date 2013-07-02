@@ -48,7 +48,7 @@
 				<table>
 					<tr>
 						<td><input id="searchTF" type="text" name="search"
-							 value="<%=DocumentData.getSearch()%>" onfocus="focusSearch(this)"; onblur="blurSearch(this)"/></td>
+							 value="<%=DocumentData.getSearch()%>" /></td>
 						<td><div id="searchSltDiv">
 								<input id="searchSlt" type="button" value="  ·ÖÀà">
 								<div id="catalogDiv">
@@ -216,7 +216,7 @@
 													</tr>
 												</table>
 											</div></td>
-										<td><a class="download" href="w3schools.com"><img
+										<td><a class="download" href="<%=DocumentData.getFile(i)%>"><img
 												src="TacDocument/images/active_down.png" width="30px"
 												alt="download"> </a></td>
 									</tr>

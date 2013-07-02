@@ -47,6 +47,11 @@ public class DocumentData {
 		return month + "月" + day + "日";
 	}
 
+	public String getFile(int n) {
+		Document document = dataList.get(n);
+		return document.getDocumentFile();
+	}
+
 	public void setDataOfPage(int n) {
 		setPageIndex(n);
 		setDataList();

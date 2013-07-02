@@ -39,6 +39,15 @@ public abstract class AbstractDocument implements java.io.Serializable {
 		this.documentDownloadCount = 0;
 		this.documentTimestamp = new Date();
 	}
+	
+	public AbstractDocument(String documentTitle, String documentContent, String documentFile, String documentCatalog) {
+		this.documentTitle = documentTitle;
+		this.documentContent = documentContent;
+		this.documentFile = documentFile;
+		this.documentDownloadCount = 0;
+		this.documentCatalog = documentCatalog;
+		this.documentTimestamp = new Date();
+	}
 
 	/*
 	 * 这个构造函数是自动生成的，根据是表的主键
