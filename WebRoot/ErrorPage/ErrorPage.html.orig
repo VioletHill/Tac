@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ErrorPage.html</title>
+    
+    <link type="text/css" rel="stylesheet" href="common/common.css" charset="utf-8"/>
+	
+	<meta charset="utf-8" />
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+<<<<<<< HEAD
+  <body>
+    你访问的页面不存在 <br>
+=======
+  <body style="background-image:url(image/404_1.png)">
+
+>>>>>>> e326ec696abc27f7da85fb3b449918a67fbc2120
+  </body>
+</html>
