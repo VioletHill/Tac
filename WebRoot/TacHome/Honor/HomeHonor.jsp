@@ -3,6 +3,9 @@
 
 <script src="TacHome/Honor/HomeHonor.js"></script>
 
+<link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
+
 <link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 <link rel="stylesheet" type="text/css" href="TacHome/Honor/HomeHonor.css">
 

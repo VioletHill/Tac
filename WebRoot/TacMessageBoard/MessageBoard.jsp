@@ -17,6 +17,8 @@
 <!-- <meta charset=utf-8 /> -->
 <link type="text/css" rel="stylesheet"
 	href="TacMessageBoard/MessageBoard.css" />
+<link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
 <script type="text/javascript" src="jquery-1.9.1.js"></script>
 <script type="text/javascript" src="TacMessageBoard/MessageBoard.js" charset="utf-8"></script>
 <script type="text/javascript" src="TacMessageBoard/loadmore.js"></script>
@@ -24,6 +26,8 @@
 </head>
 
 <body>
+	<button id="testbutton">button</button>
+	<div id="wholecontent" >
 	<%@include file="/Navigation/Navigation.jsp"%>
 	<div id="allcontent">
 
@@ -36,7 +40,7 @@
 						<form action="Publish" method="post">
 							<textarea id="publishContent" name="content"></textarea>
 							<p id="publishCount">0</p>
-							<input type="submit" id="submitButton" />
+							<button id="submitButton"></button>
 						</form>
 					</div>
 				</div>
@@ -50,5 +54,6 @@
 	</div>
 	<button id="loadmore">more</button>
 	<%@include file="/Navigation/Footer.jsp"%>
+	</div>
 </body>
 </html>

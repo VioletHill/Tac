@@ -9,6 +9,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  	</jsp:useBean>
 <html>
   <head>
+  
+  <link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
     <base href="<%=basePath%>">
     
     <title><%=project.getTitle()%></title>
