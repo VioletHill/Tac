@@ -1,3 +1,4 @@
+<%@page import="DataSource.User.UserHibernate"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="DataSource.Message.Message"%>
 <%@page language="java" import="java.util.*" pageEncoding="utf-8"%>
@@ -28,11 +29,13 @@
 		SimpleDateFormat format = new SimpleDateFormat(
 				"yyyy-MM-dd HH:mm");
 		String dateString = format.format(message.getTime());
+		
+		UserHibernate user = UserHibernate.sharedUserHibernate();
 %>
 <div class="block">
 	<div class="content">
 		<div class="notetitle">
-			<img src="image/tx3.png" alt="Shawn" class="headphoto" />
+			<img src="<%=user.find_by_account(message.getUser_account()).getHeader_add() %>" alt="Shawn" class="headphoto" />
 			<p class="ownername"><%=message.getUser_account()%></p>
 		</div>
 		<p class="notecontent"><%=message.getContent()%></p>

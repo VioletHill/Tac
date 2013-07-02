@@ -26,7 +26,6 @@
 </head>
 
 <body>
-	<button id="testbutton">button</button>
 	<div id="wholecontent" >
 	<%@include file="/Navigation/Navigation.jsp"%>
 	<div id="allcontent">
@@ -52,7 +51,6 @@
 		</div>
 		<div id="null"></div>
 	</div>
-	<button id="loadmore">more</button>
 	<%@include file="/Navigation/Footer.jsp"%>
 	</div>
 </body>

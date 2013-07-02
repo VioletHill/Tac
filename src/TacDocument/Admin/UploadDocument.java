@@ -82,7 +82,7 @@ public class UploadDocument extends HttpServlet {
 							title = fileItem.getString("utf-8");
 						} else if (fileItem.getFieldName()
 								.equals("description")) {
-							contentString = fileItem.getString();
+							contentString = fileItem.getString("utf-8");
 						} else if (fileItem.getFieldName().equals("catalog")) {
 							catalogString = fileItem.getString("utf-8");
 						}
@@ -102,19 +102,20 @@ public class UploadDocument extends HttpServlet {
 
 								// 将文件上传到upload目录并命名
 								// ,getRealPath可以得到该目录下包含/upload的绝对路径
+								String finalFileNameString = UUID.randomUUID().toString()
+										+ "."
+										+ fileExt;
 								String filePathString = getServletContext()
 										.getRealPath("/upload")
 										+ "/"
-										+ UUID.randomUUID().toString()
-										+ "."
-										+ fileExt;
+										+ finalFileNameString;
 								fileItem.write(new File(filePathString));
 								System.out.println("该文件上传成功！！");
 								Document newDocument = new Document(title,
-										contentString, filePathString,
+										contentString, finalFileNameString,
 										catalogString);
-								System.out.println(title + contentString
-										+ filePathString + catalogString);
+//								System.out.println(title + contentString
+//										+ filePathString + catalogString);
 								DocumentDAO dao = DocumentDAO
 										.sharedDocumentDAO();
 								dao.save(newDocument);
