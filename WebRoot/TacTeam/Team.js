@@ -53,7 +53,6 @@ var lastMonth=0;
 var lastDay=0;
 function addDate()
 {
-	alert("a");
 	if (lastMonth!=month || lastDay!=day)
 	{
 		lastMonth=month;
@@ -89,44 +88,105 @@ function init()
    	$("#cataTypeDiv").mouseleave(function(){clearTypeItem();});
 }
 
-var isInterestedSend=false;
+var isInterested=false;
 function changeInterested(obj,id)
 {
-	if (isInterestedSend) return ;
-	isInterestedSend=true;
-	var xmlhttp;
-	if (window.XMLHttpRequest)
+	if (isInterested) return ;
+	if (obj.name=="yes")
 	{
-	  xmlhttp=new XMLHttpRequest();
+		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
+			{
+				if (msg!=-1)
+				{
+					isInterested=true;
+					document.getElementById('interestedCount'+id).innerHTML=msg;
+					obj.src="TacTeam/Image/uninterested.png";	
+					obj.name="no";
+					isInterested=false;
+				}
+			});
 	}
 	else
 	{
-	  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		$.post("Team/Interested",{ id:id,isInterested:obj.name }, function(msg)
+				{
+					if (msg!=-1)
+					{
+						isInterested=true;
+						document.getElementById('interestedCount'+id).innerHTML=msg;
+						obj.src="TacTeam/Image/interested.png";
+						obj.name="yes";
+						isInterested=false;
+					}
+				});
 	}
-	xmlhttp.open("POST", "Team/Interested?isInterested="+obj.name+"&id="+id, false);
-	xmlhttp.send();
-	if (obj.name=="interested")
-	{
-		
-		if (xmlhttp.responseText)
-		{
-			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-			obj.src="TacTeam/Image/uninterested.png";
-			obj.name="uninterested";
-		}
-	}
-	else
-	{
-		if (xmlhttp.responseText)
-		{
-			document.getElementById('interestedCount'+id).innerHTML=xmlhttp.responseText;
-			obj.src="TacTeam/Image/interested.png";
-			obj.name="interested";
-		}
-	}
-	isInterestedSend=false;
 }
 
 
+function changeWanntIn(obj,id)
+{
+	$.post("Team/Join",{ id:id,isJoin:obj.name }, function(msg)
+			{
+				if (msg=="true")
+				{
+					window.location.reload(); 
+				}
+			});
+}
+
+
+function showInfor(joinUserId)
+{
+	try
+	{
+		if (document.getElementById(joinUserId).style.display=="none")
+		{
+			$('#'+joinUserId).fadeIn();
+		}
+		else
+		{
+			$('#'+joinUserId).fadeOut();
+			document.getElementById(joinUserId).style.display="none";
+		}
+	}
+	catch(e)
+	{
+		
+	}
+	
+}
+
+
+function choosePage(index) 
+{
+	document.getElementById("pageText").value=index;
+	document.getElementById("form").submit();
+}
+
+function nextPage(totPage) 
+{
+	var index = parseInt(document.getElementById("pageText").value) + 1;
+	if (index > totPage) 
+	{
+		alert("亲！已经最后一页了~~");
+		return;
+	}
+	choosePage(index);
+}
+function lastPage() 
+{
+	var index = parseInt(document.getElementById("pageText").value) - 1;
+	if (index <= 0) 
+	{
+		alert("亲！已经第一页了~~");
+		return;
+	}
+	choosePage(index);
+}
+
+function publishTeam()
+{
+	window.location.href="Team/TeamPublish";
+}
 
    		

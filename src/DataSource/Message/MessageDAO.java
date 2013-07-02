@@ -1,12 +1,15 @@
 package DataSource.Message;
 
-import TacHibernate.BaseHibernateDAO;
 import java.util.List;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import TacHibernate.BaseHibernateDAO;
 
 /**
  * A data access object (DAO) providing persistence and search support for
@@ -26,9 +29,6 @@ public class MessageDAO extends BaseHibernateDAO {
 	public static final String USER_ACCOUNT = "userAccount";
 	public static final String CONTENT = "content";
 	public static final String PICTURE = "picture";
-	public static final String YEAR = "year";
-	public static final String MONTH = "month";
-	public static final String DAY = "day";
 
 	public void save(Message transientInstance) {
 		log.debug("saving Message instance");
@@ -106,18 +106,6 @@ public class MessageDAO extends BaseHibernateDAO {
 		return findByProperty(PICTURE, picture);
 	}
 
-	public List findByYear(Object year) {
-		return findByProperty(YEAR, year);
-	}
-
-	public List findByMonth(Object month) {
-		return findByProperty(MONTH, month);
-	}
-
-	public List findByDay(Object day) {
-		return findByProperty(DAY, day);
-	}
-
 	public List findAll() {
 		log.debug("finding all Message instances");
 		try {
@@ -181,9 +169,14 @@ public class MessageDAO extends BaseHibernateDAO {
 	}
 	public List<Message> find()
 	{
-		String query_string="from Message as n order by n.id desc";
-		Query query=getSession().createQuery(query_string);
+		Session session=this.getSession();
+		String query_string="from Message as n order by n.time desc";
+		Query query=session.createQuery(query_string);
+		session.beginTransaction();
 		List<Message> list=query.list();
+		session.getTransaction().commit();
+		session.flush();
+		session.close();
 		return list;
 	}
 }

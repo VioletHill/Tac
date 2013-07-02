@@ -1,6 +1,6 @@
 
 .RegisterDiv{
-	width:1163;
+	width:1200;
 	height:805;
 	background-image: url(Image/registerBG.png);
 	margin-left:auto; 
@@ -128,8 +128,8 @@
     height: 38px;
     cursor: pointer;
     position: relative;
-    top: 73px; 
-    left: 82px	;
+    top: 90px; 
+    left: 295px	;
     cursor:pointer;	
     overflow: hidden;
     z-index:1;

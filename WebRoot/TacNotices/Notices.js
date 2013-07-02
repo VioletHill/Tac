@@ -19,24 +19,10 @@ function showTime() {
 	else if (now.getDay() == 0)
 		day = "日";
 
-	var min = now.getMinutes();
-	if (min < 10) {
-		min = "0" + min;
-	}
 
-	var hour = now.getHours();
-	if (hour < 10) {
-		hour = "0" + hour;
-	}
-
-	var sec = now.getSeconds();
-	if (sec < 10) {
-		sec = "0" + sec;
-	}
-
-	document.getElementById("time").innerHTML = now.getFullYear() + "年"
-			+ (now.getMonth() + 1) + "月" + now.getDate() + "日" + "  " + "星期"
-			+ day + "  " + hour + ":" + min + ":" + sec;
+	document.getElementById("time").innerHTML = now.getFullYear() + "-"
+			+ (now.getMonth() + 1) + "-" + now.getDate()  +  '<span style="margin-left:13">'+ "星期"
+			+ day+"</span>";
 	setTimeout("showTime()", "1000");
 }
 

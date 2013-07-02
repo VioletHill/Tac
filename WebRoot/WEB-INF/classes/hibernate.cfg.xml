@@ -27,7 +27,6 @@
 		<mapping resource="DataSource/Honor/Honor.hbm.xml" />
 		<mapping resource="DataSource/Team/Team.hbm.xml" />
 		<mapping resource="DataSource/Team/TeamJoinusers.hbm.xml" />
-		<mapping resource="DataSource/Team/TeamWaitusers.hbm.xml" />
 		<mapping resource="DataSource/Team/UserInterested.hbm.xml" />
 		<mapping resource="DataSource/Message/Message.hbm.xml" />
 

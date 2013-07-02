@@ -19,14 +19,8 @@
   <property generated="never" lazy="false" name="picture" type="string">
    <column length="200" name="picture"/>
   </property>
-  <property generated="never" lazy="false" name="year" type="integer">
-   <column name="year"/>
-  </property>
-  <property generated="never" lazy="false" name="month" type="integer">
-   <column name="month"/>
-  </property>
-  <property generated="never" lazy="false" name="day" type="integer">
-   <column name="day"/>
+  <property generated="never" lazy="false" name="time" type="timestamp">
+   <column length="19" name="time" not-null="false"/>
   </property>
  </class>
 </hibernate-mapping>

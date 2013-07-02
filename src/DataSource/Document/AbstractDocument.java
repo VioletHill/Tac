@@ -23,6 +23,7 @@ public abstract class AbstractDocument implements java.io.Serializable {
 
 	// Constructors
 
+
 	/** default constructor */
 	public AbstractDocument() {
 	}

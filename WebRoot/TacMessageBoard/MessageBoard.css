@@ -1,17 +1,15 @@
-/* @charset "utf-8"; */
+@charset "utf-8";
 
- body,p,div,header,footer,img {
+ body,p,div,header,footer,img,table,li,ui,h1,h2,h3,h4,h5,h6,textarea,input,button {
 	padding: 0px;
 	margin: 0px;
+	border: none;
+	font-family: 微软雅黑, 幼圆, Georigia, Times, serif;
 }
 
 body {
 	background-image: url(/Tac/image/mainBG.png);
-	font-family: "Reenie Beanie", ΢���ź�, ��Բ, Georigia, Times, serif;
-}
-
-header {
-	
+	font-family: 微软雅黑, 幼圆, Georigia, Times, serif;
 }
 
 img#headerimg {
@@ -24,11 +22,20 @@ img#headerimg {
 	margin-right: auto;
 }
 
+#null {
+	clear: both;
+}
+
 div.block {
 	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 400px;
+}
+
+div.content {
 	padding-bottom: 20px;
 	background-color: #fcfaed;
-	box-shadow: 1px 1px 20px #888;
+	box-shadow: 1px 2px 5px #888;
 }
 
 .headphoto {
@@ -41,7 +48,29 @@ div.block {
 }
 
 #addNoteBlock {
-	margin-top: 20px;
+	background-image: url(../image/addNotePic.png);
+	background-position: 0px 0px;
+	width: 400px;
+	height: 217px;
+}
+
+#publishCount {
+	width: 40px;
+	text-align: center;
+	display: block;
+	position: absolute;
+	margin-top: 176px;
+	margin-left: 300px;
+	font-size: 21px;
+	color: #aaa;
+}
+
+#addNoteBlock:hover {
+	background-position: -400px 0px;
+}
+
+#addNoteBlock:active {
+	background-position: 0px 0px;
 }
 
 #publish {
@@ -83,6 +112,28 @@ p.ownername {
 #left {
 	width: 400px;
 	margin-left: 80px;
+}
+
+#publishBlock #publishContent {
+	margin-top: 35px;
+	margin-left: 35px;
+	height: 120px;
+	width: 300px;
+	display: block;
+	position: absolute;
+	resize: none;
+	background: none;
+	padding: 5px;
+	font-size: 20px;
+	color: #555;
+}
+
+#publishBlock #submitButton {
+	position: absolute;
+	display: block;
+	margin-top: 180px;
+	margin-left: 350px;
+	border: 1px solid black;
 }
 
 footer {

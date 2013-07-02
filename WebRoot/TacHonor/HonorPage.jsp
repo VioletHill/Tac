@@ -39,30 +39,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<%@include file="/Navigation/Navigation.jsp" %>
    	
    	<div class="MainDiv">
-   		<div style="background-color:white">
-   			<p>
-   				<img  src=<%=project.getCover_add()%> align="left">
-				<p style="position:relative; left:100;"><%=project.getTitle()%></p>
-   				<br>
-   				<p>上架时间：<%= project.getDate() %></p>
-   				<p>开发团队：<%= project.getDeveloper() %></p>
-			</p>		
+   		<div class="HonorPageTitle">
+   			<div style="margin-top:21">
+				<img src="TacHonor/Image/HonorHeader.png" style="margin-left:23; margin-top:26;">
+			</div>
+			
+			<div style="margin-left:95; margin-top:56;">
+   				<p>
+   					<img  src=<%=project.getCover_add()%> align="left">
+   					<div style="height:19"></div>
+					<p style="margin-left:252; font-size:27"><%=project.getTitle()%></p>
+   					
+   					<p style="margin-left:252; font-size:16.7">上架时间：<%= project.getDate() %></p>
+   					<span style="margin-left:80; font-size:16.7">团队：</span>
+   					<span style="font-size:16.7; color:#0e518a"><%= project.getDeveloper() %></span>
+				</p>
+			</div>		
    		</div>
    		
-   		<div class="ImageScroll" >
-   			<div class="ImageViewContainer">
-   				<%for (int i=0; i<project.getPicture().length; i++)
-   				{%>
-   					<img class="ImageView" src="<%=project.getPicture()[i]%>">
-   			  <%}%>
+   		<div class="ImageScrollDiv">
+   			<div class="ImageScroll" >
+   				<div style="margin-left:94; margin-top:49; font-size:22; color:#6e6e6e">精选</div>
+   				<div class="ImageViewContainer">
+   					<%for (int i=0; i<project.getPicture().length; i++)
+   					{%>
+   						<img class="ImageView" src="<%=project.getPicture()[i]%>">
+   			 	 <%}%>
+   				</div>
+   				<img class="LastView" onclick="preView(<%=project.getPicture().length %>);" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/LastView.png">
+   				<img class="NextView" onclick="nextView(<%=project.getPicture().length %>)" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/NextView.png">
    			</div>
    		</div>
-   		<img class="LastView" onclick="preView(<%=project.getPicture().length %>);" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/LastView.png">
-   		<img class="NextView" onclick="nextView(<%=project.getPicture().length %>)" onmousedown="this.style.opacity=0.2;" onmouseup="this.style.opacity=1;" src="TacHonor/Image/NextView.png">
-   		
+   	
    		<div style="background-color:white">
-   			<p style="position:relative; left:100">简介</p>	
-   			<p style="position:relative; left:100"><%=project.getContent() %></p>
+   			<div style="height:29; background-color:white"></div>
+   			<div class="DecTitle">简介</div>
+   			<div style="height:40px;"></div>
+   			<div class="DecContent"><%=project.getContent() %></div>
    		</div>
    	</div>
    	

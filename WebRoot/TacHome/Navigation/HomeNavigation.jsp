@@ -46,7 +46,7 @@
     	    
     	    <div>
     	    	<img src="TacHome/Image/LastPage.png" onclick="lastImg()" style="position:relative;   left:5; top:-200px; opacity:0.8">
-    	  	  	<img src="TacHome/Image/NextPage.png" onclick="nextImg()" style="position:relative;   left:585; top:-200px; opacity:0.8">
+    	  	  	<img src="TacHome/Image/NextPage.png" onclick="nextImg()" style="position:relative;   left:540; top:-200px; opacity:0.8">
    			</div>
     	</div>
  		<div class="loginFormDiv">

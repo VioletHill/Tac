@@ -19,9 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 
 	<link rel="stylesheet" type="text/css" href="TacTeam/Team.css">
+	<link rel="stylesheet" type="text/css" href="TacNotices/NoticesItem.css">
 	
 	<script src="jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="TacTeam/Team.js"></script>
+
 	
 	<style>
 		body {
@@ -45,6 +47,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body onload="init()">
   
     <%@include file="/Navigation/Navigation.jsp" %>
+    
+    <form id="form">
+    	<input type="hidden" id="peopleTypeText" name="peopleType" value="<%=allTeam.getPeopleType()%>">
+    	<input type="hidden" id="typeText" name="type" value="<%=allTeam.getType()%>">
+    	<input type="hidden" id="pageText" name="page" value="<%=allTeam.getPageIndex()%>">
+    </form>
     
   	<div class="mainDiv">
   		<!--help navigation -->
@@ -79,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>	
 						</td>
 						
-						<td><button type="button" id="publishButton"></button></td>
+						<td><button type="button" id="publishButton" onclick="publishTeam()"></button></td>
 					</tr>
 				</table>	
   			</form>
@@ -91,66 +99,80 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		<div style="background-color:white">
   		<br>
-  		<div id="contentDiv" style="width:830; position:relative; left:300;">
+  		<div id="contentDiv">
   			<%
   			for (int i=0; i<allTeam.getAllTeams().size(); i++)
   			{%>
-				<div style="background-color:rgb(146,192,60);" >
+				<div>
   				<!-- 日期 -->
   				<%if (i==0 || allTeam.getAllTeams().get(i-1).getMonth()!=allTeam.getAllTeams().get(i).getMonth() || allTeam.getAllTeams().get(i-1).getDay()!=allTeam.getAllTeams().get(i).getDay())
   				{%>
-  				<div  style=" background-color:red; width:40; height:40; position:relative; left:-200; top:38;">
-  					<div>
-  						<img src="ab">
+  				<div  class="DataDiv">
+  					<div class="DataDay">
+  						<%=allTeam.getAllTeams().get(i).getDay()%>
   					</div>
-  					<div>
-  						<img src="ab">
+  					<div class="DataMonth">
+  						<%=allTeam.getAllTeams().get(i).getMonth()+"月"%>
   					</div>
   				</div>
   				<%}%>
   				
   				<!-- 头像 -->
-  				<div class="headDiv" style="float:left; position:relative; left:-50;">
+  				<div style="clear:both"> </div>
+  				<div class="headDiv" style="float:left; position:relative; left:-50; margin:-30; top:30;">
   					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %>>
   				</div>
   	
   				<!-- 内容 -->
   				<div>
-					<table frame="box" style="background-color:white; width:750; position:relative; left:;">
+					<table class="TeamContent" >
   						<tr>
-  							<td><div style="width:70; overflow:hidden; text-align:left"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
-  							<td>
+  							<td><div class="ContentPublishUser"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
+  							<td style="width:587; background-color:red">
   								<!-- 标题 -->
   								<table>
   									<tr>
   										<%
   										if (allTeam.getAllTeams().get(i).getType()==0)
   										{%>
-  											<td style="width:120; text-align:left">发布于:<span style="color:red; float:right">创意</span></td>
+  											<td style="width:140; text-align:left"><span class="publishFont">发布于</span><span class="createType">创意</span></td>
   										<%}
   										else
   										{%>
-  											<td style="width:120; text-align:left">发布于:<span style="color:black; float:right">招募</span></td>
+  											<td style="width:140; text-align:left"><span class="publishFont">发布于</span><span class="enlistType">招募</span></td>
   										<%}%>
   										
-  										<td><div style="width:120; overflow:hidden"><%=allTeam.getAllTeams().get(i).getTitle()%></div></td>
+  										<td><div class="TeamContentTitle"><%=allTeam.getAllTeams().get(i).getTitle()%></div></td>
   									</tr>
   								</table>	
   							</td>
   							<!-- end 标题 -->
   							<%if (allTeam.getAllTeams().get(i).getType()==1) 
-  							{%>
-  								<td><img src="TacTeam/Image/iamin.png" style="float:right;"></td>
-  							<%}
+  							{
+  								String waitDiv="wait"+allTeam.getAllTeams().get(i).getId()+session.getAttribute("account");
+  								if (allTeam.getAllTeams().get(i).getPublisher_account().equals(session.getAttribute("account")))
+  								{%>
+  									<td style="background-color:green"><img src="TacTeam/Image/iamin.png" name="no" style="float:right;"></td>
+  							  <%}
+  								else if (allTeam.getAllTeams().get(i).getIsJoin())
+  								{			
+  								%>
+  									<td  style="background-color:green"><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
+  								<%}
+  								else
+  								{%>
+  									<td  style="background-color:green"><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
+  							  <%}%>
+  						  <%}
   							else
   							{%>
-  							  	<td></td>
+  							  	<td  style="background-color:green; width:63"></td>
   						  <%}%>
 						<tr>
 							<td></td>
 							<td>
-								<div style="width:600;  word-break:break-all">
-  									<p style="text-align:left;"><%=allTeam.getAllTeams().get(i).getContent()%></p>
+								<div class="TeamContentContent">
+  									<%=allTeam.getAllTeams().get(i).getContent()%>
   								</div>
 							</td>
   						</tr>
@@ -159,43 +181,116 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>
 								<%for (int j=0; j<allTeam.getAllTeams().get(i).getJoinUsers().size(); j++)
 								{
+									String joinUserId="join"+allTeam.getAllTeams().get(i).getId()+allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount();
 									if (j>10) break;
 								%>
 									<div style="width:45; float:left">
 										<div class="headDiv">
-											<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%> >
+											<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%> name=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount()%> onclick="showInfor('<%=joinUserId%>')">
 										</div>
+										
+										<!-- 组员用户信息 -->
+										<%
+										if (allTeam.getAllTeams().get(i).getIsJoin() || allTeam.getAllTeams().get(i).getPublisher_account().equals(session.getAttribute("account")))
+										{
+										%>
+										<div id="<%=joinUserId%>" class="JoinUserInfo">
+											<table style="position:relative; marin-top:20">
+												<tr>
+													<td style="width:80">
+														<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getAccount()%>
+													</td>
+													<td></td>
+													<td style="width:60">
+														<div class="headDiv" style="float:left">
+															<img src=<%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getHeader_add()%>>
+														</div> 
+													</td>
+												</tr>
+												<tr>
+													<td>Tel:</td>
+													<td><%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getPhone()%></td>
+												</tr>
+												<tr>
+													<td>@:</td>
+													<td><%=allTeam.getAllTeams().get(i).getJoinUsers().get(j).getEmail()%></td>
+												</tr>
+											</table>
+										</div>
+										<%}%>
+										<!--end 组员用户信息 -->
 									</div>
 								<%}%>
 							</td>
-							<td style="float:right">
+							<td style="float:right; width:100;">
 								<%if (allTeam.getAllTeams().get(i).getIsInterested())
-								{System.out.println(allTeam.getAllTeams().get(i).getIsInterested());%>
-								
-									<img src="TacTeam/Image/interested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+								{%>
+									<img src="TacTeam/Image/interested.png" name="yes" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
 								<%}
 								 else
 								 {%>
-								 	<img src="TacTeam/Image/uninterested.png" name="interested" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+								 	<img src="TacTeam/Image/uninterested.png" name="no" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
 								<%}%>
-								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>">
+								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>" class="InterestedCount">
 									<%=allTeam.getAllTeams().get(i).getInterestedCount()%>
 								</span>
 							<td>
 						</tr>	
   					</table>
-  					<div>
-  						asjk
+  					
+  					<!-- 加入信息 -->
+  					<%if (allTeam.getAllTeams().get(i).getType()==1)
+  					{%>
+  					<div style="position:relative; left:50; height:45;">
+  						<table>
+  							<tr>
+  								<td>
+  									<div class="headDiv">
+  										<img src=<%=allTeam.getAllTeams().get(i).getJoin_head()%> >
+  									</div>
+  								</td>
+  								<td>
+  									<span style="float:left"><%=allTeam.getAllTeams().get(i).getJoin_user()%></span>
+  								</td>
+  							</tr>
+  						</table>
   					</div>
-  					<br>
+  					<%}
+  					else
+  					{%>
+  						<br>
+  					<%}%>
   				</div>
-  				<!-- end 内容 -->
+  				<!-- end 内容 -->  			
   				</div>
   		   <%}%> 
   		</div>
   		<br>
+  		<!--页号-->
+		<div class="pageNum">
+			<a href="javascript:choosePage(1);" class="NoticesItem">首页</a> 
+			<a href="javascript:lastPage();" class="NoticesItem">上一页</a>
+			<%
+				for (int i = 1; i <= allTeam.getAllPage(); i++) 
+				{
+					if (i == allTeam.getPageIndex()) 
+					{%>
+						<a style="color:red"><%=i%></a>
+				  <%} 
+					else 
+					{%>
+						<a href="javascript:choosePage(<%=i%>);" class="NoticesItem"><%=i%></a>
+				  <%}%>
+				<%}%>
+				 
+			<a href="javascript:nextPage(<%=allTeam.getAllPage()%>);" class="NoticesItem">下一页</a> 
+			<a href="javascript:choosePage(<%=allTeam.getAllPage()%>);" class="NoticesItem">尾页</a>
+		</div>
+		<!-- 页号 -->
+		<br>
   	</div>
   	</div>
   	<%@include file="/Navigation/Footer.jsp" %>
   </body>
 </html>
+  					

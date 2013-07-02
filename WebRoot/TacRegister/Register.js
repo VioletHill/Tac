@@ -53,27 +53,19 @@
 			return ;
 		}
 		
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.open("POST", "Register?account="+account+ "&isRegister="+"false", false);
-		xmlhttp.send();
-		
-		if (xmlhttp.responseText=="true")
-		{
-			isAccountOk=true;
-			document.getElementById("accountImg").style.display="inline";
-		}
-		else
-		{
-			document.getElementById("accountInfor").innerHTML="该账号已被注册";
-		}
+		$.post("Register",{account:account,isRegister:"false" }, function(msg)
+				{
+					if (msg=="true")
+					{
+						isAccountOk=true;
+						document.getElementById("accountImg").style.display="inline";
+					}
+					else
+					{
+						document.getElementById("accountInfor").innerHTML="该账号已被注册";
+					}
+					
+				});
 		
 	}
 	
@@ -129,7 +121,7 @@
 		document.getElementById("emailInfor").innerHTML="";
 		
 		isEmailOk=false;
-		var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+		var reg = /^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/;
 		if (element.value=="") return ;
 		
 		if (reg.test(element.value))

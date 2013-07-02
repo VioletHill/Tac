@@ -1,6 +1,6 @@
 .MainDiv
 {
-	width:1163;
+	width:1200;
 	margin-left:auto;
 	margin-right:auto;
 }
@@ -15,51 +15,171 @@
 {
 	display:none; 
 	position:absolute; 
-	background-image:url(Image/PeopleSelectPanel.png); 
+	background-image:url(Image/TypeLog.png); 
 	z-index:999; 
 	width:163; 
-	height:205
+	height:157;
 }
 
 #teamType
 {
 	width:162; 
 	height:51;
-	background-image:url(Image/SelectButton.png);
+	background:url(Image/SelectButton.png);
 	font-size:23;
+	border:none;
 }
 
 #cataPeopleLog
 {
 	display:none; 
 	position:absolute; 
-	background-image:url(Image/PeopleSelectPanel.png); 
+	background:url(Image/TypeLog.png); 
 	z-index:999; 
 	width:163; 
-	height:205
+	height:157;
+	border:none;
 }
 
 #teamPeople
 {
 	width:162; 
 	height:51;
-	background-image:url(Image/SelectButton.png);
+	background:url(Image/SelectButton.png);
 	font-size:23;
+	border:none;
 }
 
 #publishButton
 {
-	background-image:url(Image/PublishButton.png); 
+	background:url(Image/PublishButton.png); 
 	width:160; 
 	height:50;
+	border:none;
 }
 
-.headDiv
+
+.JoinUserInfo
 {
- 	border-radius: 19px;
-   -moz-border-radius: 19px;
-   -webkit-border-radius: 19px;
-   overflow:hidden;
-   width:38;
-   height:38;
+	-moz-box-shadow: 2px 2px 10px #909090;
+	-webkit-box-shadow: 2px 2px 10px #909090;
+	box-shadow:2px 2px 10px #909090;
+	background-color:#f6f6f6; 
+	position:absolute; 
+	display:none;
+	z-index:10;
+}
+
+.DataDiv
+{
+	clear:both;
+	background:url(Image/TimeDiv.png);
+	width:76px; 
+	height:76px; 
+	border-radius: 38px;
+   -moz-border-radius: 38px;
+   -webkit-border-radius: 38px;
+	position:relative; 
+	left:-200; 
+	top:50;
+	text-align:center;
+}
+
+.DataDay
+{
+	position:relative;
+ 	top:20;
+	color:#8395a2;
+	font-size:30;
+	height:30;
+}
+
+.DataMonth
+{
+	position:relative;
+	top:45;
+	color:#8395a2;
+	font-size:30;
+	text-align:center;
+}
+
+
+.pageNum
+{
+	float:right; 
+	position:relative; 
+	left:-40;
+}
+
+#contentDiv
+{
+	width:790; 
+	margin-left:330; 
+	background-color:#f4f4f4
+}
+
+.ContentPublishUser
+{
+	font-weight:bold; 
+	width:80px; 
+	overflow:hidden; 
+	text-align:left;
+	font-size:17;
+	color:#54606b;
+	margin-left:19px;
+}
+
+.TeamContent
+{
+	width:776;
+	height:215;
+	background-image:url(Image/ContentBg.png);
+	margin-left:7;
+}
+
+.PublishFont
+{
+	font-size:17;
+	color:#54606b;	
+}
+
+.createType
+{
+	font-size:17;
+	color:#54606b;
+	font-weight:bold; 
+	margin-left:16;
+}
+
+.enlistType
+{
+	font-size:17;
+	color:#0d96d6;
+	font-weight:bold; 
+	margin-left:16;
+}
+
+.TeamContentTitle
+{
+	width:140; overflow:hidden;
+	font-size:17;
+	color:#af4c53;
+	width:447;
+	text-align:left;
+}
+
+.TeamContentContent
+{
+	width:600; 
+	word-break:break-all; 
+	text-align:left;
+	font-size:13.5;
+	color:#576361;
+}
+
+.InterestedCount
+{
+	font-weight:bold; 
+	font-size:14;
+	color:8395a2;
 }

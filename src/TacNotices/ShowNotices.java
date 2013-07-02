@@ -30,7 +30,7 @@ public class ShowNotices extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		response.setContentType("text/html; charset=gbk");
+		response.setContentType("text/plain; charset=gbk");
 		
 		int index=Integer.parseInt(request.getParameter("indexNotices"));
 		PrintWriter out = response.getWriter();

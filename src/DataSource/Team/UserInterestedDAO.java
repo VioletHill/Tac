@@ -153,6 +153,56 @@ public class UserInterestedDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	public List<Team> findInterestedTeam(String user_account,int account,int page) {
+		List<Team> team_list = new ArrayList<Team>(); 
+		
+		String query_string="from UserInterested as n where n.user_account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, user_account);
+		int number = (page - 1) * account;
+		query.setFirstResult(number);
+		query.setMaxResults(account);
+		List list=query.list();
+		if(list==null)
+		{
+			return list;
+		}
+		else {
+			for(int i=0;i<list.size();i++)
+			{
+				int id=((UserInterested)list.get(i)).getTeam_id();
+				String query_string2="from Team as n where n.id=?";
+				Query query2=getSession().createQuery(query_string2);
+				query2.setParameter(0, id);
+				Team aaaTeam=((Team)query2.list().get(0));				
+				team_list.add(aaaTeam);
+			}
+			return team_list;
+		}
+	}
+	public int number_findInterestedTeam(String user_account) {
+		List<Team> team_list = new ArrayList<Team>(); 
+		String query_string="from UserInterested as n where n.user_account=?";
+		Query query=getSession().createQuery(query_string);
+		query.setParameter(0, user_account);
+		List list=query.list();
+		if(list==null)
+		{
+			return 0;
+		}
+		else {
+			for(int i=0;i<list.size();i++)
+			{
+				int id=((UserInterested)list.get(i)).getTeam_id();
+				String query_string2="from Team as n where n.id=?";
+				Query query2=getSession().createQuery(query_string2);
+				query2.setParameter(0, id);
+				Team aaaTeam=((Team)query2.list().get(0));				
+				team_list.add(aaaTeam);
+			}
+			return team_list.size();
+		}
+	}
 	public List<Team> findInterestedType(int type,String user_account,int account,int page) {
 		List<Team> team_list = new ArrayList<Team>(); 
 		

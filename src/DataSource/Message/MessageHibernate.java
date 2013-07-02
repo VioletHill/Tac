@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 
+import DataSource.User.User;
+import DataSource.User.UserDAO;
+
 
 public class MessageHibernate implements Serializable {
 	
@@ -14,10 +17,6 @@ public class MessageHibernate implements Serializable {
 	public boolean insert(Message message)
 	{
 		MessageDAO dao=new MessageDAO();
-		Calendar cal = Calendar.getInstance();
-		message.setYear(cal.get(Calendar.YEAR));
-		message.setMonth(cal.get(Calendar.MONTH)+1);
-		message.setDay(cal.get(Calendar.DAY_OF_MONTH));
 		if(message.getUser_account()==null)
 		{
 			return false;
@@ -27,6 +26,9 @@ public class MessageHibernate implements Serializable {
 			return false;
 		}
 		else {
+			UserDAO dao2=new UserDAO();
+			User user=dao2.find_by_account(message.getUser_account());
+			message.setPicture(user.getHeader_add());
 			dao.save(message);
 			return true;
 		}
@@ -57,9 +59,19 @@ public class MessageHibernate implements Serializable {
 	public List<Message> find()
 	{
 		MessageDAO dao=new MessageDAO();
-		return dao.find();
+		List<Message> list=dao.find();
+		if(list!=null)
+		{
+			for(int i=0;i<list.size();i++)
+			{
+				if(list.get(i).getTime()==null)
+				{
+					list.get(i).setTime(dao.findById(list.get(i).getId()).getTime());
+				}
+			}
+		}
+		return list;
 	}
-	
 	
 	public MessageHibernate() {
 		// TODO Auto-generated constructor stub

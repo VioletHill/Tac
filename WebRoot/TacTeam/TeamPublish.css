@@ -1,0 +1,77 @@
+.MainDiv
+{
+	width:1163;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:white;
+}
+
+.helpTable
+{
+	margin-left:100;
+}
+
+#cataTypeLog
+{
+	display:none; 
+	position:absolute; 
+	background-image:url(Image/publish/type.png); 
+	z-index:999; 
+	width:124; 
+	height:88;
+}
+
+#teamType
+{
+	width:162; 
+	height:51;
+	background-image:url(Image/SelectButton.png);
+	font-size:23;
+}
+
+.titleFont
+{
+	margin-left:200;
+}
+
+
+.title
+{
+	width:160;
+	margin-left:20;
+}
+
+
+.content
+{
+	resize: none;
+	width:500;
+	height:300;
+	margin-left:200;
+}
+
+.cancelButton
+{
+	margin-left:400;
+	border:none;
+	width:178;
+	height:54;
+	background-image:url(Image/publish/cancelButton.png);
+}
+
+
+.PublishButton
+{
+	border:none;
+	width:178;
+	height:54;
+	background-image:url(Image/publish/publishButton.png);
+}
+
+#contentNumber
+{
+	opacity:0.5;
+	font-size:25;
+	margin-left:600;
+	margin-top:-50;
+}

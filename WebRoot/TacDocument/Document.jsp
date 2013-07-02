@@ -41,14 +41,14 @@
 
 		<div id="searchDiv">
 			<!-- 搜索栏 -->
-			<form action="Document" method="post" id="searchForm">
+			<form action="Document" method="post" id="searchForm" onsubmit="checkSearch()">
 				<input type="hidden" id="doneSomething" name="doneSomething"
 					value="no" /> <input type="hidden" id="catalog"
 					name="catalog" value="all" />
 				<table>
 					<tr>
 						<td><input id="searchTF" type="text" name="search"
-							 placeholder="搜索资源"/></td>
+							 value="<%=DocumentData.getSearch()%>" onfocus="focusSearch(this)"; onblur="blurSearch(this)"/></td>
 						<td><div id="searchSltDiv">
 								<input id="searchSlt" type="button" value="  分类">
 								<div id="catalogDiv">
@@ -57,42 +57,42 @@
 										<tr style="padding:0px;margin:0px;">
 											<td style="padding:0px;margin:0px;"><input
 												class="searchSltBt" id="all" value="  所有"
-												style="text-align=left;" type="button"
+												style="text-align:left;" type="button"
 												onclick="clickSelectSearch(this)" />
 											</td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" id="document" value="  文档"
-														style="text-align=left;" type="button"
+														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" id="lib" value="  类库"
-														style="text-align=left;" type="button"
+														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" id="sourceCode" value="  源码"
-														style="text-align=left;" type="button"
+														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" id="software" value="  软件"
-														style="text-align=left;" type="button"
+														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
 													<input class="searchSltBt" id="design" value="  设计"
-														style="text-align=left;" type="button"
+														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
@@ -268,9 +268,9 @@
 				</form>
 			</div>
 
-			<%@include file="/Navigation/Footer.jsp"%>
 		</div>
 	</div>
+	<%@include file="/Navigation/Footer.jsp"%>
 </body>
 
 

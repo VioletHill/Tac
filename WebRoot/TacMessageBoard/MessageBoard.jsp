@@ -1,4 +1,6 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="DataSource.Message.Message"%>
+<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -12,58 +14,41 @@
 <base href="<%=basePath%>">
 
 <title>Home Page</title>
-<meta charset=utf-8 />
+<!-- <meta charset=utf-8 /> -->
 <link type="text/css" rel="stylesheet"
 	href="TacMessageBoard/MessageBoard.css" />
+<script type="text/javascript" src="jquery-1.9.1.js"></script>
+<script type="text/javascript" src="TacMessageBoard/MessageBoard.js" charset="utf-8"></script>
+<script type="text/javascript" src="TacMessageBoard/loadmore.js"></script>
 
 </head>
 
 <body>
-<%@include file="/Navigation/Navigation.jsp"%>
+	<%@include file="/Navigation/Navigation.jsp"%>
 	<div id="allcontent">
-		
 
-		<div id="right">
-			<div class="block">
-				<div class="notetitle">
-					<img src="image/tx1.png" alt="Shawn" class="headphoto" />
-					<p class="ownername">Shawn</p>
-				</div>
-				<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-				<p class="publishtime">2013.5.18</p>
-			</div>
-			<div class="block">
-				<div class="notetitle">
-					<img src="image/tx2.png" alt="路捷" class="headphoto" />
-					<p class="ownername">Shawn</p>
-				</div>
-				<p class="notecontent">我要吃好吃的</p>
-				<p class="publishtime">2013.5.18</p>
-			</div>
-		</div>
+
+		<div id="right"></div>
 		<div id="left">
-			<div id="addNoteBlock">
-				<img alt="我要留言" src="image/commentPage_addNote.png" id="addNote" />
-			</div>
 			<div class="block">
-				<div class="notetitle">
-					<img src="image/tx3.png" alt="Shawn" class="headphoto" />
-					<p class="ownername">Shawn</p>
+				<div id="addNoteBlock">
+					<div id="publishBlock">
+						<form action="Publish" method="post">
+							<textarea id="publishContent" name="content"></textarea>
+							<p id="publishCount">0</p>
+							<input type="submit" id="submitButton" />
+						</form>
+					</div>
 				</div>
-				<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-				<p class="publishtime">2013.5.18</p>
-			</div>
-			<div class="block">
-				<div class="notetitle">
-					<img src="image/tx2.png" alt="Shawn" class="headphoto" />
-					<p class="ownername">Shawn</p>
-				</div>
-				<p class="notecontent">今天好像快下雨的样子，真不开心，不开心不开心不开心不开心，找不到对象找不到对象找不到对象找不到对象。</p>
-				<p class="publishtime">2013.5.18</p>
 			</div>
 		</div>
 
-		<%@include file="/Navigation/Footer.jsp" %> 
+		<div id="collection" hidden="hidden">
+		<jsp:include page="/TacMessageBoard/Block.jsp"></jsp:include>
+		</div>
+		<div id="null"></div>
 	</div>
+	<button id="loadmore">more</button>
+	<%@include file="/Navigation/Footer.jsp"%>
 </body>
 </html>

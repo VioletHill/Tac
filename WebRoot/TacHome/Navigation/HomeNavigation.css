@@ -204,21 +204,12 @@ td {
 {	
 	width:30;
 	height:17;
-	background:url(../Image/loginBufferLogin.png);
+	background:url(../Image/logoutBufferLogout.png);
 	margin:12 10 15 15;
 	border:0;
 
 }
 
-.logoutBufferLogout
-{	
-	width:30;
-	height:17;
-	background:url(../Image/loginBufferLogin.png);
-	margin:12 10 15 15;
-	border:0;
-
-}
 
 .headDiv
 {
@@ -226,12 +217,12 @@ td {
    -moz-border-radius: 19px;
    -webkit-border-radius: 19px;
    overflow:hidden;
-   width:38;
-   height:38;
+   width:38px;
+   height:38px;
 }
 
 .headImg
 {
-   width:38;
-   height:38;
+   width:38px;
+   height:38px;
 }

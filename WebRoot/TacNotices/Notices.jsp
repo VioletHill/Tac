@@ -41,9 +41,9 @@
 
  	<%@include file="/Navigation/Navigation.jsp"%>
  	
-	<div style="top:0; width:1163;  margin-right: auto; margin-left: auto;"> 	 
+	<div style="top:0; width:1200;  margin-right: auto; margin-left: auto;"> 	 
 		<!-- ËÑË÷À¸ -->
-		<div style="width:1163">
+		<div style="width:1200">
 			<div>
 				<form action="Notices" method="post" id="form">
 					<input type="hidden" id="searchTime" name="searchTime" value="<%=allNotices.getNoticeTime()%>">
@@ -80,8 +80,8 @@
 			<div class="content">
 				 <div>
 				 	<br>
-					<img src="TacNotices/Image/Title.png" class="noticeLogo" onload="showTime()">
-					<span id="time"></span>
+					<img src="TacNotices/Image/Title.png" style="margin-left:34" class="noticeLogo" onload="showTime()">
+					<span id="time" style="font-size:21; margin-left:32"></span>
 				</div>
 
 				<table style="position:relative; top:80;">
@@ -90,8 +90,8 @@
 					{%>
 						<tr style="height:50; width:1100; height:72">
 							<td class="noticesTitle" >
-								<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesItem" title="<%=allNotices.getAllNotices().get(i).getNotice_title()%>" style="font-size:14"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>	
-								<span style="color:red; font-size:14"><%=allNotices.getAllNotices().get(i).getData()%></span>	
+								<a href="Notices/NoticesPage?indexNotices=<%=allNotices.getAllNotices().get(i).getNotice_id()%>" class="NoticesContentItem" title="<%=allNotices.getAllNotices().get(i).getNotice_title()%>"><%=allNotices.getAllNotices().get(i).getNotice_title()%></a>	
+								<span class="NoticesContentData"><%=allNotices.getAllNotices().get(i).getData()%></span>	
 							</td>
 						</tr>
 				  <%}%>
