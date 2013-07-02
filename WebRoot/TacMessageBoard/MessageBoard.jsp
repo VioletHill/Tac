@@ -26,7 +26,6 @@
 </head>
 
 <body>
-	<button id="testbutton">button</button>
 	<div id="wholecontent" >
 	<%@include file="/Navigation/Navigation.jsp"%>
 	<div id="allcontent">
