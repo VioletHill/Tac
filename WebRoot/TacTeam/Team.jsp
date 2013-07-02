@@ -99,11 +99,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		<div style="background-color:white">
   		<br>
-  		<div id="contentDiv" style="width:830; position:relative; left:300;">
+  		<div id="contentDiv">
   			<%
   			for (int i=0; i<allTeam.getAllTeams().size(); i++)
   			{%>
-				<div style="background-color:rgb(146,192,60);" >
+				<div>
   				<!-- 日期 -->
   				<%if (i==0 || allTeam.getAllTeams().get(i-1).getMonth()!=allTeam.getAllTeams().get(i).getMonth() || allTeam.getAllTeams().get(i-1).getDay()!=allTeam.getAllTeams().get(i).getDay())
   				{%>
@@ -119,30 +119,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				
   				<!-- 头像 -->
   				<div style="clear:both"> </div>
-  				<div class="headDiv" style="float:left; position:relative; left:-50;">
+  				<div class="headDiv" style="float:left; position:relative; left:-50; margin:-30; top:30;">
   					<img src=<%=allTeam.getAllTeams().get(i).getPublishUser().getHeader_add() %>>
   				</div>
   	
   				<!-- 内容 -->
   				<div>
-					<table frame="box" style="background-color:#f4f4f4; width:750;">
+					<table class="TeamContent" >
   						<tr>
-  							<td><div style="width:70; overflow:hidden; text-align:left"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
-  							<td>
+  							<td><div class="ContentPublishUser"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
+  							<td style="width:587; background-color:red">
   								<!-- 标题 -->
   								<table>
   									<tr>
   										<%
   										if (allTeam.getAllTeams().get(i).getType()==0)
   										{%>
-  											<td style="width:120; text-align:left">发布于:<span style="color:red; float:right">创意</span></td>
+  											<td style="width:140; text-align:left"><span class="publishFont">发布于</span><span class="createType">创意</span></td>
   										<%}
   										else
   										{%>
-  											<td style="width:120; text-align:left">发布于:<span style="color:black; float:right">招募</span></td>
+  											<td style="width:140; text-align:left"><span class="publishFont">发布于</span><span class="enlistType">招募</span></td>
   										<%}%>
   										
-  										<td><div style="width:120; overflow:hidden"><%=allTeam.getAllTeams().get(i).getTitle()%></div></td>
+  										<td><div class="TeamContentTitle"><%=allTeam.getAllTeams().get(i).getTitle()%></div></td>
   									</tr>
   								</table>	
   							</td>
@@ -152,27 +152,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								String waitDiv="wait"+allTeam.getAllTeams().get(i).getId()+session.getAttribute("account");
   								if (allTeam.getAllTeams().get(i).getPublisher_account().equals(session.getAttribute("account")))
   								{%>
-  									<td><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;"></td>
+  									<td style="background-color:green"><img src="TacTeam/Image/iamin.png" name="no" style="float:right;"></td>
   							  <%}
   								else if (allTeam.getAllTeams().get(i).getIsJoin())
   								{			
   								%>
-  									<td><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
+  									<td  style="background-color:green"><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
   								<%}
   								else
   								{%>
-  									<td><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
+  									<td  style="background-color:green"><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
   							  <%}%>
   						  <%}
   							else
   							{%>
-  							  	<td></td>
+  							  	<td  style="background-color:green; width:63"></td>
   						  <%}%>
 						<tr>
 							<td></td>
 							<td>
-								<div style="width:600;  word-break:break-all">
-  									<p style="text-align:left;"><%=allTeam.getAllTeams().get(i).getContent()%></p>
+								<div class="TeamContentContent">
+  									<%=allTeam.getAllTeams().get(i).getContent()%>
   								</div>
 							</td>
   						</tr>
@@ -222,7 +222,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</div>
 								<%}%>
 							</td>
-							<td style="float:right">
+							<td style="float:right; width:100;">
 								<%if (allTeam.getAllTeams().get(i).getIsInterested())
 								{%>
 									<img src="TacTeam/Image/interested.png" name="yes" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
@@ -231,7 +231,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								 {%>
 								 	<img src="TacTeam/Image/uninterested.png" name="no" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
 								<%}%>
-								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>">
+								<span id="interestedCount<%=allTeam.getAllTeams().get(i).getId()%>" class="InterestedCount">
 									<%=allTeam.getAllTeams().get(i).getInterestedCount()%>
 								</span>
 							<td>

@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				
    				
    				<div id="ImageDragContainer">                               
-                    <img id="ImageDrag" class="imagePhoto" src="" style="border-width:0px;" onload="startCut()"/>                                                        
+                    <img id="ImageDrag" class="imagePhoto" src="TacRegister/Image/Default_avatar.png" style="border-width:0px;" onload="startCut()"/>                                                        
                 </div>
  
     
@@ -91,5 +91,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</div>
     	
     </div>
+    <%@include file="/Navigation/Footer.jsp" %>
   </body>
 </html>
