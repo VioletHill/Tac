@@ -51,7 +51,6 @@
 		</div>
 		<div id="null"></div>
 	</div>
-	<button id="loadmore">more</button>
 	<%@include file="/Navigation/Footer.jsp"%>
 	</div>
 </body>
