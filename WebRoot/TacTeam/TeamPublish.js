@@ -56,3 +56,35 @@ function checkTeamPublish()
 	return true;
 }
 
+function changeType(val)
+{
+
+	if (val=="0")
+	{
+		document.getElementById("teamType").value="  ´´Òâ";
+	}
+	else
+	{
+		document.getElementById("teamType").value="  ÕÐÄ¼";
+	}
+	document.getElementById("publishType").value=val;
+	clearTypeItem();
+}
+
+function enterItem(ele) {
+	switch (ele.id) {
+	case "create":
+		ele.style.backgroundImage = 'url(TacTeam/Image/publish/new_top_hover.png)';
+		break;
+	case "enlist":
+		ele.style.backgroundImage = 'url(TacTeam/Image/publish/new_bottom_hover.png)';
+		break;
+	}
+
+}
+
+function outItem(ele) {
+	ele.style.backgroundImage = 'none';
+}
+
+

@@ -63,7 +63,6 @@ public class TeamServlet extends HttpServlet {
 		{
 			page=1;
 		}
-		System.out.print(page);
 		int peopleType=2;
 		try 
 		{
