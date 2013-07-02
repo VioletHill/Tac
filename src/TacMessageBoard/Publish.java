@@ -69,10 +69,10 @@ public class Publish extends HttpServlet {
 		request.setCharacterEncoding("utf8");
 		
 		HttpSession session = request.getSession();
-		if (session.getAttribute("account") == null) {
-			request.getRequestDispatcher("/MessageBoard").forward(request, response);
-			return;
-		}
+		if (session.getAttribute("isLog")==null || session.getAttribute("isLog").equals(false)) {
+			response.sendRedirect("/Tac/ErrorPage/LoginFirst.jsp"); 
+			return ;
+		} 
 		String account = (String) session.getAttribute("account");
 				
 		String content = request.getParameter("content");
@@ -91,9 +91,9 @@ public class Publish extends HttpServlet {
 		message.setUser_account(account);
 		if (!MessageHibernate.sharedMessageHibernate().insert(message)) {
 			//error
-			request.getRequestDispatcher("/Home").forward(request, response);
+			response.sendRedirect("/Tac/ErrorPage/ErrorPage.html");
 		} else {
-			request.getRequestDispatcher("/MessageBoard").forward(request, response);
+			response.sendRedirect("/Tac/MessageBoard");
 		}
 	}
 
