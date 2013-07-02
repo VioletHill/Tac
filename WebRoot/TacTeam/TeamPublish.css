@@ -16,18 +16,19 @@
 {
 	display:none; 
 	position:absolute; 
-	background-image:url(Image/publish/type.png); 
+	background:url(Image/publish/type.png); 
 	z-index:999; 
-	width:124; 
-	height:88;
+	width:124px; 
+	height:81px;
 }
 
 #teamType
 {
-	width:162; 
-	height:51;
-	background-image:url(Image/SelectButton.png);
-	font-size:23;
+	width:126; 
+	height:41;
+	background:url(Image/publish/new_select.png);
+	font-size:14.5;
+	color:#5e5e5e;
 	border:none;
 }
 
@@ -86,4 +87,31 @@
 {
 	position:relative;
 	top:-306px;
+}
+
+#create
+{
+	width:124px;
+	height:40px;
+}
+
+
+#create.hover
+{
+	background:url(Image/publish/new_top_hover.png);
+}
+
+#enlist
+{
+	width:125px;
+	height:40px;
+}
+
+
+
+.TypeFont
+{
+	font-size:13.8;
+	color:#5e5e5e;
+	margin-left:16;
 }

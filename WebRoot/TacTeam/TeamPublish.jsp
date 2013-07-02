@@ -47,11 +47,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<!-- 类别 -->
 					<td>
 						<div id="cataTypeDiv">
-							<input type="button" id="teamType" value="招募" onmouseover="showTypeItem();" onclick="changeTypeState()">
+							
+							<input type="button" id="teamType" value="  创意" onmouseover="showTypeItem();" onclick="changeType()" style="text-align:left;">
+							
 							<div id="cataTypeLog">
 								 <table cellspacing="0" cellpadding="0">	
-								  	<tr><td id="enlist">招募</td></tr>			
-									<tr><td id="create">创意</td></tr>
+								 	<tr><td id="create" onclick="changeType(0)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">创意</span></td></tr>
+								  	<tr><td id="enlist" onclick="changeType(1)" onmouseover="enterItem(this)" onmouseout="outItem(this)"><span class="TypeFont">招募</span></td></tr>			
 								</table>
 							</div>
 						</div>
@@ -60,10 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</table>
 		<br>
      	<form method="post" action="Team/TeamPublish" onsubmit="return checkTeamPublish()">
-     		<input type="hidden" name="type" value="0">
+     		<input type="hidden" name="type" id="publishType" value="0">
      		<div style="height:102"></div>
      		
-     		<span class="titleFont">标题</span><input type="text" class="title" name="title" maxlength="10">	<br>
+     		<span class="titleFont">标题</span><input type="text" id="title" class="title" name="title" maxlength="10">	<br>
      		<br>
      		<!-- <input type="hidden" name="content" value=""> -->
      		<span class="titleFont" id="contentFont">正文</span><textarea class="content" id="content" name="content" onkeyup="checkContentNumber()"></textarea>
