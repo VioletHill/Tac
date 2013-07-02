@@ -24,6 +24,10 @@ public class UserHibernate implements Serializable
 	{
 		UserDAO dao=new UserDAO();
 		user.setPermission(0);
+		if(user.getHeader_add()==null)
+		{
+			user.setHeader_add("User/Admin/default.PNG");
+		}
 		dao.save(user);
 	}
 	public boolean judge(String account)

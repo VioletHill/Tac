@@ -9,7 +9,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 
 <jsp:useBean id="DocumentData" class="DataSource.Document.DocumentData"
@@ -21,14 +21,8 @@
 
 <title>Tac资料室</title>
 
-<link type="text/css" rel="stylesheet"
-	href="common/common.css" charset="utf-8"/>
-
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<link type="text/css" rel="stylesheet" href="common/common.css" charset="utf-8"/>
+<meta charset="utf-8" />
 
 <link rel="stylesheet" type="text/css" href="TacDocument/Document.css">
 <script src="jquery-1.9.1.js"></script>
@@ -51,7 +45,7 @@
 				<table>
 					<tr>
 						<td><input id="searchTF" type="text" name="search"
-							 value="<%=DocumentData.getSearch()%>" onfocus="focusSearch(this)"; onblur="blurSearch(this)"/></td>
+							 value="<%=DocumentData.getSearch()%>" /></td>
 						<td><div id="searchSltDiv">
 								<input id="searchSlt" type="button" value="  分类">
 								<div id="catalogDiv">
@@ -219,7 +213,7 @@
 													</tr>
 												</table>
 											</div></td>
-										<td><a class="download" href="w3schools.com"><img
+										<td><a class="download" href="<%=DocumentData.getFile(i)%>"><img
 												src="TacDocument/images/active_down.png" width="30px"
 												alt="download"> </a></td>
 									</tr>

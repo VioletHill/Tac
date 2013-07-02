@@ -19,6 +19,13 @@ public class Document extends AbstractDocument implements java.io.Serializable {
 	public Document(String documentTitle) {
 		super(documentTitle);
 	}
+	
+	/**
+	 * for upload 
+	 */
+	public Document(String documentTitle, String documentContent, String documentFile, String catalogString) {
+		super(documentTitle, documentContent, documentFile, catalogString);
+	}
 
 	/** java thought minimal, but not for DB */
 	public Document(String documentTitle, Integer documentDownloadCount,
