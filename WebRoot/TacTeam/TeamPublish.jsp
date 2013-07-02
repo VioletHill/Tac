@@ -40,13 +40,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <%@include file="/Navigation/Navigation.jsp" %>
    
      <div class="mainDiv">
+     		<div style="height:23px"></div>
      		<table class="helpTable">
 				<tr>
-					<td>
-						<span>
-							发布
-						</span>	
-					</td>
+					<td><span style="font-size:30px; color:#44a9dd;">发布</span></td>
 					<!-- 类别 -->
 					<td>
 						<div id="cataTypeDiv">
@@ -64,10 +61,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<br>
      	<form method="post" action="Team/TeamPublish" onsubmit="return checkTeamPublish()">
      		<input type="hidden" name="type" value="0">
+     		<div style="height:102"></div>
+     		
      		<span class="titleFont">标题</span><input type="text" class="title" name="title" maxlength="10">	<br>
      		<br>
      		<!-- <input type="hidden" name="content" value=""> -->
-     		<textarea class="content" id="content" name="content" onkeyup="checkContentNumber()"></textarea>
+     		<span class="titleFont" id="contentFont">正文</span><textarea class="content" id="content" name="content" onkeyup="checkContentNumber()"></textarea>
      		<div id="contentNumber">140</div><br>
      		<br>
      		<input type="reset" class="cancelButton" value="">
