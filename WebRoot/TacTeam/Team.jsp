@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
     <%@include file="/Navigation/Navigation.jsp" %>
     
-    <form id="form">
+    <form id="form" method="post">
     	<input type="hidden" id="peopleTypeText" name="peopleType" value="<%=allTeam.getPeopleType()%>">
     	<input type="hidden" id="typeText" name="type" value="<%=allTeam.getType()%>">
     	<input type="hidden" id="pageText" name="page" value="<%=allTeam.getPageIndex()%>">
@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<table class="TeamContent" >
   						<tr>
   							<td><div class="ContentPublishUser"><%=allTeam.getAllTeams().get(i).getPublishUser().getAccount()%></div></td>
-  							<td style="width:587; background-color:red">
+  							<td style="width:587;">
   								<!-- 标题 -->
   								<table>
   									<tr>
@@ -155,21 +155,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   								String waitDiv="wait"+allTeam.getAllTeams().get(i).getId()+session.getAttribute("account");
   								if (allTeam.getAllTeams().get(i).getPublisher_account().equals(session.getAttribute("account")))
   								{%>
-  									<td style="background-color:green"><img src="TacTeam/Image/iamin.png" name="no" style="float:right;"></td>
+  									<td><img src="TacTeam/Image/iamin.png" name="no" style="float:right;"></td>
   							  <%}
   								else if (allTeam.getAllTeams().get(i).getIsJoin())
   								{			
   								%>
-  									<td  style="background-color:green"><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
+  									<td><img src="TacTeam/Image/iamin.png" name="yes" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
   								<%}
   								else
   								{%>
-  									<td  style="background-color:green"><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
+  									<td><img src="TacTeam/Image/iwantin.png" name="no" style="float:right;" onclick="changeWanntIn(this,<%=allTeam.getAllTeams().get(i).getId()%>)"></td>
   							  <%}%>
   						  <%}
   							else
   							{%>
-  							  	<td  style="background-color:green; width:63"></td>
+  							  	<td  style="width:63"></td>
   						  <%}%>
 						<tr>
 							<td></td>
@@ -228,7 +228,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td style="float:right; width:100;">
 								<%if (allTeam.getAllTeams().get(i).getIsInterested())
 								{%>
-									<img src="TacTeam/Image/interested.png" name="yes" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
+									<img src="TacTeam/Image/interested.png"  style="margin-top:12px;"name="yes" onclick="changeInterested(this,<%=allTeam.getAllTeams().get(i).getId()%>)">
 								<%}
 								 else
 								 {%>
@@ -244,7 +244,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					<!-- 加入信息 -->
   					<%if (allTeam.getAllTeams().get(i).getType()==1)
   					{%>
-  					<div style="position:relative; left:50; height:45;">
+  					<div style="margin-left:172px">
   						<table>
   							<tr>
   								<td>
@@ -253,7 +253,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   									</div>
   								</td>
   								<td>
-  									<span style="float:left"><%=allTeam.getAllTeams().get(i).getJoin_user()%></span>
+  									<span class="joinUser"><%=allTeam.getAllTeams().get(i).getJoin_user()%></span>
+  									<span class="joinPro"><%=allTeam.getAllTeams().get(i).getTitle()%></span>
   								</td>
   							</tr>
   						</table>

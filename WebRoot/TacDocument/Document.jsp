@@ -9,7 +9,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
 
 <jsp:useBean id="DocumentData" class="DataSource.Document.DocumentData"
@@ -21,14 +21,8 @@
 
 <title>Tacืสมฯสา</title>
 
-<link type="text/css" rel="stylesheet"
-	href="common/common.css" charset="utf-8"/>
-
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
+<link type="text/css" rel="stylesheet" href="common/common.css" charset="utf-8"/>
+<meta charset="utf-8" />
 
 <link rel="stylesheet" type="text/css" href="TacDocument/Document.css">
 <script src="jquery-1.9.1.js"></script>

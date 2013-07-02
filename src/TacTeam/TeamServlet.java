@@ -63,7 +63,7 @@ public class TeamServlet extends HttpServlet {
 		{
 			page=1;
 		}
-		
+		System.out.print(page);
 		int peopleType=2;
 		try 
 		{
@@ -82,6 +82,7 @@ public class TeamServlet extends HttpServlet {
 		} 
 		catch (Exception e) 
 		{
+			type=2;
 		}
 		
 		AllTeam allTeam=new AllTeam();
