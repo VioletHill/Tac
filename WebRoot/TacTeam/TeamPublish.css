@@ -1,6 +1,6 @@
 .MainDiv
 {
-	width:1163;
+	width:1200;
 	margin-left:auto;
 	margin-right:auto;
 	background-color:white;
@@ -8,7 +8,8 @@
 
 .helpTable
 {
-	margin-left:100;
+	margin-left:140px;
+	text-align:left;
 }
 
 #cataTypeLog
@@ -27,51 +28,62 @@
 	height:51;
 	background-image:url(Image/SelectButton.png);
 	font-size:23;
+	border:none;
 }
 
 .titleFont
 {
-	margin-left:200;
+	margin-left:145px;
+	font-size:18px;
+	text-align:top;
 }
 
 
 .title
 {
-	width:160;
-	margin-left:20;
+	width:731px;
+	height:43px;
+	margin-left:36px;
 }
 
 
 .content
 {
 	resize: none;
-	width:500;
-	height:300;
-	margin-left:200;
+	width:731;
+	height:335;
+	margin-left:36px;
 }
 
 .cancelButton
 {
-	margin-left:400;
-	border:none;
+	margin-left:579px;
 	width:178;
 	height:54;
-	background-image:url(Image/publish/cancelButton.png);
+	background:url(Image/publish/cancelButton.png);
+	border:none;
 }
 
 
 .PublishButton
 {
-	border:none;
 	width:178;
 	height:54;
-	background-image:url(Image/publish/publishButton.png);
+	margin-left:15px;
+	background:url(Image/publish/publishButton.png);
+	border:none;
 }
 
 #contentNumber
 {
-	opacity:0.5;
-	font-size:25;
-	margin-left:600;
-	margin-top:-50;
+	color:#928d7f;
+	font-size:28;
+	margin-left:890;
+	margin-top:-40;
+}
+
+#contentFont
+{
+	position:relative;
+	top:-306px;
 }
