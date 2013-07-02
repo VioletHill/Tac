@@ -16,6 +16,13 @@ img#headerimg {
 	width: 980px;
 }
 
+#wholecontent {
+	top:0; 
+	width:1200px; 
+	margin-right: auto; 
+	margin-left: auto;
+}
+
 #allcontent {
 	width: 980px;
 	margin-left: auto;
@@ -27,19 +34,31 @@ img#headerimg {
 }
 
 div.block {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	width: 400px;
+	display: block;
 }
 
 div.content {
+	margin-top: 5px;
 	padding-bottom: 20px;
 	background-color: #fcfaed;
-	box-shadow: 1px 2px 5px #888;
+	box-shadow: 2px 2px 5px #888;
+	border-radius: 5px;
+}
+
+div.content:hover {
+	box-shadow: 1px 1px 5px #888;
 }
 
 .headphoto {
-	height: 50px;
+	border-radius: 19px;
+   -moz-border-radius: 19px;
+   -webkit-border-radius: 19px;
+   overflow:hidden;
+   width:38px;
+   height:38px;
 	float: left;
 }
 
@@ -59,8 +78,8 @@ div.content {
 	text-align: center;
 	display: block;
 	position: absolute;
-	margin-top: 176px;
-	margin-left: 300px;
+	margin-top: 174px;
+	margin-left: 295px;
 	font-size: 21px;
 	color: #aaa;
 }
@@ -78,6 +97,7 @@ div.content {
 }
 
 p.notecontent {
+	font-size: 15px;
 	margin: 15px;
 }
 
@@ -88,6 +108,8 @@ p.notecontent {
 }
 
 .notetitle {
+	padding-top: 10px;
+	padding-left: 10px;
 	height: 50px;
 }
 
@@ -99,8 +121,7 @@ p.notecontent {
 }
 
 p.ownername {
-	padding-left: 10px;
-	padding-top: 18px;
+	padding-top: 10px;
 }
 
 #right {
@@ -115,10 +136,10 @@ p.ownername {
 }
 
 #publishBlock #publishContent {
-	margin-top: 35px;
-	margin-left: 35px;
-	height: 120px;
-	width: 300px;
+	margin-top: 32px;
+	margin-left: 22px;
+	height: 112px;
+	width: 346px;
 	display: block;
 	position: absolute;
 	resize: none;
@@ -128,13 +149,30 @@ p.ownername {
 	color: #555;
 }
 
+#publishBlock #publishContent:focus {
+	outline:#d6d6d6 solid 1px;
+}
+
 #publishBlock #submitButton {
+	width: 25px;
+	height: 22px;
+	background-image: url(../image/submitbutton.png);
+	background-position: 0px 0px;
 	position: absolute;
 	display: block;
-	margin-top: 180px;
-	margin-left: 350px;
-	border: 1px solid black;
+	margin-top: 176px;
+	margin-left: 355px;
 }
+
+#publishBlock #submitButton:hover {
+	background-position: -25px 0px;
+}
+
+#publishBlock #submitButton:active {
+	background-position: -50px 0px;
+}
+
+
 
 footer {
 	clear: right;

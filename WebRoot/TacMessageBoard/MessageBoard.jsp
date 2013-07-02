@@ -24,6 +24,8 @@
 </head>
 
 <body>
+	<button id="testbutton">button</button>
+	<div id="wholecontent" >
 	<%@include file="/Navigation/Navigation.jsp"%>
 	<div id="allcontent">
 
@@ -36,7 +38,7 @@
 						<form action="Publish" method="post">
 							<textarea id="publishContent" name="content"></textarea>
 							<p id="publishCount">0</p>
-							<input type="submit" id="submitButton" />
+							<button id="submitButton"></button>
 						</form>
 					</div>
 				</div>
@@ -50,5 +52,6 @@
 	</div>
 	<button id="loadmore">more</button>
 	<%@include file="/Navigation/Footer.jsp"%>
+	</div>
 </body>
 </html>

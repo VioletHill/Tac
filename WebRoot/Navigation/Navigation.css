@@ -10,43 +10,43 @@
 	margin: auto;
 }
 
-#topLogo {
+#top #topLogo {
 	width: 340px;
 	text-align: left;
 	float: left;
 	margin-left: 30px;
 }
 
-#topBG {
+#top #topBG {
 	background-image: url("Navigation/NavigationBg.png");
 	background-repeat: no-repeat;
 	margin: auto;
 	height: 65px;
 }
 
-#tacnav {
+#top #tacnav {
 	float: right;
 	align: center;
 }
 
-a.tacnav {
+#top a.tacnav {
 	display: block;
 	color: white;
 	text-decoration: none;
 	background-position: 50% 50%;
 }
 
-a.tacnav>div {
+#top a.tacnav>div {
 	height: 32px;
 	//width: 132px;
 	align: center;
 }
 
-a.tacnav>div>p {
+#top a.tacnav>div>p {
 	padding: 5;
 }
 
-a.tacnav:hover {
+#top a.tacnav:hover {
 	float: center;
 	display: block;
 	background: url(Navigation/LinkSelect.png);
@@ -54,11 +54,11 @@ a.tacnav:hover {
 	background-position: 50% 50%;
 }
 
-td {
+#top td {
 	text-align: center;
 }
 
-.headDiv
+#top .headDiv
 {
  	border-radius: 19px;
    -moz-border-radius: 19px;
