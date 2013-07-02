@@ -7,6 +7,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
+  
+  <link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
+	
   <style type="text/css">	
 	body {
 		background-image: url("image/mainBG.png");
@@ -15,6 +19,8 @@
 	}
 	
   </style>
+  
+  
 
   	<script src="jquery-1.9.1.js"></script>
  	<script src="jQueryRotate.2.2.js"></script>

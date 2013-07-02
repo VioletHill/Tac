@@ -3,6 +3,10 @@
 
     <script type="text/javascript" src="MD5.js"></script>
     <script type="text/javascript" src="TacHome/Navigation/HomeNavigation.js"></script>
+    
+    <link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
+	
     <link rel="stylesheet" type="text/css" href="TacHome/Navigation/HomeNavigation.css">
 
 <!--  navigation -->

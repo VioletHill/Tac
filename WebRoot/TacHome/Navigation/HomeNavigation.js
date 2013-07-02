@@ -34,28 +34,19 @@
 		isLoging=true;
 		
 		document.getElementById("loginImg").style.display="inline";
-		
-		var xmlhttp;
-		if (window.XMLHttpRequest)
-		{
-		  xmlhttp=new XMLHttpRequest();
-		}
-		else
-		{
-		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		xmlhttp.open("POST", "Login?account="+document.getElementById("loginAccount").value+ "&password="+MD5(document.getElementById("loginPassword").value), false);
-		xmlhttp.send();
-		if (xmlhttp.responseText=="true")
-		{
-			loginSuccess();
-		}
-		else
-		{
-			loginFail();
-		}	
-		isLoging=false;
+		$.post("Login",{account:document.getElementById("loginAccount").value,password:MD5(document.getElementById("loginPassword").value) }, function(msg)
+				{
+					if (msg=="true")
+					{
+						loginSuccess();
+					}
+					else
+					{
+						loginFail();
+					}
+					isLoging=false;
+				});
+	
 	}
 	
 	var isShake=false;

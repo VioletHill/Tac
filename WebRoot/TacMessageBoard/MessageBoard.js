@@ -22,11 +22,20 @@ $(document).ready(function() {
 		}
 	}
 	
+	$('#testbutton').click(function() {
+		$('.block').hide();
+		$('.block').fadeIn(1000);
+	});
+	
 	subfield();
 	
-	
+	var loadflag = false;
 	function loadmore() {
 
+		if (loadflag) {
+			return;
+		}
+		loadflag = true;
 		var xmlhttp;
 
 		if (window.XMLHttpRequest) {
@@ -41,6 +50,7 @@ $(document).ready(function() {
 			xmlhttp.send("id=" + id);
 			
 			xmlhttp.onreadystatechange = function() {
+				loadflag = false;
 				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 					document.getElementById("collection").innerHTML=xmlhttp.responseText;
 					subfield();

@@ -16,6 +16,9 @@
  	</jsp:useBean>
  	
   <head>
+  
+  <link type="text/css" rel="stylesheet"
+	href="common/common.css" charset="utf-8"/>
 
     <base href="<%=basePath%>">
     
