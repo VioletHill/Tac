@@ -9,6 +9,8 @@ public class DocumentData {
 	// private List<Document> allData;
 	private int pageIndex = 1;
 	private String search;
+	private String select = "    所有";
+	private String catalog = "all";
 	private static final int EACH_PAGE = 7;
 	// private String catalog = "全部";
 	private DocumentDAO dao;
@@ -91,7 +93,7 @@ public class DocumentData {
 	}
 
 	public void setDataWithSearchKeyOfCatalog(String searchKey, String catalog) {
-
+		System.out.println("setDataWithSearchKeyOfCatalog"+ searchKey +" " + catalog);
 		if (searchKey.equals("") && catalog.equals("all")) {
 			this.setDataList(this.dao.find_All(this.pageIndex, EACH_PAGE));
 			// this.dataList = this.dao.find(this.pageIndex,
@@ -101,8 +103,10 @@ public class DocumentData {
 			this.setDataOfCatalog(catalog);
 		} else if (catalog.equals("all")) {
 			this.setDataWithSearchKey(searchKey);
+		} else {
+			this.setDataList(this.dao.find(this.pageIndex,EACH_PAGE,searchKey,catalog));
 		}
-//		System.out.println("set data end");
+		// System.out.println("set data end");
 	}
 
 	public void setDataWithSearchKey(String searchKey) {
@@ -112,10 +116,26 @@ public class DocumentData {
 
 	public void setDataOfCatalog(String catalog) {
 		this.setDataList(this.dao.findOfCatalog(this.pageIndex,
-					DocumentData.EACH_PAGE, catalog));
+				DocumentData.EACH_PAGE, catalog));
 	}
 
 	public int getCountOfPage() {
 		return (this.dataList.size() - 1) / this.EACH_PAGE + 1;
+	}
+
+	public String getSelect() {
+		return select;
+	}
+
+	public void setSelect(String select) {
+		this.select = select;
+	}
+
+	public String getCatalog() {
+		return catalog;
+	}
+
+	public void setCatalog(String catalog) {
+		this.catalog = catalog;
 	}
 }

@@ -92,42 +92,7 @@
 			</div>
 		<%}%> 
 	</div>
-	<div class="pages">
-					<form action="Document" method="post" id="pageForm">
-						<input type="hidden" id="doneSomething" name="doneSomething"
-							value="no" /> <input type="hidden" id="catalog" name="catalog"
-							value="all" /> <input type="hidden" id="pageIndex"
-							name="pageIndex" value="1" />
-						<div class="pageNum">
-							<input type="hidden" id="pageIndexText"
-								value="<%=DocumentData.getPageIndex()%>"> <a
-								href="javascript:choosePage(1);" class="NoticesItem">首页</a> <a
-								href="javascript:lastPage();" class="NoticesItem">上一页</a>
-							<%
-								for (int i = 1; i <= DocumentData.getCountOfPage(); i++) {
-									if (i == DocumentData.getPageIndex()) {
-							%>
-							<a style="color:#adadad"><%=i%></a>
-							<%
-								} else {
-							%>
-							<a href="javascript:choosePage(<%=i%>);" class="NoticesItem"><%=i%></a>
-							<%
-								}
-							%>
-							<%
-								}
-							%>
-
-							<a
-								href="javascript:nextPage(<%=DocumentData.getCountOfPage()%>);"
-								class="NoticesItem">下一页</a> <a
-								href="javascript:choosePage(<%=DocumentData.getCountOfPage()%>);"
-								class="NoticesItem">尾页</a>
-						</div>
-						<!-- 页号 -->
-					</form>
-				</div>
+	
 	<%@include file="/Navigation/Footer.jsp" %>
   </body>
   

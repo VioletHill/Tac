@@ -14,7 +14,7 @@ $(document)
 					$(".document")
 							.hover(
 									function() {
-										// Ò»¶¨Òª¸Ä½øÕâ¶Î´úÂë£¡@Mark
+										// ä¸€å®šè¦æ”¹è¿›è¿™æ®µä»£ç ï¼@Mark
 										$(
 												this.lastElementChild.lastElementChild.lastElementChild.lastElementChild.lastElementChild)
 												.show();
@@ -89,12 +89,13 @@ $(document)
 						$(this).css("background-image", "none");
 					});
 					$("#searchTF").focus(function() {
-						if (this.value == "ËÑË÷ĞÅÏ¢")
+						// alert(this.value);
+						if (this.value == "æœç´¢ä¿¡æ¯")
 							this.value = "";
 					});
 					$("#searchTF").blur(function() {
 						if (this.value == "")
-							this.value = "ËÑË÷ĞÅÏ¢";
+							this.value = "æœç´¢ä¿¡æ¯";
 					});
 					$("#searchSlt").click(function() {
 						if (isDown) {
@@ -126,18 +127,19 @@ $(document)
 						$(this).css("background-image", "none");
 					});
 
-					// ×ó±ßÀ¸°´Å¥ÏìÓ¦µã»÷
-					$(".cateBt").click(function(){
-						clickSelectSearch(this);
+					// å·¦è¾¹æ æŒ‰é’®å“åº”ç‚¹å‡»
+					$(".cateBt").click(function() {
+						clickLeftSelectSearch(this);
 					});
 				});
 
-// ´Ëº¯ÊıÎªËÑË÷À¸Ñ¡ÔñÀà±ğÏìÓ¦µã»÷ÊÂ¼ş °üÀ¨×ó±ßÀ¸
+// æ­¤å‡½æ•°ä¸ºæœç´¢æ é€‰æ‹©ç±»åˆ«å“åº”ç‚¹å‡»äº‹ä»¶ åŒ…æ‹¬å·¦è¾¹æ 
 function clickSelectSearch(ele) {
-	
+	$("#catalogDiv").slideUp("slow");
+
 	checkSearchIsNull();
 	keepSearchContent();
-//	alert(ele.id);
+	// alert(ele.id);
 	switch (ele.id) {
 	case "all":
 		document.getElementById("catalog").value = "all";
@@ -163,18 +165,69 @@ function clickSelectSearch(ele) {
 		document.getElementById("catalog").value = "design";
 		catalog = "design";
 		break;
+	case "searchSb":
+		break;
 	default:
 		document.getElementById("catalog").value = "all";
 		catalog = "all";
 	}
 	makeSomeNoise();
 	rewriteSearchContent();
+
 	document.getElementById("searchSlt").value = ele.value;
-	document.getElementById("searchForm").submit();
-//	alert(searchKey);
+
+	// alert(searchKey);
 
 	// clearItem();
-//	rewriteSearchContent();
+	// rewriteSearchContent();
+}
+
+function clickLeftSelectSearch(ele) {
+
+	checkSearchIsNull();
+	keepSearchContent();
+	// alert(ele.id);
+	switch (ele.id) {
+	case "all":
+		document.getElementById("catalog").value = "all";
+		catalog = "all";
+		break;
+	case "document":
+		document.getElementById("catalog").value = "document";
+		catalog = "document";
+		break;
+	case "sourceCode":
+		document.getElementById("catalog").value = "sourceCode";
+		catalog = "sourceCode";
+		break;
+	case "lib":
+		document.getElementById("catalog").value = "lib";
+		catalog = "lib";
+		break;
+	case "software":
+		document.getElementById("catalog").value = "software";
+		catalog = "software";
+		break;
+	case "design":
+		document.getElementById("catalog").value = "design";
+		catalog = "design";
+		break;
+	case "searchSb":
+		break;
+	default:
+		document.getElementById("catalog").value = "all";
+		catalog = "all";
+	}
+	makeSomeNoise();
+	rewriteSearchContent();
+	document.getElementById("searchTF").value = "";
+	document.getElementById("searchForm").submit();
+//	document.getElementById("searchSlt").value = "Â  Â  " + ele.value;
+
+	// alert(searchKey);
+
+	// clearItem();
+	// rewriteSearchContent();
 }
 
 function makeSomeNoise() {
@@ -186,15 +239,15 @@ function keepSearchContent() {
 }
 
 function rewriteSearchContent() {
-//	alert(searchKey);
+	// alert(searchKey);
 	document.getElementById("searchTF").value = searchKey;
 }
 
 /*
- * ÒÔÏÂÎªÒ³Ãæ´¦Àíº¯Êı
+ * ä»¥ä¸‹ä¸ºé¡µé¢å¤„ç†å‡½æ•°
  */
 function choosePage(index) {
-	// Èç¹û²»ÊÇĞÂµÄËÑË÷ »¹Ô­ËÑË÷¿òÖĞÊı¾İ
+	// å¦‚æœä¸æ˜¯æ–°çš„æœç´¢ è¿˜åŸæœç´¢æ¡†ä¸­æ•°æ®
 	document.getElementById("searchTF").value = searchKey;
 	checkSearchIsNull();
 	document.getElementById("pageIndex").value = index;
@@ -204,7 +257,7 @@ function choosePage(index) {
 function nextPage(totPage) {
 	var index = parseInt(document.getElementById("pageIndexText").value) + 1;
 	if (index > totPage) {
-		alert("Ç×£¡ÒÑ¾­×îºóÒ»Ò³ÁË~~");
+		alert("äº²ï¼å·²ç»æœ€åä¸€é¡µäº†~~");
 		return;
 	}
 	choosePage(index);
@@ -212,34 +265,32 @@ function nextPage(totPage) {
 function lastPage() {
 	var index = parseInt(document.getElementById("pageIndexText").value) - 1;
 	if (index <= 0) {
-		alert("Ç×£¡ÒÑ¾­µÚÒ»Ò³ÁË~~");
+		alert("äº²ï¼å·²ç»ç¬¬ä¸€é¡µäº†~~");
 		return;
 	}
 	choosePage(index);
 }
 
-
-
 function checkSearchIsNull() {
-	if (document.getElementById("searchTF").value == "ËÑË÷ĞÅÏ¢") {
+	if (document.getElementById("searchTF").value == "æœç´¢ä¿¡æ¯") {
 		document.getElementById("searchTF").value = "";
 	}
 }
 
 function focusSearch(element) {
 	// element.style.opacity=1;
-	if (element.value == "ËÑË÷ĞÅÏ¢")
+	if (element.value == "æœç´¢ä¿¡æ¯")
 		element.value = "";
 }
 
 function blurSearch(element) {
 	// element.style.opacity=0.2;
 	if (element.value == "")
-		element.value = "ËÑË÷ĞÅÏ¢";
+		element.value = "æœç´¢ä¿¡æ¯";
 }
 
 /*
- * Ò³Ãæ³õÊ¼»¯
+ * é¡µé¢åˆå§‹åŒ–
  */
 function init() {
 	searchKey = document.getElementById("searchTF").value;

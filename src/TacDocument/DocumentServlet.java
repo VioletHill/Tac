@@ -64,7 +64,7 @@ public class DocumentServlet extends HttpServlet {
 		if (isFirst) {
 			data.setPageIndex(1);
 		} else {
-			// ��ȡҳ��
+			// 获取页数
 			try {
 				data.setPageIndex(Integer.parseInt(request
 						.getParameter("pageIndex")));
@@ -73,10 +73,10 @@ public class DocumentServlet extends HttpServlet {
 			}
 		}
 
-		// ��ȡ������Ϣ
+		// 获取搜索信息
 		try {
 			searchKey = new String(request.getParameter("search").getBytes(
-					"iso-8859-1"), "gbk");
+					"iso-8859-1"), "utf-8");
 			int start = 0;
 			int end = searchKey.length();
 			while (start < searchKey.length() && searchKey.charAt(start) == ' ')
@@ -88,27 +88,48 @@ public class DocumentServlet extends HttpServlet {
 			searchKey = "";
 		}
 
-		// ��ȡ���
+		// 获取类别
 		try {
 			catalog = new String(request.getParameter("catalog").getBytes(
-					"iso-8859-1"), "gbk");
+					"iso-8859-1"), "utf-8");
+//			System.out.println("get catalog");
 		} catch (Exception e) {
 			catalog = "all";
+//			System.out.println("didn't get catalog");
 		}
 
-		data.setSearch(searchKey);
-		// searchKey = "����";
+//		data.setSearch(searchKey);
+//		System.out.println(catalog);
+		if (catalog.equals("all")) {
+			data.setSelect("    所有");
+		} else if (catalog.equals("document")) {
+			data.setSelect("    文档");
+		} else if (catalog.equals("lib")) {
+			data.setSelect("    类库");
+		} else if (catalog.equals("sourceCode")) {
+			data.setSelect("    源码");
+		} else if (catalog.equals("design")) {
+			data.setSelect("    设计");
+		} else if (catalog.equals("software")) {
+			data.setSelect("    软件");
+		}
+		data.setCatalog(catalog);
+		// searchKey = "测试";
 		// catalog = "lib";
 		// System.out.println("data refresh started");
-		// System.out.println(searchKey+" "+catalog);
-		System.out.print(searchKey);
+		System.out.println(searchKey + " " + catalog);
+		// System.out.print(searchKey);
 		data.setDataWithSearchKeyOfCatalog(searchKey, catalog);
 		// System.out.println(data.getDataList());
 		// System.out.println(data.getTitle(0));
 		if (searchKey.equals(""))
-			data.setSearch("������Ϣ");
+			data.setSearch("搜索信息");
 		else
 			data.setSearch(searchKey);
+		if (data.getSelect() == null) {
+			data.setSelect("    所有");
+		}
+
 		request.setAttribute("DocumentData", data);
 		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(
 				request, response);

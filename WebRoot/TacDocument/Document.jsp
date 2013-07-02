@@ -1,7 +1,7 @@
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
 <%
 	String path = request.getContextPath();
@@ -19,16 +19,13 @@
 
 <base href="<%=basePath%>">
 
-<title>Tac×ÊÁÏÊÒ</title>
+<title>Tacèµ„æ–™å®¤</title>
 
-
-<meta charset="utf-8" />
 
 <link rel="stylesheet" type="text/css" href="TacDocument/Document.css">
 <script src="jquery-1.9.1.js"></script>
 <script src="TacDocument/Document.js" type="text/javascript"></script>
-<link type="text/css" rel="stylesheet" href="common/common.css"
-	charset="utf-8" />
+<link type="text/css" rel="stylesheet" href="common/common.css" />
 </head>
 
 <body>
@@ -40,60 +37,59 @@
 
 
 		<div id="searchDiv">
-			<!-- ËÑË÷À¸ -->
-			<form action="Document" method="post" id="searchForm"
-				onsubmit="checkSearch()">
+			<!-- æœç´¢æ  -->
+			<form action="Document" method="post" id="searchForm">
 				<input type="hidden" id="doneSomething" name="doneSomething"
 					value="no" /> <input type="hidden" id="catalog" name="catalog"
-					value="all" />
+					value="<%=DocumentData.getCatalog()%>" />
 				<table>
 					<tr>
 						<td><input id="searchTF" type="text" name="search"
 							value="<%=DocumentData.getSearch()%>" /></td>
 						<td><div id="searchSltDiv">
 								<input id="searchSlt"  type="button" 
-									value="0„2 0„2 ËùÓÐ" style="text-align:left;" type="button" />
+									value="<%=DocumentData.getSelect()%>" style="text-align:left;"/>
 								<div id="catalogDiv">
 									<table style="margin-top:8px;" cellpadding="0px"
 										cellspacing="0px" border="0">
 										<tr style="padding:0px;margin:0px;">
 											<td style="padding:0px;margin:0px;"><input
-												class="searchSltBt" id="all" value="0„2 0„2 ËùÓÐ"
+												class="searchSltBt" id="all" value="Â  Â  æ‰€æœ‰"
 												style="text-align:left;" type="button"
 												onclick="clickSelectSearch(this)" />
 											</td>
 										</tr>
 										<tr>
 											<td><div>
-													<input class="searchSltBt" id="document" value="0„2 0„2 ÎÄµµ"
+													<input class="searchSltBt" id="document" value="Â  Â  æ–‡æ¡£"
 														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
-													<input class="searchSltBt" id="lib" value="0„2 0„2 Àà¿â"
+													<input class="searchSltBt" id="lib" value="Â  Â  ç±»åº“"
 														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
-													<input class="searchSltBt" id="sourceCode" value="0„2 0„2 Ô´Âë"
+													<input class="searchSltBt" id="sourceCode" value="Â  Â  æºç "
 														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
-													<input class="searchSltBt" id="software" value="0„2 0„2 Èí¼þ"
+													<input class="searchSltBt" id="software" value="Â  Â  è½¯ä»¶"
 														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
 										</tr>
 										<tr>
 											<td><div>
-													<input class="searchSltBt" id="design" value="0„2 0„2 Éè¼Æ"
+													<input class="searchSltBt" id="design" value="Â  Â  è®¾è®¡"
 														style="text-align:left;" type="button"
 														onclick="clickSelectSearch(this)" />
 												</div></td>
@@ -108,10 +104,10 @@
 					</tr>
 				</table>
 			</form>
-			<!-- ËÑË÷À¸ -->
+			<!-- æœç´¢æ  -->
 		</div>
 
-		<!-- ×ó²àÑ¡ÔñÀ¸ -->
+		<!-- å·¦ä¾§é€‰æ‹©æ  -->
 		<div id="cateDiv">
 			<div id="cateBtDiv">
 				<form action="Document" method="post" id="leftForm">
@@ -123,7 +119,7 @@
 						<tr>
 							<td><div class="catalogLeft">
 									<img src="TacDocument/images/category_all.png" id="catalogo">
-									<input class="cateBt" id="all" type="button" value="ËùÓÐ"
+									<input class="cateBt" id="all" type="button" value="æ‰€æœ‰"
 										name="all" />
 								</div></td>
 						</tr>
@@ -131,13 +127,13 @@
 							<td><div class="catalogLeft">
 									<img src="TacDocument/images/category_document.png"
 										id="catalogo"> <input class="cateBt" type="button"
-										id="document" value="ÎÄµµ" name="document" />
+										id="document" value="æ–‡æ¡£" name="document" />
 								</div></td>
 						</tr>
 						<tr>
 							<td><div class="catalogLeft">
 									<img src="TacDocument/images/category_lib.png" id="catalogo">
-									<input class="cateBt" id="lib" type="button" value="Àà¿â"
+									<input class="cateBt" id="lib" type="button" value="ç±»åº“"
 										name="lib" />
 								</div></td>
 						</tr>
@@ -145,30 +141,30 @@
 							<td><div class="catalogLeft">
 									<img src="TacDocument/images/category_sourceCode.png"
 										id="catalogo"> <input class="cateBt" id="sourceCode"
-										type="button" value="Ô´Âë" name="sourceCode" />
+										type="button" value="æºç " name="sourceCode" />
 								</div></td>
 						</tr>
 						<tr>
 							<td><div class="catalogLeft">
 									<img src="TacDocument/images/category_software.png"
 										id="catalogo"> <input class="cateBt" id="software"
-										type="button" value="Èí¼þ" name="software" />
+										type="button" value="è½¯ä»¶" name="software" />
 								</div></td>
 						</tr>
 						<tr>
 							<td><div class="catalogLeft">
 									<img src="TacDocument/images/category_design.png" id="catalogo">
-									<input class="cateBt" id="design" type="button" value="Éè¼Æ"
+									<input class="cateBt" id="design" type="button" value="è®¾è®¡"
 										name="design" />
 								</div></td>
 						</tr>
 					</table>
 				</form>
 			</div>
-			<!-- ×ó²àÑ¡ÔñÀ¸ -->
+			<!-- å·¦ä¾§é€‰æ‹©æ  -->
 
 			<div id="contentDiv">
-				<!-- ÌõÄ¿ -->
+				<!-- æ¡ç›® -->
 				<div class="recordDiv">
 					<table cellpadding="0px" cellspacing="0px" border="0px">
 						<%
@@ -235,9 +231,9 @@
 						%>
 					</table>
 				</div>
-				<!-- ÌõÄ¿ -->
+				<!-- æ¡ç›® -->
 
-				<!--Ò³ºÅ-->
+				<!--é¡µå·-->
 				<div class="pages">
 					<form action="Document" method="post" id="pageForm">
 						<input type="hidden" id="doneSomething" name="doneSomething"
@@ -247,8 +243,8 @@
 						<div class="pageNum">
 							<input type="hidden" id="pageIndexText"
 								value="<%=DocumentData.getPageIndex()%>"> <a
-								href="javascript:choosePage(1);" class="NoticesItem">Ê×Ò³</a> <a
-								href="javascript:lastPage();" class="NoticesItem">ÉÏÒ»Ò³</a>
+								href="javascript:choosePage(1);" class="NoticesItem">é¦–é¡µ</a> <a
+								href="javascript:lastPage();" class="NoticesItem">ä¸Šä¸€é¡µ</a>
 							<%
 								for (int i = 1; i <= DocumentData.getCountOfPage(); i++) {
 									if (i == DocumentData.getPageIndex()) {
@@ -267,11 +263,11 @@
 
 							<a
 								href="javascript:nextPage(<%=DocumentData.getCountOfPage()%>);"
-								class="NoticesItem">ÏÂÒ»Ò³</a> <a
+								class="NoticesItem">ä¸‹ä¸€é¡µ</a> <a
 								href="javascript:choosePage(<%=DocumentData.getCountOfPage()%>);"
-								class="NoticesItem">Î²Ò³</a>
+								class="NoticesItem">å°¾é¡µ</a>
 						</div>
-						<!-- Ò³ºÅ -->
+						<!-- é¡µå· -->
 					</form>
 				</div>
 			</div>

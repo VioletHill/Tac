@@ -1,7 +1,9 @@
-#Wed Jul 03 01:00:27 CST 2013
+#Wed Jul 03 06:32:11 CST 2013
 eclipse.preferences.version=1
 encoding//WebRoot/TacDocument/Admin/UploadDocument.jsp=UTF-8
+encoding//WebRoot/TacDocument/Document.js=UTF-8
 encoding//WebRoot/TacMessageBoard/MessageBoard.jsp=UTF-8
 encoding//WebRoot/common/common.css=UTF-8
 encoding//WebRoot/index.jsp=UTF-8
 encoding//src/DataSource/Document/DocumentData.java=UTF-8
+encoding//src/TacDocument/DocumentServlet.java=UTF-8
