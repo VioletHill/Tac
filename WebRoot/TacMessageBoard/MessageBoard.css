@@ -8,7 +8,7 @@ body,p,div,header,footer,img,table,li,ui,h1,h2,h3,h4,h5,h6,textarea,input,button
 }
 
 body {
-	background-image: url(/Tac/image/mainBG.png);
+	background-image: url(image/mainBG.png);
 	font-family: 微软雅黑, 幼圆, Georigia, Times, serif;
 }
 
@@ -67,7 +67,7 @@ div.content:hover {
 }
 
 #addNoteBlock {
-	background-image: url(../image/addNotePic.png);
+	background-image: url(image/addNotePic.png);
 	background-position: 0px 0px;
 	width: 400px;
 	height: 217px;
@@ -156,7 +156,7 @@ p.ownername {
 #publishBlock #submitButton {
 	width: 25px;
 	height: 22px;
-	background-image: url(../image/submitbutton.png);
+	background-image: url(image/submitbutton.png);
 	background-position: 0px 0px;
 	position: absolute;
 	display: block;
