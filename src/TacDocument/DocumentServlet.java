@@ -45,48 +45,38 @@ public class DocumentServlet extends HttpServlet {
 		// request.setAttribute("allProjects", allProjects);
 		// // request.setAttribute("allNotices", allNotices);
 		//
-	//	System.out.println("server started");
+		// System.out.println("server started");
 		DocumentData data = new DocumentData();
-		//data.setPageNum(Integer.parseInt(request.getParameter("page")));
+		// data.setPageNum(Integer.parseInt(request.getParameter("page")));
 		data.setDataOfPage(1);
 		String searchKey = "";
 		String catalog = "all";
 		boolean isFirst = true;
-		try 
-		{
+		try {
 			String doneAnything = request.getParameter("doSomething");
-			if (doneAnything.equals("yes")) 
-			{
+			if (doneAnything.equals("yes")) {
 				isFirst = false;
 			}
-		}
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			isFirst = true;
 		}
 
-		if (isFirst) 
-		{
+		if (isFirst) {
 			data.setPageIndex(1);
-		}
-		else 
-		{
+		} else {
 			// 获取页数
-			try 
-			{
+			try {
 				data.setPageIndex(Integer.parseInt(request
 						.getParameter("pageIndex")));
-			}
-			catch (Exception e) 
-			{
+			} catch (Exception e) {
 				data.setPageIndex(1);
 			}
 		}
 
 		// 获取搜索信息
-		try 
-		{
-			searchKey = new String(request.getParameter("search").getBytes("iso-8859-1"), "gbk");
+		try {
+			searchKey = new String(request.getParameter("search").getBytes(
+					"iso-8859-1"), "gbk");
 			int start = 0;
 			int end = searchKey.length();
 			while (start < searchKey.length() && searchKey.charAt(start) == ' ')
@@ -94,33 +84,31 @@ public class DocumentServlet extends HttpServlet {
 			while (end >= 0 && searchKey.charAt(end - 1) == ' ')
 				end--;
 			searchKey = searchKey.substring(start, end);
-		} 
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 			searchKey = "";
 		}
-		
+
 		// 获取类别
-		try 
-		{
-			catalog = new String(request.getParameter("catalog").getBytes("iso-8859-1"), "gbk");
-		} 
-		catch (Exception e) 
-		{
+		try {
+			catalog = new String(request.getParameter("catalog").getBytes(
+					"iso-8859-1"), "gbk");
+		} catch (Exception e) {
 			catalog = "all";
 		}
-		
+
 		data.setSearch(searchKey);
-		//searchKey = "测试";
-		//catalog = "lib";
-//		System.out.println("data refresh started");
-//		System.out.println(searchKey+" "+catalog);
+		// searchKey = "测试";
+		// catalog = "lib";
+		// System.out.println("data refresh started");
+		// System.out.println(searchKey+" "+catalog);
 		System.out.print(searchKey);
 		data.setDataWithSearchKeyOfCatalog(searchKey, catalog);
-		//System.out.println(data.getDataList());
-//		System.out.println(data.getTitle(0));
-		if (searchKey.equals(""))	data.setSearch("搜索信息");
-		else data.setSearch(searchKey);
+		// System.out.println(data.getDataList());
+		// System.out.println(data.getTitle(0));
+		if (searchKey.equals(""))
+			data.setSearch("搜索信息");
+		else
+			data.setSearch(searchKey);
 		request.setAttribute("DocumentData", data);
 		request.getRequestDispatcher("/TacDocument/Document.jsp").forward(
 				request, response);

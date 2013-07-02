@@ -89,12 +89,12 @@ $(document)
 						$(this).css("background-image", "none");
 					});
 					$("#searchTF").focus(function() {
-						if (this.value == "搜索资源")
+						if (this.value == "搜索信息")
 							this.value = "";
 					});
 					$("#searchTF").blur(function() {
 						if (this.value == "")
-							this.value = "搜索资源";
+							this.value = "搜索信息";
 					});
 					$("#searchSlt").click(function() {
 						if (isDown) {
