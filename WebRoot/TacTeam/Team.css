@@ -208,3 +208,35 @@
 	margin-left:8;
 }
 
+.TopHover
+{
+	width:165px;
+	height:51px;
+}
+
+.MidHover
+{
+	width:161px;
+	height:52px;
+}
+
+
+.BottomHover
+{
+	width:163px;
+	height:51px;
+}
+
+.TypeFont
+{
+	font-size:23;
+	color:#5e5e5e;
+	margin-left:16;
+}
+
+.TypeFont
+{
+	font-size:13.8;
+	color:#5e5e5e;
+	margin-left:16;
+}

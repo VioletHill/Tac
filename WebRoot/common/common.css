@@ -1,8 +1,9 @@
 @charset "utf-8";
 
-body,p,div,header,footer,img,table,li,ui,h1,h2,h3,h4,h5,h6,textarea,input,button {
+body,p,div,header,footer,img,table,li,ui,h1,h2,h3,h4,h5,h6,textarea,input,button,tr,td,a,tbody {
 	padding: 0px;
 	margin: 0px;
 	border: none;
-	font-family: 微软雅黑, 幼圆, Georigia, Times, serif;
+	//font-family: 微软雅黑, 冬青黑体简体中文,幼圆, Georigia, Times, serif;
+	font-family: 'helvetica neue',  'hiragino sans gb', 'stheiti', 'microsoft yahei', \5FAE\8F6F\96C5\9ED1,tahoma,sans-serif;
 }

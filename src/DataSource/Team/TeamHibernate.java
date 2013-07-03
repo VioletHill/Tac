@@ -38,6 +38,7 @@ public class TeamHibernate implements Serializable {
 	public void insert(Team team)
 	{
 		TeamDAO dao=new TeamDAO();
+		UserDAO dao3=new UserDAO();
 		Calendar cal = Calendar.getInstance();
 		team.setYear(cal.get(Calendar.YEAR));
 		team.setMonth(cal.get(Calendar.MONTH) + 1);
@@ -45,6 +46,8 @@ public class TeamHibernate implements Serializable {
 		Vector<User> joinuser=team.getJoinUsers();
 		team.setJoin_head("");
 		team.setJoin_user("");
+		team.setJoin_head(dao3.find_by_account(team.getPublisher_account()).getHeader_add());
+		team.setJoin_user(team.getPublisher_account()+"加入了项目");
 		dao.save(team);
 		int team_id=team.getId();
 		if(joinuser!=null)
@@ -58,6 +61,7 @@ public class TeamHibernate implements Serializable {
 				dao2.save(teamJoinusers);
 			}
 		}
+		add_join(team.getId(), team.getPublisher_account());
 	}
 	public void update(Team team)
 	{

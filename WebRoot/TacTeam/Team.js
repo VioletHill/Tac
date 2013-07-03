@@ -189,4 +189,44 @@ function publishTeam()
 	window.location.href="Team/TeamPublish";
 }
 
+function changeType(val)
+{
+	document.getElementById("typeText").value=val;
+	document.getElementById("pageText").value=1;
+	document.getElementById("form").submit();
+}
+
+function changePeopleType(val)
+{
+	document.getElementById("peopleTypeText").value=val;
+	document.getElementById("pageText").value=1;
+	document.getElementById("form").submit();
+}
+
+function enterItem(ele) {
+	switch (ele.id) {
+	case "create":
+		ele.style.backgroundImage = 'url(TacTeam/Image/QBY_SelectHover_Top.png)';
+		break;
+	case "myPeople":
+		ele.style.backgroundImage = 'url(TacTeam/Image/QBY_SelectHover_Top.png)';
+		break;
+	case "enlist":
+		ele.style.backgroundImage = 'url(TacTeam/Image/QBY_SelectHover_Mid.png)';
+		break;
+	case "myTeamPeople":
+		ele.style.backgroundImage = 'url(TacTeam/Image/QBY_SelectHover_Mid.png)';
+		break;
+	default:
+		ele.style.backgroundImage = 'url(TacTeam/Image/QBY_SelectHover_Bottom.png)';
+	}
+
+}
+
+function outItem(ele) {
+	ele.style.backgroundImage = 'none';
+}
+
+
+
    		
